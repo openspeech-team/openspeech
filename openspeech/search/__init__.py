@@ -20,7 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from .base import OpenspeechBeamSearchBase
-from .beam_search_ctc import BeamSearchCTC
-from .beam_search_lstm import BeamSearchLSTM
-from .beam_search_transformer import BeamSearchTransformer
+import os
+import importlib
+
+# automatically import any Python files in the models/ directory
+scheduler_dir = os.path.dirname(__file__)
+for file in os.listdir(scheduler_dir):
+    path = os.path.join(scheduler_dir, file)
+    if file.endswith(".py"):
+        scheduler_name = file[: file.find(".py")] if file.endswith(".py") else file
+        module = importlib.import_module(f"openspeech.search.{scheduler_name}")

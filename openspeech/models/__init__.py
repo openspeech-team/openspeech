@@ -84,7 +84,7 @@ for file in os.listdir(models_dir):
 
 
 from .conformer.model import ConformerModel
-from .conformer.configs import ConformerConfigs
+from .conformer.configurations import ConformerConfigs
 from .conformer_lstm.model import ConformerLSTMModel
 from .conformer_lstm.configurations import ConformerLSTMConfigs
 from .conformer_transducer.model import ConformerTransducerModel

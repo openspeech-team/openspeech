@@ -20,11 +20,11 @@ import sphinx_rtd_theme
 # -- Project information -----------------------------------------------------
 
 project = 'Openspeech'
-copyright = '2021, Kim, Soohwan and Ha, Sangchun'
-author = 'Kim, Soohwan and Ha, Sangchun'
+copyright = '2021, Kim, Soohwan and Ha, Sangchun and Cho, Soyoung'
+author = 'Kim, Soohwan and Ha, Sangchun and Cho, Soyoung'
 
 # The full version, including alpha/beta/rc tags
-release = 'latest'
+release = 'v0.1'
 
 
 # -- General configuration ---------------------------------------------------

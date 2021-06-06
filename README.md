@@ -12,7 +12,7 @@
   <a href="https://pypi.org/project/openspeech-core/"><img src="https://img.shields.io/badge/pypi-v0.1-informational">
   <img src="https://img.shields.io/badge/build-passing-33CF57?&logo=GitHub">
   <a href="https://sooftware.github.io/openspeech/"><img src="https://img.shields.io/badge/docs-passing-33CF57?&logo=GitHub">
-  <a href="https://www.codefactor.io/repository/github/sooftware/openspeech"><img src="https://www.codefactor.io/repository/github/sooftware/openspeech/badge?s=1cc697a8b26b61fb987f892dc715255c1f2bae13">
+  <a href="https://www.codefactor.io/repository/github/sooftware/openspeech"><img src="https://www.codefactor.io/repository/github/sooftware/openspeech/badge?s=1cc697a8b26b61fb987f892dc715255c1f2bae13"></a>
 </p>
 
 </div>

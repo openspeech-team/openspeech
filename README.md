@@ -1,6 +1,6 @@
 <div align="center">
   
-![image](https://user-images.githubusercontent.com/38921656/120214584-a2000200-c26f-11eb-934c-30697330613e.png)
+![image](https://user-images.githubusercontent.com/38921656/120930774-af166880-c729-11eb-91c5-4229fe70eab3.png)
 
   
 </div>
@@ -19,11 +19,11 @@
   
 ---
   
-<img src="https://user-images.githubusercontent.com/42150335/120691940-14781880-c4e2-11eb-8b1d-34390631cd55.png" height=20> Openspeech provides reference implementations of various ASR modeling papers and three languages recipe to perform tasks on automatic speech recognition. Our aim is to make ASR technology easier to use for everyone.    
+<img src="https://user-images.githubusercontent.com/42150335/120691940-14781880-c4e2-11eb-8b1d-34390631cd55.png" height=20> Openspeech provides reference implementations of various ASR modeling papers and three languages recipe to perform tasks on automatic speech recognition. We aim to make ASR technology easier to use for everyone.    
    
 
 <img src="https://user-images.githubusercontent.com/42150335/120691940-14781880-c4e2-11eb-8b1d-34390631cd55.png" height=20>  Openspeech is backed by the two powerful libraries — [PyTorch-Lightning](https://github.com/PyTorchLightning/pytorch-lightning) and [Hydra](https://github.com/facebookresearch/hydra). 
-Various features are available in the above two libraries, including Multi-GPU and TPU training, Mixed-precision and hierarchical configuration management.
+Various features are available in the above two libraries, including Multi-GPU and TPU training, Mixed-precision, and hierarchical configuration management.
   
   
 <img src="https://user-images.githubusercontent.com/42150335/120691940-14781880-c4e2-11eb-8b1d-34390631cd55.png" height=20>  We appreciate any kind of feedback or contribution. Feel free to proceed with small issues like bug fixes, documentation improvement. For major contributions and new features, please discuss with the collaborators in corresponding issues.  
@@ -49,7 +49,7 @@ Various features are available in the above two libraries, including Multi-GPU a
 ## Why shouldn't I use openspeech?
   
 - This library provides code for learning ASR models, but does not provide APIs by pre-trained models.  
-- We do not provide pre-training mechanisms such as Wav2vec 2.0. Because pre-training costs a lot of computation, computation optimization is very important, and this library does not provide that optimization.    
+- We do not provide pre-training mechanisms such as Wav2vec 2.0 since pre-training costs a lot of computation. Though computation optimization is very important, and this library does not provide that optimization.
   
 ## Model architectures  
   
@@ -80,17 +80,17 @@ End-to-End Speech Recognition with Self-Attention](https://arxiv.org/abs/1910.12
 We use [Hydra](https://github.com/facebookresearch/hydra) to control all the training configurations. 
 If you are not familiar with Hydra we recommend visiting the [Hydra website](https://hydra.cc/). 
 Generally, Hydra is an open-source framework that simplifies the development of research applications by providing the ability to create a hierarchical configuration dynamically. 
-If you want to know how we used Hydra, it'll help if you read [here](https://sooftware.github.io/openspeech/notes/hydra_configs.html).
+If you want to know how we used Hydra, we recommend you to read [here](https://sooftware.github.io/openspeech/notes/hydra_configs.html).
   
 ### Supported Datasets
  
-We supports [LibriSpeech](https://www.openslr.org/12), [KsponSpeech](https://aihub.or.kr/aidata/105), and [AISHELL-1](https://www.openslr.org/33/).   
+We support [LibriSpeech](https://www.openslr.org/12), [KsponSpeech](https://aihub.or.kr/aidata/105), and [AISHELL-1](https://www.openslr.org/33/).   
   
-LibriSpeech is a corpus of approximately 1000 hours of 16kHz read English speech, prepared by Vassil Panayotov with the assistance of Daniel Povey. The data is derived from read audiobooks from the LibriVox project, and has been carefully segmented and aligned.   
+LibriSpeech is a corpus of approximately 1,000 hours of 16kHz read English speech, prepared by Vassil Panayotov with the assistance of Daniel Povey. The data was derived from reading audiobooks from the LibriVox project, and has been carefully segmented and aligned.   
    
-Aishell is an open-source Chinese Mandarin speech corpus published by Beijing Shell Shell Technology Co.,Ltd. 400 people from different accent areas in China are invited to participate in the recording, which is conducted in a quiet indoor environment using high fidelity microphone and downsampled to 16kHz.
+Aishell is an open-source Chinese Mandarin speech corpus published by Beijing Shell Shell Technology Co.,Ltd. 400 people from different accent areas in China were invited to participate in the recording, which was conducted in a quiet indoor environment using high fidelity microphone and downsampled to 16kHz.
   
-KsponSpeech is a large-scale spontaneous speech corpus of Korean. This corpus contains 969 h of general open-domain dialog utterances, spoken by about 2000 native Korean speakers in a clean environment. All data were constructed by recording the dialogue of two people freely conversing on a variety of topics and manually transcribing the utterances. To start training, the KsponSpeech dataset must be prepared in advance. To download KsponSpeech, you needs permission from [AI Hub](https://aihub.or.kr/).
+KsponSpeech is a large-scale spontaneous speech corpus of Korean. This corpus contains 969 hours of general open-domain dialog utterances, spoken by about 2,000 native Korean speakers in a clean environment. All data were constructed by recording the dialogue of two people freely conversing on a variety of topics and manually transcribing the utterances. To start training, the KsponSpeech dataset must be prepared in advance. To download KsponSpeech, you need permission from [AI Hub](https://aihub.or.kr/).
   
 ### Pre-processed Manifest Files
   
@@ -182,7 +182,7 @@ $ python ./openspeech_cli/hydra_train.py \
 ## Installation
   
 This project recommends Python 3.7 or higher.  
-I recommend creating a new virtual environment for this project (using virtual env or conda).
+We recommend creating a new virtual environment for this project (using virtual env or conda).
   
 
 ### Prerequisites
@@ -205,7 +205,7 @@ pip install openspeech-core
 ```
   
 ### Install from source
-Currently I only support installation from source code using setuptools. Checkout the source code and run the   
+Currently we only support installation from source code using setuptools. Checkout the source code and run the   
 following commands:  
 ```
 $ ./install.sh

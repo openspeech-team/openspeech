@@ -197,7 +197,7 @@ I recommend creating a new virtual environment for this project (using virtual e
 * warp-rnnt: Refer to [warp-rnnt page](https://github.com/1ytic/warp-rnnt) to install the library.
 * ctcdecode: Refer to [ctcdecode page](https://github.com/parlance/ctcdecode) to install the library.
   
-### Install from Pypi
+### Install from pypi
   
 You can install openspeech with pypi.
 ```

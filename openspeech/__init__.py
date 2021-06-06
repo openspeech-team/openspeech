@@ -24,6 +24,10 @@ import openspeech.criterion
 import openspeech.datasets
 import openspeech.data
 import openspeech.dataclass
+import openspeech.encoders
+import openspeech.decoders
 import openspeech.models
+import openspeech.search
 import openspeech.optim
 import openspeech.vocabs
+import openspeech.metrics

@@ -23,7 +23,7 @@
 from distutils.core import setup
 
 setup(
-    name='Openspeech',
+    name='openspeech-py',
     version='v0.1',
     description='Open-Source Toolkit for End-to-End Automatic Speech Recognition',
     author='Kim, Soohwan and Ha, Sangchun and Cho, Soyoung',

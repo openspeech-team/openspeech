@@ -53,7 +53,7 @@ Welcome to Openspeech's documentation!
    Encoders
    Modules
    Optim
-   Search
+   Beam Search
    Vocabulary
    Metric
 

@@ -8,11 +8,11 @@
   
 <p align="center">
   <a href="https://github.com/sooftware/openspeech/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-informational">
-  <a href="https://github.com/sooftware/openspeech/releases"></a><img src="https://img.shields.io/badge/release-v0.1-informational">
-  <a href="https://pypi.org/project/openspeech-py/0.1/"></a><img src="https://img.shields.io/badge/pypi-v0.1-informational">
+  <a href="https://github.com/sooftware/openspeech/releases"><img src="https://img.shields.io/badge/release-v0.1-informational">
+  <a href="https://pypi.org/project/openspeech-py/0.1/"><img src="https://img.shields.io/badge/pypi-v0.1-informational">
   <img src="https://img.shields.io/badge/build-passing-33CF57?&logo=GitHub">
   <a href="https://sooftware.github.io/openspeech/"><img src="https://img.shields.io/badge/docs-passing-33CF57?&logo=GitHub">
-  <a href="https://www.codefactor.io/repository/github/sooftware/openspeech"></a><img src="https://www.codefactor.io/repository/github/sooftware/openspeech-dev/badge?s=15c934a802aa6d0f1c6aa93a65af65dd9e887a4d">
+  <a href="https://www.codefactor.io/repository/github/sooftware/openspeech"></a><img src="https://www.codefactor.io/repository/github/sooftware/openspeech/badge?s=1cc697a8b26b61fb987f892dc715255c1f2bae13">
 </p>
 
 </div>
@@ -196,6 +196,13 @@ I recommend creating a new virtual environment for this project (using virtual e
 * hydra: `pip install hydra-core --upgrade` (Refer [here](https://github.com/facebookresearch/hydra) for problem installing hydra)
 * warp-rnnt: Refer to [warp-rnnt page](https://github.com/1ytic/warp-rnnt) to install the library.
 * ctcdecode: Refer to [ctcdecode page](https://github.com/parlance/ctcdecode) to install the library.
+  
+### Install from Pypi
+  
+You can install openspeech with pypi.
+```
+pip install openspeech-py
+```
   
 ### Install from source
 Currently I only support installation from source code using setuptools. Checkout the source code and run the   

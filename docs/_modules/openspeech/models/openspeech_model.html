@@ -1,0 +1,489 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>openspeech.models.openspeech_model &mdash; Openspeech v0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Openspeech
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">GETTING STARTED</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/intro.html">Why should I use openspeech?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/intro.html#why-shouldn-t-i-use-openspeech">Why shouldn’t I use openspeech?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/intro.html#model-architectures">Model architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/intro.html#get-started">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/intro.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/intro.html#troubleshoots-and-contributing">Troubleshoots and Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/intro.html#citation">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/hydra_configs.html">Openspeech’s Hydra configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/configs.html">Openspeech’s configurations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MODEL ARCHITECTURES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Openspeech Model.html">Openspeech Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Conformer.html">Conformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Conformer LSTM.html">Conformer LSTM Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Conformer Transducer.html">Conformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Deep CNN with Joint CTC LAS.html">Deep CNN with Joint CTC LAS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../DeepSpeech2.html">DeepSpeech2 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Jasper5x3.html">Jasper5x3 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Jasper10x5.html">Jasper10x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Joint CTC Conformer LSTM.html">Joint CTC Conformer LSTM Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Joint CTC LAS.html">Joint CTC LAS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Joint CTC Transformer.html">Joint CTC Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Listen Attend Spell.html">Listen Attend Spell Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Listen Attend Spell (location-aware).html">Listen Attend Spell (location-aware) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Listen Attend Spell (multi-head).html">Listen Attend Spell (multi-head) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../QuartzNet5x5.html">QuartzNet 5x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../QuartzNet10x5.html">QuartzNet 10x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../QuartzNet15x5.html">QuartzNet 15x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../RNN Transducer.html">RNN Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Transformer.html">Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Transformer Transducer.html">Transformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Transformer with CTC.html">Transformer with CTC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../VGG Transformer.html">VGG Transformer Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Audio.html">Audio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Criterion.html">Criterion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Decoders.html">Decoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Encoders.html">Encoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Optim.html">Optim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Beam Search.html">Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Vocabulary.html">Vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Metric.html">Metric</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Openspeech</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>openspeech.models.openspeech_model</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for openspeech.models.openspeech_model</h1><div class="highlight"><pre>
+<span></span><span class="c1"># MIT License</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (c) 2021 Soohwan Kim and Sangchun Ha and Soyoung Cho</span>
+<span class="c1">#</span>
+<span class="c1"># Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="c1"># of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="c1"># in the Software without restriction, including without limitation the rights</span>
+<span class="c1"># to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="c1"># copies of the Software, and to permit persons to whom the Software is</span>
+<span class="c1"># furnished to do so, subject to the following conditions:</span>
+<span class="c1">#</span>
+<span class="c1"># The above copyright notice and this permission notice shall be included in all</span>
+<span class="c1"># copies or substantial portions of the Software.</span>
+<span class="c1">#</span>
+<span class="c1"># THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="c1"># IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="c1"># FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="c1"># AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="c1"># LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="c1"># OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="c1"># SOFTWARE.</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">pytorch_lightning</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">omegaconf</span> <span class="kn">import</span> <span class="n">DictConfig</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">Tensor</span>
+
+<span class="kn">from</span> <span class="nn">openspeech.criterion</span> <span class="kn">import</span> <span class="n">CRITERION_REGISTRY</span>
+<span class="kn">from</span> <span class="nn">openspeech.metrics</span> <span class="kn">import</span> <span class="n">WordErrorRate</span><span class="p">,</span> <span class="n">CharacterErrorRate</span>
+<span class="kn">from</span> <span class="nn">openspeech.optim.scheduler</span> <span class="kn">import</span> <span class="n">SCHEDULER_REGISTRY</span>
+<span class="kn">from</span> <span class="nn">openspeech.utils</span> <span class="kn">import</span> <span class="n">get_class_name</span>
+<span class="kn">from</span> <span class="nn">openspeech.vocabs.vocab</span> <span class="kn">import</span> <span class="n">Vocabulary</span>
+
+
+<div class="viewcode-block" id="OpenspeechModel"><a class="viewcode-back" href="../../../Openspeech Model.html#openspeech.models.openspeech_model.OpenspeechModel">[docs]</a><span class="k">class</span> <span class="nc">OpenspeechModel</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">LightningModule</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Super class of openspeech models.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        Do not use this class directly, use one of the sub classes.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        configs (DictConfig): configuration set.</span>
+<span class="sd">        vocab (Vocabulary): the class of vocabulary</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">        inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded</span>
+<span class="sd">            `FloatTensor` of size ``(batch, seq_length, dimension)``.</span>
+<span class="sd">        input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        * y_hats (torch.FloatTensor): Result of model predictions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configs</span><span class="p">:</span> <span class="n">DictConfig</span><span class="p">,</span> <span class="n">vocab</span><span class="p">:</span> <span class="n">Vocabulary</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">OpenspeechModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configs</span> <span class="o">=</span> <span class="n">configs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gradient_clip_val</span> <span class="o">=</span> <span class="n">configs</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">gradient_clip_val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vocab</span> <span class="o">=</span> <span class="n">vocab</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_val_loss</span> <span class="o">=</span> <span class="mf">100.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wer_metric</span> <span class="o">=</span> <span class="n">WordErrorRate</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cer_metric</span> <span class="o">=</span> <span class="n">CharacterErrorRate</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configure_criterion</span><span class="p">(</span><span class="n">configs</span><span class="o">.</span><span class="n">criterion</span><span class="o">.</span><span class="n">criterion_name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">build_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">set_beam_decoder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beam_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+<div class="viewcode-block" id="OpenspeechModel.log_steps"><a class="viewcode-back" href="../../../Openspeech Model.html#openspeech.models.openspeech_model.OpenspeechModel.log_steps">[docs]</a>    <span class="k">def</span> <span class="nf">log_steps</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">stage</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">wer</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+            <span class="n">cer</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+            <span class="n">loss</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">cross_entropy_loss</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">ctc_loss</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Provides log dictionary.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            stage (str): current stage (train, valid, test)</span>
+<span class="sd">            wer (float): word error rate</span>
+<span class="sd">            cer (float): character error rate</span>
+<span class="sd">            loss (float): loss of model&#39;s prediction</span>
+<span class="sd">            cross_entropy_loss (Optional, float): cross entropy loss of model&#39;s prediction</span>
+<span class="sd">            ctc_loss (Optional, float): ctc loss of model&#39;s prediction</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stage</span><span class="si">}</span><span class="s2">_wer&quot;</span><span class="p">,</span> <span class="n">wer</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stage</span><span class="si">}</span><span class="s2">_cer&quot;</span><span class="p">,</span> <span class="n">cer</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">loss</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stage</span><span class="si">}</span><span class="s2">_loss&quot;</span><span class="p">,</span> <span class="n">loss</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cross_entropy_loss</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stage</span><span class="si">}</span><span class="s2">_cross_entropy_loss&quot;</span><span class="p">,</span> <span class="n">cross_entropy_loss</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ctc_loss</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stage</span><span class="si">}</span><span class="s2">_ctc_loss&quot;</span><span class="p">,</span> <span class="n">ctc_loss</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;optimizer&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;current_lr&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lr</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="OpenspeechModel.forward"><a class="viewcode-back" href="../../../Openspeech Model.html#openspeech.models.openspeech_model.OpenspeechModel.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">,</span> <span class="n">input_lengths</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">]:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Forward propagate a `inputs` and `targets` pair for inference.</span>
+
+<span class="sd">        Inputs:</span>
+<span class="sd">            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded</span>
+<span class="sd">                `FloatTensor` of size ``(batch, seq_length, dimension)``.</span>
+<span class="sd">            input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            * outputs (dict): Result of model predictions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="OpenspeechModel.training_step"><a class="viewcode-back" href="../../../Openspeech Model.html#openspeech.models.openspeech_model.OpenspeechModel.training_step">[docs]</a>    <span class="k">def</span> <span class="nf">training_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Forward propagate a `inputs` and `targets` pair for training.</span>
+
+<span class="sd">        Inputs:</span>
+<span class="sd">            batch (tuple): A train batch contains `inputs`, `targets`, `input_lengths`, `target_lengths`</span>
+<span class="sd">            batch_idx (int): The index of batch</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            loss (torch.Tensor): loss for training</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="OpenspeechModel.validation_step"><a class="viewcode-back" href="../../../Openspeech Model.html#openspeech.models.openspeech_model.OpenspeechModel.validation_step">[docs]</a>    <span class="k">def</span> <span class="nf">validation_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Forward propagate a `inputs` and `targets` pair for validation.</span>
+
+<span class="sd">        Inputs:</span>
+<span class="sd">            batch (tuple): A train batch contains `inputs`, `targets`, `input_lengths`, `target_lengths`</span>
+<span class="sd">            batch_idx (int): The index of batch</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            loss (torch.Tensor): loss for training</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="OpenspeechModel.validation_epoch_end"><a class="viewcode-back" href="../../../Openspeech Model.html#openspeech.models.openspeech_model.OpenspeechModel.validation_epoch_end">[docs]</a>    <span class="k">def</span> <span class="nf">validation_epoch_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outputs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_val_loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">output</span><span class="p">[</span><span class="s1">&#39;val_loss&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">outputs</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">get_class_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;WarmupReduceLROnPlateauScheduler&quot;</span> \
+            <span class="ow">or</span> <span class="n">get_class_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;ReduceLROnPlateauScheduler&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_val_loss</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;loss&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_val_loss</span><span class="p">,</span>
+            <span class="s1">&#39;log&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;val_loss&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_val_loss</span><span class="p">},</span>
+        <span class="p">}</span></div>
+
+<div class="viewcode-block" id="OpenspeechModel.test_step"><a class="viewcode-back" href="../../../Openspeech Model.html#openspeech.models.openspeech_model.OpenspeechModel.test_step">[docs]</a>    <span class="k">def</span> <span class="nf">test_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Forward propagate a `inputs` and `targets` pair for test.</span>
+
+<span class="sd">        Inputs:</span>
+<span class="sd">            batch (tuple): A train batch contains `inputs`, `targets`, `input_lengths`, `target_lengths`</span>
+<span class="sd">            batch_idx (int): The index of batch</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            loss (torch.Tensor): loss for training</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="OpenspeechModel.configure_optimizers"><a class="viewcode-back" href="../../../Openspeech Model.html#openspeech.models.openspeech_model.OpenspeechModel.configure_optimizers">[docs]</a>    <span class="k">def</span> <span class="nf">configure_optimizers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Choose what optimizers and learning-rate schedulers to use in your optimization.</span>
+
+
+<span class="sd">        Returns:</span>
+<span class="sd">            - **Two lists** - The first list has multiple optimizers, and the second has multiple LR schedulers</span>
+<span class="sd">                (or multiple ``lr_dict``).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">torch.optim</span> <span class="kn">import</span> <span class="n">Adam</span><span class="p">,</span> <span class="n">Adagrad</span><span class="p">,</span> <span class="n">Adadelta</span><span class="p">,</span> <span class="n">Adamax</span><span class="p">,</span> <span class="n">AdamW</span><span class="p">,</span> <span class="n">SGD</span><span class="p">,</span> <span class="n">ASGD</span>
+        <span class="kn">from</span> <span class="nn">openspeech.optim</span> <span class="kn">import</span> <span class="n">AdamP</span><span class="p">,</span> <span class="n">RAdam</span><span class="p">,</span> <span class="n">Novograd</span>
+
+        <span class="n">SUPPORTED_OPTIMIZERS</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;adam&quot;</span><span class="p">:</span> <span class="n">Adam</span><span class="p">,</span>
+            <span class="s2">&quot;adamp&quot;</span><span class="p">:</span> <span class="n">AdamP</span><span class="p">,</span>
+            <span class="s2">&quot;radam&quot;</span><span class="p">:</span> <span class="n">RAdam</span><span class="p">,</span>
+            <span class="s2">&quot;adagrad&quot;</span><span class="p">:</span> <span class="n">Adagrad</span><span class="p">,</span>
+            <span class="s2">&quot;adadelta&quot;</span><span class="p">:</span> <span class="n">Adadelta</span><span class="p">,</span>
+            <span class="s2">&quot;adamax&quot;</span><span class="p">:</span> <span class="n">Adamax</span><span class="p">,</span>
+            <span class="s2">&quot;adamw&quot;</span><span class="p">:</span> <span class="n">AdamW</span><span class="p">,</span>
+            <span class="s2">&quot;sgd&quot;</span><span class="p">:</span> <span class="n">SGD</span><span class="p">,</span>
+            <span class="s2">&quot;asgd&quot;</span><span class="p">:</span> <span class="n">ASGD</span><span class="p">,</span>
+            <span class="s2">&quot;novograd&quot;</span><span class="p">:</span> <span class="n">Novograd</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">optimizer</span> <span class="ow">in</span> <span class="n">SUPPORTED_OPTIMIZERS</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> \
+            <span class="sa">f</span><span class="s2">&quot;Unsupported Optimizer: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">optimizer</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> \
+            <span class="sa">f</span><span class="s2">&quot;Supported Optimizers: </span><span class="si">{</span><span class="n">SUPPORTED_OPTIMIZERS</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">SUPPORTED_OPTIMIZERS</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">optimizer</span><span class="p">](</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span>
+            <span class="n">lr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">lr</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span> <span class="o">=</span> <span class="n">SCHEDULER_REGISTRY</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">scheduler_name</span><span class="p">](</span>
+            <span class="n">optimizer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="p">,</span>
+            <span class="n">configs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;optimizer&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="p">,</span>
+            <span class="s1">&#39;lr_scheduler&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;scheduler&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span><span class="p">,</span>
+                <span class="s1">&#39;monitor&#39;</span><span class="p">:</span> <span class="s1">&#39;metric_to_track&#39;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">}</span></div>
+
+<div class="viewcode-block" id="OpenspeechModel.configure_criterion"><a class="viewcode-back" href="../../../Openspeech Model.html#openspeech.models.openspeech_model.OpenspeechModel.configure_criterion">[docs]</a>    <span class="k">def</span> <span class="nf">configure_criterion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">criterion_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Configure criterion for training.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            criterion_name (str): name of criterion</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            criterion (nn.Module): criterion for training</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">criterion_name</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;joint_ctc_cross_entropy&#39;</span><span class="p">,</span> <span class="s1">&#39;label_smoothed_cross_entropy&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">CRITERION_REGISTRY</span><span class="p">[</span><span class="n">criterion_name</span><span class="p">](</span>
+                <span class="n">configs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="p">,</span>
+                <span class="n">num_classes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_classes</span><span class="p">,</span>
+                <span class="n">vocab</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">vocab</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">CRITERION_REGISTRY</span><span class="p">[</span><span class="n">criterion_name</span><span class="p">](</span>
+                <span class="n">configs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="p">,</span>
+                <span class="n">vocab</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">vocab</span><span class="p">,</span>
+            <span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">get_lr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">g</span><span class="p">[</span><span class="s1">&#39;lr&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">set_lr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lr</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span><span class="p">:</span>
+            <span class="n">g</span><span class="p">[</span><span class="s1">&#39;lr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lr</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Kim, Soohwan and Ha, Sangchun and Cho, Soyoung.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

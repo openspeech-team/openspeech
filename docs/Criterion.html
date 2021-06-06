@@ -1,0 +1,705 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Criterion &mdash; Openspeech v0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data" href="Data.html" />
+    <link rel="prev" title="Audio" href="Audio.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Openspeech
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">GETTING STARTED</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html">Why should I use openspeech?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#why-shouldn-t-i-use-openspeech">Why shouldn’t I use openspeech?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#model-architectures">Model architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#get-started">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#troubleshoots-and-contributing">Troubleshoots and Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#citation">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/hydra_configs.html">Openspeech’s Hydra configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/configs.html">Openspeech’s configurations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MODEL ARCHITECTURES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Openspeech Model.html">Openspeech Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conformer.html">Conformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conformer LSTM.html">Conformer LSTM Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conformer Transducer.html">Conformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deep CNN with Joint CTC LAS.html">Deep CNN with Joint CTC LAS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DeepSpeech2.html">DeepSpeech2 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Jasper5x3.html">Jasper5x3 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Jasper10x5.html">Jasper10x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Joint CTC Conformer LSTM.html">Joint CTC Conformer LSTM Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Joint CTC LAS.html">Joint CTC LAS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Joint CTC Transformer.html">Joint CTC Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Listen Attend Spell.html">Listen Attend Spell Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Listen Attend Spell (location-aware).html">Listen Attend Spell (location-aware) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Listen Attend Spell (multi-head).html">Listen Attend Spell (multi-head) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuartzNet5x5.html">QuartzNet 5x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuartzNet10x5.html">QuartzNet 10x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuartzNet15x5.html">QuartzNet 15x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RNN Transducer.html">RNN Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transformer.html">Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transformer Transducer.html">Transformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transformer with CTC.html">Transformer with CTC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VGG Transformer.html">VGG Transformer Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Audio.html">Audio</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Criterion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.criterion.cross_entropy.cross_entropy">Cross Entropy Loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.criterion.cross_entropy.configuration">Cross Entropy Loss Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.criterion.ctc.ctc">CTC Loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.criterion.ctc.configuration">CTC Loss Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.criterion.joint_ctc_cross_entropy.joint_ctc_cross_entropy">Joint CTC Cross Entropy Loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.criterion.joint_ctc_cross_entropy.configuration">Joint CTC Cross Entropy Loss Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.criterion.label_smoothed_cross_entropy.label_smoothed_cross_entropy">Label Smoothed Cross Entropy Loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#label-smoothed-cross-entropy-loss-configuration">Label Smoothed Cross Entropy Loss Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.criterion.transducer.transducer">Transducer Loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.criterion.transducer.configuration">Transducer Loss Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Decoders.html">Decoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Encoders.html">Encoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Optim.html">Optim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Beam Search.html">Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Vocabulary.html">Vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Metric.html">Metric</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Openspeech</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Criterion</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/Criterion.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="criterion">
+<h1>Criterion<a class="headerlink" href="#criterion" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-openspeech.criterion.cross_entropy.cross_entropy">
+<span id="cross-entropy-loss"></span><h2>Cross Entropy Loss<a class="headerlink" href="#module-openspeech.criterion.cross_entropy.cross_entropy" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.criterion.cross_entropy.cross_entropy.CrossEntropyLoss">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.criterion.cross_entropy.cross_entropy.</code><code class="sig-name descname">CrossEntropyLoss</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configs</span><span class="p">:</span> <span class="n">omegaconf.dictconfig.DictConfig</span></em>, <em class="sig-param"><span class="n">vocab</span><span class="p">:</span> <span class="n"><a class="reference internal" href="Vocabulary.html#openspeech.vocabs.vocab.Vocabulary" title="openspeech.vocabs.vocab.Vocabulary">openspeech.vocabs.vocab.Vocabulary</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/criterion/cross_entropy/cross_entropy.html#CrossEntropyLoss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.criterion.cross_entropy.cross_entropy.CrossEntropyLoss" title="Permalink to this definition">¶</a></dt>
+<dd><p>The negative log likelihood loss. It is useful to train a classification
+problem with <cite>C</cite> classes.</p>
+<p>If provided, the optional argument <code class="xref py py-attr docutils literal notranslate"><span class="pre">weight</span></code> should be a 1D Tensor assigning
+weight to each of the classes. This is particularly useful when you have an
+unbalanced training set.</p>
+<p>The <cite>input</cite> given through a forward call is expected to contain
+log-probabilities of each class. <cite>input</cite> has to be a Tensor of size either
+<span class="math">(minibatch, C)</span> or <span class="math">(minibatch, C, d_1, d_2, ..., d_K)</span>
+with <span class="math">K \geq 1</span> for the <cite>K</cite>-dimensional case (described later).</p>
+<p>Obtaining log-probabilities in a neural network is easily achieved by
+adding a  <cite>LogSoftmax</cite>  layer in the last layer of your network.
+You may use <cite>CrossEntropyLoss</cite> instead, if you prefer not to add an extra
+layer.</p>
+<p>The <cite>target</cite> that this loss expects should be a class index in the range <span class="math">[0, C-1]</span>
+where <cite>C = number of classes</cite>; if <cite>ignore_index</cite> is specified, this loss also accepts
+this class index (this index may not necessarily be in the class range).</p>
+<p>The unreduced (i.e. with <code class="xref py py-attr docutils literal notranslate"><span class="pre">reduction</span></code> set to <code class="docutils literal notranslate"><span class="pre">'none'</span></code>) loss can be described as:</p>
+<div class="math">
+<p><span class="math">\ell(x, y) = L = \{l_1,\dots,l_N\}^\top, \quad
+l_n = - w_{y_n} x_{n,y_n}, \quad
+w_{c} = \text{weight}[c] \cdot \mathbb{1}\{c \not= \text{ignore\_index}\},</span></p>
+</div><p>where <span class="math">x</span> is the input, <span class="math">y</span> is the target, <span class="math">w</span> is the weight, and
+<span class="math">N</span> is the batch size. If <code class="xref py py-attr docutils literal notranslate"><span class="pre">reduction</span></code> is not <code class="docutils literal notranslate"><span class="pre">'none'</span></code>
+(default <code class="docutils literal notranslate"><span class="pre">'mean'</span></code>), then</p>
+<div class="math">
+<p><span class="math">\ell(x, y) = \begin{cases}
+    \sum_{n=1}^N \frac{1}{\sum_{n=1}^N w_{y_n}} l_n, &amp;
+    \text{if reduction} = \text{`mean';}\\
+    \sum_{n=1}^N l_n,  &amp;
+    \text{if reduction} = \text{`sum'.}
+\end{cases}</span></p>
+</div><p>Can also be used for higher dimension inputs, such as 2D images, by providing
+an input of size <span class="math">(minibatch, C, d_1, d_2, ..., d_K)</span> with <span class="math">K \geq 1</span>,
+where <span class="math">K</span> is the number of dimensions, and a target of appropriate shape
+(see below). In the case of images, it computes NLL loss per-pixel.</p>
+<dl class="simple">
+<dt>Configurations:</dt><dd><p>criterion_name (str): name of criterion
+reduction (str): reduction method of criterion</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>configs</strong> (<em>DictConfig</em>) – hydra configuration set</p></li>
+<li><p><strong>vocab</strong> (<a class="reference internal" href="Vocabulary.html#openspeech.vocabs.vocab.Vocabulary" title="openspeech.vocabs.vocab.Vocabulary"><em>Vocabulary</em></a>) – the set of unique words used in the text corpus</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: logits, targets</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt><strong>logits</strong> (torch.FloatTensor): probability distribution value from model and it has a logarithm shape.</dt><dd><p>The <cite>FloatTensor</cite> of size <code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">seq_length,</span> <span class="pre">num_classes)</span></code></p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>targets</strong> (torch.LongTensor): ground-truth encoded to integers which directly point a word in label</dt><dd><p>The <cite>LongTensor</cite> of size <code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">target_length)</span></code></p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>Returns: loss</dt><dd><ul class="simple">
+<li><p>loss (float): loss for training</p></li>
+</ul>
+</dd>
+</dl>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">B</span><span class="p">,</span> <span class="n">T1</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">T2</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">loss</span> <span class="o">=</span> <span class="n">CrossEntropyLoss</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">T1</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">targets</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span><span class="o">.</span><span class="n">random_</span><span class="p">(</span><span class="n">T2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">outputs</span> <span class="o">=</span> <span class="n">loss</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">outputs</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.criterion.cross_entropy.configuration">
+<span id="cross-entropy-loss-configuration"></span><h2>Cross Entropy Loss Configuration<a class="headerlink" href="#module-openspeech.criterion.cross_entropy.configuration" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.criterion.cross_entropy.configuration.CrossEntropyLossConfigs">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.criterion.cross_entropy.configuration.</code><code class="sig-name descname">CrossEntropyLossConfigs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">criterion_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'cross_entropy'</span></em>, <em class="sig-param"><span class="n">reduction</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'mean'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/criterion/cross_entropy/configuration.html#CrossEntropyLossConfigs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.criterion.cross_entropy.configuration.CrossEntropyLossConfigs" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the configuration class to store the configuration of a
+:class: <cite>~openspeech.criterion.CrossEntropyLoss</cite>.</p>
+<p>It is used to initiated an <cite>CrossEntropyLoss</cite> criterion.</p>
+<p>Configuration objects inherit from :class: <cite>~openspeech.dataclass.configs.OpenspeechDataclass</cite>.</p>
+<dl class="simple">
+<dt>Configurations:</dt><dd><p>criterion_name (str): name of criterion (default: cross_entropy)
+reduction (str): reduction method of criterion (default: mean)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.criterion.ctc.ctc">
+<span id="ctc-loss"></span><h2>CTC Loss<a class="headerlink" href="#module-openspeech.criterion.ctc.ctc" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.criterion.ctc.ctc.CTCLoss">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.criterion.ctc.ctc.</code><code class="sig-name descname">CTCLoss</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configs</span><span class="p">:</span> <span class="n">omegaconf.dictconfig.DictConfig</span></em>, <em class="sig-param"><span class="n">vocab</span><span class="p">:</span> <span class="n"><a class="reference internal" href="Vocabulary.html#openspeech.vocabs.vocab.Vocabulary" title="openspeech.vocabs.vocab.Vocabulary">openspeech.vocabs.vocab.Vocabulary</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/criterion/ctc/ctc.html#CTCLoss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.criterion.ctc.ctc.CTCLoss" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Connectionist Temporal Classification loss.</p>
+<p>Calculates loss between a continuous (unsegmented) time series and a target sequence. CTCLoss sums over the
+probability of possible alignments of input to target, producing a loss value which is differentiable
+with respect to each input node. The alignment of input to target is assumed to be “many-to-one”, which
+limits the length of the target sequence such that it must be <span class="math">\leq</span> the input length.</p>
+<dl class="simple">
+<dt>Configurations:</dt><dd><p>criterion_name (str): name of criterion
+reduction (str): reduction method of criterion
+zero_infibity (bool): whether to zero infinite losses and the associated gradients.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>configs</strong> (<em>DictConfig</em>) – hydra configuration set</p></li>
+<li><p><strong>vocab</strong> (<a class="reference internal" href="Vocabulary.html#openspeech.vocabs.vocab.Vocabulary" title="openspeech.vocabs.vocab.Vocabulary"><em>Vocabulary</em></a>) – the set of unique words used in the text corpus</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: log_probs, targets, input_lengths, target_lengths</dt><dd><ul class="simple">
+<li><p>Log_probs: Tensor of size <span class="math">(T, N, C)</span>,
+where <span class="math">T = \text{input length}</span>,
+<span class="math">N = \text{batch size}</span>, and
+<span class="math">C = \text{number of classes (including blank)}</span>.
+The logarithmized probabilities of the outputs (e.g. obtained with
+<a class="reference external" href="https://pytorch.org/docs/master/generated/torch.nn.functional.log_softmax.html#torch.nn.functional.log_softmax" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.nn.functional.log_softmax()</span></code></a>).</p></li>
+<li><p>Targets: Tensor of size <span class="math">(N, S)</span> or
+<span class="math">(\operatorname{sum}(\text{target\_lengths}))</span>,
+where <span class="math">N = \text{batch size}</span> and
+<span class="math">S = \text{max target length, if shape is } (N, S)</span>.
+It represent the target sequences. Each element in the target
+sequence is a class index. And the target index cannot be blank (default=0).
+In the <span class="math">(N, S)</span> form, targets are padded to the
+length of the longest sequence, and stacked.
+In the <span class="math">(\operatorname{sum}(\text{target\_lengths}))</span> form,
+the targets are assumed to be un-padded and
+concatenated within 1 dimension.</p></li>
+<li><p>Input_lengths: Tuple or tensor of size <span class="math">(N)</span>,
+where <span class="math">N = \text{batch size}</span>. It represent the lengths of the
+inputs (must each be <span class="math">\leq T</span>). And the lengths are specified
+for each sequence to achieve masking under the assumption that sequences
+are padded to equal lengths.</p></li>
+<li><p>Target_lengths: Tuple or tensor of size <span class="math">(N)</span>,
+where <span class="math">N = \text{batch size}</span>. It represent lengths of the targets.
+Lengths are specified for each sequence to achieve masking under the
+assumption that sequences are padded to equal lengths. If target shape is
+<span class="math">(N,S)</span>, target_lengths are effectively the stop index
+<span class="math">s_n</span> for each target sequence, such that <code class="docutils literal notranslate"><span class="pre">target_n</span> <span class="pre">=</span> <span class="pre">targets[n,0:s_n]</span></code> for
+each target in a batch. Lengths must each be <span class="math">\leq S</span>
+If the targets are given as a 1d tensor that is the concatenation of individual
+targets, the target_lengths must add up to the total length of the tensor.</p></li>
+</ul>
+</dd>
+<dt>Returns: loss</dt><dd><ul class="simple">
+<li><p>loss (float): loss for training</p></li>
+</ul>
+</dd>
+</dl>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Target are to be padded</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="mi">50</span>      <span class="c1"># Input sequence length</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="mi">20</span>      <span class="c1"># Number of classes (including blank)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="mi">16</span>      <span class="c1"># Batch size</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="mi">30</span>      <span class="c1"># Target sequence length of longest target in batch (padding length)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S_min</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Minimum target length, for demonstration purposes</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Initialize random batch of input vectors, for *size = (T,N,C)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">()</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Initialize random batch of targets (0 = blank, 1:C = classes)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">target</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">C</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">S</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">input_lengths</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">target_lengths</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="n">S_min</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ctc_loss</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CTCLoss</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">loss</span> <span class="o">=</span> <span class="n">ctc_loss</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">input_lengths</span><span class="p">,</span> <span class="n">target_lengths</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Target are to be un-padded</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="mi">50</span>      <span class="c1"># Input sequence length</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="mi">20</span>      <span class="c1"># Number of classes (including blank)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="mi">16</span>      <span class="c1"># Batch size</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Initialize random batch of input vectors, for *size = (T,N,C)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">input_lengths</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Initialize random batch of targets (0 = blank, 1:C = classes)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">target_lengths</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">target</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">C</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">target_lengths</span><span class="p">),),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ctc_loss</span> <span class="o">=</span> <span class="n">CTCLoss</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">loss</span> <span class="o">=</span> <span class="n">ctc_loss</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">input_lengths</span><span class="p">,</span> <span class="n">target_lengths</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Reference:</dt><dd><p>A. Graves et al.: Connectionist Temporal Classification:
+Labelling Unsegmented Sequence Data with Recurrent Neural Networks:
+<a class="reference external" href="https://www.cs.toronto.edu/~graves/icml_2006.pdf">https://www.cs.toronto.edu/~graves/icml_2006.pdf</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.criterion.ctc.configuration">
+<span id="ctc-loss-configuration"></span><h2>CTC Loss Configuration<a class="headerlink" href="#module-openspeech.criterion.ctc.configuration" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.criterion.ctc.configuration.CTCLossConfigs">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.criterion.ctc.configuration.</code><code class="sig-name descname">CTCLossConfigs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">criterion_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'ctc'</span></em>, <em class="sig-param"><span class="n">reduction</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'mean'</span></em>, <em class="sig-param"><span class="n">zero_infinity</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/criterion/ctc/configuration.html#CTCLossConfigs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.criterion.ctc.configuration.CTCLossConfigs" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the configuration class to store the configuration of
+a <code class="xref py py-class docutils literal notranslate"><span class="pre">CTCLoss</span></code>.</p>
+<p>It is used to initiated an <cite>CTCLoss</cite> criterion.</p>
+<p>Configuration objects inherit from :class: <cite>~openspeech.dataclass.configs.OpenspeechDataclass</cite>.</p>
+<dl class="simple">
+<dt>Configurations:</dt><dd><p>criterion_name (str): name of criterion. (default: ctc)
+reduction (str): reduction method of criterion. (default: mean)
+zero_infibity (bool): whether to zero infinite losses and the associated gradients. (default: True)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.criterion.joint_ctc_cross_entropy.joint_ctc_cross_entropy">
+<span id="joint-ctc-cross-entropy-loss"></span><h2>Joint CTC Cross Entropy Loss<a class="headerlink" href="#module-openspeech.criterion.joint_ctc_cross_entropy.joint_ctc_cross_entropy" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.criterion.joint_ctc_cross_entropy.joint_ctc_cross_entropy.JointCTCCrossEntropyLoss">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.criterion.joint_ctc_cross_entropy.joint_ctc_cross_entropy.</code><code class="sig-name descname">JointCTCCrossEntropyLoss</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configs</span><span class="p">:</span> <span class="n">omegaconf.dictconfig.DictConfig</span></em>, <em class="sig-param"><span class="n">num_classes</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">vocab</span><span class="p">:</span> <span class="n"><a class="reference internal" href="Vocabulary.html#openspeech.vocabs.vocab.Vocabulary" title="openspeech.vocabs.vocab.Vocabulary">openspeech.vocabs.vocab.Vocabulary</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/criterion/joint_ctc_cross_entropy/joint_ctc_cross_entropy.html#JointCTCCrossEntropyLoss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.criterion.joint_ctc_cross_entropy.joint_ctc_cross_entropy.JointCTCCrossEntropyLoss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Privides Joint CTC-CrossEntropy Loss function. The logit from the encoder applies CTC Loss, and the logit
+from the decoder applies Cross Entropy. This loss makes the encoder more robust.</p>
+<dl class="simple">
+<dt>Configurations:</dt><dd><p>criterion_name (str): name of criterion
+reduction (str): reduction method of criterion
+ctc_weight (float): weight of ctc loss for training
+cross_entropy_weight (float): weight of cross entropy loss for training
+smoothing (float): ratio of smoothing loss (confidence = 1.0 - smoothing)
+zero_infinity (bool): whether to zero infinite losses and the associated gradients.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>configs</strong> (<em>DictConfig</em>) – hydra configuration set</p></li>
+<li><p><strong>num_classes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the number of classfication</p></li>
+<li><p><strong>vocab</strong> (<a class="reference internal" href="Vocabulary.html#openspeech.vocabs.vocab.Vocabulary" title="openspeech.vocabs.vocab.Vocabulary"><em>Vocabulary</em></a>) – the set of unique words used in the text corpus</p></li>
+</ul>
+</dd>
+</dl>
+<dl>
+<dt>Inputs: encoder_logits, logits, output_lengths, targets, target_lengths</dt><dd><dl class="simple">
+<dt>encoder_logits (torch.FloatTensor): probability distribution value from encoder and it has a logarithm shape.</dt><dd><p>The <cite>FloatTensor</cite> of size <code class="docutils literal notranslate"><span class="pre">(input_length,</span> <span class="pre">batch,</span> <span class="pre">num_classes)</span></code></p>
+</dd>
+<dt>logits (torch.FloatTensor): probability distribution value from model and it has a logarithm shape</dt><dd><p>The <cite>FloatTensor</cite> of size <code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">seq_length,</span> <span class="pre">num_classes)</span></code></p>
+</dd>
+<dt>output_lengths (torch.LongTensor): length of model’s outputs</dt><dd><p>The <cite>LongTensor</cite> of size <code class="docutils literal notranslate"><span class="pre">(batch)</span></code></p>
+</dd>
+<dt>targets (torch.LongTensor): ground-truth encoded to integers which directly point a word in label</dt><dd><p>The <cite>LongTensor</cite> of size <code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">target_length)</span></code></p>
+</dd>
+<dt>target_lengths (torch.LongTensor): length of targets</dt><dd><p>The <cite>LongTensor</cite> of size <code class="docutils literal notranslate"><span class="pre">(batch)</span></code></p>
+</dd>
+</dl>
+</dd>
+<dt>Returns: loss, ctc_loss, cross_entropy_loss</dt><dd><ul class="simple">
+<li><p>loss (float): loss for training</p></li>
+</ul>
+<p><a href="#id1"><span class="problematic" id="id2">*</span></a>ctc_loss (float): ctc loss for training
+<a href="#id3"><span class="problematic" id="id4">*</span></a>cross_entropy_loss (float): cross entropy loss for training</p>
+</dd>
+<dt>Reference:</dt><dd><p>Suyoun Kim et al.: Joint CTC-Attention based End-to-End Speech Recognition using Multi-task Learning:
+<a class="reference external" href="https://arxiv.org/abs/1609.06773">https://arxiv.org/abs/1609.06773</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.criterion.joint_ctc_cross_entropy.configuration">
+<span id="joint-ctc-cross-entropy-loss-configuration"></span><h2>Joint CTC Cross Entropy Loss Configuration<a class="headerlink" href="#module-openspeech.criterion.joint_ctc_cross_entropy.configuration" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.criterion.joint_ctc_cross_entropy.configuration.JointCTCCrossEntropyLossConfigs">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.criterion.joint_ctc_cross_entropy.configuration.</code><code class="sig-name descname">JointCTCCrossEntropyLossConfigs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">criterion_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'joint_ctc_cross_entropy'</span></em>, <em class="sig-param"><span class="n">reduction</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'mean'</span></em>, <em class="sig-param"><span class="n">ctc_weight</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.3</span></em>, <em class="sig-param"><span class="n">cross_entropy_weight</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.7</span></em>, <em class="sig-param"><span class="n">smoothing</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">zero_infinity</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/criterion/joint_ctc_cross_entropy/configuration.html#JointCTCCrossEntropyLossConfigs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.criterion.joint_ctc_cross_entropy.configuration.JointCTCCrossEntropyLossConfigs" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the configuration class to store the configuration of
+a <code class="xref py py-class docutils literal notranslate"><span class="pre">JointCTCCrossEntropyLoss</span></code>.</p>
+<p>It is used to initiated an <cite>CTCLoss</cite> criterion.</p>
+<p>Configuration objects inherit from :class: <cite>~openspeech.dataclass.configs.OpenspeechDataclass</cite>.</p>
+<dl class="simple">
+<dt>Configurations:</dt><dd><p>criterion_name (str): name of criterion. (default: joint_ctc_cross_entropy)
+reduction (str): reduction method of criterion. (default: mean)
+ctc_weight (float): weight of ctc loss for training. (default: 0.3)
+cross_entropy_weight (float): weight of cross entropy loss for training. (default: 0.7)
+smoothing (float): ratio of smoothing loss (confidence = 1.0 - smoothing) (default: 0.0)
+zero_infibity (bool): whether to zero infinite losses and the associated gradients. (default: True)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.criterion.label_smoothed_cross_entropy.label_smoothed_cross_entropy">
+<span id="label-smoothed-cross-entropy-loss"></span><h2>Label Smoothed Cross Entropy Loss<a class="headerlink" href="#module-openspeech.criterion.label_smoothed_cross_entropy.label_smoothed_cross_entropy" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.criterion.label_smoothed_cross_entropy.label_smoothed_cross_entropy.LabelSmoothedCrossEntropyLoss">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.criterion.label_smoothed_cross_entropy.label_smoothed_cross_entropy.</code><code class="sig-name descname">LabelSmoothedCrossEntropyLoss</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configs</span><span class="p">:</span> <span class="n">omegaconf.dictconfig.DictConfig</span></em>, <em class="sig-param"><span class="n">num_classes</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">vocab</span><span class="p">:</span> <span class="n"><a class="reference internal" href="Vocabulary.html#openspeech.vocabs.vocab.Vocabulary" title="openspeech.vocabs.vocab.Vocabulary">openspeech.vocabs.vocab.Vocabulary</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/criterion/label_smoothed_cross_entropy/label_smoothed_cross_entropy.html#LabelSmoothedCrossEntropyLoss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.criterion.label_smoothed_cross_entropy.label_smoothed_cross_entropy.LabelSmoothedCrossEntropyLoss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Label smoothed cross entropy loss function.</p>
+<dl class="simple">
+<dt>Configurations:</dt><dd><p>criterion_name (str): name of criterion
+reduction (str): reduction method of criterion
+smoothing (float): ratio of smoothing loss (confidence = 1.0 - smoothing)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>configs</strong> (<em>DictConfig</em>) – hydra configuration set</p></li>
+<li><p><strong>num_classes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the number of classfication</p></li>
+<li><p><strong>vocab</strong> (<a class="reference internal" href="Vocabulary.html#openspeech.vocabs.vocab.Vocabulary" title="openspeech.vocabs.vocab.Vocabulary"><em>Vocabulary</em></a>) – the set of unique words used in the text corpus</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: logits, targets</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt><strong>logits</strong> (torch.FloatTensor): probability distribution value from model and it has a logarithm shape.</dt><dd><p>The <cite>FloatTensor</cite> of size <code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">seq_length,</span> <span class="pre">num_classes)</span></code></p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>targets</strong> (torch.LongTensor): ground-truth encoded to integers which directly point a word in label</dt><dd><p>The <cite>LongTensor</cite> of size <code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">target_length)</span></code></p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>Returns: loss</dt><dd><ul class="simple">
+<li><p>loss (float): loss for training</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="label-smoothed-cross-entropy-loss-configuration">
+<h2>Label Smoothed Cross Entropy Loss Configuration<a class="headerlink" href="#label-smoothed-cross-entropy-loss-configuration" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-openspeech.criterion.label_smoothed_cross_entropy.configuration"></span><dl class="py class">
+<dt id="openspeech.criterion.label_smoothed_cross_entropy.configuration.LabelSmoothedCrossEntropyLossConfigs">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.criterion.label_smoothed_cross_entropy.configuration.</code><code class="sig-name descname">LabelSmoothedCrossEntropyLossConfigs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">criterion_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'label_smoothed_cross_entropy'</span></em>, <em class="sig-param"><span class="n">reduction</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'mean'</span></em>, <em class="sig-param"><span class="n">smoothing</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.1</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/criterion/label_smoothed_cross_entropy/configuration.html#LabelSmoothedCrossEntropyLossConfigs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.criterion.label_smoothed_cross_entropy.configuration.LabelSmoothedCrossEntropyLossConfigs" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the configuration class to store the configuration of
+a <code class="xref py py-class docutils literal notranslate"><span class="pre">LabelSmoothedCrossEntropyLoss</span></code>.</p>
+<p>It is used to initiated an <cite>LabelSmoothedCrossEntropyLoss</cite> criterion.</p>
+<p>Configuration objects inherit from :class: <cite>~openspeech.dataclass.configs.OpenspeechDataclass</cite>.</p>
+<dl class="simple">
+<dt>Configurations:</dt><dd><p>criterion_name (str): name of criterion. (default: label_smoothed_cross_entropy)
+reduction (str): reduction method of criterion. (default: mean)
+smoothing (float): ratio of smoothing loss (confidence = 1.0 - smoothing) (default: 0.1)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.criterion.transducer.transducer">
+<span id="transducer-loss"></span><h2>Transducer Loss<a class="headerlink" href="#module-openspeech.criterion.transducer.transducer" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.criterion.transducer.transducer.TransducerLoss">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.criterion.transducer.transducer.</code><code class="sig-name descname">TransducerLoss</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configs</span><span class="p">:</span> <span class="n">omegaconf.dictconfig.DictConfig</span></em>, <em class="sig-param"><span class="n">vocab</span><span class="p">:</span> <span class="n"><a class="reference internal" href="Vocabulary.html#openspeech.vocabs.vocab.Vocabulary" title="openspeech.vocabs.vocab.Vocabulary">openspeech.vocabs.vocab.Vocabulary</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/criterion/transducer/transducer.html#TransducerLoss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.criterion.transducer.transducer.TransducerLoss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute path-aware regularization transducer loss.</p>
+<dl class="simple">
+<dt>Configurations:</dt><dd><p>criterion_name (str): name of criterion
+blank (int): blank label.
+gather (bool): reduce memory consumption.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>configs</strong> (<em>DictConfig</em>) – hydra configuration set</p></li>
+<li><p><strong>vocab</strong> (<a class="reference internal" href="Vocabulary.html#openspeech.vocabs.vocab.Vocabulary" title="openspeech.vocabs.vocab.Vocabulary"><em>Vocabulary</em></a>) – the set of unique words used in the text corpus</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs:</dt><dd><dl class="simple">
+<dt>logits (torch.FloatTensor): Input tensor with shape (N, T, U, V)</dt><dd><p>where N is the minibatch size, T is the maximum number of
+input frames, U is the maximum number of output labels and V is
+the vocabulary of labels (including the blank).</p>
+</dd>
+<dt>targets (torch.IntTensor): Tensor with shape (N, U-1) representing the</dt><dd><p>reference labels for all samples in the minibatch.</p>
+</dd>
+<dt>input_lengths (torch.IntTensor): Tensor with shape (N,) representing the</dt><dd><p>number of frames for each sample in the minibatch.</p>
+</dd>
+<dt>target_lengths (torch.IntTensor): Tensor with shape (N,) representing the</dt><dd><p>length of the transcription for each sample in the minibatch.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>transducer loss</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>loss (torch.FloatTensor)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Reference:</dt><dd><p>A. Graves: Sequence Transduction with Recurrent Neural Networks:
+<a class="reference external" href="https://arxiv.org/abs/1211.3711.pdf">https://arxiv.org/abs/1211.3711.pdf</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.criterion.transducer.configuration">
+<span id="transducer-loss-configuration"></span><h2>Transducer Loss Configuration<a class="headerlink" href="#module-openspeech.criterion.transducer.configuration" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.criterion.transducer.configuration.TransducerLossConfigs">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.criterion.transducer.configuration.</code><code class="sig-name descname">TransducerLossConfigs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">criterion_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'transducer'</span></em>, <em class="sig-param"><span class="n">reduction</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'mean'</span></em>, <em class="sig-param"><span class="n">gather</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/criterion/transducer/configuration.html#TransducerLossConfigs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.criterion.transducer.configuration.TransducerLossConfigs" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the configuration class to store the configuration of
+a <code class="xref py py-class docutils literal notranslate"><span class="pre">TransducerLoss</span></code>.</p>
+<p>It is used to initiated an <cite>TransducerLoss</cite> criterion.</p>
+<p>Configuration objects inherit from :class: <cite>~openspeech.dataclass.configs.OpenspeechDataclass</cite>.</p>
+<dl class="simple">
+<dt>Configurations:</dt><dd><p>criterion_name (str): name of criterion. (default: label_smoothed_cross_entropy)
+reduction (str): reduction method of criterion. (default: mean)
+gather (bool): reduce memory consumption. (default: True)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="Data.html" class="btn btn-neutral float-right" title="Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Audio.html" class="btn btn-neutral float-left" title="Audio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Kim, Soohwan and Ha, Sangchun and Cho, Soyoung.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

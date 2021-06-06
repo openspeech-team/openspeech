@@ -1,0 +1,823 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Datasets &mdash; Openspeech v0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Decoders" href="Decoders.html" />
+    <link rel="prev" title="Data" href="Data.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Openspeech
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">GETTING STARTED</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html">Why should I use openspeech?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#why-shouldn-t-i-use-openspeech">Why shouldn’t I use openspeech?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#model-architectures">Model architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#get-started">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#troubleshoots-and-contributing">Troubleshoots and Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#citation">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/hydra_configs.html">Openspeech’s Hydra configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/configs.html">Openspeech’s configurations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MODEL ARCHITECTURES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Openspeech Model.html">Openspeech Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conformer.html">Conformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conformer LSTM.html">Conformer LSTM Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conformer Transducer.html">Conformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deep CNN with Joint CTC LAS.html">Deep CNN with Joint CTC LAS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DeepSpeech2.html">DeepSpeech2 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Jasper5x3.html">Jasper5x3 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Jasper10x5.html">Jasper10x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Joint CTC Conformer LSTM.html">Joint CTC Conformer LSTM Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Joint CTC LAS.html">Joint CTC LAS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Joint CTC Transformer.html">Joint CTC Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Listen Attend Spell.html">Listen Attend Spell Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Listen Attend Spell (location-aware).html">Listen Attend Spell (location-aware) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Listen Attend Spell (multi-head).html">Listen Attend Spell (multi-head) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuartzNet5x5.html">QuartzNet 5x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuartzNet10x5.html">QuartzNet 10x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuartzNet15x5.html">QuartzNet 15x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RNN Transducer.html">RNN Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transformer.html">Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transformer Transducer.html">Transformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transformer with CTC.html">Transformer with CTC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VGG Transformer.html">VGG Transformer Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Audio.html">Audio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Criterion.html">Criterion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data.html">Data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.datasets.aishell.lit_data_module">AISHELL-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.datasets.ksponspeech.lit_data_module">KsponSpeech</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.datasets.librispeech.lit_data_module">LibriSpeech</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Decoders.html">Decoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Encoders.html">Encoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Optim.html">Optim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Beam Search.html">Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Vocabulary.html">Vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Metric.html">Metric</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Openspeech</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Datasets</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/Datasets.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="datasets">
+<h1>Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-openspeech.datasets.aishell.lit_data_module">
+<span id="aishell-1"></span><h2>AISHELL-1<a class="headerlink" href="#module-openspeech.datasets.aishell.lit_data_module" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.datasets.aishell.lit_data_module.</code><code class="sig-name descname">LightningAIShellDataModule</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/datasets/aishell/lit_data_module.html#LightningAIShellDataModule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lightning data module for AIShell-1.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>configs</strong> (<em>DictConfig</em>) – configuration set.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.prepare_data">
+<code class="sig-name descname">prepare_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/datasets/aishell/lit_data_module.html#LightningAIShellDataModule.prepare_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.prepare_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepare AI-Shell manifest file. If there is not exist manifest file, generate manifest file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>vocab class of KsponSpeech.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>vocab (<a class="reference internal" href="Vocabulary.html#openspeech.vocabs.vocab.Vocabulary" title="openspeech.vocabs.vocab.Vocabulary">Vocabulary</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.setup">
+<code class="sig-name descname">setup</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stage</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">vocab</span><span class="p">:</span> <span class="n"><a class="reference internal" href="Vocabulary.html#openspeech.vocabs.vocab.Vocabulary" title="openspeech.vocabs.vocab.Vocabulary">openspeech.vocabs.vocab.Vocabulary</a></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/datasets/aishell/lit_data_module.html#LightningAIShellDataModule.setup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.setup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split <cite>train</cite> and <cite>valid</cite> dataset for training.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stage</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – stage of training. <cite>train</cite> or <cite>valid</cite></p></li>
+<li><p><strong>vocab</strong> (<a class="reference internal" href="Vocabulary.html#openspeech.vocabs.vocab.Vocabulary" title="openspeech.vocabs.vocab.Vocabulary"><em>Vocabulary</em></a>) – vocab class of KsponSpeech.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.test_dataloader">
+<code class="sig-name descname">test_dataloader</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; torch.utils.data.dataloader.DataLoader<a class="reference internal" href="_modules/openspeech/datasets/aishell/lit_data_module.html#LightningAIShellDataModule.test_dataloader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.test_dataloader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement one or multiple PyTorch DataLoaders for testing.</p>
+<p>The dataloader you return will not be called every epoch unless you set
+<a href="#id1"><span class="problematic" id="id2">:paramref:`~pytorch_lightning.trainer.Trainer.reload_dataloaders_every_epoch`</span></a> to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>For data processing use the following pattern:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>download in <a class="reference internal" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.prepare_data" title="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.prepare_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">prepare_data()</span></code></a></p></li>
+<li><p>process and split in <a class="reference internal" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.setup" title="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.setup"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setup()</span></code></a></p></li>
+</ul>
+</div></blockquote>
+<p>However, the above are only necessary for distributed processing.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>do not assign state in prepare_data</p>
+</div>
+<ul class="simple">
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></p></li>
+<li><p>…</p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.prepare_data" title="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.prepare_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">prepare_data()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.setup" title="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.setup"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setup()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.train_dataloader" title="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.train_dataloader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train_dataloader()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.val_dataloader" title="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.val_dataloader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">val_dataloader()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.test_dataloader" title="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.test_dataloader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">test_dataloader()</span></code></a></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Lightning adds the correct sampler for distributed and arbitrary hardware.
+There is no need to set it yourself.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Single or multiple PyTorch DataLoaders.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+                                    <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="mf">0.5</span><span class="p">,),</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,))])</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">&#39;/path/to/mnist/&#39;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>
+                    <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
+        <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
+        <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">loader</span>
+
+<span class="c1"># can also return multiple dataloaders</span>
+<span class="k">def</span> <span class="nf">test_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">loader_a</span><span class="p">,</span> <span class="n">loader_b</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">loader_n</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you don’t need a test dataset and a <code class="xref py py-meth docutils literal notranslate"><span class="pre">test_step()</span></code>, you don’t need to implement
+this method.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the case where you return multiple test dataloaders, the <code class="xref py py-meth docutils literal notranslate"><span class="pre">test_step()</span></code>
+will have an argument <code class="docutils literal notranslate"><span class="pre">dataloader_idx</span></code> which matches the order here.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.train_dataloader">
+<code class="sig-name descname">train_dataloader</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; torch.utils.data.dataloader.DataLoader<a class="reference internal" href="_modules/openspeech/datasets/aishell/lit_data_module.html#LightningAIShellDataModule.train_dataloader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.train_dataloader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement one or more PyTorch DataLoaders for training.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Either a single PyTorch <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a> or a collection of these
+(list, dict, nested lists and dicts). In the case of multiple dataloaders, please see
+this <span class="xref std std-ref">page</span></p>
+</dd>
+</dl>
+<p>The dataloader you return will not be called every epoch unless you set
+<a href="#id3"><span class="problematic" id="id4">:paramref:`~pytorch_lightning.trainer.Trainer.reload_dataloaders_every_epoch`</span></a> to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>For data processing use the following pattern:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>download in <a class="reference internal" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.prepare_data" title="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.prepare_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">prepare_data()</span></code></a></p></li>
+<li><p>process and split in <a class="reference internal" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.setup" title="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.setup"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setup()</span></code></a></p></li>
+</ul>
+</div></blockquote>
+<p>However, the above are only necessary for distributed processing.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>do not assign state in prepare_data</p>
+</div>
+<ul class="simple">
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></p></li>
+<li><p>…</p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.prepare_data" title="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.prepare_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">prepare_data()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.setup" title="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.setup"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setup()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.train_dataloader" title="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.train_dataloader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train_dataloader()</span></code></a></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Lightning adds the correct sampler for distributed and arbitrary hardware.
+There is no need to set it yourself.</p>
+</div>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># single dataloader</span>
+<span class="k">def</span> <span class="nf">train_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+                                    <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="mf">0.5</span><span class="p">,),</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,))])</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">&#39;/path/to/mnist/&#39;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>
+                    <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
+        <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
+        <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">loader</span>
+
+<span class="c1"># multiple dataloaders, return as list</span>
+<span class="k">def</span> <span class="nf">train_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">mnist</span> <span class="o">=</span> <span class="n">MNIST</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">cifar</span> <span class="o">=</span> <span class="n">CIFAR</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">mnist_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
+        <span class="n">dataset</span><span class="o">=</span><span class="n">mnist</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="n">cifar_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
+        <span class="n">dataset</span><span class="o">=</span><span class="n">cifar</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="c1"># each batch will be a list of tensors: [batch_mnist, batch_cifar]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">mnist_loader</span><span class="p">,</span> <span class="n">cifar_loader</span><span class="p">]</span>
+
+<span class="c1"># multiple dataloader, return as dict</span>
+<span class="k">def</span> <span class="nf">train_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">mnist</span> <span class="o">=</span> <span class="n">MNIST</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">cifar</span> <span class="o">=</span> <span class="n">CIFAR</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">mnist_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
+        <span class="n">dataset</span><span class="o">=</span><span class="n">mnist</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="n">cifar_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
+        <span class="n">dataset</span><span class="o">=</span><span class="n">cifar</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="c1"># each batch will be a dict of tensors: {&#39;mnist&#39;: batch_mnist, &#39;cifar&#39;: batch_cifar}</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;mnist&#39;</span><span class="p">:</span> <span class="n">mnist_loader</span><span class="p">,</span> <span class="s1">&#39;cifar&#39;</span><span class="p">:</span> <span class="n">cifar_loader</span><span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.val_dataloader">
+<code class="sig-name descname">val_dataloader</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; torch.utils.data.dataloader.DataLoader<a class="reference internal" href="_modules/openspeech/datasets/aishell/lit_data_module.html#LightningAIShellDataModule.val_dataloader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.val_dataloader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement one or multiple PyTorch DataLoaders for validation.</p>
+<p>The dataloader you return will not be called every epoch unless you set
+<a href="#id5"><span class="problematic" id="id6">:paramref:`~pytorch_lightning.trainer.Trainer.reload_dataloaders_every_epoch`</span></a> to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>It’s recommended that all data downloads and preparation happen in <a class="reference internal" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.prepare_data" title="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.prepare_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">prepare_data()</span></code></a>.</p>
+<ul class="simple">
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></p></li>
+<li><p>…</p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.prepare_data" title="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.prepare_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">prepare_data()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.train_dataloader" title="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.train_dataloader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train_dataloader()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.val_dataloader" title="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.val_dataloader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">val_dataloader()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.test_dataloader" title="openspeech.datasets.aishell.lit_data_module.LightningAIShellDataModule.test_dataloader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">test_dataloader()</span></code></a></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Lightning adds the correct sampler for distributed and arbitrary hardware
+There is no need to set it yourself.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Single or multiple PyTorch DataLoaders.</p>
+</dd>
+</dl>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">val_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+                                    <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="mf">0.5</span><span class="p">,),</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,))])</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">&#39;/path/to/mnist/&#39;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
+        <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
+        <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">loader</span>
+
+<span class="c1"># can also return multiple dataloaders</span>
+<span class="k">def</span> <span class="nf">val_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">loader_a</span><span class="p">,</span> <span class="n">loader_b</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">loader_n</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you don’t need a validation dataset and a <code class="xref py py-meth docutils literal notranslate"><span class="pre">validation_step()</span></code>, you don’t need to
+implement this method.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the case where you return multiple validation dataloaders, the <code class="xref py py-meth docutils literal notranslate"><span class="pre">validation_step()</span></code>
+will have an argument <code class="docutils literal notranslate"><span class="pre">dataloader_idx</span></code> which matches the order here.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.datasets.ksponspeech.lit_data_module">
+<span id="ksponspeech"></span><h2>KsponSpeech<a class="headerlink" href="#module-openspeech.datasets.ksponspeech.lit_data_module" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.datasets.ksponspeech.lit_data_module.</code><code class="sig-name descname">LightningKsponSpeechDataModule</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/datasets/ksponspeech/lit_data_module.html#LightningKsponSpeechDataModule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lightning data module for KsponSpeech.</p>
+<dl class="py attribute">
+<dt id="openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.KSPONSPEECH_TRAIN_NUM">
+<code class="sig-name descname">KSPONSPEECH_TRAIN_NUM</code><a class="headerlink" href="#openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.KSPONSPEECH_TRAIN_NUM" title="Permalink to this definition">¶</a></dt>
+<dd><p>the number of KsponSpeech’s train data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>configs</strong> (<em>DictConfig</em>) – configuration set.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.prepare_data">
+<code class="sig-name descname">prepare_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/datasets/ksponspeech/lit_data_module.html#LightningKsponSpeechDataModule.prepare_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.prepare_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepare KsponSpeech manifest file. If there is not exist manifest file, generate manifest file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>vocab class of KsponSpeech.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>vocab (<a class="reference internal" href="Vocabulary.html#openspeech.vocabs.vocab.Vocabulary" title="openspeech.vocabs.vocab.Vocabulary">Vocabulary</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.setup">
+<code class="sig-name descname">setup</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stage</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">vocab</span><span class="p">:</span> <span class="n"><a class="reference internal" href="Vocabulary.html#openspeech.vocabs.vocab.Vocabulary" title="openspeech.vocabs.vocab.Vocabulary">openspeech.vocabs.vocab.Vocabulary</a></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/datasets/ksponspeech/lit_data_module.html#LightningKsponSpeechDataModule.setup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.setup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split <cite>train</cite> and <cite>valid</cite> dataset for training.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stage</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – stage of training. <cite>train</cite> or <cite>valid</cite></p></li>
+<li><p><strong>vocab</strong> (<a class="reference internal" href="Vocabulary.html#openspeech.vocabs.vocab.Vocabulary" title="openspeech.vocabs.vocab.Vocabulary"><em>Vocabulary</em></a>) – vocab class of KsponSpeech.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.test_dataloader">
+<code class="sig-name descname">test_dataloader</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="Data.html#openspeech.data.data_loader.AudioDataLoader" title="openspeech.data.data_loader.AudioDataLoader">openspeech.data.data_loader.AudioDataLoader</a><a class="reference internal" href="_modules/openspeech/datasets/ksponspeech/lit_data_module.html#LightningKsponSpeechDataModule.test_dataloader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.test_dataloader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return data loader for training.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.train_dataloader">
+<code class="sig-name descname">train_dataloader</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="Data.html#openspeech.data.data_loader.AudioDataLoader" title="openspeech.data.data_loader.AudioDataLoader">openspeech.data.data_loader.AudioDataLoader</a><a class="reference internal" href="_modules/openspeech/datasets/ksponspeech/lit_data_module.html#LightningKsponSpeechDataModule.train_dataloader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.train_dataloader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return data loader for training.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.val_dataloader">
+<code class="sig-name descname">val_dataloader</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="Data.html#openspeech.data.data_loader.AudioDataLoader" title="openspeech.data.data_loader.AudioDataLoader">openspeech.data.data_loader.AudioDataLoader</a><a class="reference internal" href="_modules/openspeech/datasets/ksponspeech/lit_data_module.html#LightningKsponSpeechDataModule.val_dataloader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.val_dataloader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return data loader for validation.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.datasets.librispeech.lit_data_module">
+<span id="librispeech"></span><h2>LibriSpeech<a class="headerlink" href="#module-openspeech.datasets.librispeech.lit_data_module" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.datasets.librispeech.lit_data_module.</code><code class="sig-name descname">LightningLibriSpeechDataModule</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/datasets/librispeech/lit_data_module.html#LightningLibriSpeechDataModule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>PyTorch Lightning Data Module for LibriSpeech Dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>configs</strong> (<em>DictConfig</em>) – configuraion set</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.prepare_data">
+<code class="sig-name descname">prepare_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="Vocabulary.html#openspeech.vocabs.vocab.Vocabulary" title="openspeech.vocabs.vocab.Vocabulary">openspeech.vocabs.vocab.Vocabulary</a><a class="reference internal" href="_modules/openspeech/datasets/librispeech/lit_data_module.html#LightningLibriSpeechDataModule.prepare_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.prepare_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepare librispeech data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>vocab class of KsponSpeech.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>vocab (<a class="reference internal" href="Vocabulary.html#openspeech.vocabs.vocab.Vocabulary" title="openspeech.vocabs.vocab.Vocabulary">Vocabulary</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.setup">
+<code class="sig-name descname">setup</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stage</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">vocab</span><span class="p">:</span> <span class="n"><a class="reference internal" href="Vocabulary.html#openspeech.vocabs.vocab.Vocabulary" title="openspeech.vocabs.vocab.Vocabulary">openspeech.vocabs.vocab.Vocabulary</a></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a><a class="reference internal" href="_modules/openspeech/datasets/librispeech/lit_data_module.html#LightningLibriSpeechDataModule.setup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.setup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split dataset into train, valid, and test.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.test_dataloader">
+<code class="sig-name descname">test_dataloader</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; torch.utils.data.dataloader.DataLoader<a class="reference internal" href="_modules/openspeech/datasets/librispeech/lit_data_module.html#LightningLibriSpeechDataModule.test_dataloader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.test_dataloader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement one or multiple PyTorch DataLoaders for testing.</p>
+<p>The dataloader you return will not be called every epoch unless you set
+<a href="#id7"><span class="problematic" id="id8">:paramref:`~pytorch_lightning.trainer.Trainer.reload_dataloaders_every_epoch`</span></a> to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>For data processing use the following pattern:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>download in <a class="reference internal" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.prepare_data" title="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.prepare_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">prepare_data()</span></code></a></p></li>
+<li><p>process and split in <a class="reference internal" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.setup" title="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.setup"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setup()</span></code></a></p></li>
+</ul>
+</div></blockquote>
+<p>However, the above are only necessary for distributed processing.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>do not assign state in prepare_data</p>
+</div>
+<ul class="simple">
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></p></li>
+<li><p>…</p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.prepare_data" title="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.prepare_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">prepare_data()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.setup" title="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.setup"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setup()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.train_dataloader" title="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.train_dataloader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train_dataloader()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.val_dataloader" title="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.val_dataloader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">val_dataloader()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.test_dataloader" title="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.test_dataloader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">test_dataloader()</span></code></a></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Lightning adds the correct sampler for distributed and arbitrary hardware.
+There is no need to set it yourself.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Single or multiple PyTorch DataLoaders.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+                                    <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="mf">0.5</span><span class="p">,),</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,))])</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">&#39;/path/to/mnist/&#39;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>
+                    <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
+        <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
+        <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">loader</span>
+
+<span class="c1"># can also return multiple dataloaders</span>
+<span class="k">def</span> <span class="nf">test_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">loader_a</span><span class="p">,</span> <span class="n">loader_b</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">loader_n</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you don’t need a test dataset and a <code class="xref py py-meth docutils literal notranslate"><span class="pre">test_step()</span></code>, you don’t need to implement
+this method.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the case where you return multiple test dataloaders, the <code class="xref py py-meth docutils literal notranslate"><span class="pre">test_step()</span></code>
+will have an argument <code class="docutils literal notranslate"><span class="pre">dataloader_idx</span></code> which matches the order here.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.train_dataloader">
+<code class="sig-name descname">train_dataloader</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; torch.utils.data.dataloader.DataLoader<a class="reference internal" href="_modules/openspeech/datasets/librispeech/lit_data_module.html#LightningLibriSpeechDataModule.train_dataloader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.train_dataloader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement one or more PyTorch DataLoaders for training.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Either a single PyTorch <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a> or a collection of these
+(list, dict, nested lists and dicts). In the case of multiple dataloaders, please see
+this <span class="xref std std-ref">page</span></p>
+</dd>
+</dl>
+<p>The dataloader you return will not be called every epoch unless you set
+<a href="#id9"><span class="problematic" id="id10">:paramref:`~pytorch_lightning.trainer.Trainer.reload_dataloaders_every_epoch`</span></a> to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>For data processing use the following pattern:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>download in <a class="reference internal" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.prepare_data" title="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.prepare_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">prepare_data()</span></code></a></p></li>
+<li><p>process and split in <a class="reference internal" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.setup" title="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.setup"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setup()</span></code></a></p></li>
+</ul>
+</div></blockquote>
+<p>However, the above are only necessary for distributed processing.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>do not assign state in prepare_data</p>
+</div>
+<ul class="simple">
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></p></li>
+<li><p>…</p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.prepare_data" title="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.prepare_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">prepare_data()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.setup" title="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.setup"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setup()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.train_dataloader" title="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.train_dataloader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train_dataloader()</span></code></a></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Lightning adds the correct sampler for distributed and arbitrary hardware.
+There is no need to set it yourself.</p>
+</div>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># single dataloader</span>
+<span class="k">def</span> <span class="nf">train_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+                                    <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="mf">0.5</span><span class="p">,),</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,))])</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">&#39;/path/to/mnist/&#39;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>
+                    <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
+        <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
+        <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">loader</span>
+
+<span class="c1"># multiple dataloaders, return as list</span>
+<span class="k">def</span> <span class="nf">train_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">mnist</span> <span class="o">=</span> <span class="n">MNIST</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">cifar</span> <span class="o">=</span> <span class="n">CIFAR</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">mnist_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
+        <span class="n">dataset</span><span class="o">=</span><span class="n">mnist</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="n">cifar_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
+        <span class="n">dataset</span><span class="o">=</span><span class="n">cifar</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="c1"># each batch will be a list of tensors: [batch_mnist, batch_cifar]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">mnist_loader</span><span class="p">,</span> <span class="n">cifar_loader</span><span class="p">]</span>
+
+<span class="c1"># multiple dataloader, return as dict</span>
+<span class="k">def</span> <span class="nf">train_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">mnist</span> <span class="o">=</span> <span class="n">MNIST</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">cifar</span> <span class="o">=</span> <span class="n">CIFAR</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">mnist_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
+        <span class="n">dataset</span><span class="o">=</span><span class="n">mnist</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="n">cifar_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
+        <span class="n">dataset</span><span class="o">=</span><span class="n">cifar</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="c1"># each batch will be a dict of tensors: {&#39;mnist&#39;: batch_mnist, &#39;cifar&#39;: batch_cifar}</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;mnist&#39;</span><span class="p">:</span> <span class="n">mnist_loader</span><span class="p">,</span> <span class="s1">&#39;cifar&#39;</span><span class="p">:</span> <span class="n">cifar_loader</span><span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.val_dataloader">
+<code class="sig-name descname">val_dataloader</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; torch.utils.data.dataloader.DataLoader<a class="reference internal" href="_modules/openspeech/datasets/librispeech/lit_data_module.html#LightningLibriSpeechDataModule.val_dataloader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.val_dataloader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement one or multiple PyTorch DataLoaders for validation.</p>
+<p>The dataloader you return will not be called every epoch unless you set
+<a href="#id11"><span class="problematic" id="id12">:paramref:`~pytorch_lightning.trainer.Trainer.reload_dataloaders_every_epoch`</span></a> to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>It’s recommended that all data downloads and preparation happen in <a class="reference internal" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.prepare_data" title="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.prepare_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">prepare_data()</span></code></a>.</p>
+<ul class="simple">
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></p></li>
+<li><p>…</p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.prepare_data" title="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.prepare_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">prepare_data()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.train_dataloader" title="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.train_dataloader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train_dataloader()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.val_dataloader" title="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.val_dataloader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">val_dataloader()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.test_dataloader" title="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.test_dataloader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">test_dataloader()</span></code></a></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Lightning adds the correct sampler for distributed and arbitrary hardware
+There is no need to set it yourself.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Single or multiple PyTorch DataLoaders.</p>
+</dd>
+</dl>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">val_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+                                    <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="mf">0.5</span><span class="p">,),</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,))])</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">&#39;/path/to/mnist/&#39;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
+        <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
+        <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">loader</span>
+
+<span class="c1"># can also return multiple dataloaders</span>
+<span class="k">def</span> <span class="nf">val_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">loader_a</span><span class="p">,</span> <span class="n">loader_b</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">loader_n</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you don’t need a validation dataset and a <code class="xref py py-meth docutils literal notranslate"><span class="pre">validation_step()</span></code>, you don’t need to
+implement this method.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the case where you return multiple validation dataloaders, the <code class="xref py py-meth docutils literal notranslate"><span class="pre">validation_step()</span></code>
+will have an argument <code class="docutils literal notranslate"><span class="pre">dataloader_idx</span></code> which matches the order here.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="Decoders.html" class="btn btn-neutral float-right" title="Decoders" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Data.html" class="btn btn-neutral float-left" title="Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Kim, Soohwan and Ha, Sangchun and Cho, Soyoung.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

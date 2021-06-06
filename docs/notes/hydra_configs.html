@@ -1,0 +1,457 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Openspeech’s Hydra configuration &mdash; Openspeech v0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Openspeech’s configurations" href="configs.html" />
+    <link rel="prev" title="Why should I use openspeech?" href="intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Openspeech
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">GETTING STARTED</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Why should I use openspeech?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#why-shouldn-t-i-use-openspeech">Why shouldn’t I use openspeech?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#model-architectures">Model architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#get-started">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#troubleshoots-and-contributing">Troubleshoots and Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html#citation">Citation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Openspeech’s Hydra configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-hydra">What is Hydra?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#motivation">Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-or-migrating-components">Creating or migrating components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#register-function"><code class="docutils literal notranslate"><span class="pre">&#64;register_*()</span></code> function</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#model-example">Model example:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dataset-example">Dataset example:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#openspeech-s-configuration-structure">Openspeech’s configuration structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#training-with-hydra-train-py">Training with <code class="docutils literal notranslate"><span class="pre">hydra_train.py</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#override-default-values-through-command-line">1. Override default values through command line:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-new-configuration-through-command-line">2. Add new configuration through command line:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configs.html">Openspeech’s configurations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MODEL ARCHITECTURES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Openspeech Model.html">Openspeech Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Conformer.html">Conformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Conformer LSTM.html">Conformer LSTM Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Conformer Transducer.html">Conformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep CNN with Joint CTC LAS.html">Deep CNN with Joint CTC LAS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DeepSpeech2.html">DeepSpeech2 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Jasper5x3.html">Jasper5x3 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Jasper10x5.html">Jasper10x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Joint CTC Conformer LSTM.html">Joint CTC Conformer LSTM Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Joint CTC LAS.html">Joint CTC LAS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Joint CTC Transformer.html">Joint CTC Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Listen Attend Spell.html">Listen Attend Spell Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Listen Attend Spell (location-aware).html">Listen Attend Spell (location-aware) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Listen Attend Spell (multi-head).html">Listen Attend Spell (multi-head) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QuartzNet5x5.html">QuartzNet 5x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QuartzNet10x5.html">QuartzNet 10x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QuartzNet15x5.html">QuartzNet 15x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RNN Transducer.html">RNN Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Transformer.html">Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Transformer Transducer.html">Transformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Transformer with CTC.html">Transformer with CTC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VGG Transformer.html">VGG Transformer Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Audio.html">Audio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Criterion.html">Criterion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Decoders.html">Decoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Encoders.html">Encoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Optim.html">Optim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Beam Search.html">Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vocabulary.html">Vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Metric.html">Metric</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Openspeech</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Openspeech’s Hydra configuration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/notes/hydra_configs.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="openspeech-s-hydra-configuration">
+<h1>Openspeech’s Hydra configuration<a class="headerlink" href="#openspeech-s-hydra-configuration" title="Permalink to this headline">¶</a></h1>
+<p>This page describes how openspeech uses <a class="reference external" href="https://github.com/facebookresearch/hydra">Hydra</a> to manage configuration.</p>
+<div class="section" id="what-is-hydra">
+<h2>What is Hydra?<a class="headerlink" href="#what-is-hydra" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/facebookresearch/hydra">Hydra</a> is an open-source Python framework that simplifies the development of research and other complex applications. The key feature is the ability to dynamically create a hierarchical configuration by composition and override it through config files and the command line. The name Hydra comes from its ability to run multiple similar jobs - much like a Hydra with multiple heads.</p>
+</div>
+<div class="section" id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<p>Openspeech aims to provide as many options as possible. However, too many options cause a lot of confusion to users.
+. To address this problem, we needed a hierarchical configuration management toolkit.
+Hydra was the best choice for us in that respect. We have referred to the structure of <a class="reference external" href="https://github.com/pytorch/fairseq">Fairseq</a> that successfully applied Hydra.
+Thank you for fairseq team.</p>
+<p>We thought a lot about which method is better, using the <code class="docutils literal notranslate"><span class="pre">YAML</span></code> file or using <code class="docutils literal notranslate"><span class="pre">&#64;dataclass</span></code>.
+After much consideration, we decided to use <code class="docutils literal notranslate"><span class="pre">&#64;dataclass</span></code>, which is easy to understand each module’s configuration.
+<code class="docutils literal notranslate"><span class="pre">&#64;dataclass</span></code> has default values for that module and has been configured to be stored in the same Python file as each module.</p>
+<p>Additionally, Hydra has a rich and growing library of plugins that provide functionality such as hyperparameter sweeping (including using bayesian optimization through the Ax library), job launching across various platforms, and more.</p>
+</div>
+<div class="section" id="creating-or-migrating-components">
+<h2>Creating or migrating components<a class="headerlink" href="#creating-or-migrating-components" title="Permalink to this headline">¶</a></h2>
+<p>In general, each new (or updated) component should provide a companion <a class="reference external" href="https://www.python.org/dev/peps/pep-0557/">dataclass</a>.
+These dataclass are typically located in the same file as the component and are passed as arguments to the <code class="docutils literal notranslate"><span class="pre">register_*()</span></code> functions.
+These classes are decorated with a <code class="docutils literal notranslate"><span class="pre">&#64;dataclass</span></code> decorator, and typically inherit from <code class="docutils literal notranslate"><span class="pre">OpenspeechDataclass</span></code>.</p>
+<div class="section" id="example">
+<h3>Example:<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span> <span class="nn">openspeech.dataclass.configurations</span> <span class="kn">import</span> <span class="n">OpenspeechDataclass</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">ConformerLSTMConfigs</span><span class="p">(</span><span class="n">OpenspeechDataclass</span><span class="p">):</span>
+    <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;conformer_lstm&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Model name&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">encoder_dim</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Dimension of encoder.&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="register-function">
+<h3><code class="docutils literal notranslate"><span class="pre">&#64;register_*()</span></code> function<a class="headerlink" href="#register-function" title="Permalink to this headline">¶</a></h3>
+<p>We actively utilized the <code class="docutils literal notranslate"><span class="pre">&#64;register_*()</span></code> function inspired by <a class="reference external" href="https://github.com/pytorch/fairseq">Fairseq</a>.
+The function <code class="docutils literal notranslate"><span class="pre">&#64;register_*()</span></code> automatically registers classes and associated data classes.
+This method is very effective when adding new modules.
+Below is an example of how <code class="docutils literal notranslate"><span class="pre">register_*()</span></code> functions and data classes are utilized in <code class="docutils literal notranslate"><span class="pre">Openspeech</span></code>.</p>
+<div class="section" id="model-example">
+<h4>Model example:<a class="headerlink" href="#model-example" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">TransformerConfigs</span><span class="p">(</span><span class="n">ModelConfigs</span><span class="p">):</span>
+    <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;transformer&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Model name&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">extractor</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;vgg&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;The CNN feature extractor.&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="o">...</span>
+
+
+<span class="nd">@register_model</span><span class="p">(</span><span class="s1">&#39;transformer&#39;</span><span class="p">,</span> <span class="n">dataclass</span><span class="o">=</span><span class="n">TransformerConfigs</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">SpeechTransformerModel</span><span class="p">(</span><span class="n">OpenspeechEncoderDecoderModel</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">def</span> <span class="nf">build_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dataset-example">
+<h4>Dataset example:<a class="headerlink" href="#dataset-example" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">MelSpectrogramConfigs</span><span class="p">(</span><span class="n">AudioConfigs</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;melspectrogram&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Name of dataset.&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">num_mels</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;The number of mfc coefficients to retain.&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="o">...</span>
+
+
+<span class="nd">@register_dataset</span><span class="p">(</span><span class="s2">&quot;melspectrogram&quot;</span><span class="p">,</span> <span class="n">dataclass</span><span class="o">=</span><span class="n">MelSpectrogramConfigs</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MelSpectrogramDataset</span><span class="p">(</span><span class="n">AudioDataset</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="openspeech-s-configuration-structure">
+<h2>Openspeech’s configuration structure<a class="headerlink" href="#openspeech-s-configuration-structure" title="Permalink to this headline">¶</a></h2>
+<p>Below are the configuration dataclasses that you can select from <code class="docutils literal notranslate"><span class="pre">Openspeech</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">defaults</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">audio</span><span class="p">:</span> 
+    <span class="o">-</span> <span class="n">fbank</span>
+    <span class="o">-</span> <span class="n">melspectrogram</span>
+    <span class="o">-</span> <span class="n">mfcc</span>
+    <span class="o">-</span> <span class="n">spectrogram</span>
+  <span class="o">-</span> <span class="n">common</span><span class="p">:</span> 
+    <span class="o">-</span> <span class="n">kspon</span>
+    <span class="o">-</span> <span class="n">libri</span>
+    <span class="o">-</span> <span class="n">aishell</span>
+  <span class="o">-</span> <span class="n">criterion</span><span class="p">:</span> 
+    <span class="o">-</span> <span class="n">cross_entropy</span>
+    <span class="o">-</span> <span class="n">ctc</span>
+    <span class="o">-</span> <span class="n">joint_ctc_cross_entropy</span>
+    <span class="o">-</span> <span class="n">label_smoothed_cross_entropy</span>
+    <span class="o">-</span> <span class="n">transducer</span>
+  <span class="o">-</span> <span class="n">lr_scheduler</span><span class="p">:</span> 
+    <span class="o">-</span> <span class="n">reduce_lr_on_plateau</span>
+    <span class="o">-</span> <span class="n">transformer</span>
+    <span class="o">-</span> <span class="n">tri_stage</span>
+    <span class="o">-</span> <span class="n">warmup_reduce_lr_on_plateau</span>
+    <span class="o">-</span> <span class="n">warmup</span>
+  <span class="o">-</span> <span class="n">model</span><span class="p">:</span> 
+    <span class="o">-</span> <span class="n">conformer_encoder_only</span>
+    <span class="o">-</span> <span class="n">conformer_lstm</span>
+    <span class="o">-</span> <span class="n">conformer_transducer</span>
+    <span class="o">-</span> <span class="n">deepspeech2</span>
+    <span class="o">-</span> <span class="n">jasper</span>
+    <span class="o">-</span> <span class="n">listen_attend_spell</span>
+    <span class="o">-</span> <span class="n">rnn_transducer</span>
+    <span class="o">-</span> <span class="n">transformer</span>
+    <span class="o">-</span> <span class="n">transformer_transducer</span>
+  <span class="o">-</span> <span class="n">trainer</span><span class="p">:</span> 
+    <span class="o">-</span> <span class="n">cpu</span>
+    <span class="o">-</span> <span class="n">gpu</span>
+    <span class="o">-</span> <span class="n">tpu</span>
+    <span class="o">-</span> <span class="n">cpu</span><span class="o">-</span><span class="n">fp64</span>
+    <span class="o">-</span> <span class="n">gpu</span><span class="o">-</span><span class="n">fp16</span>
+    <span class="o">-</span> <span class="n">tpu</span><span class="o">-</span><span class="n">fp16</span>
+  <span class="o">-</span> <span class="n">vocab</span><span class="p">:</span> 
+    <span class="o">-</span> <span class="n">aishell_character</span>
+    <span class="o">-</span> <span class="n">kspon_character</span>
+    <span class="o">-</span> <span class="n">kspon_subword</span>
+    <span class="o">-</span> <span class="n">kspon_grapheme</span>
+    <span class="o">-</span> <span class="n">libri_character</span>
+    <span class="o">-</span> <span class="n">libri_subword</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="training-with-hydra-train-py">
+<h2>Training with <code class="docutils literal notranslate"><span class="pre">hydra_train.py</span></code><a class="headerlink" href="#training-with-hydra-train-py" title="Permalink to this headline">¶</a></h2>
+<p>On startup, Hydra will create a configuration object that contains a hierarchy of all the necessary dataclasses populated with their default values in the code.</p>
+<p>Some of the most common use cases are shown below:</p>
+<div class="section" id="override-default-values-through-command-line">
+<h3>1. Override default values through command line:<a class="headerlink" href="#override-default-values-through-command-line" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span>$ python ./openspeech_cli/hydra_train.py \
+    common=libri \
+<span class="gi">+   common.dataset_path=$DATASET_PATH \</span>
+<span class="gi">+   common.dataset_download=True \</span>
+<span class="gi">+   common.manifest_file_path=$MANIFEST_FILE_PATH \  </span>
+    vocab=libri_subword \
+<span class="gi">+   vocab.vocab_size=10000 \</span>
+    model=conformer_lstm \
+<span class="gi">+   model.encoder_dim=320 \</span>
+    audio=mfcc \
+    lr_scheduler=warmup_reduce_lr_on_plateau \
+    trainer=gpu-fp16 \
+    criterion=ctc
+</pre></div>
+</div>
+<p>Note that along with explicitly providing values for parameters such as <code class="docutils literal notranslate"><span class="pre">common.dataset_path</span></code>, this also tells Hydra to overlay configuration found in dataclass.
+If you want to train a model without specifying a particular architecture you can simply specify <code class="docutils literal notranslate"><span class="pre">model=conformer_lstm</span></code>.</p>
+</div>
+<div class="section" id="add-new-configuration-through-command-line">
+<h3>2. Add new configuration through command line:<a class="headerlink" href="#add-new-configuration-through-command-line" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span>$ python ./openspeech_cli/hydra_train.py \
+    common=libri \
+    vocab=libri_subword \
+    model=conformer_lstm \
+    audio=mfcc \
+    lr_scheduler=warmup_reduce_lr_on_plateau \
+    trainer=gpu-fp16 \
+<span class="gi">+   +trainer.is_gpu=True \</span>
+<span class="gi">+   +trainer.is_tpu=False \</span>
+    criterion=ctc \
+</pre></div>
+</div>
+<p>More detailed methods of using hydra can be found <a class="reference external" href="https://hydra.cc/">Hydra website</a>. If you have any questions, feel free to send me an email or create an issue.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="configs.html" class="btn btn-neutral float-right" title="Openspeech’s configurations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="intro.html" class="btn btn-neutral float-left" title="Why should I use openspeech?" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Kim, Soohwan and Ha, Sangchun and Cho, Soyoung.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

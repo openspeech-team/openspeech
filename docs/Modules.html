@@ -1,0 +1,1336 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Modules &mdash; Openspeech v0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Optim" href="Optim.html" />
+    <link rel="prev" title="Encoders" href="Encoders.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Openspeech
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">GETTING STARTED</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html">Why should I use openspeech?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#why-shouldn-t-i-use-openspeech">Why shouldn’t I use openspeech?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#model-architectures">Model architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#get-started">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#troubleshoots-and-contributing">Troubleshoots and Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#citation">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/hydra_configs.html">Openspeech’s Hydra configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/configs.html">Openspeech’s configurations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MODEL ARCHITECTURES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Openspeech Model.html">Openspeech Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conformer.html">Conformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conformer LSTM.html">Conformer LSTM Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conformer Transducer.html">Conformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deep CNN with Joint CTC LAS.html">Deep CNN with Joint CTC LAS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DeepSpeech2.html">DeepSpeech2 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Jasper5x3.html">Jasper5x3 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Jasper10x5.html">Jasper10x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Joint CTC Conformer LSTM.html">Joint CTC Conformer LSTM Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Joint CTC LAS.html">Joint CTC LAS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Joint CTC Transformer.html">Joint CTC Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Listen Attend Spell.html">Listen Attend Spell Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Listen Attend Spell (location-aware).html">Listen Attend Spell (location-aware) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Listen Attend Spell (multi-head).html">Listen Attend Spell (multi-head) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuartzNet5x5.html">QuartzNet 5x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuartzNet10x5.html">QuartzNet 10x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuartzNet15x5.html">QuartzNet 15x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RNN Transducer.html">RNN Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transformer.html">Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transformer Transducer.html">Transformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transformer with CTC.html">Transformer with CTC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VGG Transformer.html">VGG Transformer Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Audio.html">Audio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Criterion.html">Criterion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Decoders.html">Decoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Encoders.html">Encoders</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.add_normalization">Add Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.additive_attention">Additive Attention</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.batchnorm_relu_rnn">BatchNorm ReLU RNN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.conformer_attention_module">Conformer Attention Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.conformer_block">Conformer Block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.conformer_convolution_module">Conformer Convolution Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.conformer_feed_forward_module">Conformer Feed-Forward Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.conv2d_extractor">Conv2d Extractor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.conv2d_subsampling">Conv2d Subsampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.conv_base">Conv Base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.conv_group_shuffle">Conv Group Shuffle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.deepspeech2_extractor">DeepSpeech2 Extractor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.depthwise_conv1d">Depthwise Conv1d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.dot_product_attention">Dot-product Attention</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.glu">GLU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.jasper_block">Jasper Block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.jasper_subblock">Jasper Sub Block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.location_aware_attention">Location Aware Attention</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.mask">Mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.mask_conv1d">Mask Conv1d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.mask_conv2d">Mask Conv2d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.multi_head_attention">Multi-Head Attention</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.pointwise_conv1d">Pointwise Conv1d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.positional_encoding">Positional Encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.positionwise_feed_forward">Position-wise Feed-Forward</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.quartznet_block">QuartzNet Block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.quartznet_subblock">QuartzNet Sub Block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.relative_multi_head_attention">Relative Multi-Head Attention</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.residual_connection_module">Residual Connection Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.swish">Swish</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.time_channel_separable_conv1d">Time-Channel Separable Conv1d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.transformer_embedding">Transformer Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.vgg_extractor">VGG Extractor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.modules.wrapper">Wrapper</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Optim.html">Optim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Beam Search.html">Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Vocabulary.html">Vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Metric.html">Metric</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Openspeech</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Modules</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/Modules.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="modules">
+<h1>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-openspeech.modules.add_normalization">
+<span id="add-normalization"></span><h2>Add Normalization<a class="headerlink" href="#module-openspeech.modules.add_normalization" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.add_normalization.AddNorm">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.add_normalization.</code><code class="sig-name descname">AddNorm</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sublayer</span><span class="p">:</span> <span class="n">torch.nn.modules.module.Module</span></em>, <em class="sig-param"><span class="n">d_model</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">512</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/add_normalization.html#AddNorm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.add_normalization.AddNorm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add &amp; Normalization layer proposed in “Attention Is All You Need”.
+Transformer employ a residual connection around each of the two sub-layers,
+(Multi-Head Attention &amp; Feed-Forward) followed by layer normalization.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.additive_attention">
+<span id="additive-attention"></span><h2>Additive Attention<a class="headerlink" href="#module-openspeech.modules.additive_attention" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.additive_attention.AdditiveAttention">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.additive_attention.</code><code class="sig-name descname">AdditiveAttention</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dim</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/additive_attention.html#AdditiveAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.additive_attention.AdditiveAttention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies a additive attention (bahdanau) mechanism on the output features from the decoders.
+Additive attention proposed in “Neural Machine Translation by Jointly Learning to Align and Translate” paper.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – dimension of model</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: query, key, value</dt><dd><ul class="simple">
+<li><p><strong>query</strong> (batch_size, q_len, hidden_dim): tensor containing the output features from the decoders.</p></li>
+<li><p><strong>key</strong> (batch, k_len, d_model): tensor containing projection vector for encoders.</p></li>
+<li><p><strong>value</strong> (batch_size, v_len, hidden_dim): tensor containing features of the encoded input sequence.</p></li>
+</ul>
+</dd>
+<dt>Returns: context, attn</dt><dd><ul class="simple">
+<li><p><strong>context</strong>: tensor containing the context vector from attention mechanism.</p></li>
+<li><p><strong>attn</strong>: tensor containing the alignment from the encoders outputs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.batchnorm_relu_rnn">
+<span id="batchnorm-relu-rnn"></span><h2>BatchNorm ReLU RNN<a class="headerlink" href="#module-openspeech.modules.batchnorm_relu_rnn" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.batchnorm_relu_rnn.BNReluRNN">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.batchnorm_relu_rnn.</code><code class="sig-name descname">BNReluRNN</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">hidden_state_dim</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">512</span></em>, <em class="sig-param"><span class="n">rnn_type</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'gru'</span></em>, <em class="sig-param"><span class="n">bidirectional</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">dropout_p</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.1</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/batchnorm_relu_rnn.html#BNReluRNN"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.batchnorm_relu_rnn.BNReluRNN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recurrent neural network with batch normalization layer &amp; ReLU activation function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – size of input</p></li>
+<li><p><strong>hidden_state_dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the number of features in the hidden state <cite>h</cite></p></li>
+<li><p><strong>rnn_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – type of RNN cell (default: gru)</p></li>
+<li><p><strong>bidirectional</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – if True, becomes a bidirectional encoders (defulat: True)</p></li>
+<li><p><strong>dropout_p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>optional</em>) – dropout probability (default: 0.1)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: inputs, input_lengths</dt><dd><ul class="simple">
+<li><p><strong>inputs</strong> (batch, time, dim): Tensor containing input vectors</p></li>
+<li><p><strong>input_lengths</strong>: Tensor containing containing sequence lengths</p></li>
+</ul>
+</dd>
+<dt>Returns: outputs</dt><dd><ul class="simple">
+<li><p><strong>outputs</strong>: Tensor produced by the BNReluRNN module</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.conformer_attention_module">
+<span id="conformer-attention-module"></span><h2>Conformer Attention Module<a class="headerlink" href="#module-openspeech.modules.conformer_attention_module" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.conformer_attention_module.MultiHeadedSelfAttentionModule">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.conformer_attention_module.</code><code class="sig-name descname">MultiHeadedSelfAttentionModule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">d_model</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">num_heads</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">dropout_p</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.1</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/conformer_attention_module.html#MultiHeadedSelfAttentionModule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.conformer_attention_module.MultiHeadedSelfAttentionModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Conformer employ multi-headed self-attention (MHSA) while integrating an important technique from Transformer-XL,
+the relative sinusoidal positional encoding scheme. The relative positional encoding allows the self-attention
+module to generalize better on different input length and the resulting encoders is more robust to the variance of
+the utterance length. Conformer use prenorm residual units with dropout which helps training
+and regularizing deeper models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>d_model</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The dimension of model</p></li>
+<li><p><strong>num_heads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The number of attention heads.</p></li>
+<li><p><strong>dropout_p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – probability of dropout</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: inputs, mask</dt><dd><ul class="simple">
+<li><p><strong>inputs</strong> (batch, time, dim): Tensor containing input vector</p></li>
+<li><p><strong>mask</strong> (batch, 1, time2) or (batch, time1, time2): Tensor containing indices to be masked</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Tensor produces by relative multi headed self attention module.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>outputs</strong> (batch, time, dim)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="openspeech.modules.conformer_attention_module.MultiHeadedSelfAttentionModule.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">mask</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><a class="reference internal" href="_modules/openspeech/modules/conformer_attention_module.html#MultiHeadedSelfAttentionModule.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.conformer_attention_module.MultiHeadedSelfAttentionModule.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward propagate of conformer’s multi-headed self attention module.</p>
+<dl class="simple">
+<dt>Inputs: inputs, mask</dt><dd><ul class="simple">
+<li><p><strong>inputs</strong> (batch, time, dim): Tensor containing input vector</p></li>
+<li><p><strong>mask</strong> (batch, 1, time2) or (batch, time1, time2): Tensor containing indices to be masked</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Tensor produces by relative multi headed self attention module.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>outputs</strong> (batch, time, dim)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.conformer_block">
+<span id="conformer-block"></span><h2>Conformer Block<a class="headerlink" href="#module-openspeech.modules.conformer_block" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.conformer_block.ConformerBlock">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.conformer_block.</code><code class="sig-name descname">ConformerBlock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">encoder_dim</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">512</span></em>, <em class="sig-param"><span class="n">num_attention_heads</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">8</span></em>, <em class="sig-param"><span class="n">feed_forward_expansion_factor</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">4</span></em>, <em class="sig-param"><span class="n">conv_expansion_factor</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">2</span></em>, <em class="sig-param"><span class="n">feed_forward_dropout_p</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.1</span></em>, <em class="sig-param"><span class="n">attention_dropout_p</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.1</span></em>, <em class="sig-param"><span class="n">conv_dropout_p</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.1</span></em>, <em class="sig-param"><span class="n">conv_kernel_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">31</span></em>, <em class="sig-param"><span class="n">half_step_residual</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/conformer_block.html#ConformerBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.conformer_block.ConformerBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Conformer block contains two Feed Forward modules sandwiching the Multi-Headed Self-Attention module
+and the Convolution module. This sandwich structure is inspired by Macaron-Net, which proposes replacing
+the original feed-forward layer in the Transformer block into two half-step feed-forward layers,
+one before the attention layer and one after.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>encoder_dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – Dimension of conformer encoders</p></li>
+<li><p><strong>num_attention_heads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – Number of attention heads</p></li>
+<li><p><strong>feed_forward_expansion_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – Expansion factor of feed forward module</p></li>
+<li><p><strong>conv_expansion_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – Expansion factor of conformer convolution module</p></li>
+<li><p><strong>feed_forward_dropout_p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>optional</em>) – Probability of feed forward module dropout</p></li>
+<li><p><strong>attention_dropout_p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>optional</em>) – Probability of attention module dropout</p></li>
+<li><p><strong>conv_dropout_p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>optional</em>) – Probability of conformer convolution module dropout</p></li>
+<li><p><strong>conv_kernel_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a><em>, </em><em>optional</em>) – Size of the convolving kernel</p></li>
+<li><p><strong>half_step_residual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Flag indication whether to use half step residual or not</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: inputs</dt><dd><ul class="simple">
+<li><p><strong>inputs</strong> (batch, time, dim): Tensor containing input vector</p></li>
+</ul>
+</dd>
+<dt>Returns: outputs</dt><dd><ul class="simple">
+<li><p><strong>outputs</strong> (batch, time, dim): Tensor produces by conformer block.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.conformer_convolution_module">
+<span id="conformer-convolution-module"></span><h2>Conformer Convolution Module<a class="headerlink" href="#module-openspeech.modules.conformer_convolution_module" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.conformer_convolution_module.ConformerConvModule">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.conformer_convolution_module.</code><code class="sig-name descname">ConformerConvModule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">31</span></em>, <em class="sig-param"><span class="n">expansion_factor</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">2</span></em>, <em class="sig-param"><span class="n">dropout_p</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.1</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/conformer_convolution_module.html#ConformerConvModule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.conformer_convolution_module.ConformerConvModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Conformer convolution module starts with a pointwise convolution and a gated linear unit (GLU).
+This is followed by a single 1-D depthwise convolution layer. Batchnorm is  deployed just after the convolution
+to aid training deep models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of channels in the input</p></li>
+<li><p><strong>kernel_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a><em>, </em><em>optional</em>) – Size of the convolving kernel Default: 31</p></li>
+<li><p><strong>dropout_p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>, </em><em>optional</em>) – probability of dropout</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: inputs</dt><dd><p>inputs (batch, time, dim): Tensor contains input sequences</p>
+</dd>
+<dt>Outputs: outputs</dt><dd><p>outputs (batch, time, dim): Tensor produces by conformer convolution module.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="openspeech.modules.conformer_convolution_module.ConformerConvModule.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><a class="reference internal" href="_modules/openspeech/modules/conformer_convolution_module.html#ConformerConvModule.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.conformer_convolution_module.ConformerConvModule.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward propagate of conformer’s convolution module.</p>
+<dl class="simple">
+<dt>Inputs: inputs</dt><dd><p>inputs (batch, time, dim): Tensor contains input sequences</p>
+</dd>
+<dt>Outputs: outputs</dt><dd><p>outputs (batch, time, dim): Tensor produces by conformer convolution module.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.conformer_feed_forward_module">
+<span id="conformer-feed-forward-module"></span><h2>Conformer Feed-Forward Module<a class="headerlink" href="#module-openspeech.modules.conformer_feed_forward_module" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.conformer_feed_forward_module.FeedForwardModule">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.conformer_feed_forward_module.</code><code class="sig-name descname">FeedForwardModule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">encoder_dim</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">512</span></em>, <em class="sig-param"><span class="n">expansion_factor</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">4</span></em>, <em class="sig-param"><span class="n">dropout_p</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.1</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/conformer_feed_forward_module.html#FeedForwardModule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.conformer_feed_forward_module.FeedForwardModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Conformer Feed Forward Module follow pre-norm residual units and apply layer normalization within the residual unit
+and on the input before the first linear layer. This module also apply Swish activation and dropout, which helps
+regularizing the network.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>encoder_dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Dimension of conformer encoders</p></li>
+<li><p><strong>expansion_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Expansion factor of feed forward module.</p></li>
+<li><p><strong>dropout_p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Ratio of dropout</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: inputs</dt><dd><ul class="simple">
+<li><p><strong>inputs</strong> (batch, time, dim): Tensor contains input sequences</p></li>
+</ul>
+</dd>
+<dt>Outputs: outputs</dt><dd><ul class="simple">
+<li><p><strong>outputs</strong> (batch, time, dim): Tensor produces by feed forward module.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="openspeech.modules.conformer_feed_forward_module.FeedForwardModule.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><a class="reference internal" href="_modules/openspeech/modules/conformer_feed_forward_module.html#FeedForwardModule.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.conformer_feed_forward_module.FeedForwardModule.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward propagate of conformer’s feed-forward module.</p>
+<dl class="simple">
+<dt>Inputs: inputs</dt><dd><ul class="simple">
+<li><p><strong>inputs</strong> (batch, time, dim): Tensor contains input sequences</p></li>
+</ul>
+</dd>
+<dt>Outputs: outputs</dt><dd><ul class="simple">
+<li><p><strong>outputs</strong> (batch, time, dim): Tensor produces by feed forward module.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.conv2d_extractor">
+<span id="conv2d-extractor"></span><h2>Conv2d Extractor<a class="headerlink" href="#module-openspeech.modules.conv2d_extractor" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.conv2d_extractor.Conv2dExtractor">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.conv2d_extractor.</code><code class="sig-name descname">Conv2dExtractor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_dim</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'hardtanh'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/conv2d_extractor.html#Conv2dExtractor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.conv2d_extractor.Conv2dExtractor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides inteface of convolutional extractor.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do not use this class directly, use one of the sub classes.
+Define the ‘self.conv’ class variable.</p>
+</div>
+<dl class="simple">
+<dt>Inputs: inputs, input_lengths</dt><dd><ul class="simple">
+<li><p><strong>inputs</strong> (batch, time, dim): Tensor containing input vectors</p></li>
+<li><p><strong>input_lengths</strong>: Tensor containing containing sequence lengths</p></li>
+</ul>
+</dd>
+<dt>Returns: outputs, output_lengths</dt><dd><ul class="simple">
+<li><p><strong>outputs</strong>: Tensor produced by the convolution</p></li>
+<li><p><strong>output_lengths</strong>: Tensor containing sequence lengths produced by the convolution</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="openspeech.modules.conv2d_extractor.Conv2dExtractor.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">input_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">]</span><a class="reference internal" href="_modules/openspeech/modules/conv2d_extractor.html#Conv2dExtractor.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.conv2d_extractor.Conv2dExtractor.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>inputs: torch.FloatTensor (batch, time, dimension)
+input_lengths: torch.IntTensor (batch)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.conv2d_subsampling">
+<span id="conv2d-subsampling"></span><h2>Conv2d Subsampling<a class="headerlink" href="#module-openspeech.modules.conv2d_subsampling" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.conv2d_subsampling.Conv2dSubsampling">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.conv2d_subsampling.</code><code class="sig-name descname">Conv2dSubsampling</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_dim</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">in_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">out_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'relu'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/conv2d_subsampling.html#Conv2dSubsampling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.conv2d_subsampling.Conv2dSubsampling" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convolutional 2D subsampling (to 1/4 length)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Dimension of input vector</p></li>
+<li><p><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of channels in the input vector</p></li>
+<li><p><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of channels produced by the convolution</p></li>
+<li><p><strong>activation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Activation function</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: inputs</dt><dd><ul class="simple">
+<li><p><strong>inputs</strong> (batch, time, dim): Tensor containing sequence of inputs</p></li>
+<li><p><strong>input_lengths</strong> (batch): list of sequence input lengths</p></li>
+</ul>
+</dd>
+<dt>Returns: outputs, output_lengths</dt><dd><ul class="simple">
+<li><p><strong>outputs</strong> (batch, time, dim): Tensor produced by the convolution</p></li>
+<li><p><strong>output_lengths</strong> (batch): list of sequence output lengths</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="openspeech.modules.conv2d_subsampling.Conv2dSubsampling.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">input_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">]</span><a class="reference internal" href="_modules/openspeech/modules/conv2d_subsampling.html#Conv2dSubsampling.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.conv2d_subsampling.Conv2dSubsampling.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>inputs: torch.FloatTensor (batch, time, dimension)
+input_lengths: torch.IntTensor (batch)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.conv_base">
+<span id="conv-base"></span><h2>Conv Base<a class="headerlink" href="#module-openspeech.modules.conv_base" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.conv_base.BaseConv1d">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.conv_base.</code><code class="sig-name descname">BaseConv1d</code><a class="reference internal" href="_modules/openspeech/modules/conv_base.html#BaseConv1d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.conv_base.BaseConv1d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base convolution module.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.conv_group_shuffle">
+<span id="conv-group-shuffle"></span><h2>Conv Group Shuffle<a class="headerlink" href="#module-openspeech.modules.conv_group_shuffle" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.conv_group_shuffle.ConvGroupShuffle">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.conv_group_shuffle.</code><code class="sig-name descname">ConvGroupShuffle</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">groups</span></em>, <em class="sig-param"><span class="n">channels</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/conv_group_shuffle.html#ConvGroupShuffle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.conv_group_shuffle.ConvGroupShuffle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convolution group shuffle module.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.deepspeech2_extractor">
+<span id="deepspeech2-extractor"></span><h2>DeepSpeech2 Extractor<a class="headerlink" href="#module-openspeech.modules.deepspeech2_extractor" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.deepspeech2_extractor.DeepSpeech2Extractor">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.deepspeech2_extractor.</code><code class="sig-name descname">DeepSpeech2Extractor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_dim</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">in_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">out_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">32</span></em>, <em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'hardtanh'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/deepspeech2_extractor.html#DeepSpeech2Extractor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.deepspeech2_extractor.DeepSpeech2Extractor" title="Permalink to this definition">¶</a></dt>
+<dd><p>DeepSpeech2 extractor for automatic speech recognition described in
+“Deep Speech 2: End-to-End Speech Recognition in English and Mandarin” paper
+- <a class="reference external" href="https://arxiv.org/abs/1512.02595">https://arxiv.org/abs/1512.02595</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Dimension of input vector</p></li>
+<li><p><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of channels in the input vector</p></li>
+<li><p><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of channels produced by the convolution</p></li>
+<li><p><strong>activation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Activation function</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: inputs, input_lengths</dt><dd><ul class="simple">
+<li><p><strong>inputs</strong> (batch, time, dim): Tensor containing input vectors</p></li>
+<li><p><strong>input_lengths</strong>: Tensor containing containing sequence lengths</p></li>
+</ul>
+</dd>
+<dt>Returns: outputs, output_lengths</dt><dd><ul class="simple">
+<li><p><strong>outputs</strong>: Tensor produced by the convolution</p></li>
+<li><p><strong>output_lengths</strong>: Tensor containing sequence lengths produced by the convolution</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="openspeech.modules.deepspeech2_extractor.DeepSpeech2Extractor.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">input_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">]</span><a class="reference internal" href="_modules/openspeech/modules/deepspeech2_extractor.html#DeepSpeech2Extractor.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.deepspeech2_extractor.DeepSpeech2Extractor.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>inputs: torch.FloatTensor (batch, time, dimension)
+input_lengths: torch.IntTensor (batch)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.depthwise_conv1d">
+<span id="depthwise-conv1d"></span><h2>Depthwise Conv1d<a class="headerlink" href="#module-openspeech.modules.depthwise_conv1d" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.depthwise_conv1d.DepthwiseConv1d">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.depthwise_conv1d.</code><code class="sig-name descname">DepthwiseConv1d</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">out_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">stride</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">padding</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">bias</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/depthwise_conv1d.html#DepthwiseConv1d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.depthwise_conv1d.DepthwiseConv1d" title="Permalink to this definition">¶</a></dt>
+<dd><p>When groups == in_channels and out_channels == K * in_channels, where K is a positive integer,
+this operation is termed in literature as depthwise convolution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of channels in the input</p></li>
+<li><p><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of channels produced by the convolution</p></li>
+<li><p><strong>kernel_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a>) – Size of the convolving kernel</p></li>
+<li><p><strong>stride</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – Stride of the convolution. Default: 1</p></li>
+<li><p><strong>padding</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a><em>, </em><em>optional</em>) – Zero-padding added to both sides of the input. Default: 0</p></li>
+<li><p><strong>bias</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, adds a learnable bias to the output. Default: True</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: inputs</dt><dd><ul class="simple">
+<li><p><strong>inputs</strong> (batch, in_channels, time): Tensor containing input vector</p></li>
+</ul>
+</dd>
+<dt>Returns: outputs</dt><dd><ul class="simple">
+<li><p><strong>outputs</strong> (batch, out_channels, time): Tensor produces by depthwise 1-D convolution.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.dot_product_attention">
+<span id="dot-product-attention"></span><h2>Dot-product Attention<a class="headerlink" href="#module-openspeech.modules.dot_product_attention" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.dot_product_attention.DotProductAttention">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.dot_product_attention.</code><code class="sig-name descname">DotProductAttention</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dim</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">scale</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/dot_product_attention.html#DotProductAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.dot_product_attention.DotProductAttention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scaled Dot-Product Attention proposed in “Attention Is All You Need”
+Compute the dot products of the query with all keys, divide each by sqrt(dim),
+and apply a softmax function to obtain the weights on the values</p>
+<dl class="simple">
+<dt>Args: dim, mask</dt><dd><p>dim (int): dimension of attention
+mask (torch.Tensor): tensor containing indices to be masked</p>
+</dd>
+<dt>Inputs: query, key, value, mask</dt><dd><ul class="simple">
+<li><p><strong>query</strong> (batch, q_len, d_model): tensor containing projection vector for decoders.</p></li>
+<li><p><strong>key</strong> (batch, k_len, d_model): tensor containing projection vector for encoders.</p></li>
+<li><p><strong>value</strong> (batch, v_len, d_model): tensor containing features of the encoded input sequence.</p></li>
+<li><p><strong>mask</strong> (-): tensor containing indices to be masked</p></li>
+</ul>
+</dd>
+<dt>Returns: context, attn</dt><dd><ul class="simple">
+<li><p><strong>context</strong>: tensor containing the context vector from attention mechanism.</p></li>
+<li><p><strong>attn</strong>: tensor containing the attention (alignment) from the encoders outputs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.glu">
+<span id="glu"></span><h2>GLU<a class="headerlink" href="#module-openspeech.modules.glu" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.glu.GLU">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.glu.</code><code class="sig-name descname">GLU</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dim</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/glu.html#GLU"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.glu.GLU" title="Permalink to this definition">¶</a></dt>
+<dd><p>The gating mechanism is called Gated Linear Units (GLU), which was first introduced for natural language processing
+in the paper “Language Modeling with Gated Convolutional Networks”</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.jasper_block">
+<span id="jasper-block"></span><h2>Jasper Block<a class="headerlink" href="#module-openspeech.modules.jasper_block" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.jasper_block.JasperBlock">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.jasper_block.</code><code class="sig-name descname">JasperBlock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_sub_blocks</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">in_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">out_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">stride</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">dilation</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">bias</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">dropout_p</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.2</span></em>, <em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'relu'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/jasper_block.html#JasperBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.jasper_block.JasperBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Jasper Block: The Jasper Block consists of R Jasper sub-block.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_sub_blocks</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of sub block</p></li>
+<li><p><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of channels in the input feature</p></li>
+<li><p><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of channels produced by the convolution</p></li>
+<li><p><strong>kernel_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – size of the convolving kernel</p></li>
+<li><p><strong>stride</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – stride of the convolution. (default: 1)</p></li>
+<li><p><strong>dilation</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – spacing between kernel elements. (default: 1)</p></li>
+<li><p><strong>bias</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True, adds a learnable bias to the output. (default: True)</p></li>
+<li><p><strong>dropout_p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – probability of dropout</p></li>
+<li><p><strong>activation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – activation function</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: inputs, input_lengths, residual</dt><dd><ul class="simple">
+<li><p><strong>inputs</strong>: tensor contains input sequence vector</p></li>
+<li><p><strong>input_lengths</strong>: tensor contains sequence lengths</p></li>
+<li><p><strong>residual</strong>: tensor contains residual vector</p></li>
+</ul>
+</dd>
+<dt>Returns: output, output_lengths</dt><dd><p>(torch.FloatTensor, torch.LongTensor)</p>
+<ul class="simple">
+<li><p>output (torch.FloatTensor): tensor contains output sequence vector</p></li>
+<li><p>output_lengths (torch.LongTensor): tensor contains output sequence lengths</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="openspeech.modules.jasper_block.JasperBlock.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">input_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">residual</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">]</span><a class="reference internal" href="_modules/openspeech/modules/jasper_block.html#JasperBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.jasper_block.JasperBlock.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward propagate of jasper block.</p>
+<dl class="simple">
+<dt>Inputs: inputs, input_lengths, residual</dt><dd><ul class="simple">
+<li><p><strong>inputs</strong>: tensor contains input sequence vector</p></li>
+<li><p><strong>input_lengths</strong>: tensor contains sequence lengths</p></li>
+<li><p><strong>residual</strong>: tensor contains residual vector</p></li>
+</ul>
+</dd>
+<dt>Returns: output, output_lengths</dt><dd><p>(torch.FloatTensor, torch.LongTensor)</p>
+<ul class="simple">
+<li><p>output (torch.FloatTensor): tensor contains output sequence vector</p></li>
+<li><p>output_lengths (torch.LongTensor): tensor contains output sequence lengths</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.jasper_subblock">
+<span id="jasper-sub-block"></span><h2>Jasper Sub Block<a class="headerlink" href="#module-openspeech.modules.jasper_subblock" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.jasper_subblock.JasperSubBlock">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.jasper_subblock.</code><code class="sig-name descname">JasperSubBlock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">out_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">stride</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">dilation</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">padding</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">bias</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">dropout_p</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.2</span></em>, <em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'relu'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/jasper_subblock.html#JasperSubBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.jasper_subblock.JasperSubBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Jasper sub-block applies the following operations: a 1D-convolution, batch norm, ReLU, and dropout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of channels in the input feature</p></li>
+<li><p><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of channels produced by the convolution</p></li>
+<li><p><strong>kernel_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – size of the convolving kernel</p></li>
+<li><p><strong>stride</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – stride of the convolution. (default: 1)</p></li>
+<li><p><strong>dilation</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – spacing between kernel elements. (default: 1)</p></li>
+<li><p><strong>padding</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – zero-padding added to both sides of the input. (default: 0)</p></li>
+<li><p><strong>bias</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True, adds a learnable bias to the output. (default: False)</p></li>
+<li><p><strong>dropout_p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – probability of dropout</p></li>
+<li><p><strong>activation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – activation function</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: inputs, input_lengths, residual</dt><dd><ul class="simple">
+<li><p><strong>inputs</strong>: tensor contains input sequence vector</p></li>
+<li><p><strong>input_lengths</strong>: tensor contains sequence lengths</p></li>
+<li><p><strong>residual</strong>: tensor contains residual vector</p></li>
+</ul>
+</dd>
+<dt>Returns: output, output_lengths</dt><dd><ul class="simple">
+<li><p>output (torch.FloatTensor): tensor contains output sequence vector</p></li>
+<li><p>output_lengths (torch.LongTensor): tensor contains output sequence lengths</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="openspeech.modules.jasper_subblock.JasperSubBlock.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">input_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">residual</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">]</span><a class="reference internal" href="_modules/openspeech/modules/jasper_subblock.html#JasperSubBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.jasper_subblock.JasperSubBlock.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward propagate of conformer’s subblock.</p>
+<dl class="simple">
+<dt>Inputs: inputs, input_lengths, residual</dt><dd><ul class="simple">
+<li><p><strong>inputs</strong>: tensor contains input sequence vector</p></li>
+<li><p><strong>input_lengths</strong>: tensor contains sequence lengths</p></li>
+<li><p><strong>residual</strong>: tensor contains residual vector</p></li>
+</ul>
+</dd>
+<dt>Returns: output, output_lengths</dt><dd><ul class="simple">
+<li><p>output (torch.FloatTensor): tensor contains output sequence vector</p></li>
+<li><p>output_lengths (torch.LongTensor): tensor contains output sequence lengths</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.location_aware_attention">
+<span id="location-aware-attention"></span><h2>Location Aware Attention<a class="headerlink" href="#module-openspeech.modules.location_aware_attention" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.location_aware_attention.LocationAwareAttention">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.location_aware_attention.</code><code class="sig-name descname">LocationAwareAttention</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dim</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">1024</span></em>, <em class="sig-param"><span class="n">attn_dim</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">1024</span></em>, <em class="sig-param"><span class="n">smoothing</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/location_aware_attention.html#LocationAwareAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.location_aware_attention.LocationAwareAttention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies a location-aware attention mechanism on the output features from the decoders.
+Location-aware attention proposed in “Attention-Based Models for Speech Recognition” paper.
+The location-aware attention mechanism is performing well in speech recognition tasks.
+We refer to implementation of ClovaCall Attention style.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – dimension of model</p></li>
+<li><p><strong>attn_dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – dimension of attention</p></li>
+<li><p><strong>smoothing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to use smoothing or not.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: query, value, last_attn</dt><dd><ul class="simple">
+<li><p><strong>query</strong> (batch, q_len, hidden_dim): tensor containing the output features from the decoders.</p></li>
+<li><p><strong>value</strong> (batch, v_len, hidden_dim): tensor containing features of the encoded input sequence.</p></li>
+<li><p><strong>last_attn</strong> (batch_size, v_len): tensor containing previous timestep`s attention (alignment)</p></li>
+</ul>
+</dd>
+<dt>Returns: output, attn</dt><dd><ul class="simple">
+<li><p><strong>output</strong> (batch, output_len, dimensions): tensor containing the feature from encoders outputs</p></li>
+<li><p><strong>attn</strong> (batch * num_heads, v_len): tensor containing the attention (alignment) from the encoders outputs.</p></li>
+</ul>
+</dd>
+<dt>Reference:</dt><dd><p>Jan Chorowski et al.: Attention-Based Models for Speech Recognition.
+<a class="reference external" href="https://arxiv.org/abs/1506.07503">https://arxiv.org/abs/1506.07503</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.mask">
+<span id="mask"></span><h2>Mask<a class="headerlink" href="#module-openspeech.modules.mask" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="openspeech.modules.mask.get_attn_pad_mask">
+<code class="sig-prename descclassname">openspeech.modules.mask.</code><code class="sig-name descname">get_attn_pad_mask</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span></em>, <em class="sig-param"><span class="n">input_lengths</span></em>, <em class="sig-param"><span class="n">expand_length</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/mask.html#get_attn_pad_mask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.mask.get_attn_pad_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>mask position is set to 1</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.mask_conv1d">
+<span id="mask-conv1d"></span><h2>Mask Conv1d<a class="headerlink" href="#module-openspeech.modules.mask_conv1d" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.mask_conv1d.MaskConv1d">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.mask_conv1d.</code><code class="sig-name descname">MaskConv1d</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">out_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">stride</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">padding</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">dilation</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">groups</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">bias</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/mask_conv1d.html#MaskConv1d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.mask_conv1d.MaskConv1d" title="Permalink to this definition">¶</a></dt>
+<dd><p>1D convolution with masking</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of channels in the input vector</p></li>
+<li><p><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of channels produced by the convolution</p></li>
+<li><p><strong>kernel_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a>) – Size of the convolving kernel</p></li>
+<li><p><strong>stride</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Stride of the convolution. Default: 1</p></li>
+<li><p><strong>padding</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Zero-padding added to both sides of the input. Default: 0</p></li>
+<li><p><strong>dilation</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Spacing between kernel elements. Default: 1</p></li>
+<li><p><strong>groups</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of blocked connections from input channels to output channels. Default: 1</p></li>
+<li><p><strong>bias</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If True, adds a learnable bias to the output. Default: True</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: inputs, seq_lengths</dt><dd><ul class="simple">
+<li><p><strong>inputs</strong> (torch.FloatTensor): The input of size (batch, dimension, time)</p></li>
+<li><p><strong>seq_lengths</strong> (torch.IntTensor): The actual length of each sequence in the batch</p></li>
+</ul>
+</dd>
+<dt>Returns: output, seq_lengths</dt><dd><ul class="simple">
+<li><p><strong>output</strong>: Masked output from the conv1d</p></li>
+<li><p><strong>seq_lengths</strong>: Sequence length of output from the conv1d</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="openspeech.modules.mask_conv1d.MaskConv1d.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">input_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">]</span><a class="reference internal" href="_modules/openspeech/modules/mask_conv1d.html#MaskConv1d.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.mask_conv1d.MaskConv1d.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>inputs: (batch, dimension, time)
+input_lengths: (batch)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.mask_conv2d">
+<span id="mask-conv2d"></span><h2>Mask Conv2d<a class="headerlink" href="#module-openspeech.modules.mask_conv2d" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.mask_conv2d.MaskConv2d">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.mask_conv2d.</code><code class="sig-name descname">MaskConv2d</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sequential</span><span class="p">:</span> <span class="n">torch.nn.modules.container.Sequential</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/mask_conv2d.html#MaskConv2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.mask_conv2d.MaskConv2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Masking Convolutional Neural Network</p>
+<p>Adds padding to the output of the module based on the given lengths.
+This is to ensure that the results of the model do not change when batch sizes change during inference.
+Input needs to be in the shape of (batch_size, channel, hidden_dim, seq_len)</p>
+<p>Refer to <a class="reference external" href="https://github.com/SeanNaren/deepspeech.pytorch/blob/master/model.py">https://github.com/SeanNaren/deepspeech.pytorch/blob/master/model.py</a>
+Copyright (c) 2017 Sean Naren
+MIT License</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sequential</strong> (<em>torch.nn</em>) – sequential list of convolution layer</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: inputs, seq_lengths</dt><dd><ul class="simple">
+<li><p><strong>inputs</strong> (torch.FloatTensor): The input of size BxCxHxT</p></li>
+<li><p><strong>seq_lengths</strong> (torch.IntTensor): The actual length of each sequence in the batch</p></li>
+</ul>
+</dd>
+<dt>Returns: output, seq_lengths</dt><dd><ul class="simple">
+<li><p><strong>output</strong>: Masked output from the sequential</p></li>
+<li><p><strong>seq_lengths</strong>: Sequence length of output from the sequential</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.multi_head_attention">
+<span id="multi-head-attention"></span><h2>Multi-Head Attention<a class="headerlink" href="#module-openspeech.modules.multi_head_attention" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.multi_head_attention.MultiHeadAttention">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.multi_head_attention.</code><code class="sig-name descname">MultiHeadAttention</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dim</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">512</span></em>, <em class="sig-param"><span class="n">num_heads</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">8</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/multi_head_attention.html#MultiHeadAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.multi_head_attention.MultiHeadAttention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multi-Head Attention proposed in “Attention Is All You Need”
+Instead of performing a single attention function with d_model-dimensional keys, values, and queries,
+project the queries, keys and values h times with different, learned linear projections to d_head dimensions.
+These are concatenated and once again projected, resulting in the final values.
+Multi-head attention allows the model to jointly attend to information from different representation
+subspaces at different positions.</p>
+<dl class="simple">
+<dt>MultiHead(Q, K, V) = Concat(head_1, …, head_h) · W_o</dt><dd><p>where head_i = Attention(Q · W_q, K · W_k, V · W_v)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The dimension of model (default: 512)</p></li>
+<li><p><strong>num_heads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The number of attention heads. (default: 8)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: query, key, value, mask</dt><dd><ul class="simple">
+<li><p><strong>query</strong> (batch, q_len, d_model): tensor containing projection vector for decoders.</p></li>
+<li><p><strong>key</strong> (batch, k_len, d_model): tensor containing projection vector for encoders.</p></li>
+<li><p><strong>value</strong> (batch, v_len, d_model): tensor containing features of the encoded input sequence.</p></li>
+<li><p><strong>mask</strong> (-): tensor containing indices to be masked</p></li>
+</ul>
+</dd>
+<dt>Returns: output, attn</dt><dd><ul class="simple">
+<li><p><strong>output</strong> (batch, output_len, dimensions): tensor containing the attended output features.</p></li>
+<li><p><strong>attn</strong> (batch * num_heads, v_len): tensor containing the attention (alignment) from the encoders outputs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.pointwise_conv1d">
+<span id="pointwise-conv1d"></span><h2>Pointwise Conv1d<a class="headerlink" href="#module-openspeech.modules.pointwise_conv1d" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.pointwise_conv1d.PointwiseConv1d">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.pointwise_conv1d.</code><code class="sig-name descname">PointwiseConv1d</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">out_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">stride</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">padding</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">bias</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/pointwise_conv1d.html#PointwiseConv1d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.pointwise_conv1d.PointwiseConv1d" title="Permalink to this definition">¶</a></dt>
+<dd><p>When kernel size == 1 conv1d, this operation is termed in literature as pointwise convolution.
+This operation often used to match dimensions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of channels in the input</p></li>
+<li><p><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of channels produced by the convolution</p></li>
+<li><p><strong>stride</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – Stride of the convolution. Default: 1</p></li>
+<li><p><strong>padding</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a><em>, </em><em>optional</em>) – Zero-padding added to both sides of the input. Default: 0</p></li>
+<li><p><strong>bias</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, adds a learnable bias to the output. Default: True</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: inputs</dt><dd><ul class="simple">
+<li><p><strong>inputs</strong> (batch, in_channels, time): Tensor containing input vector</p></li>
+</ul>
+</dd>
+<dt>Returns: outputs</dt><dd><ul class="simple">
+<li><p><strong>outputs</strong> (batch, out_channels, time): Tensor produces by pointwise 1-D convolution.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.positional_encoding">
+<span id="positional-encoding"></span><h2>Positional Encoding<a class="headerlink" href="#module-openspeech.modules.positional_encoding" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.positional_encoding.PositionalEncoding">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.positional_encoding.</code><code class="sig-name descname">PositionalEncoding</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">d_model</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">512</span></em>, <em class="sig-param"><span class="n">max_len</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">5000</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/positional_encoding.html#PositionalEncoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.positional_encoding.PositionalEncoding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Positional Encoding proposed in “Attention Is All You Need”.
+Since transformer contains no recurrence and no convolution, in order for the model to make
+use of the order of the sequence, we must add some positional information.</p>
+<dl class="simple">
+<dt>“Attention Is All You Need” use sine and cosine functions of different frequencies:</dt><dd><p>PE_(pos, 2i)    =  sin(pos / power(10000, 2i / d_model))
+PE_(pos, 2i+1)  =  cos(pos / power(10000, 2i / d_model))</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.positionwise_feed_forward">
+<span id="position-wise-feed-forward"></span><h2>Position-wise Feed-Forward<a class="headerlink" href="#module-openspeech.modules.positionwise_feed_forward" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.positionwise_feed_forward.PositionwiseFeedForward">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.positionwise_feed_forward.</code><code class="sig-name descname">PositionwiseFeedForward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">d_model</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">512</span></em>, <em class="sig-param"><span class="n">d_ff</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">2048</span></em>, <em class="sig-param"><span class="n">dropout_p</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/positionwise_feed_forward.html#PositionwiseFeedForward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.positionwise_feed_forward.PositionwiseFeedForward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Position-wise Feedforward Networks proposed in “Attention Is All You Need”.
+Fully connected feed-forward network, which is applied to each position separately and identically.
+This consists of two linear transformations with a ReLU activation in between.
+Another way of describing this is as two convolutions with kernel size 1.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.quartznet_block">
+<span id="quartznet-block"></span><h2>QuartzNet Block<a class="headerlink" href="#module-openspeech.modules.quartznet_block" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.quartznet_block.QuartzNetBlock">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.quartznet_block.</code><code class="sig-name descname">QuartzNetBlock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_sub_blocks</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">in_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">out_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">bias</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/quartznet_block.html#QuartzNetBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.quartznet_block.QuartzNetBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>QuartzNet’s design is based on the Jasper architecture, which is a convolutional model trained with
+Connectionist Temporal Classification (CTC) loss. The main novelty in QuartzNet’s architecture is that QuartzNet
+replaced the 1D convolutions with 1D time-channel separable convolutions, an implementation of depthwise separable
+convolutions.</p>
+<dl class="simple">
+<dt>Inputs: inputs, input_lengths</dt><dd><p>inputs (torch.FloatTensor): tensor contains input sequence vector
+input_lengths (torch.LongTensor): tensor contains sequence lengths</p>
+</dd>
+<dt>Returns: output, output_lengths</dt><dd><p>(torch.FloatTensor, torch.LongTensor)</p>
+<ul class="simple">
+<li><p>output (torch.FloatTensor): tensor contains output sequence vector</p></li>
+<li><p>output_lengths (torch.LongTensor): tensor contains output sequence lengths</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="openspeech.modules.quartznet_block.QuartzNetBlock.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">input_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">]</span><a class="reference internal" href="_modules/openspeech/modules/quartznet_block.html#QuartzNetBlock.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.quartznet_block.QuartzNetBlock.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward propagate of QuartzNet block.</p>
+<dl class="simple">
+<dt>Inputs: inputs, input_lengths</dt><dd><p>inputs (torch.FloatTensor): tensor contains input sequence vector
+input_lengths (torch.LongTensor): tensor contains sequence lengths</p>
+</dd>
+<dt>Returns: output, output_lengths</dt><dd><p>(torch.FloatTensor, torch.LongTensor)</p>
+<ul class="simple">
+<li><p>output (torch.FloatTensor): tensor contains output sequence vector</p></li>
+<li><p>output_lengths (torch.LongTensor): tensor contains output sequence lengths</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.quartznet_subblock">
+<span id="quartznet-sub-block"></span><h2>QuartzNet Sub Block<a class="headerlink" href="#module-openspeech.modules.quartznet_subblock" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.quartznet_subblock.QuartzNetSubBlock">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.quartznet_subblock.</code><code class="sig-name descname">QuartzNetSubBlock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">out_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">bias</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">padding</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">groups</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/quartznet_subblock.html#QuartzNetSubBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.quartznet_subblock.QuartzNetSubBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>QuartzNet sub-block applies the following operations: a 1D-convolution, batch norm, ReLU, and dropout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of channels in the input feature</p></li>
+<li><p><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of channels produced by the convolution</p></li>
+<li><p><strong>kernel_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – size of the convolving kernel</p></li>
+<li><p><strong>padding</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – zero-padding added to both sides of the input. (default: 0)</p></li>
+<li><p><strong>bias</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – if True, adds a learnable bias to the output. (default: False)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: inputs, input_lengths, residual</dt><dd><ul class="simple">
+<li><p><strong>inputs</strong>: tensor contains input sequence vector</p></li>
+<li><p><strong>input_lengths</strong>: tensor contains sequence lengths</p></li>
+<li><p><strong>residual</strong>: tensor contains residual vector</p></li>
+</ul>
+</dd>
+<dt>Returns: output, output_lengths</dt><dd><ul class="simple">
+<li><p>output (torch.FloatTensor): tensor contains output sequence vector</p></li>
+<li><p>output_lengths (torch.LongTensor): tensor contains output sequence lengths</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.relative_multi_head_attention">
+<span id="relative-multi-head-attention"></span><h2>Relative Multi-Head Attention<a class="headerlink" href="#module-openspeech.modules.relative_multi_head_attention" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.relative_multi_head_attention.RelativeMultiHeadAttention">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.relative_multi_head_attention.</code><code class="sig-name descname">RelativeMultiHeadAttention</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dim</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">512</span></em>, <em class="sig-param"><span class="n">num_heads</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">16</span></em>, <em class="sig-param"><span class="n">dropout_p</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.1</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/relative_multi_head_attention.html#RelativeMultiHeadAttention"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.relative_multi_head_attention.RelativeMultiHeadAttention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multi-head attention with relative positional encoding.
+This concept was proposed in the “Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The dimension of model</p></li>
+<li><p><strong>num_heads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The number of attention heads.</p></li>
+<li><p><strong>dropout_p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – probability of dropout</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: query, key, value, pos_embedding, mask</dt><dd><ul class="simple">
+<li><p><strong>query</strong> (batch, time, dim): Tensor containing query vector</p></li>
+<li><p><strong>key</strong> (batch, time, dim): Tensor containing key vector</p></li>
+<li><p><strong>value</strong> (batch, time, dim): Tensor containing value vector</p></li>
+<li><p><strong>pos_embedding</strong> (batch, time, dim): Positional embedding tensor</p></li>
+<li><p><strong>mask</strong> (batch, 1, time2) or (batch, time1, time2): Tensor containing indices to be masked</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Tensor produces by relative multi head attention module.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>outputs</strong></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.residual_connection_module">
+<span id="residual-connection-module"></span><h2>Residual Connection Module<a class="headerlink" href="#module-openspeech.modules.residual_connection_module" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.residual_connection_module.ResidualConnectionModule">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.residual_connection_module.</code><code class="sig-name descname">ResidualConnectionModule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">module</span><span class="p">:</span> <span class="n">torch.nn.modules.module.Module</span></em>, <em class="sig-param"><span class="n">module_factor</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">input_factor</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/residual_connection_module.html#ResidualConnectionModule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.residual_connection_module.ResidualConnectionModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Residual Connection Module.
+outputs = (module(inputs) x module_factor + inputs x input_factor)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.swish">
+<span id="swish"></span><h2>Swish<a class="headerlink" href="#module-openspeech.modules.swish" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.swish.Swish">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.swish.</code><code class="sig-name descname">Swish</code><a class="reference internal" href="_modules/openspeech/modules/swish.html#Swish"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.swish.Swish" title="Permalink to this definition">¶</a></dt>
+<dd><p>Swish is a smooth, non-monotonic function that consistently matches or outperforms ReLU on deep networks applied
+to a variety of challenging domains such as Image classification and Machine translation.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.time_channel_separable_conv1d">
+<span id="time-channel-separable-conv1d"></span><h2>Time-Channel Separable Conv1d<a class="headerlink" href="#module-openspeech.modules.time_channel_separable_conv1d" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.time_channel_separable_conv1d.TimeChannelSeparableConv1d">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.time_channel_separable_conv1d.</code><code class="sig-name descname">TimeChannelSeparableConv1d</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">out_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">padding</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">groups</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">bias</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/time_channel_separable_conv1d.html#TimeChannelSeparableConv1d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.time_channel_separable_conv1d.TimeChannelSeparableConv1d" title="Permalink to this definition">¶</a></dt>
+<dd><p>The total number of weights for a time-channel separable convolution block is K × cin + cin × cout weights. Since K is
+generally several times smaller than cout, most weights are
+concentrated in the pointwise convolution part.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.transformer_embedding">
+<span id="transformer-embedding"></span><h2>Transformer Embedding<a class="headerlink" href="#module-openspeech.modules.transformer_embedding" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.transformer_embedding.TransformerEmbedding">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.transformer_embedding.</code><code class="sig-name descname">TransformerEmbedding</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_embeddings</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">pad_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">d_model</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">512</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/transformer_embedding.html#TransformerEmbedding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.transformer_embedding.TransformerEmbedding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Embedding layer. Similarly to other sequence transduction models, transformer use learned embeddings
+to convert the input tokens and output tokens to vectors of dimension d_model.
+In the embedding layers, transformer multiply those weights by sqrt(d_model)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_embeddings</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the number of embedding size</p></li>
+<li><p><strong>pad_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – identification of pad token</p></li>
+<li><p><strong>d_model</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – dimension of model</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs:</dt><dd><p>inputs (torch.FloatTensor): input of embedding layer</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>output of embedding layer</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>outputs (torch.FloatTensor)</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="openspeech.modules.transformer_embedding.TransformerEmbedding.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><a class="reference internal" href="_modules/openspeech/modules/transformer_embedding.html#TransformerEmbedding.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.transformer_embedding.TransformerEmbedding.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward propagate of embedding layer.</p>
+<dl class="simple">
+<dt>Inputs:</dt><dd><p>inputs (torch.FloatTensor): input of embedding layer</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>output of embedding layer</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>outputs (torch.FloatTensor)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.vgg_extractor">
+<span id="vgg-extractor"></span><h2>VGG Extractor<a class="headerlink" href="#module-openspeech.modules.vgg_extractor" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.vgg_extractor.VGGExtractor">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.vgg_extractor.</code><code class="sig-name descname">VGGExtractor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_dim</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">in_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">out_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">64, 128</span></em>, <em class="sig-param"><span class="n">activation</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'hardtanh'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/vgg_extractor.html#VGGExtractor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.vgg_extractor.VGGExtractor" title="Permalink to this definition">¶</a></dt>
+<dd><p>VGG extractor for automatic speech recognition described in
+“Advances in Joint CTC-Attention based End-to-End Speech Recognition with a Deep CNN Encoder and RNN-LM” paper
+- <a class="reference external" href="https://arxiv.org/pdf/1706.02737.pdf">https://arxiv.org/pdf/1706.02737.pdf</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Dimension of input vector</p></li>
+<li><p><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of channels in the input image</p></li>
+<li><p><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a>) – Number of channels produced by the convolution</p></li>
+<li><p><strong>activation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Activation function</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs: inputs, input_lengths</dt><dd><ul class="simple">
+<li><p><strong>inputs</strong> (batch, time, dim): Tensor containing input vectors</p></li>
+<li><p><strong>input_lengths</strong>: Tensor containing containing sequence lengths</p></li>
+</ul>
+</dd>
+<dt>Returns: outputs, output_lengths</dt><dd><ul class="simple">
+<li><p><strong>outputs</strong>: Tensor produced by the convolution</p></li>
+<li><p><strong>output_lengths</strong>: Tensor containing sequence lengths produced by the convolution</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="openspeech.modules.vgg_extractor.VGGExtractor.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">input_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">]</span><a class="reference internal" href="_modules/openspeech/modules/vgg_extractor.html#VGGExtractor.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.vgg_extractor.VGGExtractor.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>inputs: torch.FloatTensor (batch, time, dimension)
+input_lengths: torch.IntTensor (batch)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.modules.wrapper">
+<span id="wrapper"></span><h2>Wrapper<a class="headerlink" href="#module-openspeech.modules.wrapper" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.modules.wrapper.Linear">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.wrapper.</code><code class="sig-name descname">Linear</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_features</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">out_features</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">bias</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/wrapper.html#Linear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.wrapper.Linear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper class of torch.nn.Linear
+Weight initialize by xavier initialization and bias initialize to zeros.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="openspeech.modules.wrapper.Transpose">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.wrapper.</code><code class="sig-name descname">Transpose</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">shape</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/wrapper.html#Transpose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.wrapper.Transpose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper class of torch.transpose() for Sequential module.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="openspeech.modules.wrapper.View">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.modules.wrapper.</code><code class="sig-name descname">View</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">shape</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a></span></em>, <em class="sig-param"><span class="n">contiguous</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/modules/wrapper.html#View"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.modules.wrapper.View" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper class of torch.view() for Sequential module.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="Optim.html" class="btn btn-neutral float-right" title="Optim" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Encoders.html" class="btn btn-neutral float-left" title="Encoders" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Kim, Soohwan and Ha, Sangchun and Cho, Soyoung.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

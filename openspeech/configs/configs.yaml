@@ -1,0 +1,11 @@
+# @package _group_
+
+defaults:
+  - audio: null
+  - augment: null
+  - dataset: null
+  - criterion: null
+  - lr_scheduler: null
+  - model: null
+  - trainer: gpu
+  - vocab: null

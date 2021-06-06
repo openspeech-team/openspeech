@@ -8,8 +8,8 @@
   
 <p align="center">
   <a href="https://github.com/sooftware/openspeech/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-informational">
-  <img src="https://img.shields.io/badge/release-v0.1-informational">
-  <img src="https://img.shields.io/badge/pypi-v0.1-informational">
+  <a href="https://github.com/sooftware/openspeech/releases"></a><img src="https://img.shields.io/badge/release-v0.1-informational">
+  <a href="https://pypi.org/project/openspeech-py/0.1/"></a><img src="https://img.shields.io/badge/pypi-v0.1-informational">
   <img src="https://img.shields.io/badge/build-passing-33CF57?&logo=GitHub">
   <a href="https://sooftware.github.io/openspeech/"><img src="https://img.shields.io/badge/docs-passing-33CF57?&logo=GitHub">
   <a href="https://www.codefactor.io/repository/github/sooftware/openspeech"></a><img src="https://www.codefactor.io/repository/github/sooftware/openspeech-dev/badge?s=15c934a802aa6d0f1c6aa93a65af65dd9e887a4d">

@@ -20,7 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from distutils.core import setup
+from setuptools import setup, find_packages
+
 
 setup(
     name='openspeech-py',
@@ -29,6 +30,7 @@ setup(
     author='Kim, Soohwan and Ha, Sangchun and Cho, Soyoung',
     author_email='sh951011@gmail.com, seomk9896@naver.com, soyoung.cho@kaist.ac.kr',
     url='https://github.com/sooftware/openspeech',
+    download_url='https://github.com/sooftware/openspeech/releases/tag/v0.1.zip',
     install_requires=[
         'torch>=1.4.0',
         'python-Levenshtein',
@@ -41,6 +43,9 @@ setup(
         'wget',
         'wandb',
     ],
+    packages=find_packages(exclude=[]),
     keywords=['openspeech', 'asr', 'speech_recognition', 'pytorch-lightning', 'hydra'],
     python_requires='>=3.7',
+    package_data={},
+    zip_safe=False,
 )

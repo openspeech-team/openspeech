@@ -1,0 +1,443 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>openspeech.datasets.ksponspeech.lit_data_module &mdash; Openspeech v0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> Openspeech
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">GETTING STARTED</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notes/intro.html">Why should I use openspeech?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notes/intro.html#why-shouldn-t-i-use-openspeech">Why shouldn’t I use openspeech?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notes/intro.html#model-architectures">Model architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notes/intro.html#get-started">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notes/intro.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notes/intro.html#troubleshoots-and-contributing">Troubleshoots and Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notes/intro.html#citation">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notes/hydra_configs.html">Openspeech’s Hydra configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notes/configs.html">Openspeech’s configurations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MODEL ARCHITECTURES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Openspeech Model.html">Openspeech Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Conformer.html">Conformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Conformer LSTM.html">Conformer LSTM Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Conformer Transducer.html">Conformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Deep CNN with Joint CTC LAS.html">Deep CNN with Joint CTC LAS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../DeepSpeech2.html">DeepSpeech2 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Jasper5x3.html">Jasper5x3 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Jasper10x5.html">Jasper10x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Joint CTC Conformer LSTM.html">Joint CTC Conformer LSTM Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Joint CTC LAS.html">Joint CTC LAS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Joint CTC Transformer.html">Joint CTC Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Listen Attend Spell.html">Listen Attend Spell Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Listen Attend Spell (location-aware).html">Listen Attend Spell (location-aware) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Listen Attend Spell (multi-head).html">Listen Attend Spell (multi-head) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../QuartzNet5x5.html">QuartzNet 5x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../QuartzNet10x5.html">QuartzNet 10x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../QuartzNet15x5.html">QuartzNet 15x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../RNN Transducer.html">RNN Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Transformer.html">Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Transformer Transducer.html">Transformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Transformer with CTC.html">Transformer with CTC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../VGG Transformer.html">VGG Transformer Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Audio.html">Audio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Criterion.html">Criterion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Decoders.html">Decoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Encoders.html">Encoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Optim.html">Optim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Beam Search.html">Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Vocabulary.html">Vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Metric.html">Metric</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Openspeech</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>openspeech.datasets.ksponspeech.lit_data_module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for openspeech.datasets.ksponspeech.lit_data_module</h1><div class="highlight"><pre>
+<span></span><span class="c1"># MIT License</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (c) 2021 Soohwan Kim and Sangchun Ha and Soyoung Cho</span>
+<span class="c1">#</span>
+<span class="c1"># Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="c1"># of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="c1"># in the Software without restriction, including without limitation the rights</span>
+<span class="c1"># to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="c1"># copies of the Software, and to permit persons to whom the Software is</span>
+<span class="c1"># furnished to do so, subject to the following conditions:</span>
+<span class="c1">#</span>
+<span class="c1"># The above copyright notice and this permission notice shall be included in all</span>
+<span class="c1"># copies or substantial portions of the Software.</span>
+<span class="c1">#</span>
+<span class="c1"># THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="c1"># IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="c1"># FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="c1"># AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="c1"># LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="c1"># OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="c1"># SOFTWARE.</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">pytorch_lightning</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">omegaconf</span> <span class="kn">import</span> <span class="n">DictConfig</span>
+<span class="kn">from</span> <span class="nn">openspeech.data.dataset</span> <span class="kn">import</span> <span class="n">SpeechToTextDataset</span>
+
+<span class="kn">from</span> <span class="nn">openspeech.datasets</span> <span class="kn">import</span> <span class="n">register_data_module</span>
+<span class="kn">from</span> <span class="nn">openspeech.data.data_loader</span> <span class="kn">import</span> <span class="n">AudioDataLoader</span><span class="p">,</span> <span class="n">BucketingSampler</span>
+<span class="kn">from</span> <span class="nn">openspeech.datasets.ksponspeech.preprocess.preprocess</span> <span class="kn">import</span> <span class="n">preprocess</span><span class="p">,</span> <span class="n">preprocess_test_data</span>
+<span class="kn">from</span> <span class="nn">openspeech.datasets.ksponspeech.preprocess.character</span> <span class="kn">import</span> <span class="n">generate_character_script</span><span class="p">,</span> <span class="n">generate_character_labels</span>
+<span class="kn">from</span> <span class="nn">openspeech.datasets.ksponspeech.preprocess.grapheme</span> <span class="kn">import</span> <span class="n">sentence_to_grapheme</span>
+<span class="kn">from</span> <span class="nn">openspeech.datasets.ksponspeech.preprocess.subword</span> <span class="kn">import</span> <span class="n">train_sentencepiece</span><span class="p">,</span> <span class="n">sentence_to_subwords</span>
+<span class="kn">from</span> <span class="nn">openspeech.vocabs</span> <span class="kn">import</span> <span class="n">VOCAB_REGISTRY</span>
+<span class="kn">from</span> <span class="nn">openspeech.vocabs.vocab</span> <span class="kn">import</span> <span class="n">Vocabulary</span>
+
+
+<div class="viewcode-block" id="LightningKsponSpeechDataModule"><a class="viewcode-back" href="../../../../Datasets.html#openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule">[docs]</a><span class="nd">@register_data_module</span><span class="p">(</span><span class="s1">&#39;ksponspeech&#39;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">LightningKsponSpeechDataModule</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">LightningDataModule</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Lightning data module for KsponSpeech.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        KSPONSPEECH_TRAIN_NUM (int): the number of KsponSpeech&#39;s train data.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        configs (DictConfig): configuration set.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">KSPONSPEECH_TRAIN_NUM</span> <span class="o">=</span> <span class="mi">620000</span>
+    <span class="n">KSPONSPEECH_VALID_NUM</span> <span class="o">=</span> <span class="mi">2545</span>
+    <span class="n">KSPONSPEECH_TEST_NUM</span> <span class="o">=</span> <span class="mi">6000</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configs</span><span class="p">:</span> <span class="n">DictConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">LightningKsponSpeechDataModule</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configs</span> <span class="o">=</span> <span class="n">configs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;openspeech.data.ksponspeech.lit_data_module&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;utf-8&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">unit</span> <span class="o">==</span> <span class="s1">&#39;kspon_subword&#39;</span> <span class="k">else</span> <span class="s1">&#39;cp949&#39;</span>
+
+    <span class="k">def</span> <span class="nf">_generate_manifest_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">manifest_file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate KsponSpeech manifest file.</span>
+<span class="sd">        Format: AUDIO_PATH [TAB] TEXT_TRANSCRIPTS [TAB] NUMBER_TRANSCRIPT</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">train_valid_audio_paths</span><span class="p">,</span> <span class="n">train_valid_transcripts</span> <span class="o">=</span> <span class="n">preprocess</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">dataset_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">preprocess_mode</span>
+        <span class="p">)</span>
+        <span class="n">test_audio_paths</span><span class="p">,</span> <span class="n">test_transcripts</span> <span class="o">=</span> <span class="n">preprocess_test_data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">test_manifest_dir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">preprocess_mode</span>
+        <span class="p">)</span>
+
+        <span class="n">audio_paths</span> <span class="o">=</span> <span class="n">train_valid_audio_paths</span> <span class="o">+</span> <span class="n">test_audio_paths</span>
+        <span class="n">transcripts</span> <span class="o">=</span> <span class="n">train_valid_transcripts</span> <span class="o">+</span> <span class="n">test_transcripts</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">unit</span> <span class="o">==</span> <span class="s1">&#39;kspon_character&#39;</span><span class="p">:</span>
+            <span class="n">generate_character_labels</span><span class="p">(</span><span class="n">transcripts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">vocab_path</span><span class="p">)</span>
+            <span class="n">generate_character_script</span><span class="p">(</span><span class="n">audio_paths</span><span class="p">,</span> <span class="n">transcripts</span><span class="p">,</span> <span class="n">manifest_file_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">vocab_path</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">unit</span> <span class="o">==</span> <span class="s1">&#39;kspon_subword&#39;</span><span class="p">:</span>
+            <span class="n">train_sentencepiece</span><span class="p">(</span><span class="n">transcripts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">vocab_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">blank_token</span><span class="p">)</span>
+            <span class="n">sentence_to_subwords</span><span class="p">(</span>
+                <span class="n">audio_paths</span><span class="p">,</span> <span class="n">transcripts</span><span class="p">,</span> <span class="n">manifest_file_path</span><span class="p">,</span> <span class="n">sp_model_path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">sp_model_path</span>
+            <span class="p">)</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">unit</span> <span class="o">==</span> <span class="s1">&#39;kspon_grapheme&#39;</span><span class="p">:</span>
+            <span class="n">sentence_to_grapheme</span><span class="p">(</span><span class="n">audio_paths</span><span class="p">,</span> <span class="n">transcripts</span><span class="p">,</span> <span class="n">manifest_file_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">vocab_path</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported vocab : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">unit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_parse_manifest_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parsing manifest file.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            audio_paths (list): list of audio path</span>
+<span class="sd">            transcritps (list): list of transcript of audio</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">audio_paths</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="n">transcripts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">manifest_file_path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()):</span>
+                <span class="n">audio_path</span><span class="p">,</span> <span class="n">korean_transcript</span><span class="p">,</span> <span class="n">transcript</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">transcript</span> <span class="o">=</span> <span class="n">transcript</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+                <span class="n">audio_paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">audio_path</span><span class="p">)</span>
+                <span class="n">transcripts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">transcript</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">audio_paths</span><span class="p">,</span> <span class="n">transcripts</span>
+
+<div class="viewcode-block" id="LightningKsponSpeechDataModule.prepare_data"><a class="viewcode-back" href="../../../../Datasets.html#openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.prepare_data">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prepare KsponSpeech manifest file. If there is not exist manifest file, generate manifest file.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            vocab (Vocabulary): vocab class of KsponSpeech.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">manifest_file_path</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Manifest file is not exists !!</span><span class="se">\n</span><span class="s2">&quot;</span>
+                             <span class="s2">&quot;Generate manifest files..&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">dataset_path</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Dataset path is not valid.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_generate_manifest_files</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">manifest_file_path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">VOCAB_REGISTRY</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">unit</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LightningKsponSpeechDataModule.setup"><a class="viewcode-back" href="../../../../Datasets.html#openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.setup">[docs]</a>    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stage</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">vocab</span><span class="p">:</span> <span class="n">Vocabulary</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Split `train` and `valid` dataset for training.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            stage (str): stage of training. `train` or `valid`</span>
+<span class="sd">            vocab (Vocabulary): vocab class of KsponSpeech.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">valid_end_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">KSPONSPEECH_TRAIN_NUM</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">KSPONSPEECH_VALID_NUM</span>
+
+        <span class="n">audio_paths</span><span class="p">,</span> <span class="n">transcripts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_manifest_file</span><span class="p">()</span>
+        <span class="n">audio_paths</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="n">audio_paths</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">KSPONSPEECH_TRAIN_NUM</span><span class="p">],</span>
+            <span class="s2">&quot;valid&quot;</span><span class="p">:</span> <span class="n">audio_paths</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">KSPONSPEECH_TRAIN_NUM</span><span class="p">:</span><span class="n">valid_end_idx</span><span class="p">],</span>
+            <span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="n">audio_paths</span><span class="p">[</span><span class="n">valid_end_idx</span><span class="p">:],</span>
+        <span class="p">}</span>
+        <span class="n">transcripts</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="n">transcripts</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">KSPONSPEECH_TRAIN_NUM</span><span class="p">],</span>
+            <span class="s2">&quot;valid&quot;</span><span class="p">:</span> <span class="n">transcripts</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">KSPONSPEECH_TRAIN_NUM</span><span class="p">:</span><span class="n">valid_end_idx</span><span class="p">],</span>
+            <span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="n">transcripts</span><span class="p">[</span><span class="n">valid_end_idx</span><span class="p">:],</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="n">stage</span> <span class="ow">in</span> <span class="n">audio_paths</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">stage</span> <span class="o">==</span> <span class="s1">&#39;test&#39;</span><span class="p">:</span>
+                <span class="n">dataset_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">test_dataset_path</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dataset_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">dataset_path</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="n">stage</span><span class="p">]</span> <span class="o">=</span> <span class="n">SpeechToTextDataset</span><span class="p">(</span>
+                <span class="n">configs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="p">,</span>
+                <span class="n">dataset_path</span><span class="o">=</span><span class="n">dataset_path</span><span class="p">,</span>
+                <span class="n">audio_paths</span><span class="o">=</span><span class="n">audio_paths</span><span class="p">[</span><span class="n">stage</span><span class="p">],</span>
+                <span class="n">transcripts</span><span class="o">=</span><span class="n">transcripts</span><span class="p">[</span><span class="n">stage</span><span class="p">],</span>
+                <span class="n">sos_id</span><span class="o">=</span><span class="n">vocab</span><span class="o">.</span><span class="n">sos_id</span><span class="p">,</span>
+                <span class="n">eos_id</span><span class="o">=</span><span class="n">vocab</span><span class="o">.</span><span class="n">eos_id</span><span class="p">,</span>
+                <span class="n">apply_spec_augment</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">audio</span><span class="o">.</span><span class="n">apply_spec_augment</span> <span class="k">if</span> <span class="n">stage</span> <span class="o">==</span> <span class="s1">&#39;train&#39;</span> <span class="k">else</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="n">del_silence</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">audio</span><span class="o">.</span><span class="n">del_silence</span> <span class="k">if</span> <span class="n">stage</span> <span class="o">==</span> <span class="s1">&#39;train&#39;</span> <span class="k">else</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="p">)</span></div>
+
+<div class="viewcode-block" id="LightningKsponSpeechDataModule.train_dataloader"><a class="viewcode-back" href="../../../../Datasets.html#openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.train_dataloader">[docs]</a>    <span class="k">def</span> <span class="nf">train_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AudioDataLoader</span><span class="p">:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot; Return data loader for training. &quot;&quot;&quot;</span>
+        <span class="n">train_sampler</span> <span class="o">=</span> <span class="n">BucketingSampler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">batch_size</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">AudioDataLoader</span><span class="p">(</span>
+            <span class="n">dataset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">],</span>
+            <span class="n">num_workers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">num_workers</span><span class="p">,</span>
+            <span class="n">batch_sampler</span><span class="o">=</span><span class="n">train_sampler</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="LightningKsponSpeechDataModule.val_dataloader"><a class="viewcode-back" href="../../../../Datasets.html#openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.val_dataloader">[docs]</a>    <span class="k">def</span> <span class="nf">val_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AudioDataLoader</span><span class="p">:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot; Return data loader for validation. &quot;&quot;&quot;</span>
+        <span class="n">valid_sampler</span> <span class="o">=</span> <span class="n">BucketingSampler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;valid&#39;</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">batch_size</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">AudioDataLoader</span><span class="p">(</span>
+            <span class="n">dataset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;valid&#39;</span><span class="p">],</span>
+            <span class="n">num_workers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">num_workers</span><span class="p">,</span>
+            <span class="n">batch_sampler</span><span class="o">=</span><span class="n">valid_sampler</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="LightningKsponSpeechDataModule.test_dataloader"><a class="viewcode-back" href="../../../../Datasets.html#openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.test_dataloader">[docs]</a>    <span class="k">def</span> <span class="nf">test_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AudioDataLoader</span><span class="p">:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot; Return data loader for training. &quot;&quot;&quot;</span>
+        <span class="n">train_sampler</span> <span class="o">=</span> <span class="n">BucketingSampler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">],</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">batch_size</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">AudioDataLoader</span><span class="p">(</span>
+            <span class="n">dataset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">],</span>
+            <span class="n">num_workers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configs</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">num_workers</span><span class="p">,</span>
+            <span class="n">batch_sampler</span><span class="o">=</span><span class="n">train_sampler</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Kim, Soohwan and Ha, Sangchun and Cho, Soyoung.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

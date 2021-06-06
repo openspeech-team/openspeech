@@ -1,0 +1,385 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Overview: module code &mdash; Openspeech v0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Openspeech
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">GETTING STARTED</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notes/intro.html">Why should I use openspeech?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/intro.html#why-shouldn-t-i-use-openspeech">Why shouldn’t I use openspeech?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/intro.html#model-architectures">Model architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/intro.html#get-started">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/intro.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/intro.html#troubleshoots-and-contributing">Troubleshoots and Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/intro.html#citation">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/hydra_configs.html">Openspeech’s Hydra configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/configs.html">Openspeech’s configurations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MODEL ARCHITECTURES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Openspeech Model.html">Openspeech Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Conformer.html">Conformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Conformer LSTM.html">Conformer LSTM Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Conformer Transducer.html">Conformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep CNN with Joint CTC LAS.html">Deep CNN with Joint CTC LAS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DeepSpeech2.html">DeepSpeech2 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Jasper5x3.html">Jasper5x3 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Jasper10x5.html">Jasper10x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Joint CTC Conformer LSTM.html">Joint CTC Conformer LSTM Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Joint CTC LAS.html">Joint CTC LAS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Joint CTC Transformer.html">Joint CTC Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Listen Attend Spell.html">Listen Attend Spell Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Listen Attend Spell (location-aware).html">Listen Attend Spell (location-aware) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Listen Attend Spell (multi-head).html">Listen Attend Spell (multi-head) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QuartzNet5x5.html">QuartzNet 5x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QuartzNet10x5.html">QuartzNet 10x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QuartzNet15x5.html">QuartzNet 15x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RNN Transducer.html">RNN Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Transformer.html">Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Transformer Transducer.html">Transformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Transformer with CTC.html">Transformer with CTC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../VGG Transformer.html">VGG Transformer Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Audio.html">Audio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Criterion.html">Criterion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Decoders.html">Decoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Encoders.html">Encoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Optim.html">Optim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Beam Search.html">Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vocabulary.html">Vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Metric.html">Metric</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Openspeech</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Overview: module code</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>All modules for which code is available</h1>
+<ul><li><a href="openspeech/criterion/cross_entropy/configuration.html">openspeech.criterion.cross_entropy.configuration</a></li>
+<li><a href="openspeech/criterion/cross_entropy/cross_entropy.html">openspeech.criterion.cross_entropy.cross_entropy</a></li>
+<li><a href="openspeech/criterion/ctc/configuration.html">openspeech.criterion.ctc.configuration</a></li>
+<li><a href="openspeech/criterion/ctc/ctc.html">openspeech.criterion.ctc.ctc</a></li>
+<li><a href="openspeech/criterion/joint_ctc_cross_entropy/configuration.html">openspeech.criterion.joint_ctc_cross_entropy.configuration</a></li>
+<li><a href="openspeech/criterion/joint_ctc_cross_entropy/joint_ctc_cross_entropy.html">openspeech.criterion.joint_ctc_cross_entropy.joint_ctc_cross_entropy</a></li>
+<li><a href="openspeech/criterion/label_smoothed_cross_entropy/configuration.html">openspeech.criterion.label_smoothed_cross_entropy.configuration</a></li>
+<li><a href="openspeech/criterion/label_smoothed_cross_entropy/label_smoothed_cross_entropy.html">openspeech.criterion.label_smoothed_cross_entropy.label_smoothed_cross_entropy</a></li>
+<li><a href="openspeech/criterion/transducer/configuration.html">openspeech.criterion.transducer.configuration</a></li>
+<li><a href="openspeech/criterion/transducer/transducer.html">openspeech.criterion.transducer.transducer</a></li>
+<li><a href="openspeech/data/audio/augment.html">openspeech.data.audio.augment</a></li>
+<li><a href="openspeech/data/audio/filter_bank/configuration.html">openspeech.data.audio.filter_bank.configuration</a></li>
+<li><a href="openspeech/data/audio/filter_bank/filter_bank.html">openspeech.data.audio.filter_bank.filter_bank</a></li>
+<li><a href="openspeech/data/audio/load.html">openspeech.data.audio.load</a></li>
+<li><a href="openspeech/data/audio/melspectrogram/configuration.html">openspeech.data.audio.melspectrogram.configuration</a></li>
+<li><a href="openspeech/data/audio/melspectrogram/melspectrogram.html">openspeech.data.audio.melspectrogram.melspectrogram</a></li>
+<li><a href="openspeech/data/audio/mfcc/configuration.html">openspeech.data.audio.mfcc.configuration</a></li>
+<li><a href="openspeech/data/audio/mfcc/mfcc.html">openspeech.data.audio.mfcc.mfcc</a></li>
+<li><a href="openspeech/data/audio/spectrogram/configuration.html">openspeech.data.audio.spectrogram.configuration</a></li>
+<li><a href="openspeech/data/audio/spectrogram/spectrogram.html">openspeech.data.audio.spectrogram.spectrogram</a></li>
+<li><a href="openspeech/data/data_loader.html">openspeech.data.data_loader</a></li>
+<li><a href="openspeech/data/dataset.html">openspeech.data.dataset</a></li>
+<li><a href="openspeech/datasets/aishell/lit_data_module.html">openspeech.datasets.aishell.lit_data_module</a></li>
+<li><a href="openspeech/datasets/ksponspeech/lit_data_module.html">openspeech.datasets.ksponspeech.lit_data_module</a></li>
+<li><a href="openspeech/datasets/librispeech/lit_data_module.html">openspeech.datasets.librispeech.lit_data_module</a></li>
+<li><a href="openspeech/decoders/lstm_decoder.html">openspeech.decoders.lstm_decoder</a></li>
+<li><a href="openspeech/decoders/openspeech_decoder.html">openspeech.decoders.openspeech_decoder</a></li>
+<li><a href="openspeech/decoders/rnn_transducer_decoder.html">openspeech.decoders.rnn_transducer_decoder</a></li>
+<li><a href="openspeech/decoders/transformer_decoder.html">openspeech.decoders.transformer_decoder</a></li>
+<li><a href="openspeech/decoders/transformer_transducer_decoder.html">openspeech.decoders.transformer_transducer_decoder</a></li>
+<li><a href="openspeech/encoders/conformer_encoder.html">openspeech.encoders.conformer_encoder</a></li>
+<li><a href="openspeech/encoders/convolutional_lstm_encoder.html">openspeech.encoders.convolutional_lstm_encoder</a></li>
+<li><a href="openspeech/encoders/convolutional_transformer_encoder.html">openspeech.encoders.convolutional_transformer_encoder</a></li>
+<li><a href="openspeech/encoders/deepspeech2.html">openspeech.encoders.deepspeech2</a></li>
+<li><a href="openspeech/encoders/jasper.html">openspeech.encoders.jasper</a></li>
+<li><a href="openspeech/encoders/lstm_encoder.html">openspeech.encoders.lstm_encoder</a></li>
+<li><a href="openspeech/encoders/openspeech_encoder.html">openspeech.encoders.openspeech_encoder</a></li>
+<li><a href="openspeech/encoders/quartznet.html">openspeech.encoders.quartznet</a></li>
+<li><a href="openspeech/encoders/rnn_transducer_encoder.html">openspeech.encoders.rnn_transducer_encoder</a></li>
+<li><a href="openspeech/encoders/transformer_encoder.html">openspeech.encoders.transformer_encoder</a></li>
+<li><a href="openspeech/encoders/transformer_transducer_encoder.html">openspeech.encoders.transformer_transducer_encoder</a></li>
+<li><a href="openspeech/metrics.html">openspeech.metrics</a></li>
+<li><a href="openspeech/models/conformer/configurations.html">openspeech.models.conformer.configurations</a></li>
+<li><a href="openspeech/models/conformer/model.html">openspeech.models.conformer.model</a></li>
+<li><a href="openspeech/models/conformer_lstm/configurations.html">openspeech.models.conformer_lstm.configurations</a></li>
+<li><a href="openspeech/models/conformer_lstm/model.html">openspeech.models.conformer_lstm.model</a></li>
+<li><a href="openspeech/models/conformer_transducer/configurations.html">openspeech.models.conformer_transducer.configurations</a></li>
+<li><a href="openspeech/models/conformer_transducer/model.html">openspeech.models.conformer_transducer.model</a></li>
+<li><a href="openspeech/models/deep_cnn_with_joint_ctc_listen_attend_spell/configurations.html">openspeech.models.deep_cnn_with_joint_ctc_listen_attend_spell.configurations</a></li>
+<li><a href="openspeech/models/deep_cnn_with_joint_ctc_listen_attend_spell/model.html">openspeech.models.deep_cnn_with_joint_ctc_listen_attend_spell.model</a></li>
+<li><a href="openspeech/models/deepspeech2/configurations.html">openspeech.models.deepspeech2.configurations</a></li>
+<li><a href="openspeech/models/deepspeech2/model.html">openspeech.models.deepspeech2.model</a></li>
+<li><a href="openspeech/models/jasper10x5/configurations.html">openspeech.models.jasper10x5.configurations</a></li>
+<li><a href="openspeech/models/jasper10x5/model.html">openspeech.models.jasper10x5.model</a></li>
+<li><a href="openspeech/models/jasper5x3/configurations.html">openspeech.models.jasper5x3.configurations</a></li>
+<li><a href="openspeech/models/jasper5x3/model.html">openspeech.models.jasper5x3.model</a></li>
+<li><a href="openspeech/models/joint_ctc_conformer_lstm/configurations.html">openspeech.models.joint_ctc_conformer_lstm.configurations</a></li>
+<li><a href="openspeech/models/joint_ctc_conformer_lstm/model.html">openspeech.models.joint_ctc_conformer_lstm.model</a></li>
+<li><a href="openspeech/models/joint_ctc_listen_attend_spell/configurations.html">openspeech.models.joint_ctc_listen_attend_spell.configurations</a></li>
+<li><a href="openspeech/models/joint_ctc_listen_attend_spell/model.html">openspeech.models.joint_ctc_listen_attend_spell.model</a></li>
+<li><a href="openspeech/models/joint_ctc_transformer/configurations.html">openspeech.models.joint_ctc_transformer.configurations</a></li>
+<li><a href="openspeech/models/joint_ctc_transformer/model.html">openspeech.models.joint_ctc_transformer.model</a></li>
+<li><a href="openspeech/models/listen_attend_spell/configurations.html">openspeech.models.listen_attend_spell.configurations</a></li>
+<li><a href="openspeech/models/listen_attend_spell/model.html">openspeech.models.listen_attend_spell.model</a></li>
+<li><a href="openspeech/models/listen_attend_spell_with_location_aware/configurations.html">openspeech.models.listen_attend_spell_with_location_aware.configurations</a></li>
+<li><a href="openspeech/models/listen_attend_spell_with_location_aware/model.html">openspeech.models.listen_attend_spell_with_location_aware.model</a></li>
+<li><a href="openspeech/models/listen_attend_spell_with_multi_head/configurations.html">openspeech.models.listen_attend_spell_with_multi_head.configurations</a></li>
+<li><a href="openspeech/models/listen_attend_spell_with_multi_head/model.html">openspeech.models.listen_attend_spell_with_multi_head.model</a></li>
+<li><a href="openspeech/models/openspeech_ctc_model.html">openspeech.models.openspeech_ctc_model</a></li>
+<li><a href="openspeech/models/openspeech_encoder_decoder_model.html">openspeech.models.openspeech_encoder_decoder_model</a></li>
+<li><a href="openspeech/models/openspeech_model.html">openspeech.models.openspeech_model</a></li>
+<li><a href="openspeech/models/openspeech_transducer_model.html">openspeech.models.openspeech_transducer_model</a></li>
+<li><a href="openspeech/models/quartznet10x5/configurations.html">openspeech.models.quartznet10x5.configurations</a></li>
+<li><a href="openspeech/models/quartznet10x5/model.html">openspeech.models.quartznet10x5.model</a></li>
+<li><a href="openspeech/models/quartznet15x5/configurations.html">openspeech.models.quartznet15x5.configurations</a></li>
+<li><a href="openspeech/models/quartznet15x5/model.html">openspeech.models.quartznet15x5.model</a></li>
+<li><a href="openspeech/models/quartznet5x5/configurations.html">openspeech.models.quartznet5x5.configurations</a></li>
+<li><a href="openspeech/models/quartznet5x5/model.html">openspeech.models.quartznet5x5.model</a></li>
+<li><a href="openspeech/models/rnn_transducer/configurations.html">openspeech.models.rnn_transducer.configurations</a></li>
+<li><a href="openspeech/models/rnn_transducer/model.html">openspeech.models.rnn_transducer.model</a></li>
+<li><a href="openspeech/models/transformer/configurations.html">openspeech.models.transformer.configurations</a></li>
+<li><a href="openspeech/models/transformer/model.html">openspeech.models.transformer.model</a></li>
+<li><a href="openspeech/models/transformer_transducer/configurations.html">openspeech.models.transformer_transducer.configurations</a></li>
+<li><a href="openspeech/models/transformer_transducer/model.html">openspeech.models.transformer_transducer.model</a></li>
+<li><a href="openspeech/models/transformer_with_ctc/configurations.html">openspeech.models.transformer_with_ctc.configurations</a></li>
+<li><a href="openspeech/models/transformer_with_ctc/model.html">openspeech.models.transformer_with_ctc.model</a></li>
+<li><a href="openspeech/models/vgg_transformer/configurations.html">openspeech.models.vgg_transformer.configurations</a></li>
+<li><a href="openspeech/models/vgg_transformer/model.html">openspeech.models.vgg_transformer.model</a></li>
+<li><a href="openspeech/modules/add_normalization.html">openspeech.modules.add_normalization</a></li>
+<li><a href="openspeech/modules/additive_attention.html">openspeech.modules.additive_attention</a></li>
+<li><a href="openspeech/modules/batchnorm_relu_rnn.html">openspeech.modules.batchnorm_relu_rnn</a></li>
+<li><a href="openspeech/modules/conformer_attention_module.html">openspeech.modules.conformer_attention_module</a></li>
+<li><a href="openspeech/modules/conformer_block.html">openspeech.modules.conformer_block</a></li>
+<li><a href="openspeech/modules/conformer_convolution_module.html">openspeech.modules.conformer_convolution_module</a></li>
+<li><a href="openspeech/modules/conformer_feed_forward_module.html">openspeech.modules.conformer_feed_forward_module</a></li>
+<li><a href="openspeech/modules/conv2d_extractor.html">openspeech.modules.conv2d_extractor</a></li>
+<li><a href="openspeech/modules/conv2d_subsampling.html">openspeech.modules.conv2d_subsampling</a></li>
+<li><a href="openspeech/modules/conv_base.html">openspeech.modules.conv_base</a></li>
+<li><a href="openspeech/modules/conv_group_shuffle.html">openspeech.modules.conv_group_shuffle</a></li>
+<li><a href="openspeech/modules/deepspeech2_extractor.html">openspeech.modules.deepspeech2_extractor</a></li>
+<li><a href="openspeech/modules/depthwise_conv1d.html">openspeech.modules.depthwise_conv1d</a></li>
+<li><a href="openspeech/modules/dot_product_attention.html">openspeech.modules.dot_product_attention</a></li>
+<li><a href="openspeech/modules/glu.html">openspeech.modules.glu</a></li>
+<li><a href="openspeech/modules/jasper_block.html">openspeech.modules.jasper_block</a></li>
+<li><a href="openspeech/modules/jasper_subblock.html">openspeech.modules.jasper_subblock</a></li>
+<li><a href="openspeech/modules/location_aware_attention.html">openspeech.modules.location_aware_attention</a></li>
+<li><a href="openspeech/modules/mask.html">openspeech.modules.mask</a></li>
+<li><a href="openspeech/modules/mask_conv1d.html">openspeech.modules.mask_conv1d</a></li>
+<li><a href="openspeech/modules/mask_conv2d.html">openspeech.modules.mask_conv2d</a></li>
+<li><a href="openspeech/modules/multi_head_attention.html">openspeech.modules.multi_head_attention</a></li>
+<li><a href="openspeech/modules/pointwise_conv1d.html">openspeech.modules.pointwise_conv1d</a></li>
+<li><a href="openspeech/modules/positional_encoding.html">openspeech.modules.positional_encoding</a></li>
+<li><a href="openspeech/modules/positionwise_feed_forward.html">openspeech.modules.positionwise_feed_forward</a></li>
+<li><a href="openspeech/modules/quartznet_block.html">openspeech.modules.quartznet_block</a></li>
+<li><a href="openspeech/modules/quartznet_subblock.html">openspeech.modules.quartznet_subblock</a></li>
+<li><a href="openspeech/modules/relative_multi_head_attention.html">openspeech.modules.relative_multi_head_attention</a></li>
+<li><a href="openspeech/modules/residual_connection_module.html">openspeech.modules.residual_connection_module</a></li>
+<li><a href="openspeech/modules/swish.html">openspeech.modules.swish</a></li>
+<li><a href="openspeech/modules/time_channel_separable_conv1d.html">openspeech.modules.time_channel_separable_conv1d</a></li>
+<li><a href="openspeech/modules/transformer_embedding.html">openspeech.modules.transformer_embedding</a></li>
+<li><a href="openspeech/modules/vgg_extractor.html">openspeech.modules.vgg_extractor</a></li>
+<li><a href="openspeech/modules/wrapper.html">openspeech.modules.wrapper</a></li>
+<li><a href="openspeech/optim/optimizer.html">openspeech.optim.optimizer</a></li>
+<li><a href="openspeech/optim/scheduler/lr_scheduler.html">openspeech.optim.scheduler.lr_scheduler</a></li>
+<li><a href="openspeech/optim/scheduler/reduce_lr_on_plateau_scheduler.html">openspeech.optim.scheduler.reduce_lr_on_plateau_scheduler</a></li>
+<li><a href="openspeech/optim/scheduler/transformer_lr_scheduler.html">openspeech.optim.scheduler.transformer_lr_scheduler</a></li>
+<li><a href="openspeech/optim/scheduler/tri_stage_lr_scheduler.html">openspeech.optim.scheduler.tri_stage_lr_scheduler</a></li>
+<li><a href="openspeech/optim/scheduler/warmup_reduce_lr_on_plateau_scheduler.html">openspeech.optim.scheduler.warmup_reduce_lr_on_plateau_scheduler</a></li>
+<li><a href="openspeech/optim/scheduler/warmup_scheduler.html">openspeech.optim.scheduler.warmup_scheduler</a></li>
+<li><a href="openspeech/search/base.html">openspeech.search.base</a></li>
+<li><a href="openspeech/search/beam_search_ctc.html">openspeech.search.beam_search_ctc</a></li>
+<li><a href="openspeech/search/beam_search_lstm.html">openspeech.search.beam_search_lstm</a></li>
+<li><a href="openspeech/search/beam_search_transformer.html">openspeech.search.beam_search_transformer</a></li>
+<li><a href="openspeech/vocabs/aishell/character.html">openspeech.vocabs.aishell.character</a></li>
+<li><a href="openspeech/vocabs/ksponspeech/character.html">openspeech.vocabs.ksponspeech.character</a></li>
+<li><a href="openspeech/vocabs/ksponspeech/grapheme.html">openspeech.vocabs.ksponspeech.grapheme</a></li>
+<li><a href="openspeech/vocabs/ksponspeech/subword.html">openspeech.vocabs.ksponspeech.subword</a></li>
+<li><a href="openspeech/vocabs/librispeech/character.html">openspeech.vocabs.librispeech.character</a></li>
+<li><a href="openspeech/vocabs/librispeech/subword.html">openspeech.vocabs.librispeech.subword</a></li>
+<li><a href="openspeech/vocabs/vocab.html">openspeech.vocabs.vocab</a></li>
+</ul>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Kim, Soohwan and Ha, Sangchun and Cho, Soyoung.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

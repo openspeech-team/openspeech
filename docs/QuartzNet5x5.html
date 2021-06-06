@@ -1,0 +1,404 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>QuartzNet 5x5 Model &mdash; Openspeech v0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="QuartzNet 10x5 Model" href="QuartzNet10x5.html" />
+    <link rel="prev" title="Listen Attend Spell (multi-head) Model" href="Listen Attend Spell (multi-head).html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Openspeech
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">GETTING STARTED</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html">Why should I use openspeech?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#why-shouldn-t-i-use-openspeech">Why shouldn’t I use openspeech?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#model-architectures">Model architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#get-started">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#troubleshoots-and-contributing">Troubleshoots and Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#citation">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/hydra_configs.html">Openspeech’s Hydra configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/configs.html">Openspeech’s configurations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MODEL ARCHITECTURES</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Openspeech Model.html">Openspeech Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conformer.html">Conformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conformer LSTM.html">Conformer LSTM Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conformer Transducer.html">Conformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deep CNN with Joint CTC LAS.html">Deep CNN with Joint CTC LAS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DeepSpeech2.html">DeepSpeech2 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Jasper5x3.html">Jasper5x3 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Jasper10x5.html">Jasper10x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Joint CTC Conformer LSTM.html">Joint CTC Conformer LSTM Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Joint CTC LAS.html">Joint CTC LAS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Joint CTC Transformer.html">Joint CTC Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Listen Attend Spell.html">Listen Attend Spell Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Listen Attend Spell (location-aware).html">Listen Attend Spell (location-aware) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Listen Attend Spell (multi-head).html">Listen Attend Spell (multi-head) Model</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">QuartzNet 5x5 Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">QuartzNet 5x5 Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.models.quartznet5x5.configurations">QuartzNet 5x5 Model Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="QuartzNet10x5.html">QuartzNet 10x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuartzNet15x5.html">QuartzNet 15x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RNN Transducer.html">RNN Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transformer.html">Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transformer Transducer.html">Transformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transformer with CTC.html">Transformer with CTC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VGG Transformer.html">VGG Transformer Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Audio.html">Audio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Criterion.html">Criterion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Decoders.html">Decoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Encoders.html">Encoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Optim.html">Optim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Beam Search.html">Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Vocabulary.html">Vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Metric.html">Metric</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Openspeech</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>QuartzNet 5x5 Model</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/QuartzNet5x5.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="quartznet-5x5-model">
+<h1>QuartzNet 5x5 Model<a class="headerlink" href="#quartznet-5x5-model" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>QuartzNet 5x5 Model<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-openspeech.models.quartznet5x5.model"></span><dl class="py class">
+<dt id="openspeech.models.quartznet5x5.model.QuartzNet5x5Model">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.models.quartznet5x5.model.</code><code class="sig-name descname">QuartzNet5x5Model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configs</span><span class="p">:</span> <span class="n">omegaconf.dictconfig.DictConfig</span></em>, <em class="sig-param"><span class="n">vocab</span><span class="p">:</span> <span class="n"><a class="reference internal" href="Vocabulary.html#openspeech.vocabs.vocab.Vocabulary" title="openspeech.vocabs.vocab.Vocabulary">openspeech.vocabs.vocab.Vocabulary</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/models/quartznet5x5/model.html#QuartzNet5x5Model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.quartznet5x5.model.QuartzNet5x5Model" title="Permalink to this definition">¶</a></dt>
+<dd><p>QUARTZNET: DEEP AUTOMATIC SPEECH RECOGNITION WITH 1D TIME-CHANNEL SEPARABLE CONVOLUTIONS
+Paper: <a class="reference external" href="https://arxiv.org/abs/1910.10261.pdf">https://arxiv.org/abs/1910.10261.pdf</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>configs</strong> (<em>DictConfig</em>) – configuration set.</p></li>
+<li><p><strong>vocab</strong> (<a class="reference internal" href="Vocabulary.html#openspeech.vocabs.vocab.Vocabulary" title="openspeech.vocabs.vocab.Vocabulary"><em>Vocabulary</em></a>) – the class of vocabulary</p></li>
+</ul>
+</dd>
+</dl>
+<dl>
+<dt>Inputs:</dt><dd><dl class="simple">
+<dt>inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded</dt><dd><p><cite>FloatTensor</cite> of size <code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">seq_length,</span> <span class="pre">dimension)</span></code>.</p>
+</dd>
+</dl>
+<p>input_lengths (torch.LongTensor): The length of input tensor. <code class="docutils literal notranslate"><span class="pre">(batch)</span></code></p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Result of model predictions that contains <cite>y_hats</cite>, <cite>logits</cite>, <cite>output_lengths</cite></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>dict (dict)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="openspeech.models.quartznet5x5.model.QuartzNet5x5Model.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">input_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">]</span><a class="reference internal" href="_modules/openspeech/models/quartznet5x5/model.html#QuartzNet5x5Model.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.quartznet5x5.model.QuartzNet5x5Model.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward propagate a <cite>inputs</cite> and <cite>targets</cite> pair for inference.</p>
+<dl>
+<dt>Inputs:</dt><dd><dl class="simple">
+<dt>inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded</dt><dd><p><cite>FloatTensor</cite> of size <code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">seq_length,</span> <span class="pre">dimension)</span></code>.</p>
+</dd>
+</dl>
+<p>input_lengths (torch.LongTensor): The length of input tensor. <code class="docutils literal notranslate"><span class="pre">(batch)</span></code></p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Result of model predictions that contains <cite>y_hats</cite>, <cite>logits</cite>, <cite>output_lengths</cite></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>dict (dict)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="openspeech.models.quartznet5x5.model.QuartzNet5x5Model.test_step">
+<code class="sig-name descname">test_step</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">batch</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a></span></em>, <em class="sig-param"><span class="n">batch_idx</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.OrderedDict" title="(in Python v3.9)">collections.OrderedDict</a><a class="reference internal" href="_modules/openspeech/models/quartznet5x5/model.html#QuartzNet5x5Model.test_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.quartznet5x5.model.QuartzNet5x5Model.test_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward propagate a <cite>inputs</cite> and <cite>targets</cite> pair for test.</p>
+<dl class="simple">
+<dt>Inputs:</dt><dd><p>batch (tuple): A train batch contains <cite>inputs</cite>, <cite>targets</cite>, <cite>input_lengths</cite>, <cite>target_lengths</cite>
+batch_idx (int): The index of batch</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>loss for training</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="openspeech.models.quartznet5x5.model.QuartzNet5x5Model.training_step">
+<code class="sig-name descname">training_step</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">batch</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a></span></em>, <em class="sig-param"><span class="n">batch_idx</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.OrderedDict" title="(in Python v3.9)">collections.OrderedDict</a><a class="reference internal" href="_modules/openspeech/models/quartznet5x5/model.html#QuartzNet5x5Model.training_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.quartznet5x5.model.QuartzNet5x5Model.training_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward propagate a <cite>inputs</cite> and <cite>targets</cite> pair for training.</p>
+<dl class="simple">
+<dt>Inputs:</dt><dd><p>batch (tuple): A train batch contains <cite>inputs</cite>, <cite>targets</cite>, <cite>input_lengths</cite>, <cite>target_lengths</cite>
+batch_idx (int): The index of batch</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>loss for training</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="openspeech.models.quartznet5x5.model.QuartzNet5x5Model.validation_step">
+<code class="sig-name descname">validation_step</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">batch</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a></span></em>, <em class="sig-param"><span class="n">batch_idx</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.OrderedDict" title="(in Python v3.9)">collections.OrderedDict</a><a class="reference internal" href="_modules/openspeech/models/quartznet5x5/model.html#QuartzNet5x5Model.validation_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.quartznet5x5.model.QuartzNet5x5Model.validation_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forward propagate a <cite>inputs</cite> and <cite>targets</cite> pair for validation.</p>
+<dl class="simple">
+<dt>Inputs:</dt><dd><p>batch (tuple): A train batch contains <cite>inputs</cite>, <cite>targets</cite>, <cite>input_lengths</cite>, <cite>target_lengths</cite>
+batch_idx (int): The index of batch</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>loss for training</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.models.quartznet5x5.configurations">
+<span id="quartznet-5x5-model-configuration"></span><h2>QuartzNet 5x5 Model Configuration<a class="headerlink" href="#module-openspeech.models.quartznet5x5.configurations" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.models.quartznet5x5.configurations.QuartzNet5x5Configs">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.models.quartznet5x5.configurations.</code><code class="sig-name descname">QuartzNet5x5Configs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'quartznet5x5'</span></em>, <em class="sig-param"><span class="n">num_blocks</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">5</span></em>, <em class="sig-param"><span class="n">num_sub_blocks</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">5</span></em>, <em class="sig-param"><span class="n">in_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'(None, 256, 256, 256, 512, 512, 512, 512, 1024)'</span></em>, <em class="sig-param"><span class="n">out_channels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'(256, 256, 256, 512, 512, 512, 512, 1024, None)'</span></em>, <em class="sig-param"><span class="n">kernel_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'(33, 33, 39, 51, 63, 75, 87, 1, 1)'</span></em>, <em class="sig-param"><span class="n">dilation</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'(1, 1, 1, 1, 1, 1, 1, 1, 2)'</span></em>, <em class="sig-param"><span class="n">dropout_p</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'(0.2, None, None, None, None, None, 0.2, 0.2, 0.2)'</span></em>, <em class="sig-param"><span class="n">optimizer</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'novograd'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/models/quartznet5x5/configurations.html#QuartzNet5x5Configs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.quartznet5x5.configurations.QuartzNet5x5Configs" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the configuration class to store the configuration of
+a <code class="xref py py-class docutils literal notranslate"><span class="pre">QuartzNet5x5</span></code>.</p>
+<p>It is used to initiated an <cite>QuartzNet5x5</cite> model.</p>
+<p>Configuration objects inherit from :class: <cite>~openspeech.dataclass.configs.OpenspeechDataclass</cite>.</p>
+<dl class="simple">
+<dt>Configurations:</dt><dd><p>model_name (str): Model name (default: quartznet5x5)
+num_blocks (int): Number of quartznet blocks (default: 5)
+num_sub_blocks (int): Number of quartznet sub blocks (default: 5)
+in_channels (str): Output channels of jasper block’s convolution
+out_channels (str): Output channels of jasper block’s convolution
+kernel_size (str): Kernel size of jasper block’s convolution
+dilation (str): Dilation of jasper block’s convolution
+dropout_p (str): Dropout probability
+optimizer (str): Optimizer for training.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="QuartzNet10x5.html" class="btn btn-neutral float-right" title="QuartzNet 10x5 Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Listen Attend Spell (multi-head).html" class="btn btn-neutral float-left" title="Listen Attend Spell (multi-head) Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Kim, Soohwan and Ha, Sangchun and Cho, Soyoung.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

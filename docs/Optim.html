@@ -1,0 +1,438 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Optim &mdash; Openspeech v0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Search" href="Beam Search.html" />
+    <link rel="prev" title="Modules" href="Modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Openspeech
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">GETTING STARTED</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html">Why should I use openspeech?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#why-shouldn-t-i-use-openspeech">Why shouldn’t I use openspeech?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#model-architectures">Model architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#get-started">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#troubleshoots-and-contributing">Troubleshoots and Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#citation">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/hydra_configs.html">Openspeech’s Hydra configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/configs.html">Openspeech’s configurations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MODEL ARCHITECTURES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Openspeech Model.html">Openspeech Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conformer.html">Conformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conformer LSTM.html">Conformer LSTM Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conformer Transducer.html">Conformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deep CNN with Joint CTC LAS.html">Deep CNN with Joint CTC LAS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DeepSpeech2.html">DeepSpeech2 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Jasper5x3.html">Jasper5x3 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Jasper10x5.html">Jasper10x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Joint CTC Conformer LSTM.html">Joint CTC Conformer LSTM Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Joint CTC LAS.html">Joint CTC LAS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Joint CTC Transformer.html">Joint CTC Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Listen Attend Spell.html">Listen Attend Spell Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Listen Attend Spell (location-aware).html">Listen Attend Spell (location-aware) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Listen Attend Spell (multi-head).html">Listen Attend Spell (multi-head) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuartzNet5x5.html">QuartzNet 5x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuartzNet10x5.html">QuartzNet 10x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuartzNet15x5.html">QuartzNet 15x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RNN Transducer.html">RNN Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transformer.html">Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transformer Transducer.html">Transformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transformer with CTC.html">Transformer with CTC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VGG Transformer.html">VGG Transformer Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Audio.html">Audio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Criterion.html">Criterion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Decoders.html">Decoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Encoders.html">Encoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modules.html">Modules</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Optim</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.optim.optimizer">Optimizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.optim.scheduler.lr_scheduler">Learning Rate Scheduler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.optim.scheduler.reduce_lr_on_plateau_scheduler">ReduceLROnPlateau Scheduler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.optim.scheduler.transformer_lr_scheduler">Transformer Scheduler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.optim.scheduler.tri_stage_lr_scheduler">Tri-Stage Scheduler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.optim.scheduler.warmup_reduce_lr_on_plateau_scheduler">Warmup ReduceLROnPlateau Scheduler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.optim.scheduler.warmup_scheduler">Warmup Scheduler</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Beam Search.html">Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Vocabulary.html">Vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Metric.html">Metric</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Openspeech</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Optim</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/Optim.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="optim">
+<h1>Optim<a class="headerlink" href="#optim" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-openspeech.optim.optimizer">
+<span id="optimizer"></span><h2>Optimizer<a class="headerlink" href="#module-openspeech.optim.optimizer" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.optim.optimizer.Optimizer">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.optim.optimizer.</code><code class="sig-name descname">Optimizer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">optim</span></em>, <em class="sig-param"><span class="n">scheduler</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scheduler_period</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_grad_norm</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/optim/optimizer.html#Optimizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.optim.optimizer.Optimizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is wrapper classs of torch.optim.Optimizer.
+This class provides functionalities for learning rate scheduling and gradient norm clipping.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>optim</strong> (<a class="reference external" href="https://pytorch.org/docs/master/optim.html#torch.optim.Optimizer" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))"><em>torch.optim.Optimizer</em></a>) – optimizer object, the parameters to be optimized
+should be given when instantiating the object, e.g. torch.optim.Adam, torch.optim.SGD</p></li>
+<li><p><strong>scheduler</strong> (<em>openspeech.optim.scheduler</em><em>, </em><em>optional</em>) – learning rate scheduler</p></li>
+<li><p><strong>scheduler_period</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – timestep with learning rate scheduler</p></li>
+<li><p><strong>max_grad_norm</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><em>optional</em>) – value used for gradient norm clipping</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.optim.scheduler.lr_scheduler">
+<span id="learning-rate-scheduler"></span><h2>Learning Rate Scheduler<a class="headerlink" href="#module-openspeech.optim.scheduler.lr_scheduler" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.optim.scheduler.lr_scheduler.LearningRateScheduler">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.optim.scheduler.lr_scheduler.</code><code class="sig-name descname">LearningRateScheduler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">optimizer</span></em>, <em class="sig-param"><span class="n">init_lr</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/optim/scheduler/lr_scheduler.html#LearningRateScheduler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.optim.scheduler.lr_scheduler.LearningRateScheduler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides inteface of learning rate scheduler.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do not use this class directly, use one of the sub classes.</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.optim.scheduler.reduce_lr_on_plateau_scheduler">
+<span id="reducelronplateau-scheduler"></span><h2>ReduceLROnPlateau Scheduler<a class="headerlink" href="#module-openspeech.optim.scheduler.reduce_lr_on_plateau_scheduler" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.optim.scheduler.reduce_lr_on_plateau_scheduler.ReduceLROnPlateauConfigs">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.optim.scheduler.reduce_lr_on_plateau_scheduler.</code><code class="sig-name descname">ReduceLROnPlateauConfigs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lr</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.0001</span></em>, <em class="sig-param"><span class="n">scheduler_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'reduce_lr_on_plateau'</span></em>, <em class="sig-param"><span class="n">lr_patience</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">lr_factor</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/optim/scheduler/reduce_lr_on_plateau_scheduler.html#ReduceLROnPlateauConfigs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.optim.scheduler.reduce_lr_on_plateau_scheduler.ReduceLROnPlateauConfigs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt id="openspeech.optim.scheduler.reduce_lr_on_plateau_scheduler.ReduceLROnPlateauScheduler">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.optim.scheduler.reduce_lr_on_plateau_scheduler.</code><code class="sig-name descname">ReduceLROnPlateauScheduler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">optimizer</span><span class="p">:</span> <span class="n">torch.optim.optimizer.Optimizer</span></em>, <em class="sig-param"><span class="n">configs</span><span class="p">:</span> <span class="n">omegaconf.dictconfig.DictConfig</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/optim/scheduler/reduce_lr_on_plateau_scheduler.html#ReduceLROnPlateauScheduler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.optim.scheduler.reduce_lr_on_plateau_scheduler.ReduceLROnPlateauScheduler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reduce learning rate when a metric has stopped improving. Models often benefit from reducing the learning rate by
+a factor of 2-10 once learning stagnates. This scheduler reads a metrics quantity and if no improvement is seen
+for a ‘patience’ number of epochs, the learning rate is reduced.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>optimizer</strong> (<a class="reference internal" href="#openspeech.optim.optimizer.Optimizer" title="openspeech.optim.optimizer.Optimizer"><em>Optimizer</em></a>) – wrapped optimizer.</p></li>
+<li><p><strong>configs</strong> (<em>DictConfig</em>) – configuration set.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.optim.scheduler.transformer_lr_scheduler">
+<span id="transformer-scheduler"></span><h2>Transformer Scheduler<a class="headerlink" href="#module-openspeech.optim.scheduler.transformer_lr_scheduler" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.optim.scheduler.transformer_lr_scheduler.TransformerLRScheduler">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.optim.scheduler.transformer_lr_scheduler.</code><code class="sig-name descname">TransformerLRScheduler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">optimizer</span><span class="p">:</span> <span class="n">torch.optim.optimizer.Optimizer</span></em>, <em class="sig-param"><span class="n">configs</span><span class="p">:</span> <span class="n">omegaconf.dictconfig.DictConfig</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/optim/scheduler/transformer_lr_scheduler.html#TransformerLRScheduler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.optim.scheduler.transformer_lr_scheduler.TransformerLRScheduler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transformer Learning Rate Scheduler proposed in “Attention Is All You Need”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>optimizer</strong> (<a class="reference internal" href="#openspeech.optim.optimizer.Optimizer" title="openspeech.optim.optimizer.Optimizer"><em>Optimizer</em></a>) – wrapped optimizer.</p></li>
+<li><p><strong>configs</strong> (<em>DictConfig</em>) – configuration set.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="openspeech.optim.scheduler.transformer_lr_scheduler.TransformerLRSchedulerConfigs">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.optim.scheduler.transformer_lr_scheduler.</code><code class="sig-name descname">TransformerLRSchedulerConfigs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lr</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.0001</span></em>, <em class="sig-param"><span class="n">scheduler_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'transformer'</span></em>, <em class="sig-param"><span class="n">peak_lr</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.0001</span></em>, <em class="sig-param"><span class="n">final_lr</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">1e-07</span></em>, <em class="sig-param"><span class="n">final_lr_scale</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.05</span></em>, <em class="sig-param"><span class="n">warmup_steps</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">10000</span></em>, <em class="sig-param"><span class="n">decay_steps</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">150000</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/optim/scheduler/transformer_lr_scheduler.html#TransformerLRSchedulerConfigs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.optim.scheduler.transformer_lr_scheduler.TransformerLRSchedulerConfigs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.optim.scheduler.tri_stage_lr_scheduler">
+<span id="tri-stage-scheduler"></span><h2>Tri-Stage Scheduler<a class="headerlink" href="#module-openspeech.optim.scheduler.tri_stage_lr_scheduler" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.optim.scheduler.tri_stage_lr_scheduler.TriStageLRScheduler">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.optim.scheduler.tri_stage_lr_scheduler.</code><code class="sig-name descname">TriStageLRScheduler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">optimizer</span><span class="p">:</span> <span class="n">torch.optim.optimizer.Optimizer</span></em>, <em class="sig-param"><span class="n">configs</span><span class="p">:</span> <span class="n">omegaconf.dictconfig.DictConfig</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/optim/scheduler/tri_stage_lr_scheduler.html#TriStageLRScheduler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.optim.scheduler.tri_stage_lr_scheduler.TriStageLRScheduler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tri-Stage Learning Rate Scheduler. Implement the learning rate scheduler in “SpecAugment”</p>
+<p>Similar to inverse_squre_root scheduler, but tri_stage learning rate employs
+three stages LR scheduling:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>warmup stage, starting from <cite>lr</cite> * <cite>init_lr_scale</cite>, linearly
+increased to <cite>lr</cite> in <cite>warmup_steps</cite> iterations</p></li>
+<li><p>hold stage, after <cite>warmup_steps</cite>, keep the LR as <cite>lr</cite> for <cite>hold_steps</cite>
+iterations</p></li>
+<li><p>decay stage, after hold stage, decay LR exponetially to
+<cite>lr</cite> * <cite>final_lr_scale</cite> in <cite>decay_steps</cite>;
+after that LR is keep as <cite>final_lr_scale</cite> * <cite>lr</cite></p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>During warmup::</dt><dd><p>init_lr = cfg.init_lr_scale * cfg.lr
+lrs = torch.linspace(init_lr, cfg.lr, cfg.warmup_steps)
+lr = lrs[update_num]</p>
+</dd>
+<dt>During hold::</dt><dd><p>lr = cfg.lr</p>
+</dd>
+<dt>During decay::</dt><dd><p>decay_factor = - math.log(cfg.final_lr_scale) / cfg.decay_steps
+lr = cfg.lr * exp(- (update_num - warmup_steps - decay_steps) * decay_factor)</p>
+</dd>
+<dt>After that::</dt><dd><p>lr = cfg.lr * cfg.final_lr_scale</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>optimizer</strong> (<a class="reference internal" href="#openspeech.optim.optimizer.Optimizer" title="openspeech.optim.optimizer.Optimizer"><em>Optimizer</em></a>) – wrapped optimizer.</p></li>
+<li><p><strong>configs</strong> (<em>DictConfig</em>) – configuration set.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="openspeech.optim.scheduler.tri_stage_lr_scheduler.TriStageLRSchedulerConfigs">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.optim.scheduler.tri_stage_lr_scheduler.</code><code class="sig-name descname">TriStageLRSchedulerConfigs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lr</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.0001</span></em>, <em class="sig-param"><span class="n">scheduler_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'tri_stage'</span></em>, <em class="sig-param"><span class="n">init_lr_scale</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">final_lr_scale</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">phase_ratio</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'(0.1, 0.4, 0.5)'</span></em>, <em class="sig-param"><span class="n">total_steps</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">400000</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/optim/scheduler/tri_stage_lr_scheduler.html#TriStageLRSchedulerConfigs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.optim.scheduler.tri_stage_lr_scheduler.TriStageLRSchedulerConfigs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.optim.scheduler.warmup_reduce_lr_on_plateau_scheduler">
+<span id="warmup-reducelronplateau-scheduler"></span><h2>Warmup ReduceLROnPlateau Scheduler<a class="headerlink" href="#module-openspeech.optim.scheduler.warmup_reduce_lr_on_plateau_scheduler" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.optim.scheduler.warmup_reduce_lr_on_plateau_scheduler.WarmupReduceLROnPlateauConfigs">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.optim.scheduler.warmup_reduce_lr_on_plateau_scheduler.</code><code class="sig-name descname">WarmupReduceLROnPlateauConfigs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lr</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.0001</span></em>, <em class="sig-param"><span class="n">scheduler_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'warmup_reduce_lr_on_plateau'</span></em>, <em class="sig-param"><span class="n">lr_patience</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">lr_factor</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.3</span></em>, <em class="sig-param"><span class="n">peak_lr</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.0001</span></em>, <em class="sig-param"><span class="n">init_lr</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">1e-10</span></em>, <em class="sig-param"><span class="n">warmup_steps</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">4000</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/optim/scheduler/warmup_reduce_lr_on_plateau_scheduler.html#WarmupReduceLROnPlateauConfigs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.optim.scheduler.warmup_reduce_lr_on_plateau_scheduler.WarmupReduceLROnPlateauConfigs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt id="openspeech.optim.scheduler.warmup_reduce_lr_on_plateau_scheduler.WarmupReduceLROnPlateauScheduler">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.optim.scheduler.warmup_reduce_lr_on_plateau_scheduler.</code><code class="sig-name descname">WarmupReduceLROnPlateauScheduler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">optimizer</span><span class="p">:</span> <span class="n">torch.optim.optimizer.Optimizer</span></em>, <em class="sig-param"><span class="n">configs</span><span class="p">:</span> <span class="n">omegaconf.dictconfig.DictConfig</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/optim/scheduler/warmup_reduce_lr_on_plateau_scheduler.html#WarmupReduceLROnPlateauScheduler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.optim.scheduler.warmup_reduce_lr_on_plateau_scheduler.WarmupReduceLROnPlateauScheduler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Warmup learning rate until <cite>warmup_steps</cite> and reduce learning rate on plateau after.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>optimizer</strong> (<a class="reference internal" href="#openspeech.optim.optimizer.Optimizer" title="openspeech.optim.optimizer.Optimizer"><em>Optimizer</em></a>) – wrapped optimizer.</p></li>
+<li><p><strong>configs</strong> (<em>DictConfig</em>) – configuration set.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.optim.scheduler.warmup_scheduler">
+<span id="warmup-scheduler"></span><h2>Warmup Scheduler<a class="headerlink" href="#module-openspeech.optim.scheduler.warmup_scheduler" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.optim.scheduler.warmup_scheduler.WarmupLRScheduler">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.optim.scheduler.warmup_scheduler.</code><code class="sig-name descname">WarmupLRScheduler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">optimizer</span><span class="p">:</span> <span class="n">torch.optim.optimizer.Optimizer</span></em>, <em class="sig-param"><span class="n">configs</span><span class="p">:</span> <span class="n">omegaconf.dictconfig.DictConfig</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/optim/scheduler/warmup_scheduler.html#WarmupLRScheduler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.optim.scheduler.warmup_scheduler.WarmupLRScheduler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Warmup learning rate until <cite>total_steps</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>optimizer</strong> (<a class="reference internal" href="#openspeech.optim.optimizer.Optimizer" title="openspeech.optim.optimizer.Optimizer"><em>Optimizer</em></a>) – wrapped optimizer.</p></li>
+<li><p><strong>configs</strong> (<em>DictConfig</em>) – configuration set.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="openspeech.optim.scheduler.warmup_scheduler.WarmupLRSchedulerConfigs">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.optim.scheduler.warmup_scheduler.</code><code class="sig-name descname">WarmupLRSchedulerConfigs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lr</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.0001</span></em>, <em class="sig-param"><span class="n">scheduler_name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'warmup'</span></em>, <em class="sig-param"><span class="n">peak_lr</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0.0001</span></em>, <em class="sig-param"><span class="n">init_lr</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">1e-10</span></em>, <em class="sig-param"><span class="n">warmup_steps</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">4000</span></em>, <em class="sig-param"><span class="n">total_steps</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">200000</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/optim/scheduler/warmup_scheduler.html#WarmupLRSchedulerConfigs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.optim.scheduler.warmup_scheduler.WarmupLRSchedulerConfigs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="Beam Search.html" class="btn btn-neutral float-right" title="Search" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Modules.html" class="btn btn-neutral float-left" title="Modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Kim, Soohwan and Ha, Sangchun and Cho, Soyoung.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

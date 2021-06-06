@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Search &mdash; Openspeech v0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Vocabulary" href="Vocabulary.html" />
+    <link rel="prev" title="Optim" href="Optim.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Openspeech
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">GETTING STARTED</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html">Why should I use openspeech?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#why-shouldn-t-i-use-openspeech">Why shouldn’t I use openspeech?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#model-architectures">Model architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#get-started">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#troubleshoots-and-contributing">Troubleshoots and Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#citation">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/hydra_configs.html">Openspeech’s Hydra configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/configs.html">Openspeech’s configurations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MODEL ARCHITECTURES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Openspeech Model.html">Openspeech Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conformer.html">Conformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conformer LSTM.html">Conformer LSTM Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conformer Transducer.html">Conformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Deep CNN with Joint CTC LAS.html">Deep CNN with Joint CTC LAS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DeepSpeech2.html">DeepSpeech2 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Jasper5x3.html">Jasper5x3 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Jasper10x5.html">Jasper10x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Joint CTC Conformer LSTM.html">Joint CTC Conformer LSTM Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Joint CTC LAS.html">Joint CTC LAS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Joint CTC Transformer.html">Joint CTC Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Listen Attend Spell.html">Listen Attend Spell Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Listen Attend Spell (location-aware).html">Listen Attend Spell (location-aware) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Listen Attend Spell (multi-head).html">Listen Attend Spell (multi-head) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuartzNet5x5.html">QuartzNet 5x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuartzNet10x5.html">QuartzNet 10x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuartzNet15x5.html">QuartzNet 15x5 Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RNN Transducer.html">RNN Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transformer.html">Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transformer Transducer.html">Transformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transformer with CTC.html">Transformer with CTC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VGG Transformer.html">VGG Transformer Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Audio.html">Audio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Criterion.html">Criterion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Decoders.html">Decoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Encoders.html">Encoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Optim.html">Optim</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Search</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.search.base">Base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.search.beam_search_ctc">Beam Search CTC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.search.beam_search_lstm">Beam Search LSTM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.search.beam_search_transformer">Beam Search Transformer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Vocabulary.html">Vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Metric.html">Metric</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Openspeech</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Search</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/Beam Search.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="search">
+<h1>Search<a class="headerlink" href="#search" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-openspeech.search.base">
+<span id="base"></span><h2>Base<a class="headerlink" href="#module-openspeech.search.base" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.search.base.OpenspeechBeamSearchBase">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.search.base.</code><code class="sig-name descname">OpenspeechBeamSearchBase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">decoder</span></em>, <em class="sig-param"><span class="n">beam_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/search/base.html#OpenspeechBeamSearchBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.search.base.OpenspeechBeamSearchBase" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.search.beam_search_ctc">
+<span id="beam-search-ctc"></span><h2>Beam Search CTC<a class="headerlink" href="#module-openspeech.search.beam_search_ctc" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.search.beam_search_ctc.BeamSearchCTC">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.search.beam_search_ctc.</code><code class="sig-name descname">BeamSearchCTC</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">labels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></span></em>, <em class="sig-param"><span class="n">lm_path</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">alpha</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">beta</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">cutoff_top_n</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">40</span></em>, <em class="sig-param"><span class="n">cutoff_prob</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">beam_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">3</span></em>, <em class="sig-param"><span class="n">num_processes</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">4</span></em>, <em class="sig-param"><span class="n">blank_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/search/beam_search_ctc.html#BeamSearchCTC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.search.beam_search_ctc.BeamSearchCTC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decodes probability output using ctcdecode package.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>labels</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – the tokens you used to train your model</p></li>
+<li><p><strong>lm_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – the path to your external kenlm language model(LM).</p></li>
+<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – weighting associated with the LMs probabilities.</p></li>
+<li><p><strong>beta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – weight associated with the number of words within our beam</p></li>
+<li><p><strong>cutoff_top_n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – cutoff number in pruning. Only the top cutoff_top_n characters with the highest probability
+in the vocab will be used in beam search.</p></li>
+<li><p><strong>cutoff_prob</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – cutoff probability in pruning. 1.0 means no pruning.</p></li>
+<li><p><strong>beam_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – this controls how broad the beam search is.</p></li>
+<li><p><strong>num_processes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – parallelize the batch using num_processes workers.</p></li>
+<li><p><strong>blank_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – this should be the index of the CTC blank token</p></li>
+</ul>
+</dd>
+</dl>
+<dl>
+<dt>Inputs:</dt><dd><dl class="simple">
+<dt>predicted_probs: Tensor of character probabilities, where probs[c,t] is the probability of</dt><dd><p>character c at time t</p>
+</dd>
+</dl>
+<p>sizes: Size of each sequence in the mini-batch</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>sequences of the model’s best prediction</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>outputs</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="openspeech.search.beam_search_ctc.BeamSearchCTC.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">logits</span></em>, <em class="sig-param"><span class="n">sizes</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/search/beam_search_ctc.html#BeamSearchCTC.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.search.beam_search_ctc.BeamSearchCTC.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decodes probability output using ctcdecode package.</p>
+<dl>
+<dt>Inputs:</dt><dd><dl class="simple">
+<dt>logits: Tensor of character probabilities, where probs[c,t] is the probability of</dt><dd><p>character c at time t</p>
+</dd>
+</dl>
+<p>sizes: Size of each sequence in the mini-batch</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>sequences of the model’s best prediction</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>outputs</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.search.beam_search_lstm">
+<span id="beam-search-lstm"></span><h2>Beam Search LSTM<a class="headerlink" href="#module-openspeech.search.beam_search_lstm" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.search.beam_search_lstm.BeamSearchLSTM">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.search.beam_search_lstm.</code><code class="sig-name descname">BeamSearchLSTM</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">decoder</span><span class="p">:</span> <span class="n"><a class="reference internal" href="Decoders.html#openspeech.decoders.lstm_decoder.LSTMDecoder" title="openspeech.decoders.lstm_decoder.LSTMDecoder">openspeech.decoders.lstm_decoder.LSTMDecoder</a></span></em>, <em class="sig-param"><span class="n">beam_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/search/beam_search_lstm.html#BeamSearchLSTM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.search.beam_search_lstm.BeamSearchLSTM" title="Permalink to this definition">¶</a></dt>
+<dd><p>LSTM Beam Search Decoder</p>
+<dl>
+<dt>Args: decoder, beam_size, batch_size</dt><dd><p>decoder (DecoderLSTM): base decoder of lstm model.
+beam_size (int): size of beam.
+batch_size (int): size of batch.</p>
+</dd>
+<dt>Inputs: encoder_outputs, targets, encoder_output_lengths, teacher_forcing_ratio</dt><dd><dl class="simple">
+<dt>encoder_outputs (torch.FloatTensor): A output sequence of encoders. <cite>FloatTensor</cite> of size</dt><dd><p><code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">seq_length,</span> <span class="pre">dimension)</span></code></p>
+</dd>
+<dt>targets (torch.LongTensor): A target sequence passed to decoders. <cite>IntTensor</cite> of size</dt><dd><p><code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">seq_length)</span></code></p>
+</dd>
+<dt>encoder_output_lengths (torch.LongTensor): A encoder output lengths sequence. <cite>LongTensor</cite> of size</dt><dd><p><code class="docutils literal notranslate"><span class="pre">(batch)</span></code></p>
+</dd>
+</dl>
+<p>teacher_forcing_ratio (float): Ratio of teacher forcing.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Log probability of model predictions.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>logits (torch.FloatTensor)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="openspeech.search.beam_search_lstm.BeamSearchLSTM.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">encoder_outputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">encoder_output_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><a class="reference internal" href="_modules/openspeech/search/beam_search_lstm.html#BeamSearchLSTM.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.search.beam_search_lstm.BeamSearchLSTM.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Beam search decoding.</p>
+<dl class="simple">
+<dt>Inputs: encoder_outputs</dt><dd><dl class="simple">
+<dt>encoder_outputs (torch.FloatTensor): A output sequence of encoders. <cite>FloatTensor</cite> of size</dt><dd><p><code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">seq_length,</span> <span class="pre">dimension)</span></code></p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Log probability of model predictions.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>logits (torch.FloatTensor)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.search.beam_search_transformer">
+<span id="beam-search-transformer"></span><h2>Beam Search Transformer<a class="headerlink" href="#module-openspeech.search.beam_search_transformer" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.search.beam_search_transformer.BeamSearchTransformer">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.search.beam_search_transformer.</code><code class="sig-name descname">BeamSearchTransformer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">decoder</span><span class="p">:</span> <span class="n"><a class="reference internal" href="Decoders.html#openspeech.decoders.transformer_decoder.TransformerDecoder" title="openspeech.decoders.transformer_decoder.TransformerDecoder">openspeech.decoders.transformer_decoder.TransformerDecoder</a></span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">beam_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/search/beam_search_transformer.html#BeamSearchTransformer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.search.beam_search_transformer.BeamSearchTransformer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="Vocabulary.html" class="btn btn-neutral float-right" title="Vocabulary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Optim.html" class="btn btn-neutral float-left" title="Optim" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Kim, Soohwan and Ha, Sangchun and Cho, Soyoung.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

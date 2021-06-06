@@ -1,0 +1,5 @@
+number,unit,id
+0,<pad>,0
+1,<eos>,1
+2,<sos>,2
+3,<blank>,3

@@ -32,7 +32,7 @@ setup(
     url='https://github.com/sooftware/openspeech',
     download_url='https://github.com/sooftware/openspeech/releases/tag/v0.1.zip',
     install_requires=[
-        'torch>=1.4.0',
+        'torch>=1.6.0',
         'python-Levenshtein',
         'numpy',
         'pandas',

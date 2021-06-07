@@ -54,7 +54,7 @@ class SpectrogramFeatureTransform(object):
         self.hop_length = int(round(configs.audio.sample_rate * 0.001 * configs.audio.frame_shift))
         self.function = torch.stft
 
-    def _get_feature(self, signal: np.ndarray) -> np.ndarray:
+    def __call__(self, signal: np.ndarray) -> np.ndarray:
         """
         Provides feature extraction
 

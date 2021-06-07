@@ -62,7 +62,7 @@ class FilterBankFeatureTransform(object):
         self.frame_shift = configs.audio.frame_shift
         self.function = torchaudio.compliance.kaldi.fbank
 
-    def _get_feature(self, signal: np.ndarray) -> np.ndarray:
+    def __call__(self, signal: np.ndarray) -> np.ndarray:
         """
         Provides feature extraction
 

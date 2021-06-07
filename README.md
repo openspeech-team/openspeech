@@ -8,7 +8,7 @@
   
 <p align="center">
   <a href="https://github.com/sooftware/openspeech/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-informational">
-  <a href="https://pypi.org/project/openspeech-core/"><img src="https://img.shields.io/badge/pypi-v0.2-informational">
+  <a href="https://pypi.org/project/openspeech-core/"><img src="https://img.shields.io/badge/pypi-v0.2.0-informational">
   <img src="https://img.shields.io/badge/build-passing-33CF57?&logo=GitHub">
   <a href="https://sooftware.github.io/openspeech/"><img src="https://img.shields.io/badge/docs-passing-33CF57?&logo=GitHub">
 </p>

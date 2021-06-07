@@ -142,7 +142,7 @@ class OpenspeechModel(pl.LightningModule):
         raise NotImplementedError
 
     def validation_epoch_end(self, outputs: dict) -> dict:
-        self.current_val_loss = torch.stack([output['val_loss'] for output in outputs]).mean()
+        self.current_val_loss = torch.stack([output['loss'] for output in outputs]).mean()
 
         if get_class_name(self.scheduler) == "WarmupReduceLROnPlateauScheduler" \
             or get_class_name(self.scheduler) == "ReduceLROnPlateauScheduler":

@@ -77,4 +77,3 @@ class MelSpectrogramConfigs(OpenspeechDataclass):
     apply_joining_augment: bool = field(
         default=False, metadata={"help": "Flag indication whether to apply audio joining augment or not"}
     )
-

@@ -60,7 +60,7 @@ class MelSpectrogramFeatureTransform(object):
         self.function = librosa.feature.melspectrogram
         self.power_to_db = librosa.power_to_db
 
-    def _get_feature(self, signal: np.ndarray) -> np.ndarray:
+    def __call__(self, signal: np.ndarray) -> np.ndarray:
         """
         Provides feature extraction
 

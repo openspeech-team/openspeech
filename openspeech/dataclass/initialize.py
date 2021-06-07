@@ -51,3 +51,21 @@ def hydra_init() -> None:
 
         for k, v in dataclass_registry.items():
             cs.store(group=group, name=k, node=v, provider="openspeech")
+
+
+def hydra_eval_init() -> None:
+    from openspeech.data import AUDIO_FEATURE_TRANSFORM_DATACLASS_REGISTRY
+    from openspeech.dataclass import EVAL_DATACLASS_REGISTRY
+
+    registries = {
+        "audio": AUDIO_FEATURE_TRANSFORM_DATACLASS_REGISTRY,
+        "eval": EVAL_DATACLASS_REGISTRY,
+    }
+
+    cs = ConfigStore.instance()
+
+    for group in registries.keys():
+        dataclass_registry = registries[group]
+
+        for k, v in dataclass_registry.items():
+            cs.store(group=group, name=k, node=v, provider="openspeech")

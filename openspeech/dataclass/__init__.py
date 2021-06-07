@@ -31,6 +31,8 @@ from .configurations import (
     Fp16GPUTrainerConfigs,
     Fp16TPUTrainerConfigs,
     Fp64CPUTrainerConfigs,
+    EvaluationConfigs,
+    EnsembleEvaluationConfigs,
 )
 
 OPENSPEECH_CONFIGS = [
@@ -61,4 +63,8 @@ TRAINER_DATACLASS_REGISTRY = {
 }
 AUGMENT_DATACLASS_REGISTRY = {
     "default": AugmentConfigs,
+}
+EVAL_DATACLASS_REGISTRY = {
+    "default": EvaluationConfigs,
+    "ensemble": EnsembleEvaluationConfigs,
 }

@@ -35,7 +35,7 @@ class SpectrogramConfigs(OpenspeechDataclass):
 
     Configuration objects inherit from :class: `~openspeech.dataclass.OpenspeechDataclass`.
 
-    Configurations:
+    Args:
         name (str): name of feature transform. (default: spectrogram)
         sample_rate (int): sampling rate of audio (default: 16000)
         frame_length (float): frame length for spectrogram (default: 20.0)

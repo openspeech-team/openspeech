@@ -35,7 +35,7 @@ class DeepCNNWithJointCTCListenAttendSpellConfigs(OpenspeechDataclass):
 
     Configuration objects inherit from :class: `~openspeech.dataclass.configs.OpenspeechDataclass`.
 
-    Configurations:
+    Args:
         model_name (str): Model name (default: deep_cnn_with_joint_ctc_listen_attend_spell)
         num_encoder_layers (int): The number of encoder layers. (default: 3)
         num_decoder_layers (int): The number of decoder layers. (default: 2)

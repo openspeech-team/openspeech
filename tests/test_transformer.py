@@ -50,7 +50,7 @@ class TestTransformer(unittest.TestCase):
         vocab = KsponSpeechCharacterVocabulary(configs)
         model = TransformerModel(configs, vocab)
         model.build_model()
-        model.set_beam_decoder(batch_size=3, beam_size=3)
+        model.set_beam_decoder(beam_size=3)
 
         for i in range(3):
             prediction = model(DUMMY_INPUTS, DUMMY_INPUT_LENGTHS)["predictions"]

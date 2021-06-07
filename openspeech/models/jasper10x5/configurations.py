@@ -35,7 +35,7 @@ class Jasper10x5Config(OpenspeechDataclass):
 
     Configuration objects inherit from :class: `~openspeech.dataclass.configs.OpenspeechDataclass`.
 
-    Configurations:
+    Args:
         model_name (str): Model name (default: jasper10x5)
         num_blocks (int): Number of jasper blocks (default: 10)
         num_sub_blocks (int): Number of jasper sub blocks (default: 5)

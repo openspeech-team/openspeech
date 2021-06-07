@@ -90,7 +90,7 @@ class SpeechToTextDataset(Dataset):
         self.apply_noise_augment = apply_noise_augment
         self.apply_time_stretch_augment = apply_time_stretch_augment
         self.apply_joining_augment = apply_joining_augment
-        self.transforms = AUDIO_FEATURE_TRANSFORM_DATACLASS_REGISTRY[configs.name](configs)
+        self.transforms = AUDIO_FEATURE_TRANSFORM_DATACLASS_REGISTRY[configs.audio.name](configs)
         self._load_audio = load_audio
 
         if self.apply_spec_augment:

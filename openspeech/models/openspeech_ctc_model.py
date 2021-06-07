@@ -116,7 +116,7 @@ class OpenspeechCTCModel(OpenspeechModel):
         else:
             y_hats = logits.max(-1)[1]
         return {
-            "y_hats": y_hats,
+            "predictions": y_hats,
             "logits": logits,
             "output_lengths": output_lengths,
         }

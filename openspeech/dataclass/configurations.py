@@ -311,6 +311,62 @@ class VocabularyConfigs(OpenspeechDataclass):
     )
 
 
+@dataclass
+class EvaluationConfigs(OpenspeechDataclass):
+    model_name: str = field(
+        default=MISSING, metadata={"help": "Model name."}
+    )
+    dataset_path: str = field(
+        default=MISSING, metadata={"help": "Path of dataset."}
+    )
+    checkpoint_path: str = field(
+        default=MISSING, metadata={"help": "Path of model checkpoint."}
+    )
+    manifest_file_path: str = field(
+        default=MISSING, metadata={"help": "Path of evaluation manifest file."}
+    )
+    num_workers: int = field(
+        default=4, metadata={"help": "Number of worker."}
+    )
+    batch_size: int = field(
+        default=32, metadata={"help": "Batch size."}
+    )
+    beam_size: int = field(
+        default=1, metadata={"help": "Beam size of beam search."}
+    )
+
+
+@dataclass
+class EnsembleEvaluationConfigs(OpenspeechDataclass):
+    model_names: str = field(
+        default=MISSING, metadata={"help": "List of model name."}
+    )
+    dataset_paths: str = field(
+        default=MISSING, metadata={"help": "Path of dataset."}
+    )
+    checkpoint_paths: str = field(
+        default=MISSING, metadata={"help": "List of model checkpoint path."}
+    )
+    manifest_file_path: str = field(
+        default=MISSING, metadata={"help": "Path of evaluation manifest file."}
+    )
+    ensemble_method: str = field(
+        default="vanilla", metadata={"help": "Method of ensemble (vanilla, weighted)"}
+    )
+    ensemble_weights: str = field(
+        default="(1.0, 1.0, 1.0 ..)", metadata={"help": "Weights of ensemble models."}
+    )
+    num_workers: int = field(
+        default=4, metadata={"help": "Number of worker."}
+    )
+    batch_size: int = field(
+        default=32, metadata={"help": "Batch size."}
+    )
+    beam_size: int = field(
+        default=1, metadata={"help": "Beam size of beam search."}
+    )
+
+
 def generate_openspeech_configs_with_help():
     from openspeech.dataclass import OPENSPEECH_CONFIGS, TRAINER_DATACLASS_REGISTRY
     from openspeech.models import MODEL_DATACLASS_REGISTRY

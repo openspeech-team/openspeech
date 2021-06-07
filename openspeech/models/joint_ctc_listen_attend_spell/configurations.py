@@ -35,21 +35,21 @@ class JointCTCListenAttendSpellConfigs(OpenspeechDataclass):
 
     Configuration objects inherit from :class: `~openspeech.dataclass.configs.OpenspeechDataclass`.
 
-    Configurations:
-    model_name (str): Model name (default: joint_ctc_listen_attend_spell)
-    num_encoder_layers (int): The number of encoder layers. (default: 3)
-    num_decoder_layers (int): The number of decoder layers. (default: 2)
-    hidden_state_dim (int): The hidden state dimension of encoder. (default: 768)
-    encoder_dropout_p (float): The dropout probability of encoder. (default: 0.3)
-    encoder_bidirectional (bool): If True, becomes a bidirectional encoders (default: True)
-    rnn_type (str): Type of rnn cell (rnn, lstm, gru) (default: lstm)
-    joint_ctc_attention (bool): Flag indication joint ctc attention or not (default: True)
-    max_length (int): Max decoding length. (default: 128)
-    num_attention_heads (int): The number of attention heads. (default: 1)
-    decoder_dropout_p (float): The dropout probability of decoder. (default: 0.2)
-    decoder_attn_mechanism (str): The attention mechanism for decoder. (default: loc)
-    teacher_forcing_ratio (float): The ratio of teacher forcing. (default: 1.0)
-    optimizer (str): Optimizer for training. (default: adam)
+    Args:
+        model_name (str): Model name (default: joint_ctc_listen_attend_spell)
+        num_encoder_layers (int): The number of encoder layers. (default: 3)
+        num_decoder_layers (int): The number of decoder layers. (default: 2)
+        hidden_state_dim (int): The hidden state dimension of encoder. (default: 768)
+        encoder_dropout_p (float): The dropout probability of encoder. (default: 0.3)
+        encoder_bidirectional (bool): If True, becomes a bidirectional encoders (default: True)
+        rnn_type (str): Type of rnn cell (rnn, lstm, gru) (default: lstm)
+        joint_ctc_attention (bool): Flag indication joint ctc attention or not (default: True)
+        max_length (int): Max decoding length. (default: 128)
+        num_attention_heads (int): The number of attention heads. (default: 1)
+        decoder_dropout_p (float): The dropout probability of decoder. (default: 0.2)
+        decoder_attn_mechanism (str): The attention mechanism for decoder. (default: loc)
+        teacher_forcing_ratio (float): The ratio of teacher forcing. (default: 1.0)
+        optimizer (str): Optimizer for training. (default: adam)
     """
     model_name: str = field(
         default="joint_ctc_listen_attend_spell", metadata={"help": "Model name"}

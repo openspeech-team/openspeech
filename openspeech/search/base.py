@@ -25,7 +25,7 @@ import torch.nn as nn
 
 
 class OpenspeechBeamSearchBase(nn.Module):
-    def __init__(self, decoder, beam_size: int, batch_size: int):
+    def __init__(self, decoder, beam_size: int):
         super(OpenspeechBeamSearchBase, self).__init__()
         self.decoder = decoder
         self.beam_size = beam_size
@@ -34,8 +34,6 @@ class OpenspeechBeamSearchBase(nn.Module):
         self.eos_id = decoder.eos_id
         self.ongoing_beams = None
         self.cumulative_ps = None
-        self.finished = [[] for _ in range(batch_size)]
-        self.finished_ps = [[] for _ in range(batch_size)]
         self.forward_step = decoder.forward_step
 
     def _inflate(self, tensor: torch.Tensor, n_repeat: int, dim: int) -> torch.Tensor:

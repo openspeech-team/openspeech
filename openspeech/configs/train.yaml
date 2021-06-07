@@ -2,7 +2,7 @@
 
 defaults:
   - audio: null
-  - augment: null
+  - augment: default
   - dataset: null
   - criterion: null
   - lr_scheduler: null

@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-pip install openspeech-core
+pip install -e .
 
 conda install -c pytorch torchaudio
 conda install -c conda-forge librosa

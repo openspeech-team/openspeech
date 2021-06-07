@@ -47,8 +47,8 @@ class BeamSearchLSTM(OpenspeechBeamSearchBase):
     Returns:
         * logits (torch.FloatTensor): Log probability of model predictions.
     """
-    def __init__(self, decoder: LSTMDecoder, beam_size: int, batch_size: int):
-        super(BeamSearchLSTM, self).__init__(decoder, beam_size, batch_size)
+    def __init__(self, decoder: LSTMDecoder, beam_size: int):
+        super(BeamSearchLSTM, self).__init__(decoder, beam_size)
         self.hidden_state_dim = decoder.hidden_state_dim
         self.num_layers = decoder.num_layers
         self.validate_args = decoder.validate_args
@@ -69,6 +69,10 @@ class BeamSearchLSTM(OpenspeechBeamSearchBase):
             * logits (torch.FloatTensor): Log probability of model predictions.
         """
         batch_size, hidden_states = encoder_outputs.size(0), None
+
+        self.finished = [[] for _ in range(batch_size)]
+        self.finished_ps = [[] for _ in range(batch_size)]
+
         inputs, batch_size, max_length = self.validate_args(None, encoder_outputs, teacher_forcing_ratio=0.0)
 
         step_outputs, hidden_states, attn = self.forward_step(inputs, hidden_states, encoder_outputs)

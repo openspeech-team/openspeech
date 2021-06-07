@@ -179,6 +179,32 @@ $ python ./openspeech_cli/hydra_train.py \
     criterion=ctc
 ```
   
+### Evaluation examples
+  
+- Example1: Evaluation the `listen_attend_spell` model:
+  
+```
+$ python ./openspeech_cli/hydra_eval.py \
+    audio=melspectrogram \
+    eval.model_name=listen_attend_spell \
+    eval.dataset_path=$DATASET_PATH \
+    eval.checkpoint_path=$CHECKPOINT_PATH \
+    eval.manifest_file_path=$MANIFEST_FILE_PATH  
+```
+
+- Example2: Evaluation the `listen_attend_spell`, `conformer_lstm` models with ensemble:
+  
+```
+$ python ./openspeech_cli/hydra_eval.py \
+    audio=melspectrogram \
+    eval.model_names=(listen_attend_spell, conformer_lstm) \
+    eval.dataset_path=$DATASET_PATH \
+    eval.checkpoint_paths=($CHECKPOINT_PATH1, $CHECKPOINT_PATH2) \
+    eval.ensemble_weights=(0.3, 0.7) \
+    eval.ensemble_method=weighted \
+    eval.manifest_file_path=$MANIFEST_FILE_PATH  
+```
+  
 ## Installation
   
 This project recommends Python 3.7 or higher.  

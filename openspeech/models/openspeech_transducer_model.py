@@ -22,6 +22,7 @@
 
 import torch
 import torch.nn as nn
+import warnings
 from torch import Tensor
 from collections import OrderedDict
 from omegaconf import DictConfig
@@ -67,6 +68,9 @@ class OpenspeechTransducerModel(OpenspeechModel):
             nn.Tanh(),
             Linear(in_features=in_features, out_features=self.num_classes),
         )
+
+    def set_beam_decoder(self, beam_size: int = 3):
+        warnings.warn("Currently, Beamsearch has not yet been implemented in the transducer model.")
 
     def collect_outputs(
             self,

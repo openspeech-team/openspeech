@@ -35,7 +35,7 @@ class RNNTransducerConfigs(OpenspeechDataclass):
 
     Configuration objects inherit from :class: `~openspeech.dataclass.configs.OpenspeechDataclass`.
 
-    Configurations:
+    Args:
         model_name (str): Model name (default: transformer_transducer)
         encoder_hidden_state_dim (int): Hidden state dimension of encoder (default: 312)
         decoder_hidden_state_dim (int): Hidden state dimension of decoder (default: 512)

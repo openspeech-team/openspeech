@@ -35,7 +35,7 @@ class DeepSpeech2Configs(OpenspeechDataclass):
 
     Configuration objects inherit from :class: `~openspeech.dataclass.configs.OpenspeechDataclass`.
 
-    Configurations:
+    Args:
         model_name (str): Model name (default: deepspeech2)
         num_rnn_layers (int): The number of rnn layers. (default: 5)
         rnn_hidden_dim (int): The hidden state dimension of rnn. (default: 1024)

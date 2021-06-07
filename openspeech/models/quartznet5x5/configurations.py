@@ -35,7 +35,7 @@ class QuartzNet5x5Configs(OpenspeechDataclass):
 
     Configuration objects inherit from :class: `~openspeech.dataclass.configs.OpenspeechDataclass`.
 
-    Configurations:
+    Args:
         model_name (str): Model name (default: quartznet5x5)
         num_blocks (int): Number of quartznet blocks (default: 5)
         num_sub_blocks (int): Number of quartznet sub blocks (default: 5)

@@ -35,7 +35,7 @@ class JointCTCConformerLSTMConfigs(OpenspeechDataclass):
 
     Configuration objects inherit from :class: `~openspeech.dataclass.configs.OpenspeechDataclass`.
 
-    Configurations:
+    Args:
         model_name (str): Model name (default: joint_ctc_conformer_lstm)
         encoder_dim (int): Dimension of encoder. (default: 512)
         num_encoder_layers (int): The number of encoder layers. (default: 17)

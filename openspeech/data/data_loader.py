@@ -19,6 +19,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+from typing import Tuple
 
 import torch
 import numpy as np
@@ -132,3 +133,27 @@ class BucketingSampler(Sampler):
 
     def shuffle(self, epoch):
         np.random.shuffle(self.bins)
+
+
+def load_dataset(manifest_file_path: str) -> Tuple[list, list]:
+    """
+    Provides dictionary of filename and labels.
+
+    Args:
+        manifest_file_path (str): evaluation manifest file path.
+
+    Returns: target_dict
+        * target_dict (dict): dictionary of filename and labels
+    """
+    audio_paths = list()
+    transcripts = list()
+
+    with open(manifest_file_path) as f:
+        for idx, line in enumerate(f.readlines()):
+            audio_path, korean_transcript, transcript = line.split('\t')
+            transcript = transcript.replace('\n', '')
+
+            audio_paths.append(audio_path)
+            transcripts.append(transcript)
+
+    return audio_paths, transcripts

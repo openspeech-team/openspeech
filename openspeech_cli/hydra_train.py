@@ -33,7 +33,7 @@ from openspeech.models import MODEL_REGISTRY
 from openspeech.utils import parse_configs, get_pl_trainer
 
 
-@hydra.main(config_path=os.path.join("..", "openspeech", "configs"), config_name="configs")
+@hydra.main(config_path=os.path.join("..", "openspeech", "configs"), config_name="train")
 def hydra_main(configs: DictConfig) -> None:
     rank_zero_info(OmegaConf.to_yaml(configs))
     pl.seed_everything(configs.trainer.seed)
@@ -49,6 +49,7 @@ def hydra_main(configs: DictConfig) -> None:
 
     trainer = get_pl_trainer(configs, num_devices, logger)
     trainer.fit(model, data_module)
+    trainer.test()
 
 
 if __name__ == '__main__':

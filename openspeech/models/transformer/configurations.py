@@ -35,7 +35,7 @@ class TransformerConfigs(OpenspeechDataclass):
 
     Configuration objects inherit from :class: `~openspeech.dataclass.configs.OpenspeechDataclass`.
 
-    Configurations:
+    Args:
         model_name (str): Model name (default: transformer)
         d_model (int): Dimension of model. (default: 512)
         d_ff (int): Dimenstion of feed forward network. (default: 2048)

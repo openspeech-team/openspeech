@@ -78,12 +78,11 @@ class TransformerModel(OpenspeechEncoderDecoderModel):
             max_length=self.configs.model.max_length,
         )
 
-    def set_beam_decoder(self, batch_size: int = None, beam_size: int = 3, n_best: int = 1):
+    def set_beam_decoder(self, beam_size: int = 3):
         """ Setting beam search decoder """
         from openspeech.search import BeamSearchTransformer
         self.decoder = BeamSearchTransformer(
             decoder=self.decoder,
-            batch_size=batch_size,
             beam_size=beam_size,
         )
 

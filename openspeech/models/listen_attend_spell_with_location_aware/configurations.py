@@ -35,7 +35,7 @@ class ListenAttendSpellWithLocationAwareConfigs(OpenspeechDataclass):
 
     Configuration objects inherit from :class: `~openspeech.dataclass.configs.OpenspeechDataclass`.
 
-    Configurations:
+    Args:
         model_name (str): Model name (default: listen_attend_spell_with_location_aware)
         num_encoder_layers (int): The number of encoder layers. (default: 3)
         num_decoder_layers (int): The number of decoder layers. (default: 2)

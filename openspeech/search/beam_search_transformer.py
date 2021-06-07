@@ -27,8 +27,8 @@ from openspeech.decoders import TransformerDecoder
 
 
 class BeamSearchTransformer(OpenspeechBeamSearchBase):
-    def __init__(self, decoder: TransformerDecoder, batch_size: int, beam_size: int = 3) -> None:
-        super(BeamSearchTransformer, self).__init__(decoder, beam_size, batch_size)
+    def __init__(self, decoder: TransformerDecoder, beam_size: int = 3) -> None:
+        super(BeamSearchTransformer, self).__init__(decoder, beam_size)
         self.use_cuda = True if torch.cuda.is_available() else False
 
     def forward(
@@ -37,6 +37,9 @@ class BeamSearchTransformer(OpenspeechBeamSearchBase):
             encoder_output_lengths: torch.FloatTensor,
     ):
         batch_size = encoder_outputs.size(0)
+
+        self.finished = [[] for _ in range(batch_size)]
+        self.finished_ps = [[] for _ in range(batch_size)]
 
         decoder_inputs = torch.IntTensor(batch_size, self.decoder.max_length).fill_(self.sos_id).long()
         decoder_input_lengths = torch.IntTensor(batch_size).fill_(1)

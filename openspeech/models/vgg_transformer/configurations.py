@@ -35,7 +35,7 @@ class VGGTransformerConfigs(OpenspeechDataclass):
 
     Configuration objects inherit from :class: `~openspeech.dataclass.configs.OpenspeechDataclass`.
 
-    Configurations:
+    Args:
         model_name (str): Model name (default: vgg_transformer)
         extractor (str): The CNN feature extractor. (default: vgg)
         d_model (int): Dimension of model. (default: 512)

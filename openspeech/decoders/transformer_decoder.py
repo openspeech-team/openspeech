@@ -255,7 +255,7 @@ class TransformerDecoder(OpenspeechDecoder):
             input_var = input_var.fill_(self.pad_id)
             input_var[:, 0] = self.sos_id
 
-            for di in range(1, self.max_length):
+            for di in range(self.max_length):
                 input_lengths = torch.IntTensor(batch_size).fill_(di)
 
                 outputs = self.forward_step(

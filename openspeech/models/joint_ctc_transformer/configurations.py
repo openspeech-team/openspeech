@@ -35,7 +35,7 @@ class JointCTCTransformerConfigs(OpenspeechDataclass):
 
     Configuration objects inherit from :class: `~openspeech.dataclass.configs.OpenspeechDataclass`.
 
-    Configurations:
+    Args:
         model_name (str): Model name (default: joint_ctc_transformer)
         extractor (str): The CNN feature extractor. (default: conv2d_subsample)
         d_model (int): Dimension of model. (default: 512)

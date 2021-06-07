@@ -85,13 +85,12 @@ class ConformerLSTMModel(OpenspeechEncoderDecoderModel):
             rnn_type=self.configs.model.rnn_type,
         )
 
-    def set_beam_decoder(self, batch_size: int, beam_size: int = 3):
+    def set_beam_decoder(self, beam_size: int = 3):
         """ Setting beam search decoder """
         from openspeech.search import BeamSearchLSTM
         self.decoder = BeamSearchLSTM(
             decoder=self.decoder,
             beam_size=beam_size,
-            batch_size=batch_size,
         )
 
     def forward(self, inputs: Tensor, input_lengths: Tensor) -> Dict[str, Tensor]:

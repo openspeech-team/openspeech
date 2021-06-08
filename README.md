@@ -75,7 +75,8 @@ End-to-End Speech Recognition with Self-Attention](https://arxiv.org/abs/1910.12
   
 ### Create custom model
   
-Open speech can easily create custom models using the encoder and decoder provided. Below is an example of a custom model that combines Transformer encoder and LSTM decoder.
+Open speech can easily create custom models using the encoder and decoder provided.   
+Below is an example of a custom model that combines Transformer encoder and LSTM decoder.
 
   
 <img src="https://user-images.githubusercontent.com/42150335/121233941-2258df80-c8ce-11eb-92e0-b40cd69dc0f8.png" width=600>

@@ -1,4 +1,4 @@
-
+## Introduction
 Openspeech provides reference implementations of various ASR modeling papers and three languages recipe to perform tasks on automatic speech recognition. Our aim is to make ASR technology easier to use for everyone.    
    
 
@@ -8,7 +8,7 @@ Various features are available in the above two libraries, including Multi-GPU a
   
 We appreciate any kind of feedback or contribution. Feel free to proceed with small issues like bug fixes, documentation improvement. For major contributions and new features, please discuss with the collaborators in corresponding issues.  
   
-## Why should I use openspeech?  
+### Why should I use openspeech?  
   
 1. Easy-to-experiment with the famous ASR models.  
     - Supports 10+ models and is continuously updated.  
@@ -26,12 +26,12 @@ We appreciate any kind of feedback or contribution. Feel free to proceed with sm
     - Representative audio features such as Spectrogram, Mel-Spectrogram, Filter-Bank, and MFCC can be used easily.
     - Provides a variety of augmentation, including SpecAugment, Noise Injection, and Audio Joining.
   
-## Why shouldn't I use openspeech?
+### Why shouldn't I use openspeech?
   
 - This library provides code for learning ASR models, but does not provide APIs by pre-trained models.  
 - We do not provide pre-training mechanisms such as Wav2vec 2.0. Because pre-training costs a lot of computation, computation optimization is very important, and this library does not provide that optimization.    
   
-## Model architectures  
+### Model architectures  
   
 We support all the models below. Note that, the important concepts of the model have been implemented to match, but the details of the implementation may vary.  
   
@@ -55,14 +55,14 @@ End-to-End Speech Recognition with Self-Attention](https://arxiv.org/abs/1910.12
 16. [**Conformer with CTC**]() (from Northwestern Polytechnical University and University of Bordeaux and Johns Hopkins University and Human Dataware Lab and Kyoto University and NTT Corporation and Shanghai Jiao Tong University and  Chinese Academy of Sciences) released with paper [RECENT DEVELOPMENTS ON ESPNET TOOLKIT BOOSTED BY CONFORMER](https://arxiv.org/abs/2010.13956.pdf), by Pengcheng Guo, Florian Boyer, Xuankai Chang, Tomoki Hayashi, Yosuke Higuchi, Hirofumi Inaguma, Naoyuki Kamo, Chenda Li, Daniel Garcia-Romero, Jiatong Shi, Jing Shi, Shinji Watanabe, Kun Wei, Wangyou Zhang, Yuekai Zhang.
 17. [**Conformer with LSTM Decoder**]() (from IBM Research AI) released with paper [On the limit of English conversational speech recognition](https://arxiv.org/abs/2105.00982.pdf), by Zoltán Tüske, George Saon, Brian Kingsbury.
   
-## Get Started
+### Get Started
   
 We use [Hydra](https://github.com/facebookresearch/hydra) to control all the training configurations. 
 If you are not familiar with Hydra we recommend visiting the [Hydra website](https://hydra.cc/). 
 Generally, Hydra is an open-source framework that simplifies the development of research applications by providing the ability to create a hierarchical configuration dynamically. 
 If you want to know how we used Hydra, it'll help if you read [here](https://sooftware.github.io/openspeech/notes/hydra_configs.html).
   
-### Supported Datasets
+#### Supported Datasets
  
 We supports [LibriSpeech](https://www.openslr.org/12), [KsponSpeech](https://aihub.or.kr/aidata/105), and [AISHELL-1](https://www.openslr.org/33/).   
   
@@ -73,7 +73,7 @@ Aishell is an open-source Chinese Mandarin speech corpus published by Beijing Sh
 KsponSpeech is a large-scale spontaneous speech corpus of Korean. This corpus contains 969 h of general open-domain dialog utterances, spoken by about 2000 native Korean speakers in a clean environment. All data were constructed by recording the dialogue of two people freely conversing on a variety of topics and manually transcribing the utterances. To start training, the KsponSpeech dataset must be prepared in advance. To download KsponSpeech, you needs permission from [AI Hub](https://aihub.or.kr/).
 
    
-### Manifest File
+#### Manifest File
   
 - Manifest file format:
   
@@ -88,7 +88,7 @@ LibriSpeech/test-other/8188/269288/8188-269288-0057.flac        ▁OH ▁THIS �
 ...
 ```
   
-### Training examples
+#### Training examples
  
 You can simply train with LibriSpeech dataset like below:  
   
@@ -129,7 +129,7 @@ $ python ./openspeech_cli/hydra_train.py \
    
 You can simply train with AISHELL-1 dataset like below:
   
-- Example2: Train the `quartznet` model with `mfcc` features On GPU with FP16:
+- Example3: Train the `quartznet` model with `mfcc` features On GPU with FP16:
   
 ```
 $ python ./openspeech_cli/hydra_train.py \
@@ -145,13 +145,13 @@ $ python ./openspeech_cli/hydra_train.py \
     criterion=ctc
 ```
   
-## Installation
+### Installation
   
 This project recommends Python 3.7 or higher.  
 I recommend creating a new virtual environment for this project (using virtual env or conda).
   
 
-### Prerequisites
+#### Prerequisites
   
 * numpy: `pip install numpy` (Refer [here](https://github.com/numpy/numpy) for problem installing Numpy).
 * pytorch: Refer to [PyTorch website](http://pytorch.org/) to install the version w.r.t. your environment.   
@@ -163,14 +163,14 @@ I recommend creating a new virtual environment for this project (using virtual e
 * warp-rnnt: Refer to [warp-rnnt page](https://github.com/1ytic/warp-rnnt) to install the library.
 * ctcdecode: Refer to [ctcdecode page](https://github.com/parlance/ctcdecode) to install the library.
   
-### Install from source
+#### Install from source
 Currently I only support installation from source code using setuptools. Checkout the source code and run the   
 following commands:  
 ```
 $ ./install.sh
 ```
   
-### Install Apex (for 16-bit training) 
+#### Install Apex (for 16-bit training) 
   
 For faster training install NVIDIA's apex library:
   
@@ -195,18 +195,18 @@ module load gcc-6.1.0
 $ pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
 ```  
 
-## Troubleshoots and Contributing
+### Troubleshoots and Contributing
 If you have any questions, bug reports, and feature requests, please [open an issue](https://github.com/sooftware/openspeech/issues) on Github.   
   
 We appreciate any kind of feedback or contribution.  Feel free to proceed with small issues like bug fixes, documentation improvement.  For major contributions and new features, please discuss with the collaborators in corresponding issues.
   
-### Code Style
+#### Code Style
 We follow [PEP-8](https://www.python.org/dev/peps/pep-0008/) for code style. Especially the style of docstrings is important to generate documentation. 
   
-### License
+#### License
 This project is licensed under the MIT LICENSE - see the [LICENSE.md](https://github.com/sooftware/openspeech/blob/master/LICENSE) file for details
   
-## Citation
+### Citation
   
 If you use the system for academic work, please cite:
   

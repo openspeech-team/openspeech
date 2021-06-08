@@ -161,7 +161,7 @@ $ python ./openspeech_cli/hydra_train.py \
    
 You can simply train with AISHELL-1 dataset like below:
   
-- Example2: Train the `quartznet` model with `mfcc` features On GPU with FP16:
+- Example3: Train the `quartznet` model with `mfcc` features On GPU with FP16:
   
 ```
 $ python ./openspeech_cli/hydra_train.py \

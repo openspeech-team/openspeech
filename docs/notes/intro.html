@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Why should I use openspeech? &mdash; Openspeech v0.1 documentation</title>
+  <title>Introduction &mdash; Openspeech v0.1 documentation</title>
   
 
   
@@ -87,27 +87,30 @@
             
               <p class="caption"><span class="caption-text">GETTING STARTED</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Why should I use openspeech?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#why-shouldn-t-i-use-openspeech">Why shouldn’t I use openspeech?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#model-architectures">Model architectures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#get-started">Get Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#supported-datasets">Supported Datasets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#manifest-file">Manifest File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#training-examples">Training examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#why-should-i-use-openspeech">Why should I use openspeech?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#why-shouldn-t-i-use-openspeech">Why shouldn’t I use openspeech?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#model-architectures">Model architectures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-started">Get Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#supported-datasets">Supported Datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#manifest-file">Manifest File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#training-examples">Training examples</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#installation">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-from-source">Install from source</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-apex-for-16-bit-training">Install Apex (for 16-bit training)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-from-source">Install from source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-apex-for-16-bit-training">Install Apex (for 16-bit training)</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#troubleshoots-and-contributing">Troubleshoots and Contributing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#code-style">Code Style</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshoots-and-contributing">Troubleshoots and Contributing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#code-style">Code Style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#citation">Citation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#citation">Citation</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="hydra_configs.html">Openspeech’s Hydra configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configs.html">Openspeech’s configurations</a></li>
 </ul>
@@ -197,7 +200,7 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Why should I use openspeech?</li>
+      <li>Introduction</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -216,12 +219,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <p>Openspeech provides reference implementations of various ASR modeling papers and three languages recipe to perform tasks on automatic speech recognition. Our aim is to make ASR technology easier to use for everyone.</p>
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>Openspeech provides reference implementations of various ASR modeling papers and three languages recipe to perform tasks on automatic speech recognition. Our aim is to make ASR technology easier to use for everyone.</p>
 <p>Openspeech is backed by the two powerful libraries — <a class="reference external" href="https://github.com/PyTorchLightning/pytorch-lightning">PyTorch-Lightning</a> and <a class="reference external" href="https://github.com/facebookresearch/hydra">Hydra</a>.
 Various features are available in the above two libraries, including Multi-GPU and TPU training, Mixed-precision and hierarchical configuration management.</p>
 <p>We appreciate any kind of feedback or contribution. Feel free to proceed with small issues like bug fixes, documentation improvement. For major contributions and new features, please discuss with the collaborators in corresponding issues.</p>
 <div class="section" id="why-should-i-use-openspeech">
-<h1>Why should I use openspeech?<a class="headerlink" href="#why-should-i-use-openspeech" title="Permalink to this headline">¶</a></h1>
+<h2>Why should I use openspeech?<a class="headerlink" href="#why-should-i-use-openspeech" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p>Easy-to-experiment with the famous ASR models.</p>
 <ul class="simple">
@@ -253,14 +258,14 @@ Various features are available in the above two libraries, including Multi-GPU a
 </ol>
 </div>
 <div class="section" id="why-shouldn-t-i-use-openspeech">
-<h1>Why shouldn’t I use openspeech?<a class="headerlink" href="#why-shouldn-t-i-use-openspeech" title="Permalink to this headline">¶</a></h1>
+<h2>Why shouldn’t I use openspeech?<a class="headerlink" href="#why-shouldn-t-i-use-openspeech" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>This library provides code for learning ASR models, but does not provide APIs by pre-trained models.</p></li>
 <li><p>We do not provide pre-training mechanisms such as Wav2vec 2.0. Because pre-training costs a lot of computation, computation optimization is very important, and this library does not provide that optimization.</p></li>
 </ul>
 </div>
 <div class="section" id="model-architectures">
-<h1>Model architectures<a class="headerlink" href="#model-architectures" title="Permalink to this headline">¶</a></h1>
+<h2>Model architectures<a class="headerlink" href="#model-architectures" title="Permalink to this headline">¶</a></h2>
 <p>We support all the models below. Note that, the important concepts of the model have been implemented to match, but the details of the implementation may vary.</p>
 <ol class="simple">
 <li><p><a class="reference external" href="#"><strong>DeepSpeech2</strong></a> (from Baidu Research) released with paper <a class="reference external" href="https://arxiv.org/abs/1512.02595.pdf">Deep Speech 2: End-to-End Speech Recognition in
@@ -285,20 +290,20 @@ End-to-End Speech Recognition with Self-Attention</a>, by Ching-Feng Yeh, Jay Ma
 </ol>
 </div>
 <div class="section" id="get-started">
-<h1>Get Started<a class="headerlink" href="#get-started" title="Permalink to this headline">¶</a></h1>
+<h2>Get Started<a class="headerlink" href="#get-started" title="Permalink to this headline">¶</a></h2>
 <p>We use <a class="reference external" href="https://github.com/facebookresearch/hydra">Hydra</a> to control all the training configurations.
 If you are not familiar with Hydra we recommend visiting the <a class="reference external" href="https://hydra.cc/">Hydra website</a>.
 Generally, Hydra is an open-source framework that simplifies the development of research applications by providing the ability to create a hierarchical configuration dynamically.
 If you want to know how we used Hydra, it’ll help if you read <a class="reference external" href="https://sooftware.github.io/openspeech/notes/hydra_configs.html">here</a>.</p>
 <div class="section" id="supported-datasets">
-<h2>Supported Datasets<a class="headerlink" href="#supported-datasets" title="Permalink to this headline">¶</a></h2>
+<h3>Supported Datasets<a class="headerlink" href="#supported-datasets" title="Permalink to this headline">¶</a></h3>
 <p>We supports <a class="reference external" href="https://www.openslr.org/12">LibriSpeech</a>, <a class="reference external" href="https://aihub.or.kr/aidata/105">KsponSpeech</a>, and <a class="reference external" href="https://www.openslr.org/33/">AISHELL-1</a>.</p>
 <p>LibriSpeech is a corpus of approximately 1000 hours of 16kHz read English speech, prepared by Vassil Panayotov with the assistance of Daniel Povey. The data is derived from read audiobooks from the LibriVox project, and has been carefully segmented and aligned.</p>
 <p>Aishell is an open-source Chinese Mandarin speech corpus published by Beijing Shell Shell Technology Co.,Ltd. 400 people from different accent areas in China are invited to participate in the recording, which is conducted in a quiet indoor environment using high fidelity microphone and downsampled to 16kHz.</p>
 <p>KsponSpeech is a large-scale spontaneous speech corpus of Korean. This corpus contains 969 h of general open-domain dialog utterances, spoken by about 2000 native Korean speakers in a clean environment. All data were constructed by recording the dialogue of two people freely conversing on a variety of topics and manually transcribing the utterances. To start training, the KsponSpeech dataset must be prepared in advance. To download KsponSpeech, you needs permission from <a class="reference external" href="https://aihub.or.kr/">AI Hub</a>.</p>
 </div>
 <div class="section" id="manifest-file">
-<h2>Manifest File<a class="headerlink" href="#manifest-file" title="Permalink to this headline">¶</a></h2>
+<h3>Manifest File<a class="headerlink" href="#manifest-file" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Manifest file format:</p></li>
 </ul>
@@ -314,7 +319,7 @@ LibriSpeech/test-other/8188/269288/8188-269288-0057.flac        ▁OH ▁THIS �
 </div>
 </div>
 <div class="section" id="training-examples">
-<h2>Training examples<a class="headerlink" href="#training-examples" title="Permalink to this headline">¶</a></h2>
+<h3>Training examples<a class="headerlink" href="#training-examples" title="Permalink to this headline">¶</a></h3>
 <p>You can simply train with LibriSpeech dataset like below:</p>
 <ul class="simple">
 <li><p>Example1: Train the <code class="docutils literal notranslate"><span class="pre">conformer-lstm</span></code> model with <code class="docutils literal notranslate"><span class="pre">filter-bank</span></code> features on GPU.</p></li>
@@ -352,7 +357,7 @@ LibriSpeech/test-other/8188/269288/8188-269288-0057.flac        ▁OH ▁THIS �
 </div>
 <p>You can simply train with AISHELL-1 dataset like below:</p>
 <ul class="simple">
-<li><p>Example2: Train the <code class="docutils literal notranslate"><span class="pre">quartznet</span></code> model with <code class="docutils literal notranslate"><span class="pre">mfcc</span></code> features On GPU with FP16:</p></li>
+<li><p>Example3: Train the <code class="docutils literal notranslate"><span class="pre">quartznet</span></code> model with <code class="docutils literal notranslate"><span class="pre">mfcc</span></code> features On GPU with FP16:</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python ./openspeech_cli/hydra_train.py \
     dataset=aishell \
@@ -370,10 +375,10 @@ LibriSpeech/test-other/8188/269288/8188-269288-0057.flac        ▁OH ▁THIS �
 </div>
 </div>
 <div class="section" id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>This project recommends Python 3.7 or higher.<br />I recommend creating a new virtual environment for this project (using virtual env or conda).</p>
 <div class="section" id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>numpy: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">numpy</span></code> (Refer <a class="reference external" href="https://github.com/numpy/numpy">here</a> for problem installing Numpy).</p></li>
 <li><p>pytorch: Refer to <a class="reference external" href="http://pytorch.org/">PyTorch website</a> to install the version w.r.t. your environment.</p></li>
@@ -387,14 +392,14 @@ LibriSpeech/test-other/8188/269288/8188-269288-0057.flac        ▁OH ▁THIS �
 </ul>
 </div>
 <div class="section" id="install-from-source">
-<h2>Install from source<a class="headerlink" href="#install-from-source" title="Permalink to this headline">¶</a></h2>
+<h3>Install from source<a class="headerlink" href="#install-from-source" title="Permalink to this headline">¶</a></h3>
 <p>Currently I only support installation from source code using setuptools. Checkout the source code and run the<br />following commands:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./install.sh
 </pre></div>
 </div>
 </div>
 <div class="section" id="install-apex-for-16-bit-training">
-<h2>Install Apex (for 16-bit training)<a class="headerlink" href="#install-apex-for-16-bit-training" title="Permalink to this headline">¶</a></h2>
+<h3>Install Apex (for 16-bit training)<a class="headerlink" href="#install-apex-for-16-bit-training" title="Permalink to this headline">¶</a></h3>
 <p>For faster training install NVIDIA’s apex library:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/NVIDIA/apex
 $ cd apex
@@ -419,20 +424,20 @@ $ pip install -v --no-cache-dir --global-option=&quot;--cpp_ext&quot; --global-o
 </div>
 </div>
 <div class="section" id="troubleshoots-and-contributing">
-<h1>Troubleshoots and Contributing<a class="headerlink" href="#troubleshoots-and-contributing" title="Permalink to this headline">¶</a></h1>
+<h2>Troubleshoots and Contributing<a class="headerlink" href="#troubleshoots-and-contributing" title="Permalink to this headline">¶</a></h2>
 <p>If you have any questions, bug reports, and feature requests, please <a class="reference external" href="https://github.com/sooftware/openspeech/issues">open an issue</a> on Github.</p>
 <p>We appreciate any kind of feedback or contribution.  Feel free to proceed with small issues like bug fixes, documentation improvement.  For major contributions and new features, please discuss with the collaborators in corresponding issues.</p>
 <div class="section" id="code-style">
-<h2>Code Style<a class="headerlink" href="#code-style" title="Permalink to this headline">¶</a></h2>
+<h3>Code Style<a class="headerlink" href="#code-style" title="Permalink to this headline">¶</a></h3>
 <p>We follow <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP-8</a> for code style. Especially the style of docstrings is important to generate documentation.</p>
 </div>
 <div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
 <p>This project is licensed under the MIT LICENSE - see the <a class="reference external" href="https://github.com/sooftware/openspeech/blob/master/LICENSE">LICENSE.md</a> file for details</p>
 </div>
 </div>
 <div class="section" id="citation">
-<h1>Citation<a class="headerlink" href="#citation" title="Permalink to this headline">¶</a></h1>
+<h2>Citation<a class="headerlink" href="#citation" title="Permalink to this headline">¶</a></h2>
 <p>If you use the system for academic work, please cite:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@GITHUB</span><span class="p">{</span><span class="mi">2021</span><span class="o">-</span><span class="n">openspeech</span><span class="p">,</span>
   <span class="n">author</span>       <span class="o">=</span> <span class="p">{</span><span class="n">Kim</span><span class="p">,</span> <span class="n">Soohwan</span> <span class="ow">and</span> <span class="n">Ha</span><span class="p">,</span> <span class="n">Sangchun</span> <span class="ow">and</span> <span class="n">Cho</span><span class="p">,</span> <span class="n">Soyoung</span><span class="p">},</span>
@@ -443,6 +448,7 @@ $ pip install -v --no-cache-dir --global-option=&quot;--cpp_ext&quot; --global-o
   <span class="n">year</span>         <span class="o">=</span> <span class="p">{</span><span class="mi">2021</span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
+</div>
 </div>
 </div>
 

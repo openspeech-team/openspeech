@@ -244,7 +244,7 @@ Paper: <a class="reference external" href="https://arxiv.org/abs/1910.10261.pdf"
 </dl>
 <dl class="py method">
 <dt id="openspeech.models.quartznet10x5.model.QuartzNet10x5Model.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">input_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">]</span><a class="reference internal" href="_modules/openspeech/models/quartznet10x5/model.html#QuartzNet10x5Model.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.quartznet10x5.model.QuartzNet10x5Model.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">input_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a><span class="p">]</span><a class="reference internal" href="_modules/openspeech/models/quartznet10x5/model.html#QuartzNet10x5Model.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.quartznet10x5.model.QuartzNet10x5Model.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Forward propagate a <cite>inputs</cite> and <cite>targets</cite> pair for inference.</p>
 <dl>
 <dt>Inputs:</dt><dd><dl class="simple">
@@ -281,7 +281,7 @@ batch_idx (int): The index of batch</p>
 <dd class="field-odd"><p>loss for training</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a>)</p>
+<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -300,7 +300,7 @@ batch_idx (int): The index of batch</p>
 <dd class="field-odd"><p>loss for training</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a>)</p>
+<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -319,7 +319,7 @@ batch_idx (int): The index of batch</p>
 <dd class="field-odd"><p>loss for training</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a>)</p>
+<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -336,16 +336,19 @@ batch_idx (int): The index of batch</p>
 a <code class="xref py py-class docutils literal notranslate"><span class="pre">QuartzNet10x5</span></code>.</p>
 <p>It is used to initiated an <cite>QuartzNet10x5</cite> model.</p>
 <p>Configuration objects inherit from :class: <cite>~openspeech.dataclass.configs.OpenspeechDataclass</cite>.</p>
-<dl class="simple">
-<dt>Configurations:</dt><dd><p>model_name (str): Model name (default: quartznet5x5)
-num_blocks (int): Number of quartznet blocks (default: 10)
-num_sub_blocks (int): Number of quartznet sub blocks (default: 5)
-in_channels (str): Output channels of jasper block’s convolution
-out_channels (str): Output channels of jasper block’s convolution
-kernel_size (str): Kernel size of jasper block’s convolution
-dilation (str): Dilation of jasper block’s convolution
-dropout_p (str): Dropout probability
-optimizer (str): Optimizer for training.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Model name (default: quartznet5x5)</p></li>
+<li><p><strong>num_blocks</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of quartznet blocks (default: 10)</p></li>
+<li><p><strong>num_sub_blocks</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of quartznet sub blocks (default: 5)</p></li>
+<li><p><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Output channels of jasper block’s convolution</p></li>
+<li><p><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Output channels of jasper block’s convolution</p></li>
+<li><p><strong>kernel_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Kernel size of jasper block’s convolution</p></li>
+<li><p><strong>dilation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Dilation of jasper block’s convolution</p></li>
+<li><p><strong>dropout_p</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Dropout probability</p></li>
+<li><p><strong>optimizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Optimizer for training.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>

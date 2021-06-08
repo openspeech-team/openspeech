@@ -87,13 +87,7 @@
             
               <p class="caption"><span class="caption-text">GETTING STARTED</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="notes/intro.html">Why should I use openspeech?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#why-shouldn-t-i-use-openspeech">Why shouldn’t I use openspeech?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#model-architectures">Model architectures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#get-started">Get Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#installation">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#troubleshoots-and-contributing">Troubleshoots and Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notes/intro.html#citation">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notes/hydra_configs.html">Openspeech’s Hydra configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notes/configs.html">Openspeech’s configurations</a></li>
 </ul>
@@ -135,12 +129,12 @@
 <li class="toctree-l1"><a class="reference internal" href="Beam Search.html">Search</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Vocabulary</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1">Vocabulary</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.vocabs.aishell.character">AISHELL-1 Character</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#aishell-1-character">AISHELL-1 Character</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-openspeech.vocabs.ksponspeech.character">KsponSpeech Character</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-openspeech.vocabs.ksponspeech.subword">KsponSpeech Subword</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-openspeech.vocabs.ksponspeech.grapheme">KsponSpeech Grapheme</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.vocabs.librispeech.character">LibriSpeech Character</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.vocabs.librispeech.subword">LibriSpeech Subword</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#librispeech-character">LibriSpeech Character</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#librispeech-subword">LibriSpeech Subword</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Metric.html">Metric</a></li>
@@ -225,62 +219,8 @@
 </dd></dl>
 
 </div>
-<div class="section" id="module-openspeech.vocabs.aishell.character">
-<span id="aishell-1-character"></span><h2>AISHELL-1 Character<a class="headerlink" href="#module-openspeech.vocabs.aishell.character" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt id="openspeech.vocabs.aishell.character.AIShellCharacterVocabConfigs">
-<em class="property">class </em><code class="sig-prename descclassname">openspeech.vocabs.aishell.character.</code><code class="sig-name descname">AIShellCharacterVocabConfigs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sos_token</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'&lt;sos&gt;'</span></em>, <em class="sig-param"><span class="n">eos_token</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'&lt;eos&gt;'</span></em>, <em class="sig-param"><span class="n">pad_token</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'&lt;pad&gt;'</span></em>, <em class="sig-param"><span class="n">blank_token</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'&lt;blank&gt;'</span></em>, <em class="sig-param"><span class="n">encoding</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'utf-8'</span></em>, <em class="sig-param"><span class="n">unit</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'aishell_character'</span></em>, <em class="sig-param"><span class="n">vocab_path</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'../../../data_aishell/aishell_labels.csv'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/vocabs/aishell/character.html#AIShellCharacterVocabConfigs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.vocabs.aishell.character.AIShellCharacterVocabConfigs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py class">
-<dt id="openspeech.vocabs.aishell.character.AIShellCharacterVocabulary">
-<em class="property">class </em><code class="sig-prename descclassname">openspeech.vocabs.aishell.character.</code><code class="sig-name descname">AIShellCharacterVocabulary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configs</span><span class="p">:</span> <span class="n">omegaconf.dictconfig.DictConfig</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/vocabs/aishell/character.html#AIShellCharacterVocabulary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.vocabs.aishell.character.AIShellCharacterVocabulary" title="Permalink to this definition">¶</a></dt>
-<dd><p>Vocabulary Class in Character Units.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>configs</strong> (<em>DictConfig</em>) – configuration set.</p>
-</dd>
-</dl>
-<dl class="py method">
-<dt id="openspeech.vocabs.aishell.character.AIShellCharacterVocabulary.label_to_string">
-<code class="sig-name descname">label_to_string</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">labels</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/vocabs/aishell/character.html#AIShellCharacterVocabulary.label_to_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.vocabs.aishell.character.AIShellCharacterVocabulary.label_to_string" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts label to string.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>labels</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><em>numpy.ndarray</em></a>) – number label</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>Returns: sentence</dt><dd><ul class="simple">
-<li><p><strong>sentence</strong> (str or list): symbol of labels</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="openspeech.vocabs.aishell.character.AIShellCharacterVocabulary.load_vocab">
-<code class="sig-name descname">load_vocab</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vocab_path</span></em>, <em class="sig-param"><span class="n">encoding</span><span class="o">=</span><span class="default_value">'utf-8'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/vocabs/aishell/character.html#AIShellCharacterVocabulary.load_vocab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.vocabs.aishell.character.AIShellCharacterVocabulary.load_vocab" title="Permalink to this definition">¶</a></dt>
-<dd><p>Provides char2id, id2char</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>vocab_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – csv file with character labels</p></li>
-<li><p><strong>encoding</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – encoding method</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="simple">
-<dt>Returns: unit2id, id2unit</dt><dd><ul class="simple">
-<li><p><strong>unit2id</strong> (dict): unit2id[unit] = id</p></li>
-<li><p><strong>id2unit</strong> (dict): id2unit[id] = unit</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="aishell-1-character">
+<h2>AISHELL-1 Character<a class="headerlink" href="#aishell-1-character" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-openspeech.vocabs.ksponspeech.character">
 <span id="ksponspeech-character"></span><h2>KsponSpeech Character<a class="headerlink" href="#module-openspeech.vocabs.ksponspeech.character" title="Permalink to this headline">¶</a></h2>
@@ -432,81 +372,11 @@
 </dd></dl>
 
 </div>
-<div class="section" id="module-openspeech.vocabs.librispeech.character">
-<span id="librispeech-character"></span><h2>LibriSpeech Character<a class="headerlink" href="#module-openspeech.vocabs.librispeech.character" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt id="openspeech.vocabs.librispeech.character.LibriSpeechCharacterVocabConfigs">
-<em class="property">class </em><code class="sig-prename descclassname">openspeech.vocabs.librispeech.character.</code><code class="sig-name descname">LibriSpeechCharacterVocabConfigs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sos_token</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'&lt;sos&gt;'</span></em>, <em class="sig-param"><span class="n">eos_token</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'&lt;eos&gt;'</span></em>, <em class="sig-param"><span class="n">pad_token</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'&lt;pad&gt;'</span></em>, <em class="sig-param"><span class="n">blank_token</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'&lt;blank&gt;'</span></em>, <em class="sig-param"><span class="n">encoding</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'utf-8'</span></em>, <em class="sig-param"><span class="n">unit</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'libri_character'</span></em>, <em class="sig-param"><span class="n">vocab_path</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'../../../LibriSpeech/libri_labels.csv'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/vocabs/librispeech/character.html#LibriSpeechCharacterVocabConfigs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.vocabs.librispeech.character.LibriSpeechCharacterVocabConfigs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py class">
-<dt id="openspeech.vocabs.librispeech.character.LibriSpeechCharacterVocabulary">
-<em class="property">class </em><code class="sig-prename descclassname">openspeech.vocabs.librispeech.character.</code><code class="sig-name descname">LibriSpeechCharacterVocabulary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configs</span><span class="p">:</span> <span class="n">omegaconf.dictconfig.DictConfig</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/vocabs/librispeech/character.html#LibriSpeechCharacterVocabulary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.vocabs.librispeech.character.LibriSpeechCharacterVocabulary" title="Permalink to this definition">¶</a></dt>
-<dd><p>Vocabulary Class in Character Units.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>configs</strong> (<em>DictConfig</em>) – configuration set.</p>
-</dd>
-</dl>
-<dl class="py method">
-<dt id="openspeech.vocabs.librispeech.character.LibriSpeechCharacterVocabulary.label_to_string">
-<code class="sig-name descname">label_to_string</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">labels</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/vocabs/librispeech/character.html#LibriSpeechCharacterVocabulary.label_to_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.vocabs.librispeech.character.LibriSpeechCharacterVocabulary.label_to_string" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts label to string (number =&gt; Hangeul)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>labels</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><em>numpy.ndarray</em></a>) – number label</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>Returns: sentence</dt><dd><ul class="simple">
-<li><p><strong>sentence</strong> (str or list): symbol of labels</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="openspeech.vocabs.librispeech.character.LibriSpeechCharacterVocabulary.load_vocab">
-<code class="sig-name descname">load_vocab</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vocab_path</span></em>, <em class="sig-param"><span class="n">encoding</span><span class="o">=</span><span class="default_value">'utf-8'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/vocabs/librispeech/character.html#LibriSpeechCharacterVocabulary.load_vocab"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.vocabs.librispeech.character.LibriSpeechCharacterVocabulary.load_vocab" title="Permalink to this definition">¶</a></dt>
-<dd><p>Provides char2id, id2char</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>vocab_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – csv file with character labels</p></li>
-<li><p><strong>encoding</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – encoding method</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="simple">
-<dt>Returns: unit2id, id2unit</dt><dd><ul class="simple">
-<li><p><strong>unit2id</strong> (dict): unit2id[unit] = id</p></li>
-<li><p><strong>id2unit</strong> (dict): id2unit[id] = unit</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="librispeech-character">
+<h2>LibriSpeech Character<a class="headerlink" href="#librispeech-character" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-openspeech.vocabs.librispeech.subword">
-<span id="librispeech-subword"></span><h2>LibriSpeech Subword<a class="headerlink" href="#module-openspeech.vocabs.librispeech.subword" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt id="openspeech.vocabs.librispeech.subword.LibriSpeechSubwordVocabConfigs">
-<em class="property">class </em><code class="sig-prename descclassname">openspeech.vocabs.librispeech.subword.</code><code class="sig-name descname">LibriSpeechSubwordVocabConfigs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sos_token</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'&lt;s&gt;'</span></em>, <em class="sig-param"><span class="n">eos_token</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'&lt;/s&gt;'</span></em>, <em class="sig-param"><span class="n">pad_token</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'&lt;pad&gt;'</span></em>, <em class="sig-param"><span class="n">blank_token</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'&lt;blank&gt;'</span></em>, <em class="sig-param"><span class="n">encoding</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'utf-8'</span></em>, <em class="sig-param"><span class="n">unit</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'libri_subword'</span></em>, <em class="sig-param"><span class="n">vocab_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">5000</span></em>, <em class="sig-param"><span class="n">vocab_path</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'../../../LibriSpeech/'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/vocabs/librispeech/subword.html#LibriSpeechSubwordVocabConfigs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.vocabs.librispeech.subword.LibriSpeechSubwordVocabConfigs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py class">
-<dt id="openspeech.vocabs.librispeech.subword.LibriSpeechSubwordVocabulary">
-<em class="property">class </em><code class="sig-prename descclassname">openspeech.vocabs.librispeech.subword.</code><code class="sig-name descname">LibriSpeechSubwordVocabulary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configs</span><span class="p">:</span> <span class="n">omegaconf.dictconfig.DictConfig</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/vocabs/librispeech/subword.html#LibriSpeechSubwordVocabulary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.vocabs.librispeech.subword.LibriSpeechSubwordVocabulary" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts label to string for librispeech dataset.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>configs</strong> (<em>DictConfig</em>) – configuration set.</p>
-</dd>
-</dl>
-</dd></dl>
-
+<div class="section" id="librispeech-subword">
+<h2>LibriSpeech Subword<a class="headerlink" href="#librispeech-subword" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 

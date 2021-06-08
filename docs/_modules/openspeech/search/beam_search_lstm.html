@@ -85,13 +85,7 @@
             
               <p class="caption"><span class="caption-text">GETTING STARTED</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../notes/intro.html">Why should I use openspeech?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../notes/intro.html#why-shouldn-t-i-use-openspeech">Why shouldn’t I use openspeech?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../notes/intro.html#model-architectures">Model architectures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../notes/intro.html#get-started">Get Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../notes/intro.html#installation">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../notes/intro.html#troubleshoots-and-contributing">Troubleshoots and Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../notes/intro.html#citation">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../notes/hydra_configs.html">Openspeech’s Hydra configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../notes/configs.html">Openspeech’s configurations</a></li>
 </ul>
@@ -248,8 +242,8 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        * logits (torch.FloatTensor): Log probability of model predictions.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">decoder</span><span class="p">:</span> <span class="n">LSTMDecoder</span><span class="p">,</span> <span class="n">beam_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">BeamSearchLSTM</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">decoder</span><span class="p">,</span> <span class="n">beam_size</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">decoder</span><span class="p">:</span> <span class="n">LSTMDecoder</span><span class="p">,</span> <span class="n">beam_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BeamSearchLSTM</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">decoder</span><span class="p">,</span> <span class="n">beam_size</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hidden_state_dim</span> <span class="o">=</span> <span class="n">decoder</span><span class="o">.</span><span class="n">hidden_state_dim</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">num_layers</span> <span class="o">=</span> <span class="n">decoder</span><span class="o">.</span><span class="n">num_layers</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">validate_args</span> <span class="o">=</span> <span class="n">decoder</span><span class="o">.</span><span class="n">validate_args</span>
@@ -270,6 +264,10 @@
 <span class="sd">            * logits (torch.FloatTensor): Log probability of model predictions.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">batch_size</span><span class="p">,</span> <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">encoder_outputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">finished</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">finished_ps</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)]</span>
+
         <span class="n">inputs</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">max_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate_args</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">encoder_outputs</span><span class="p">,</span> <span class="n">teacher_forcing_ratio</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
 
         <span class="n">step_outputs</span><span class="p">,</span> <span class="n">hidden_states</span><span class="p">,</span> <span class="n">attn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_step</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">hidden_states</span><span class="p">,</span> <span class="n">encoder_outputs</span><span class="p">)</span>

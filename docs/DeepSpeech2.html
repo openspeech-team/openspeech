@@ -244,7 +244,7 @@ Paper: <a class="reference external" href="https://arxiv.org/abs/1512.02595">htt
 </dl>
 <dl class="py method">
 <dt id="openspeech.models.deepspeech2.model.DeepSpeech2Model.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">input_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">]</span><a class="reference internal" href="_modules/openspeech/models/deepspeech2/model.html#DeepSpeech2Model.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.deepspeech2.model.DeepSpeech2Model.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">input_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a><span class="p">]</span><a class="reference internal" href="_modules/openspeech/models/deepspeech2/model.html#DeepSpeech2Model.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.deepspeech2.model.DeepSpeech2Model.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Forward propagate a <cite>inputs</cite> and <cite>targets</cite> pair for inference.</p>
 <dl>
 <dt>Inputs:</dt><dd><dl class="simple">
@@ -281,7 +281,7 @@ batch_idx (int): The index of batch</p>
 <dd class="field-odd"><p>loss for training</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a>)</p>
+<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -300,7 +300,7 @@ batch_idx (int): The index of batch</p>
 <dd class="field-odd"><p>loss for training</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a>)</p>
+<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -319,7 +319,7 @@ batch_idx (int): The index of batch</p>
 <dd class="field-odd"><p>loss for training</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a>)</p>
+<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -336,15 +336,18 @@ batch_idx (int): The index of batch</p>
 a <code class="xref py py-class docutils literal notranslate"><span class="pre">DeepSpeech2</span></code>.</p>
 <p>It is used to initiated an <cite>DeepSpeech2</cite> model.</p>
 <p>Configuration objects inherit from :class: <cite>~openspeech.dataclass.configs.OpenspeechDataclass</cite>.</p>
-<dl class="simple">
-<dt>Configurations:</dt><dd><p>model_name (str): Model name (default: deepspeech2)
-num_rnn_layers (int): The number of rnn layers. (default: 5)
-rnn_hidden_dim (int): The hidden state dimension of rnn. (default: 1024)
-dropout_p (float): The dropout probability of model. (default: 0.3)
-bidirectional (bool): If True, becomes a bidirectional encoders (default: True)
-rnn_type (str): Type of rnn cell (rnn, lstm, gru) (default: gru)
-activation (str): Type of activation function (default: str)
-optimizer (str): Optimizer for training. (default: adam)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Model name (default: deepspeech2)</p></li>
+<li><p><strong>num_rnn_layers</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The number of rnn layers. (default: 5)</p></li>
+<li><p><strong>rnn_hidden_dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The hidden state dimension of rnn. (default: 1024)</p></li>
+<li><p><strong>dropout_p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The dropout probability of model. (default: 0.3)</p></li>
+<li><p><strong>bidirectional</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If True, becomes a bidirectional encoders (default: True)</p></li>
+<li><p><strong>rnn_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Type of rnn cell (rnn, lstm, gru) (default: gru)</p></li>
+<li><p><strong>activation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Type of activation function (default: str)</p></li>
+<li><p><strong>optimizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Optimizer for training. (default: adam)</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>

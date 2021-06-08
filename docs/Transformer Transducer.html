@@ -246,7 +246,7 @@ And we replace the LSTM encoders in RNN-T architecture with Transformer encoders
 </dl>
 <dl class="py method">
 <dt id="openspeech.models.transformer_transducer.model.TransformerTransducerModel.decode">
-<code class="sig-name descname">decode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">encoder_outputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">max_length</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><a class="reference internal" href="_modules/openspeech/models/transformer_transducer/model.html#TransformerTransducerModel.decode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.transformer_transducer.model.TransformerTransducerModel.decode" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">decode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">encoder_outputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">max_length</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a><a class="reference internal" href="_modules/openspeech/models/transformer_transducer/model.html#TransformerTransducerModel.decode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.transformer_transducer.model.TransformerTransducerModel.decode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decode <cite>encoder_outputs</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -270,7 +270,7 @@ And we replace the LSTM encoders in RNN-T architecture with Transformer encoders
 
 <dl class="py method">
 <dt id="openspeech.models.transformer_transducer.model.TransformerTransducerModel.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">input_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">]</span><a class="reference internal" href="_modules/openspeech/models/transformer_transducer/model.html#TransformerTransducerModel.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.transformer_transducer.model.TransformerTransducerModel.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">input_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a><span class="p">]</span><a class="reference internal" href="_modules/openspeech/models/transformer_transducer/model.html#TransformerTransducerModel.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.transformer_transducer.model.TransformerTransducerModel.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decode <cite>encoder_outputs</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -306,7 +306,7 @@ batch_idx (int): The index of batch</p>
 <dd class="field-odd"><p>loss for training</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a>)</p>
+<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -325,7 +325,7 @@ batch_idx (int): The index of batch</p>
 <dd class="field-odd"><p>loss for training</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a>)</p>
+<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -344,7 +344,7 @@ batch_idx (int): The index of batch</p>
 <dd class="field-odd"><p>loss for training</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a>)</p>
+<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -361,21 +361,24 @@ batch_idx (int): The index of batch</p>
 a <code class="xref py py-class docutils literal notranslate"><span class="pre">TransformerTransducer</span></code>.</p>
 <p>It is used to initiated an <cite>TransformerTransducer</cite> model.</p>
 <p>Configuration objects inherit from :class: <cite>~openspeech.dataclass.configs.OpenspeechDataclass</cite>.</p>
-<dl class="simple">
-<dt>Configurations:</dt><dd><p>model_name (str): Model name (default: transformer_transducer)
-extractor (str): The CNN feature extractor. (default: conv2d_subsample)
-d_model (int): Dimension of model. (default: 512)
-d_ff (int): Dimension of feed forward network. (default: 2048)
-num_attention_heads (int): The number of attention heads. (default: 8)
-num_audio_layers (int): The number of audio layers. (default: 18)
-num_label_layers (int): The number of label layers. (default: 2)
-audio_dropout_p (float): The dropout probability of encoder. (default: 0.1)
-label_dropout_p (float): The dropout probability of decoder. (default: 0.1)
-decoder_hidden_state_dim (int): Hidden state dimension of decoder (default: 512)
-decoder_output_dim (int): dimension of model output. (default: 512)
-conv_kernel_size (int): Kernel size of convolution layer. (default: 31)
-max_positional_length (int): Max length of positional encoding. (default: 5000)
-optimizer (str): Optimizer for training. (default: adam)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Model name (default: transformer_transducer)</p></li>
+<li><p><strong>extractor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The CNN feature extractor. (default: conv2d_subsample)</p></li>
+<li><p><strong>d_model</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Dimension of model. (default: 512)</p></li>
+<li><p><strong>d_ff</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Dimension of feed forward network. (default: 2048)</p></li>
+<li><p><strong>num_attention_heads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The number of attention heads. (default: 8)</p></li>
+<li><p><strong>num_audio_layers</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The number of audio layers. (default: 18)</p></li>
+<li><p><strong>num_label_layers</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The number of label layers. (default: 2)</p></li>
+<li><p><strong>audio_dropout_p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The dropout probability of encoder. (default: 0.1)</p></li>
+<li><p><strong>label_dropout_p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The dropout probability of decoder. (default: 0.1)</p></li>
+<li><p><strong>decoder_hidden_state_dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Hidden state dimension of decoder (default: 512)</p></li>
+<li><p><strong>decoder_output_dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – dimension of model output. (default: 512)</p></li>
+<li><p><strong>conv_kernel_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Kernel size of convolution layer. (default: 31)</p></li>
+<li><p><strong>max_positional_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Max length of positional encoding. (default: 5000)</p></li>
+<li><p><strong>optimizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Optimizer for training. (default: adam)</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>

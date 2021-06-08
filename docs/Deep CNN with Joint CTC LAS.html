@@ -247,7 +247,7 @@ Paper: <a class="reference external" href="https://arxiv.org/abs/1508.01211">htt
 </dl>
 <dl class="py method">
 <dt id="openspeech.models.deep_cnn_with_joint_ctc_listen_attend_spell.model.DeepCNNWithJointCTCListenAttendSpellModel.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">input_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a><span class="p">]</span><a class="reference internal" href="_modules/openspeech/models/deep_cnn_with_joint_ctc_listen_attend_spell/model.html#DeepCNNWithJointCTCListenAttendSpellModel.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.deep_cnn_with_joint_ctc_listen_attend_spell.model.DeepCNNWithJointCTCListenAttendSpellModel.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">input_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a><span class="p">]</span><a class="reference internal" href="_modules/openspeech/models/deep_cnn_with_joint_ctc_listen_attend_spell/model.html#DeepCNNWithJointCTCListenAttendSpellModel.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.deep_cnn_with_joint_ctc_listen_attend_spell.model.DeepCNNWithJointCTCListenAttendSpellModel.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Forward propagate a <cite>inputs</cite> and <cite>targets</cite> pair for inference.</p>
 <dl>
 <dt>Inputs:</dt><dd><dl class="simple">
@@ -272,7 +272,7 @@ Paper: <a class="reference external" href="https://arxiv.org/abs/1508.01211">htt
 
 <dl class="py method">
 <dt id="openspeech.models.deep_cnn_with_joint_ctc_listen_attend_spell.model.DeepCNNWithJointCTCListenAttendSpellModel.set_beam_decoder">
-<code class="sig-name descname">set_beam_decoder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">batch_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">beam_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/models/deep_cnn_with_joint_ctc_listen_attend_spell/model.html#DeepCNNWithJointCTCListenAttendSpellModel.set_beam_decoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.deep_cnn_with_joint_ctc_listen_attend_spell.model.DeepCNNWithJointCTCListenAttendSpellModel.set_beam_decoder" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_beam_decoder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">beam_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/openspeech/models/deep_cnn_with_joint_ctc_listen_attend_spell/model.html#DeepCNNWithJointCTCListenAttendSpellModel.set_beam_decoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.deep_cnn_with_joint_ctc_listen_attend_spell.model.DeepCNNWithJointCTCListenAttendSpellModel.set_beam_decoder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Setting beam search decoder</p>
 </dd></dl>
 
@@ -290,7 +290,7 @@ batch_idx (int): The index of batch</p>
 <dd class="field-odd"><p>loss for training</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a>)</p>
+<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -309,7 +309,7 @@ batch_idx (int): The index of batch</p>
 <dd class="field-odd"><p>loss for training</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a>)</p>
+<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -328,7 +328,7 @@ batch_idx (int): The index of batch</p>
 <dd class="field-odd"><p>loss for training</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git216f813 ))">torch.Tensor</a>)</p>
+<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+gitf7bfc7b ))">torch.Tensor</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -345,23 +345,26 @@ batch_idx (int): The index of batch</p>
 a <code class="xref py py-class docutils literal notranslate"><span class="pre">DeepCNNWithJointCTCListenAttendSpell</span></code>.</p>
 <p>It is used to initiated an <cite>DeepCNNWithJointCTCListenAttendSpell</cite> model.</p>
 <p>Configuration objects inherit from :class: <cite>~openspeech.dataclass.configs.OpenspeechDataclass</cite>.</p>
-<dl class="simple">
-<dt>Configurations:</dt><dd><p>model_name (str): Model name (default: deep_cnn_with_joint_ctc_listen_attend_spell)
-num_encoder_layers (int): The number of encoder layers. (default: 3)
-num_decoder_layers (int): The number of decoder layers. (default: 2)
-hidden_state_dim (int): The hidden state dimension of encoder. (default: 768)
-encoder_dropout_p (float): The dropout probability of encoder. (default: 0.3)
-encoder_bidirectional (bool): If True, becomes a bidirectional encoders (default: True)
-rnn_type (str): Type of rnn cell (rnn, lstm, gru) (default: lstm)
-extractor (str): The CNN feature extractor. (default: vgg)
-activation (str): Type of activation function (default: str)
-joint_ctc_attention (bool): Flag indication joint ctc attention or not (default: True)
-max_length (int): Max decoding length. (default: 128)
-num_attention_heads (int): The number of attention heads. (default: 1)
-decoder_dropout_p (float): The dropout probability of decoder. (default: 0.2)
-decoder_attn_mechanism (str): The attention mechanism for decoder. (default: loc)
-teacher_forcing_ratio (float): The ratio of teacher forcing. (default: 1.0)
-optimizer (str): Optimizer for training. (default: adam)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Model name (default: deep_cnn_with_joint_ctc_listen_attend_spell)</p></li>
+<li><p><strong>num_encoder_layers</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The number of encoder layers. (default: 3)</p></li>
+<li><p><strong>num_decoder_layers</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The number of decoder layers. (default: 2)</p></li>
+<li><p><strong>hidden_state_dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The hidden state dimension of encoder. (default: 768)</p></li>
+<li><p><strong>encoder_dropout_p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The dropout probability of encoder. (default: 0.3)</p></li>
+<li><p><strong>encoder_bidirectional</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If True, becomes a bidirectional encoders (default: True)</p></li>
+<li><p><strong>rnn_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Type of rnn cell (rnn, lstm, gru) (default: lstm)</p></li>
+<li><p><strong>extractor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The CNN feature extractor. (default: vgg)</p></li>
+<li><p><strong>activation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Type of activation function (default: str)</p></li>
+<li><p><strong>joint_ctc_attention</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Flag indication joint ctc attention or not (default: True)</p></li>
+<li><p><strong>max_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Max decoding length. (default: 128)</p></li>
+<li><p><strong>num_attention_heads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The number of attention heads. (default: 1)</p></li>
+<li><p><strong>decoder_dropout_p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The dropout probability of decoder. (default: 0.2)</p></li>
+<li><p><strong>decoder_attn_mechanism</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The attention mechanism for decoder. (default: loc)</p></li>
+<li><p><strong>teacher_forcing_ratio</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – The ratio of teacher forcing. (default: 1.0)</p></li>
+<li><p><strong>optimizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Optimizer for training. (default: adam)</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>

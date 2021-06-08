@@ -236,21 +236,21 @@
 
 <span class="sd">    Configuration objects inherit from :class: `~openspeech.dataclass.configs.OpenspeechDataclass`.</span>
 
-<span class="sd">    Configurations:</span>
-<span class="sd">    model_name (str): Model name (default: joint_ctc_listen_attend_spell)</span>
-<span class="sd">    num_encoder_layers (int): The number of encoder layers. (default: 3)</span>
-<span class="sd">    num_decoder_layers (int): The number of decoder layers. (default: 2)</span>
-<span class="sd">    hidden_state_dim (int): The hidden state dimension of encoder. (default: 768)</span>
-<span class="sd">    encoder_dropout_p (float): The dropout probability of encoder. (default: 0.3)</span>
-<span class="sd">    encoder_bidirectional (bool): If True, becomes a bidirectional encoders (default: True)</span>
-<span class="sd">    rnn_type (str): Type of rnn cell (rnn, lstm, gru) (default: lstm)</span>
-<span class="sd">    joint_ctc_attention (bool): Flag indication joint ctc attention or not (default: True)</span>
-<span class="sd">    max_length (int): Max decoding length. (default: 128)</span>
-<span class="sd">    num_attention_heads (int): The number of attention heads. (default: 1)</span>
-<span class="sd">    decoder_dropout_p (float): The dropout probability of decoder. (default: 0.2)</span>
-<span class="sd">    decoder_attn_mechanism (str): The attention mechanism for decoder. (default: loc)</span>
-<span class="sd">    teacher_forcing_ratio (float): The ratio of teacher forcing. (default: 1.0)</span>
-<span class="sd">    optimizer (str): Optimizer for training. (default: adam)</span>
+<span class="sd">    Args:</span>
+<span class="sd">        model_name (str): Model name (default: joint_ctc_listen_attend_spell)</span>
+<span class="sd">        num_encoder_layers (int): The number of encoder layers. (default: 3)</span>
+<span class="sd">        num_decoder_layers (int): The number of decoder layers. (default: 2)</span>
+<span class="sd">        hidden_state_dim (int): The hidden state dimension of encoder. (default: 768)</span>
+<span class="sd">        encoder_dropout_p (float): The dropout probability of encoder. (default: 0.3)</span>
+<span class="sd">        encoder_bidirectional (bool): If True, becomes a bidirectional encoders (default: True)</span>
+<span class="sd">        rnn_type (str): Type of rnn cell (rnn, lstm, gru) (default: lstm)</span>
+<span class="sd">        joint_ctc_attention (bool): Flag indication joint ctc attention or not (default: True)</span>
+<span class="sd">        max_length (int): Max decoding length. (default: 128)</span>
+<span class="sd">        num_attention_heads (int): The number of attention heads. (default: 1)</span>
+<span class="sd">        decoder_dropout_p (float): The dropout probability of decoder. (default: 0.2)</span>
+<span class="sd">        decoder_attn_mechanism (str): The attention mechanism for decoder. (default: loc)</span>
+<span class="sd">        teacher_forcing_ratio (float): The ratio of teacher forcing. (default: 1.0)</span>
+<span class="sd">        optimizer (str): Optimizer for training. (default: adam)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
         <span class="n">default</span><span class="o">=</span><span class="s2">&quot;joint_ctc_listen_attend_spell&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Model name&quot;</span><span class="p">}</span>

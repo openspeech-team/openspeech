@@ -264,13 +264,16 @@ num_mels (int): the number of mfc coefficients to retain. (default: 161)</p>
 a <code class="xref py py-class docutils literal notranslate"><span class="pre">SpectrogramTransform</span></code>.</p>
 <p>It is used to initiated an <cite>SpectrogramTransform</cite> feature transform.</p>
 <p>Configuration objects inherit from :class: <cite>~openspeech.dataclass.OpenspeechDataclass</cite>.</p>
-<dl class="simple">
-<dt>Configurations:</dt><dd><p>name (str): name of feature transform. (default: spectrogram)
-sample_rate (int): sampling rate of audio (default: 16000)
-frame_length (float): frame length for spectrogram (default: 20.0)
-frame_shift (float): length of hop between STFT (default: 10.0)
-del_silence (bool): flag indication whether to apply delete silence or not (default: False)
-num_mels (int): the number of mfc coefficients to retain. (default: 161)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – name of feature transform. (default: spectrogram)</p></li>
+<li><p><strong>sample_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – sampling rate of audio (default: 16000)</p></li>
+<li><p><strong>frame_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – frame length for spectrogram (default: 20.0)</p></li>
+<li><p><strong>frame_shift</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – length of hop between STFT (default: 10.0)</p></li>
+<li><p><strong>del_silence</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply delete silence or not (default: False)</p></li>
+<li><p><strong>num_mels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the number of mfc coefficients to retain. (default: 161)</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -314,13 +317,16 @@ num_mels (int): the number of mfc coefficients to retain. (default: 80)</p>
 a <code class="xref py py-class docutils literal notranslate"><span class="pre">MelSpectrogramFeatureTransform</span></code>.</p>
 <p>It is used to initiated an <cite>MelSpectrogramFeatureTransform</cite> feature transform.</p>
 <p>Configuration objects inherit from :class: <cite>~openspeech.dataclass.OpenspeechDataclass</cite>.</p>
-<dl class="simple">
-<dt>Configurations:</dt><dd><p>name (str): name of feature transform. (default: melspectrogram)
-sample_rate (int): sampling rate of audio (default: 16000)
-frame_length (float): frame length for spectrogram (default: 20.0)
-frame_shift (float): length of hop between STFT (default: 10.0)
-del_silence (bool): flag indication whether to apply delete silence or not (default: False)
-num_mels (int): the number of mfc coefficients to retain. (default: 80)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – name of feature transform. (default: melspectrogram)</p></li>
+<li><p><strong>sample_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – sampling rate of audio (default: 16000)</p></li>
+<li><p><strong>frame_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – frame length for spectrogram (default: 20.0)</p></li>
+<li><p><strong>frame_shift</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – length of hop between STFT (default: 10.0)</p></li>
+<li><p><strong>del_silence</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply delete silence or not (default: False)</p></li>
+<li><p><strong>num_mels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the number of mfc coefficients to retain. (default: 80)</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -370,13 +376,16 @@ num_mels (int): the number of mfc coefficients to retain. (default: 80)</p>
 a <code class="xref py py-class docutils literal notranslate"><span class="pre">FilterBankFeatureTransform</span></code>.</p>
 <p>It is used to initiated an <cite>FilterBankFeatureTransform</cite> feature transform.</p>
 <p>Configuration objects inherit from :class: <cite>~openspeech.dataclass.configs.OpenspeechDataclass</cite>.</p>
-<dl class="simple">
-<dt>Configurations:</dt><dd><p>name (str): name of feature transform. (default: fbank)
-sample_rate (int): sampling rate of audio (default: 16000)
-frame_length (float): frame length for spectrogram (default: 20.0)
-frame_shift (float): length of hop between STFT (default: 10.0)
-del_silence (bool): flag indication whether to apply delete silence or not (default: False)
-num_mels (int): the number of mfc coefficients to retain. (default: 80)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – name of feature transform. (default: fbank)</p></li>
+<li><p><strong>sample_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – sampling rate of audio (default: 16000)</p></li>
+<li><p><strong>frame_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – frame length for spectrogram (default: 20.0)</p></li>
+<li><p><strong>frame_shift</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – length of hop between STFT (default: 10.0)</p></li>
+<li><p><strong>del_silence</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply delete silence or not (default: False)</p></li>
+<li><p><strong>num_mels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the number of mfc coefficients to retain. (default: 80)</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -426,13 +435,16 @@ num_mels (int): the number of mfc coefficients to retain. (default: 80)</p>
 a <code class="xref py py-class docutils literal notranslate"><span class="pre">MFCCFeatureTransform</span></code>.</p>
 <p>It is used to initiated an <cite>MFCCFeatureTransform</cite> feature transform.</p>
 <p>Configuration objects inherit from :class: <cite>~openspeech.dataclass.OpenspeechDataclass</cite>.</p>
-<dl class="simple">
-<dt>Configurations:</dt><dd><p>name (str): name of feature transform. (default: mfcc)
-sample_rate (int): sampling rate of audio (default: 16000)
-frame_length (float): frame length for spectrogram (default: 20.0)
-frame_shift (float): length of hop between STFT (default: 10.0)
-del_silence (bool): flag indication whether to apply delete silence or not (default: False)
-num_mels (int): the number of mfc coefficients to retain. (default: 80)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – name of feature transform. (default: mfcc)</p></li>
+<li><p><strong>sample_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – sampling rate of audio (default: 16000)</p></li>
+<li><p><strong>frame_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – frame length for spectrogram (default: 20.0)</p></li>
+<li><p><strong>frame_shift</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – length of hop between STFT (default: 10.0)</p></li>
+<li><p><strong>del_silence</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply delete silence or not (default: False)</p></li>
+<li><p><strong>num_mels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the number of mfc coefficients to retain. (default: 80)</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>

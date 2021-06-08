@@ -317,7 +317,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">y_hats</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;y_hats&quot;</span><span class="p">:</span> <span class="n">y_hats</span><span class="p">,</span>
+            <span class="s2">&quot;predictions&quot;</span><span class="p">:</span> <span class="n">y_hats</span><span class="p">,</span>
             <span class="s2">&quot;logits&quot;</span><span class="p">:</span> <span class="n">logits</span><span class="p">,</span>
             <span class="s2">&quot;output_lengths&quot;</span><span class="p">:</span> <span class="n">output_lengths</span><span class="p">,</span>
         <span class="p">}</span></div>

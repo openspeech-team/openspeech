@@ -32,6 +32,8 @@ Various features are available in the above two libraries, including Multi-GPU a
   
 ## Contents
   
+- [**What is OpenSpeech?**](https://github.com/sooftware/OpenSpeech#what-is-openspeech)
+  
 - [**Why should I use OpenSpeech?**](https://github.com/sooftware/OpenSpeech#why-should-i-use-openspeech)
     
 - [**Why shouldn't I use OpenSpeech?**](https://github.com/sooftware/OpenSpeech#why-should-i-use-openspeech)
@@ -50,6 +52,13 @@ Various features are available in the above two libraries, including Multi-GPU a
   
 - [**Citation**](https://github.com/sooftware/OpenSpeech#citation)
   
+## What is OpenSpeech?
+  
+OpenSpeech is a framework for making end-to-end speech recognizers. End-to-end (E2E) automatic speech recognition (ASR) is an emerging paradigm in the field of neural network-based speech recognition that offers multiple benefits. Traditional “hybrid” ASR systems, which are comprised of an acoustic model, language model, and pronunciation model, require separate training of these components, each of which can be complex.
+  
+For example, training of an acoustic model is a multi-stage process of model training and time alignment between the speech acoustic feature sequence and output label sequence. In contrast, E2E ASR is a single integrated approach with a much simpler training pipeline with models that operate at low audio frame rates. This reduces the training time, decoding time, and allows joint optimization with downstream processing such as natural language understanding.
+  
+Because of these advantages, many end-to-end speech recognition related open sources have emerged. But, Many of them are based on basic PyTorch or Tensorflow, it is very difficult to use various functions such as mixed-precision, multi-node training, and TPU training etc. However, with frameworks such as PyTorch-Lighting, these features can be easily used. So we have created a speech recognition framework that introduced PyTorch-Lightning and Hydra for easy use of these advanced features.
   
 ## Why should I use OpenSpeech?  
   

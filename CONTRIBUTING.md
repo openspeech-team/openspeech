@@ -52,7 +52,7 @@ First, we would really appreciate it if you could **make sure the bug was not al
   
 Did not find it? :( So we can act quickly on it, please follow these steps:  
   
-- Include your OS type and version, the versions of Python, PyTorch Tensorflow when applicable
+- Include your OS type and version, the versions of Python, PyTorch when applicable
 - Give to us a simple example of a code that we can reproduce.
 - Provide the full traceback if an exception is raised.  
   

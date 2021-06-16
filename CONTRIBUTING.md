@@ -8,7 +8,7 @@ We will also record all contributors and contributions [here](https://github.com
     
 ### You can contribute in so many ways!
   
-There are 5 ways you can contribute to transformers:
+There are 5 ways you can contribute to OpenSpeech:
 
 - Add new dataset recipe.
 - Implementing new models.

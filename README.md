@@ -62,6 +62,11 @@ Because of these advantages, many end-to-end speech recognition related open sou
   
 ## Why should I use OpenSpeech?  
   
+1. It is a framework based on PyTorch-Lighting.
+    - Various functions: mixed-precision, multi-node training, tpu training etc.
+    - Models become hardware agnostic
+    - Make fewer mistakes because lightning handles the tricky engineering
+    - Lightning has dozens of integrations with popular machine learning tools.
 1. Easy-to-experiment with the famous ASR models.  
     - Supports 10+ models and is continuously updated.  
     - Low barrier to entry for educators and practitioners.  

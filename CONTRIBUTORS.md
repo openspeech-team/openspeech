@@ -6,7 +6,7 @@ It records developers and contributions that contributed to OpenSpeech.
   
 - Creator, Lead Development, Main Contributor
 - Program architecture design
-- Implementation model list:
+- Model implementation model list:
 
 1. [**DeepSpeech2**](https://sooftware.github.io/OpenSpeech/DeepSpeech2.html) (from Baidu Research) released with paper [Deep Speech 2: End-to-End Speech Recognition in
 English and Mandarin](https://arxiv.org/abs/1512.02595.pdf), by Dario Amodei, Rishita Anubhai, Eric Battenberg, Carl Case, Jared Casper, Bryan Catanzaro, Jingdong Chen, Mike Chrzanowski, Adam Coates, Greg Diamos, Erich Elsen, Jesse Engel, Linxi Fan, Christopher Fougner, Tony Han, Awni Hannun, Billy Jun, Patrick LeGresley, Libby Lin, Sharan Narang, Andrew Ng, Sherjil Ozair, Ryan Prenger, Jonathan Raiman, Sanjeev Satheesh, David Seetapun, Shubho Sengupta, Yi Wang, Zhiqian Wang, Chong Wang, Bo Xiao, Dani Yogatama, Jun Zhan, Zhenyao Zhu. 
@@ -36,7 +36,8 @@ English and Mandarin](https://arxiv.org/abs/1512.02595.pdf), by Dario Amodei, Ri
 ### [Sangchun Ha](https://github.com/hasangchun)
   
 - Main Contributor.
-- Implementation list:  
+- Documentation
+- Model implementation list:  
   1.. [**Transformer Transducer**](https://sooftware.github.io/OpenSpeech/Transformer%20Transducer.html) (from Facebook AI) released with paper [Transformer-Transducer:
 End-to-End Speech Recognition with Self-Attention](https://arxiv.org/abs/1910.12977.pdf), by Ching-Feng Yeh, Jay Mahadeokar, Kaustubh Kalgaonkar, Yongqiang Wang, Duc Le, Mahaveer Jain, Kjell Schubert, Christian Fuegen, Michael L. Seltzer.  
 End-to-End Speech Recognition with Self-Attention](https://arxiv.org/abs/1910.12977.pdf), by Ching-Feng Yeh, Jay Mahadeokar, Kaustubh Kalgaonkar, Yongqiang Wang, Duc Le, Mahaveer Jain, Kjell Schubert, Christian Fuegen, Michael L. Seltzer.  

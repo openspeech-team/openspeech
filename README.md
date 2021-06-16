@@ -1,7 +1,11 @@
 <div align="center">
   
 ![image](https://user-images.githubusercontent.com/38921656/120214584-a2000200-c26f-11eb-934c-30697330613e.png)
-
+  
+  
+<p align="center">
+  <i><a href="https://github.com/sooftware/OpenSpeech/blob/main/CONTRIBUTING.md"><h3> 🤗 Contributing to OpenSpeech 🤗 </h3></a></i>
+  </p>
   
 </div>
 
@@ -25,6 +29,27 @@ Various features are available in the above two libraries, including Multi-GPU a
   
   
 <img src="https://user-images.githubusercontent.com/42150335/120691940-14781880-c4e2-11eb-8b1d-34390631cd55.png" height=20>  We appreciate any kind of feedback or contribution. Feel free to proceed with small issues like bug fixes, documentation improvement. For major contributions and new features, please discuss with the collaborators in corresponding issues.  
+  
+## Contents
+  
+- [**Why should I use OpenSpeech?**](https://github.com/sooftware/OpenSpeech#why-should-i-use-openspeech)
+    
+- [**Why shouldn't I use OpenSpeech?**](https://github.com/sooftware/OpenSpeech#why-should-i-use-openspeech)
+    
+- [**Model Architecture**](https://github.com/sooftware/OpenSpeech#model-architectures)
+   
+- [**Get Started**](https://github.com/sooftware/OpenSpeech#get-started)
+  
+- [**OpenSpeech's Hydra Configuration**](https://sooftware.github.io/OpenSpeech/notes/hydra_configs.html)
+  
+- [**Installation**](https://github.com/sooftware/OpenSpeech#installation)
+  
+- [**How to contribute to OpenSpeech?**](https://github.com/sooftware/OpenSpeech/blob/main/CONTRIBUTING.md)
+  
+- [**Contributors**](https://github.com/sooftware/OpenSpeech/blob/main/CONTRIBUTORS.md)
+  
+- [**Citation**](https://github.com/sooftware/OpenSpeech#citation)
+  
   
 ## Why should I use OpenSpeech?  
   

@@ -36,8 +36,13 @@ English and Mandarin](https://arxiv.org/abs/1512.02595.pdf), by Dario Amodei, Ri
 ### [Sangchun Ha](https://github.com/hasangchun)
   
 - Main Contributor.
-- Documentation
+- Code validation
 - Model implementation list:  
   1.. [**Transformer Transducer**](https://sooftware.github.io/OpenSpeech/Transformer%20Transducer.html) (from Facebook AI) released with paper [Transformer-Transducer:
 End-to-End Speech Recognition with Self-Attention](https://arxiv.org/abs/1910.12977.pdf), by Ching-Feng Yeh, Jay Mahadeokar, Kaustubh Kalgaonkar, Yongqiang Wang, Duc Le, Mahaveer Jain, Kjell Schubert, Christian Fuegen, Michael L. Seltzer.  
 End-to-End Speech Recognition with Self-Attention](https://arxiv.org/abs/1910.12977.pdf), by Ching-Feng Yeh, Jay Mahadeokar, Kaustubh Kalgaonkar, Yongqiang Wang, Duc Le, Mahaveer Jain, Kjell Schubert, Christian Fuegen, Michael L. Seltzer.  
+
+### [Soyoung Cho](https://github.com/SoYoungCho)
+- Main Contributor.
+- Usability Check
+- Documentation

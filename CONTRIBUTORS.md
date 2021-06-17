@@ -47,3 +47,4 @@ End-to-End Speech Recognition with Self-Attention](https://arxiv.org/abs/1910.12
 - Main Contributor.
 - Usability Check
 - Documentation
+- Logo design

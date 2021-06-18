@@ -204,22 +204,7 @@ class OpenspeechModel(pl.LightningModule):
             optimizer=self.optimizer,
             configs=self.configs,
         )
-        return self.optimizer
-
-    def optimizer_step(
-            self,
-            epoch: int = None,
-            batch_idx: int = None,
-            optimizer: Optimizer = None,
-            optimizer_idx: int = None,
-            optimizer_closure: Optional[Callable] = None,
-            on_tpu: bool = None,
-            using_native_amp: bool = None,
-            using_lbfgs: bool = None,
-    ) -> None:
-        self.scheduler.step()
-        optimizer.step()
-        optimizer.zero_grad()
+        return [self.optimizer], [self.scheduler]
 
     def configure_criterion(self, criterion_name: str) -> nn.Module:
         r"""

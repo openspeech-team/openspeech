@@ -119,26 +119,20 @@ class LSTMDecoder(OpenspeechDecoder):
 
         if use_teacher_forcing:
             inputs = inputs[inputs != self.eos_id].view(batch_size, -1)
-            step_outputs, hidden_states = self.forward_step(
-                input_var=inputs,
-                hidden_states=hidden_states,
-            )
+            step_outputs, hidden_states = self.forward_step(input_var=inputs, hidden_states=hidden_states)
 
             for di in range(step_outputs.size(1)):
                 step_output = step_outputs[:, di, :]
                 logits.append(step_output)
 
         else:
-            input = inputs[:, 0].unsqueeze(1)
+            input_var = inputs[:, 0].unsqueeze(1)
             for di in range(self.max_length):
-                step_output, hidden = self.forward_step(
-                    input_var=input,
-                    hidden_states=hidden_states,
-                )
+                step_output, hidden = self.forward_step(input_var=input_var, hidden_states=hidden_states)
 
                 step_output = step_output.squeeze(1)
                 logits.append(step_output)
-                input = logits[-1].topk(1)[1]
+                input_var = logits[-1].topk(1)[1]
 
         logits = torch.stack(logits, dim=1)
 

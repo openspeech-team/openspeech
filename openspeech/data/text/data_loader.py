@@ -45,8 +45,8 @@ def _collate_fn(batch, pad_id: int = 0):
 
     batch_size = len(batch)
 
-    inputs = torch.zeros(batch_size, max_seq_size).fill_(pad_id)
-    targets = torch.zeros(batch_size, max_seq_size).fill_(pad_id)
+    inputs = torch.zeros(batch_size, max_seq_size).fill_(pad_id).long()
+    targets = torch.zeros(batch_size, max_seq_size).fill_(pad_id).long()
 
     for x in range(batch_size):
         sample = batch[x]

@@ -23,12 +23,11 @@
 import os
 import hydra
 import pytorch_lightning as pl
-import warnings
 from omegaconf import DictConfig, OmegaConf
 from pytorch_lightning.utilities import rank_zero_info
 
 from openspeech.datasets import DATA_MODULE_REGISTRY
-from openspeech.dataclass.initialize import hydra_init
+from openspeech.dataclass.initialize import hydra_train_init
 from openspeech.models import MODEL_REGISTRY
 from openspeech.utils import parse_configs, get_pl_trainer
 
@@ -53,6 +52,5 @@ def hydra_main(configs: DictConfig) -> None:
 
 
 if __name__ == '__main__':
-    warnings.filterwarnings("ignore")
-    hydra_init()
+    hydra_train_init()
     hydra_main()

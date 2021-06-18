@@ -96,20 +96,16 @@ class LibriSpeechCharacterVocabulary(Vocabulary):
             sentences.append(sentence)
         return sentences
 
-    def string_to_label(self, sentences):
-        if isinstance(sentences, str):
-            label = list()
-            for ch in sentences:
-                label.append(self.vocab_dict[ch])
-            return torch.IntTensor(label)
+    def string_to_label(self, sentence):
+        label = str()
 
-        labels = list()
-        for sentence in sentences:
-            label = list()
-            for ch in sentence:
-                label.append(self.vocab_dict[ch])
-            labels.append(label)
-        return torch.IntTensor(labels)
+        for ch in sentence:
+            try:
+                label += (str(self.vocab_dict[ch]) + ' ')
+            except KeyError:
+                continue
+
+        return label[:-1]
 
     def load_vocab(self, vocab_path, encoding='utf-8'):
         r"""

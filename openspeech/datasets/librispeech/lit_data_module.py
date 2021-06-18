@@ -28,13 +28,14 @@ import shutil
 import pytorch_lightning as pl
 from typing import Tuple, Optional
 from omegaconf import DictConfig
-from openspeech.data.dataset import SpeechToTextDataset
+from openspeech.data.audio.dataset import SpeechToTextDataset
 from torch.utils.data import DataLoader
 
 from openspeech.datasets import register_data_module
 from openspeech.vocabs import VOCAB_REGISTRY
 from openspeech.vocabs.vocab import Vocabulary
-from openspeech.data.data_loader import BucketingSampler, AudioDataLoader
+from openspeech.data.sampler import BucketingSampler
+from openspeech.data.audio.data_loader import AudioDataLoader
 
 
 @register_data_module('librispeech')

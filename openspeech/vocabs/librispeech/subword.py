@@ -89,3 +89,8 @@ class LibriSpeechSubwordVocabulary(Vocabulary):
             return sentences
         else:
             raise ValueError("Unsupported label's shape")
+
+    def string_to_label(self, sentence):
+        text = " ".join(self.sp.EncodeAsPieces(sentence))
+        label = " ".join([str(self.sp.PieceToId(token)) for token in text])
+        return label

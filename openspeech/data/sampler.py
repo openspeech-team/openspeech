@@ -20,37 +20,35 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import os
-import hydra
-import pytorch_lightning as pl
-from omegaconf import DictConfig, OmegaConf
-from pytorch_lightning.utilities import rank_zero_info
+import numpy as np
 
-from openspeech.dataclass.initialize import hydra_lm_train_init
-from openspeech.datasets import DATA_MODULE_REGISTRY
-from openspeech.models import MODEL_REGISTRY
-from openspeech.utils import parse_configs, get_pl_trainer
+from torch.utils.data import Sampler
 
 
-@hydra.main(config_path=os.path.join("..", "openspeech", "configs"), config_name="lm_train")
-def hydra_main(configs: DictConfig) -> None:
-    rank_zero_info(OmegaConf.to_yaml(configs))
-    pl.seed_everything(configs.trainer.seed)
+class BucketingSampler(Sampler):
+    r"""
+    Samples batches assuming they are in order of size to batch similarly sized samples together.
 
-    logger, num_devices = parse_configs(configs)
+    Args:
+        data_source (torch.utils.data.Dataset): dataset to sample from
+        batch_size (int): size of batch
+        drop_last (bool): flat indication whether to drop last batch or not
+    """
+    def __init__(self, data_source, batch_size: int = 32, drop_last: bool = False) -> None:
+        super(BucketingSampler, self).__init__(data_source)
+        self.batch_size = batch_size
+        self.data_source = data_source
+        ids = list(range(0, len(data_source)))
+        self.bins = [ids[i:i + batch_size] for i in range(0, len(ids), batch_size)]
+        self.drop_last = drop_last
 
-    data_module = DATA_MODULE_REGISTRY[configs.dataset.dataset](configs)
-    vocab = data_module.prepare_data()
-    data_module.setup(vocab=vocab)
+    def __iter__(self):
+        for ids in self.bins:
+            np.random.shuffle(ids)
+            yield ids
 
-    model = MODEL_REGISTRY[configs.model.model_name](configs=configs, vocab=vocab)
-    model.build_model()
+    def __len__(self):
+        return len(self.bins)
 
-    trainer = get_pl_trainer(configs, num_devices, logger)
-    trainer.fit(model, data_module)
-    trainer.test()
-
-
-if __name__ == '__main__':
-    hydra_lm_train_init()
-    hydra_main()
+    def shuffle(self, epoch):
+        np.random.shuffle(self.bins)

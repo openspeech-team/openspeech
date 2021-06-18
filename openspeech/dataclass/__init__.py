@@ -35,9 +35,18 @@ from .configurations import (
     EnsembleEvaluationConfigs,
 )
 
-OPENSPEECH_CONFIGS = [
+OPENSPEECH_TRAIN_CONFIGS = [
     "audio",
     "augment",
+    "dataset",
+    "model",
+    "criterion",
+    "lr_scheduler",
+    "trainer",
+    "vocab",
+]
+
+OPENSPEECH_LM_TRAIN_CONFIGS = [
     "dataset",
     "model",
     "criterion",

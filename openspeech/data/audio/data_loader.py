@@ -26,7 +26,7 @@ from typing import Tuple
 from torch.utils.data import DataLoader, Sampler
 
 
-def _audio_collate_fn(batch, pad_id: int = 0):
+def _collate_fn(batch, pad_id: int = 0):
     r"""
     Functions that pad to the maximum sequence length
 
@@ -81,35 +81,6 @@ def _audio_collate_fn(batch, pad_id: int = 0):
     return seqs, targets, seq_lengths, target_lengths
 
 
-def _text_collate_fn(batch, pad_id: int = 0):
-    r"""
-    Functions that pad to the maximum sequence length
-
-    Args:
-        batch (tuple): tuple contains input and target tensors
-        pad_id (int): identification of pad token
-
-    Returns:
-        inputs (torch.FloatTensor): tensor contains input sequences.
-    """
-    def seq_length_(p):
-        return len(p[0])
-
-    max_seq_sample = max(batch, key=seq_length_)[0]
-    max_seq_size = max_seq_sample.size(0)
-
-    batch_size = len(batch)
-
-    inputs = torch.zeros(batch_size, max_seq_size).fill_(pad_id)
-
-    for x in range(batch_size):
-        sample = batch[x]
-        tensor = sample[0]
-        inputs[x].narrow(0, 0, len(tensor)).copy_(torch.LongTensor(tensor))
-
-    return inputs
-
-
 class AudioDataLoader(DataLoader):
     r"""
     Audio Data Loader
@@ -132,61 +103,7 @@ class AudioDataLoader(DataLoader):
             batch_sampler=batch_sampler,
             **kwargs,
         )
-        self.collate_fn = _audio_collate_fn
-
-
-class TextDataLoader(DataLoader):
-    r"""
-    Text Data Loader
-
-    Args:
-        dataset (torch.utils.data.Dataset): dataset from which to load the data.
-        num_workers (int): how many subprocesses to use for data loading.
-        batch_sampler (torch.utils.data.sampler.Sampler): defines the strategy to draw samples from the dataset.
-    """
-    def __init__(
-            self,
-            dataset: torch.utils.data.Dataset,
-            num_workers: int,
-            batch_sampler: torch.utils.data.sampler.Sampler,
-            **kwargs,
-    ) -> None:
-        super(TextDataLoader, self).__init__(
-            dataset=dataset,
-            num_workers=num_workers,
-            batch_sampler=batch_sampler,
-            **kwargs,
-        )
-        self.collate_fn = _text_collate_fn
-
-
-class BucketingSampler(Sampler):
-    r"""
-    Samples batches assuming they are in order of size to batch similarly sized samples together.
-
-    Args:
-        data_source (torch.utils.data.Dataset): dataset to sample from
-        batch_size (int): size of batch
-        drop_last (bool): flat indication whether to drop last batch or not
-    """
-    def __init__(self, data_source, batch_size: int = 32, drop_last: bool = False) -> None:
-        super(BucketingSampler, self).__init__(data_source)
-        self.batch_size = batch_size
-        self.data_source = data_source
-        ids = list(range(0, len(data_source)))
-        self.bins = [ids[i:i + batch_size] for i in range(0, len(ids), batch_size)]
-        self.drop_last = drop_last
-
-    def __iter__(self):
-        for ids in self.bins:
-            np.random.shuffle(ids)
-            yield ids
-
-    def __len__(self):
-        return len(self.bins)
-
-    def shuffle(self, epoch):
-        np.random.shuffle(self.bins)
+        self.collate_fn = _collate_fn
 
 
 def load_dataset(manifest_file_path: str) -> Tuple[list, list]:

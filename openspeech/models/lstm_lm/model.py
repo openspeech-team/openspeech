@@ -27,13 +27,15 @@ from typing import Dict
 
 from openspeech.decoders.lstm_decoder import LSTMDecoder
 from openspeech.models import register_model, OpenspeechModel
+from openspeech.models.lstm_lm.configurations import LSTMLanguageModelConfigs
 from openspeech.vocabs.vocab import Vocabulary
 
 
-@register_model('lstm_lm')
+@register_model('lstm_lm', dataclass=LSTMLanguageModelConfigs)
 class LSTMLanguageModel(OpenspeechModel):
     def __init__(self, configs: DictConfig, vocab: Vocabulary, ) -> None:
         super(LSTMLanguageModel, self).__init__(configs, vocab)
+        self.teacher_forcing_ratio = configs.model.teacher_forcing_ratio
 
     def build_model(self):
         self.lm = LSTMDecoder(
@@ -63,7 +65,7 @@ class LSTMLanguageModel(OpenspeechModel):
         self.log_steps(stage, wer, cer, loss)
 
         progress_bar_dict = {
-            f"{stage}_loss": loss,
+            f"{stage}_perplexity": loss,
             "wer": wer,
             "cer": cer,
         }
@@ -93,11 +95,12 @@ class LSTMLanguageModel(OpenspeechModel):
         Returns:
             loss (torch.Tensor): loss for training
         """
-        logits = self.lm(batch[0], teacher_forcing_ratio=self.teacher_forcing_ratio)
+        inputs, targets = batch
+        logits = self.lm(inputs, teacher_forcing_ratio=self.teacher_forcing_ratio)
         return self.collect_outputs(
             stage='train',
             logits=logits,
-            targets=batch[0],
+            targets=targets,
         )
 
     def validation_step(self, batch: tuple, batch_idx: int) -> OrderedDict:
@@ -111,11 +114,12 @@ class LSTMLanguageModel(OpenspeechModel):
         Returns:
             loss (torch.Tensor): loss for training
         """
-        logits = self.lm(batch, teacher_forcing_ratio=0.0)
+        inputs, targets = batch
+        logits = self.lm(inputs, teacher_forcing_ratio=0.0)
         return self.collect_outputs(
             stage='valid',
             logits=logits,
-            targets=batch[0],
+            targets=targets,
         )
 
     def test_step(self, batch: tuple, batch_idx: int) -> OrderedDict:
@@ -129,9 +133,10 @@ class LSTMLanguageModel(OpenspeechModel):
         Returns:
             loss (torch.Tensor): loss for training
         """
-        logits = self.lm(batch, teacher_forcing_ratio=0.0)
+        inputs, targets = batch
+        logits = self.lm(inputs, teacher_forcing_ratio=0.0)
         return self.collect_outputs(
             stage='test',
             logits=logits,
-            targets=batch[0],
+            targets=targets,
         )

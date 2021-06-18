@@ -93,6 +93,16 @@ DUMMY_TARGETS = torch.LongTensor([
 DUMMY_TARGET_LENGTHS = torch.IntTensor([9, 8, 7])
 DUMMY_TRANSCRIPTS = "OPENSPEECH IS AWESOME"
 
+DUMMY_LM_INPUTS = torch.LongTensor([
+    [2, 3, 3, 3, 3, 3, 2, 2, 0],
+    [2, 3, 3, 3, 3, 3, 2, 3, 2],
+    [2, 3, 3, 3, 3, 3, 2, 2, 0],
+])
+DUMMY_LM_TARGETS = torch.LongTensor([
+    [3, 3, 3, 3, 3, 2, 2, 1, 0],
+    [3, 3, 3, 3, 3, 2, 1, 2, 0],
+    [3, 3, 3, 3, 3, 2, 2, 0, 1],
+])
 
 def is_pytorch_available():
     return importlib.util.find_spec("torch") is not None

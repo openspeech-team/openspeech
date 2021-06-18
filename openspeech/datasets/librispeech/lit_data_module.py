@@ -128,11 +128,8 @@ class LightningLibriSpeechDataModule(pl.LightningDataModule):
         Prepare librispeech data
 
         Returns:
-            vocab (Vocabulary): vocab class of KsponSpeech.
+            vocab (Vocabulary): vocab class of LibriSpeech.
         """
-        if not os.path.exists(self.configs.dataset.dataset_path):
-            raise ValueError("Dataset path is not valid.")
-
         if self.configs.vocab.unit == 'libri_subword':
             from openspeech.datasets.librispeech.preprocess.subword import generate_manifest_files
         elif self.configs.vocab.unit == 'libri_character':

@@ -66,8 +66,6 @@ class LSTMLanguageModel(OpenspeechModel):
 
         progress_bar_dict = {
             f"{stage}_perplexity": loss,
-            "wer": wer,
-            "cer": cer,
         }
 
         return OrderedDict({

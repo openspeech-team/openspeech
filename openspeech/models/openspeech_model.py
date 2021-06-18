@@ -99,8 +99,6 @@ class OpenspeechModel(pl.LightningModule):
             self.log(f"{stage}_cross_entropy_loss", cross_entropy_loss)
         if ctc_loss is not None:
             self.log(f"{stage}_ctc_loss", ctc_loss)
-        if hasattr(self, "optimizer"):
-            self.log("current_lr", self.get_lr())
 
     def forward(self, inputs: torch.FloatTensor, input_lengths: torch.LongTensor) -> Dict[str, Tensor]:
         r"""
@@ -200,10 +198,13 @@ class OpenspeechModel(pl.LightningModule):
             self.parameters(),
             lr=self.configs.lr_scheduler.lr,
         )
-        self.scheduler = SCHEDULER_REGISTRY[self.configs.lr_scheduler.scheduler_name](
-            optimizer=self.optimizer,
-            configs=self.configs,
-        )
+        self.scheduler = {
+            "scheduler": SCHEDULER_REGISTRY[self.configs.lr_scheduler.scheduler_name](
+                optimizer=self.optimizer,
+                configs=self.configs,
+            ),
+            "name": "learning_rate"
+        }
         return [self.optimizer], [self.scheduler]
 
     def configure_criterion(self, criterion_name: str) -> nn.Module:

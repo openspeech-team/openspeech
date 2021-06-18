@@ -22,8 +22,8 @@
 
 import os
 import hydra
-import pytorch_lightning as pl
 import wandb
+import pytorch_lightning as pl
 from omegaconf import DictConfig, OmegaConf
 from pytorch_lightning.utilities import rank_zero_info
 
@@ -35,8 +35,6 @@ from openspeech.utils import parse_configs, get_pl_trainer
 
 @hydra.main(config_path=os.path.join("..", "openspeech", "configs"), config_name="train")
 def hydra_main(configs: DictConfig) -> None:
-    wandb.init(f"{configs.model.model_name}-{configs.dataset.dataset}", config=configs)
-
     rank_zero_info(OmegaConf.to_yaml(configs))
     pl.seed_everything(configs.trainer.seed)
 

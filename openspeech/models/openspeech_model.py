@@ -23,9 +23,10 @@
 import torch
 import torch.nn as nn
 import pytorch_lightning as pl
-from typing import Dict, Optional, List, Tuple
+from typing import Dict, Optional, List, Tuple, Callable
 from omegaconf import DictConfig
 from torch import Tensor
+from torch.optim import Optimizer
 
 from openspeech.criterion import CRITERION_REGISTRY
 from openspeech.metrics import WordErrorRate, CharacterErrorRate
@@ -203,7 +204,22 @@ class OpenspeechModel(pl.LightningModule):
             optimizer=self.optimizer,
             configs=self.configs,
         )
-        return [self.optimizer], [self.scheduler]
+        return self.optimizer
+
+    def optimizer_step(
+            self,
+            epoch: int = None,
+            batch_idx: int = None,
+            optimizer: Optimizer = None,
+            optimizer_idx: int = None,
+            optimizer_closure: Optional[Callable] = None,
+            on_tpu: bool = None,
+            using_native_amp: bool = None,
+            using_lbfgs: bool = None,
+    ) -> None:
+        self.scheduler.step()
+        optimizer.step()
+        optimizer.zero_grad()
 
     def configure_criterion(self, criterion_name: str) -> nn.Module:
         r"""

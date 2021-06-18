@@ -38,19 +38,28 @@ def _collate_fn(batch, pad_id: int = 0):
     def seq_length_(p):
         return len(p[0])
 
+    batch = list(batch)
+    batch[0] = torch.tensor(batch[0])
+    batch[1] = torch.tensor(batch[1])
+
+    batch = sorted(batch, key=lambda sample: sample[0].size(0), reverse=True)
+
     max_seq_sample = max(batch, key=seq_length_)[0]
     max_seq_size = max_seq_sample.size(0)
 
     batch_size = len(batch)
 
     inputs = torch.zeros(batch_size, max_seq_size).fill_(pad_id)
+    targets = torch.zeros(batch_size, max_seq_size).fill_(pad_id)
 
     for x in range(batch_size):
         sample = batch[x]
-        tensor = sample[0]
-        inputs[x].narrow(0, 0, len(tensor)).copy_(torch.LongTensor(tensor))
+        input_var = sample[0]
+        target = sample[1]
+        inputs[x].narrow(0, 0, len(input_var)).copy_(torch.LongTensor(input_var))
+        targets[x].narrow(0, 0, len(target)).copy_(torch.LongTensor(target))
 
-    return inputs
+    return inputs, targets
 
 
 class TextDataLoader(DataLoader):

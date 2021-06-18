@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import torch
 import logging
 
 from torch.utils.data import Dataset
@@ -57,8 +58,8 @@ class TextDataset(Dataset):
 
     def __getitem__(self, idx):
         transcript = self.vocab.string_to_label(self.transcripts[idx])
-        inputs = self._get_inputs(transcript)
-        targets = self._get_inputs(transcript)
+        inputs = torch.IntTensor(self._get_inputs(transcript))
+        targets = torch.IntTensor(self._get_inputs(transcript))
         return inputs, targets
 
     def __len__(self):

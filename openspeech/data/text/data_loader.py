@@ -38,10 +38,6 @@ def _collate_fn(batch, pad_id: int = 0):
     def seq_length_(p):
         return len(p[0])
 
-    batch = list(batch)
-    batch[0] = torch.tensor(batch[0])
-    batch[1] = torch.tensor(batch[1])
-
     batch = sorted(batch, key=lambda sample: sample[0].size(0), reverse=True)
 
     max_seq_sample = max(batch, key=seq_length_)[0]

@@ -58,8 +58,8 @@ class TextDataset(Dataset):
 
     def __getitem__(self, idx):
         transcript = self.vocab.string_to_label(self.transcripts[idx])
-        inputs = torch.IntTensor(self._get_inputs(transcript))
-        targets = torch.IntTensor(self._get_targets(transcript))
+        inputs = torch.LongTensor(self._get_inputs(transcript))
+        targets = torch.LongTensor(self._get_targets(transcript))
         return inputs, targets
 
     def __len__(self):

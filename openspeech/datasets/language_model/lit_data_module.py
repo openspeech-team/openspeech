@@ -59,8 +59,11 @@ class LightningLanguageModelDataModule(pl.LightningDataModule):
 
         random.shuffle(transcripts)
 
-        num_train_transcripts = int(num_total_transcripts * (1 - self.configs.valid_ratio - self.configs.test_ratio))
-        num_valid_transcripts = int(num_total_transcripts * self.configs.valid_ratio)
+        train_ratio = (1 - self.configs.dataset.valid_ratio - self.configs.dataset.test_ratio)
+
+        num_train_transcripts = int(num_total_transcripts * train_ratio)
+        num_valid_transcripts = int(num_total_transcripts * self.configs.dataset.valid_ratio)
+
         valid_end_idx = num_train_transcripts + num_valid_transcripts
 
         transcripts = {

@@ -124,6 +124,12 @@ class LMConfigs(OpenspeechDataclass):
     dataset_path: str = field(
         default=MISSING, metadata={"help": "Path of dataset"}
     )
+    valid_ratio: float = field(
+        default=0.05, metadata={"help": "Ratio of validation data"}
+    )
+    test_ratio: float = field(
+        default=0.05, metadata={"help": "Ratio of test data"}
+    )
 
 
 @dataclass

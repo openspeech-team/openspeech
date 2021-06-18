@@ -112,10 +112,8 @@ class LSTMDecoder(OpenspeechDecoder):
             * logits (torch.FloatTensor): Log probability of model predictions.
         """
         batch_size = inputs.size(0)
-        logits = list()
+        logits, hidden_states = list(), None
         use_teacher_forcing = True if random.random() < teacher_forcing_ratio else False
-
-        hidden_states = self._init_state(batch_size)
 
         if use_teacher_forcing:
             inputs = inputs[inputs != self.eos_id].view(batch_size, -1)
@@ -137,14 +135,3 @@ class LSTMDecoder(OpenspeechDecoder):
         logits = torch.stack(logits, dim=1)
 
         return logits
-
-    def _init_state(self, batch_size):
-        if isinstance(self.rnn, nn.LSTM):
-            h_0 = torch.zeros(self.num_layers, batch_size, self.hidden_state_dim)
-            c_0 = torch.zeros(self.num_layers, batch_size, self.hidden_state_dim)
-            hidden_states = (h_0, c_0)
-
-        else:
-            hidden_states = torch.zeros(self.num_layers, batch_size, self.hidden_state_dim)
-
-        return hidden_states

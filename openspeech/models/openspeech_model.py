@@ -204,7 +204,13 @@ class OpenspeechModel(pl.LightningModule):
             optimizer=self.optimizer,
             configs=self.configs,
         )
-        return [self.optimizer], [self.scheduler]
+        return {
+            "optimizer": self.optimizer,
+            "lr_scheduler": {
+                "scheduler": self.scheduler,
+                "monitor": "val_loss"
+            }
+        }
 
     def configure_criterion(self, criterion_name: str) -> nn.Module:
         r"""

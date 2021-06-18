@@ -58,3 +58,9 @@ for file in os.listdir(data_module_dir):
             if subfile.endswith(".py"):
                 data_module_name = subfile[: subfile.find(".py")] if subfile.endswith(".py") else subfile
                 module = importlib.import_module(f"openspeech.datasets.{file}.{data_module_name}")
+
+    path = os.path.join(data_module_dir, file)
+    if file.endswith('.py'):
+        data_module_name = file[: file.find(".py")] if file.endswith(".py") else file
+        module = importlib.import_module(f"openspeech.datasets.{data_module_name}")
+

@@ -41,7 +41,7 @@ class TextDataset(Dataset):
         transcript = [int(self.sos_id)]
 
         for token in tokens:
-            transcript.append(token)
+            transcript.append(int(token))
 
         return transcript
 
@@ -50,7 +50,7 @@ class TextDataset(Dataset):
         transcript = list()
 
         for token in tokens:
-            transcript.append(token)
+            transcript.append(int(token))
 
         transcript.append(int(self.eos_id))
 

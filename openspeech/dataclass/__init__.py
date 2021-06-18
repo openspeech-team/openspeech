@@ -25,6 +25,7 @@ from .configurations import (
     LibriSpeechConfigs,
     KsponSpeechConfigs,
     AIShellConfigs,
+    LMConfigs,
     CPUTrainerConfigs,
     GPUTrainerConfigs,
     TPUTrainerConfigs,
@@ -61,6 +62,7 @@ DATASET_DATACLASS_REGISTRY = {
     "aishell": AIShellConfigs,
     "ksponspeech": KsponSpeechConfigs,
     "librispeech": LibriSpeechConfigs,
+    "lm": LMConfigs,
 }
 TRAINER_DATACLASS_REGISTRY = {
     "cpu": CPUTrainerConfigs,

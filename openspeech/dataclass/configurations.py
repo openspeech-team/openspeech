@@ -63,7 +63,7 @@ class OpenspeechDataclass:
 class LibriSpeechConfigs(OpenspeechDataclass):
     """ Configuration dataclass that common used """
     dataset: str = field(
-        default="librispeech", metadata={"help": "Select dataset for training (librispeech, ksponspeech, aishell)"}
+        default="librispeech", metadata={"help": "Select dataset for training (librispeech, ksponspeech, aishell, lm)"}
     )
     dataset_path: str = field(
         default=MISSING, metadata={"help": "Path of dataset"}
@@ -80,7 +80,7 @@ class LibriSpeechConfigs(OpenspeechDataclass):
 class KsponSpeechConfigs(OpenspeechDataclass):
     """ Configuration dataclass that common used """
     dataset: str = field(
-        default="ksponspeech", metadata={"help": "Select dataset for training (librispeech, ksponspeech, aishell)"}
+        default="ksponspeech", metadata={"help": "Select dataset for training (librispeech, ksponspeech, aishell, lm)"}
     )
     dataset_path: str = field(
         default=MISSING, metadata={"help": "Path of dataset"}
@@ -103,7 +103,7 @@ class KsponSpeechConfigs(OpenspeechDataclass):
 class AIShellConfigs(OpenspeechDataclass):
     """ Configuration dataclass that common used """
     dataset: str = field(
-        default="aishell", metadata={"help": "Select dataset for training (librispeech, ksponspeech, aishell)"}
+        default="aishell", metadata={"help": "Select dataset for training (librispeech, ksponspeech, aishell, lm)"}
     )
     dataset_path: str = field(
         default=MISSING, metadata={"help": "Path of dataset"}
@@ -113,6 +113,16 @@ class AIShellConfigs(OpenspeechDataclass):
     )
     manifest_file_path: str = field(
         default="../../../data_aishell/aishell_manifest.txt", metadata={"help": "Path of manifest file"}
+    )
+
+
+@dataclass
+class LMConfigs(OpenspeechDataclass):
+    dataset: str = field(
+        default="lm", metadata={"help": "Select dataset for training (librispeech, ksponspeech, aishell, lm)"}
+    )
+    dataset_path: str = field(
+        default=MISSING, metadata={"help": "Path of dataset"}
     )
 
 
@@ -368,7 +378,7 @@ class EnsembleEvaluationConfigs(OpenspeechDataclass):
 
 
 def generate_openspeech_configs_with_help():
-    from openspeech.dataclass import OPENSPEECH_CONFIGS, TRAINER_DATACLASS_REGISTRY
+    from openspeech.dataclass import OPENSPEECH_TRAIN_CONFIGS, TRAINER_DATACLASS_REGISTRY
     from openspeech.models import MODEL_DATACLASS_REGISTRY
     from openspeech.criterion import CRITERION_DATACLASS_REGISTRY
     from openspeech.data import AUDIO_FEATURE_TRANSFORM_DATACLASS_REGISTRY
@@ -387,7 +397,7 @@ def generate_openspeech_configs_with_help():
     }
 
     with open("../../../configuration.md", "w") as f:
-        for group in OPENSPEECH_CONFIGS:
+        for group in OPENSPEECH_TRAIN_CONFIGS:
             dataclass_registry = registries[group]
 
             f.write(f"## `{group}`\n")

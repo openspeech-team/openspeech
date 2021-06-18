@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import torch
 import csv
 from dataclasses import dataclass, field
 from omegaconf import DictConfig
@@ -55,6 +56,9 @@ class AIShellCharacterVocabulary(Vocabulary):
             encoding=configs.vocab.encoding,
         )
         self.labels = self.vocab_dict.keys()
+        self.sos_token = configs.vocab.sos_token
+        self.eos_token = configs.vocab.eos_token
+        self.pad_token = configs.vocab.pad_token
         self.sos_id = int(self.vocab_dict[configs.vocab.sos_token])
         self.eos_id = int(self.vocab_dict[configs.vocab.eos_token])
         self.pad_id = int(self.vocab_dict[configs.vocab.pad_token])
@@ -95,6 +99,21 @@ class AIShellCharacterVocabulary(Vocabulary):
                 sentence += self.id_dict[label.item()]
             sentences.append(sentence)
         return sentences
+
+    def string_to_label(self, sentences):
+        if isinstance(sentences, str):
+            label = list()
+            for ch in sentences:
+                label.append(self.vocab_dict[ch])
+            return torch.IntTensor(label)
+
+        labels = list()
+        for sentence in sentences:
+            label = list()
+            for ch in sentence:
+                label.append(self.vocab_dict[ch])
+            labels.append(label)
+        return torch.IntTensor(labels)
 
     def load_vocab(self, vocab_path, encoding='utf-8'):
         r"""

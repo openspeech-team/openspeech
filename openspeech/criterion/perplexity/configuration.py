@@ -20,8 +20,29 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from .openspeech_decoder import OpenspeechDecoder
-from .lstm_attention_decoder import LSTMAttentionDecoder
-from .rnn_transducer_decoder import RNNTransducerDecoder
-from .transformer_decoder import TransformerDecoder
-from .transformer_transducer_decoder import TransformerTransducerDecoder
+from dataclasses import dataclass, field
+
+from ...dataclass.configurations import OpenspeechDataclass
+
+
+@dataclass
+class PerplexityLossConfigs(OpenspeechDataclass):
+    r"""
+    This is the configuration class to store the configuration of a
+    :class: `~openspeech.criterion.Perplexity`.
+
+    It is used to initiated an `CrossEntropyLoss` criterion.
+
+    Configuration objects inherit from :class: `~openspeech.dataclass.configs.OpenspeechDataclass`.
+
+    Configurations:
+        criterion_name (str): name of criterion (default: perplexity)
+        reduction (str): reduction method of criterion (default: mean)
+    """
+    criterion_name: str = field(
+        default="perplexity", metadata={"help": "Criterion name for training"}
+    )
+    reduction: str = field(
+        default="mean", metadata={"help": "Reduction method of criterion"}
+    )
+

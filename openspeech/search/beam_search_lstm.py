@@ -23,7 +23,7 @@
 import torch
 
 from openspeech.search.base import OpenspeechBeamSearchBase
-from openspeech.decoders import LSTMDecoder
+from openspeech.decoders import LSTMAttentionDecoder
 
 
 class BeamSearchLSTM(OpenspeechBeamSearchBase):
@@ -47,7 +47,7 @@ class BeamSearchLSTM(OpenspeechBeamSearchBase):
     Returns:
         * logits (torch.FloatTensor): Log probability of model predictions.
     """
-    def __init__(self, decoder: LSTMDecoder, beam_size: int):
+    def __init__(self, decoder: LSTMAttentionDecoder, beam_size: int):
         super(BeamSearchLSTM, self).__init__(decoder, beam_size)
         self.hidden_state_dim = decoder.hidden_state_dim
         self.num_layers = decoder.num_layers

@@ -20,8 +20,22 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from .openspeech_decoder import OpenspeechDecoder
-from .lstm_attention_decoder import LSTMAttentionDecoder
-from .rnn_transducer_decoder import RNNTransducerDecoder
-from .transformer_decoder import TransformerDecoder
-from .transformer_transducer_decoder import TransformerTransducerDecoder
+import os
+import hydra
+import pytorch_lightning as pl
+from omegaconf import DictConfig, OmegaConf
+from pytorch_lightning.utilities import rank_zero_info
+
+from openspeech.models import MODEL_REGISTRY
+from openspeech.utils import parse_configs
+
+
+@hydra.main(config_path=os.path.join("..", "openspeech", "configs"), config_name="lm_train")
+def hydra_main(configs: DictConfig) -> None:
+    rank_zero_info(OmegaConf.to_yaml(configs))
+    pl.seed_everything(configs.trainer.seed)
+
+    logger, num_devices = parse_configs(configs)
+
+    model = MODEL_REGISTRY[configs.model.model_name](configs=configs, vocab=vocab)
+    model.build_model()

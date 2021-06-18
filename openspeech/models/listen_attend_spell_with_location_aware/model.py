@@ -26,7 +26,7 @@ from typing import Dict
 from collections import OrderedDict
 
 from openspeech.models import register_model, OpenspeechEncoderDecoderModel
-from openspeech.decoders import LSTMDecoder
+from openspeech.decoders import LSTMAttentionDecoder
 from openspeech.encoders import LSTMEncoder
 from openspeech.models.listen_attend_spell_with_location_aware.configurations import ListenAttendSpellWithLocationAwareConfigs
 from openspeech.vocabs.vocab import Vocabulary
@@ -68,7 +68,7 @@ class ListenAttendSpellWithLocationAwareModel(OpenspeechEncoderDecoderModel):
         decoder_hidden_state_dim = self.configs.model.hidden_state_dim << 1 \
             if self.configs.model.encoder_bidirectional \
             else self.configs.model.hidden_state_dim
-        self.decoder = LSTMDecoder(
+        self.decoder = LSTMAttentionDecoder(
             num_classes=self.num_classes,
             max_length=self.configs.model.max_length,
             hidden_state_dim=decoder_hidden_state_dim,

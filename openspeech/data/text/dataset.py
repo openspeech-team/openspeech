@@ -38,7 +38,7 @@ class TextDataset(Dataset):
 
     def _get_inputs(self, transcript):
         tokens = transcript.split(' ')
-        transcript = [self.sos_id]
+        transcript = [int(self.sos_id)]
 
         for token in tokens:
             transcript.append(token)
@@ -52,14 +52,14 @@ class TextDataset(Dataset):
         for token in tokens:
             transcript.append(token)
 
-        transcript.append(self.eos_id)
+        transcript.append(int(self.eos_id))
 
         return transcript
 
     def __getitem__(self, idx):
         transcript = self.vocab.string_to_label(self.transcripts[idx])
         inputs = torch.IntTensor(self._get_inputs(transcript))
-        targets = torch.IntTensor(self._get_inputs(transcript))
+        targets = torch.IntTensor(self._get_targets(transcript))
         return inputs, targets
 
     def __len__(self):

@@ -52,7 +52,7 @@ class LightningLanguageModelDataModule(pl.LightningDataModule):
         num_total_transcripts = 0
         transcripts = list()
 
-        with open(self.configs.dataset.dataset_path) as f:
+        with open(self.configs.dataset.dataset_path, encoding=self.configs.vocab.encoding) as f:
             for line in f.readlines():
                 transcripts.append(line)
                 num_total_transcripts += 1

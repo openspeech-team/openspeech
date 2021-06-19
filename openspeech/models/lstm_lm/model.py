@@ -25,7 +25,7 @@ from omegaconf import DictConfig
 from collections import OrderedDict
 from typing import Dict
 
-from openspeech.lm.lstm_for_causal_lm import LSTMForCausalLM
+from openspeech.lm.lstm_lm import LSTMForLanguageModel
 from openspeech.models import register_model, OpenspeechModel
 from openspeech.models.lstm_lm.configurations import LSTMLanguageModelConfigs
 from openspeech.vocabs.vocab import Vocabulary
@@ -33,11 +33,26 @@ from openspeech.vocabs.vocab import Vocabulary
 
 @register_model('lstm_lm', dataclass=LSTMLanguageModelConfigs)
 class LSTMLanguageModel(OpenspeechModel):
+    r"""
+    LSTM language model.
+    Paper: http://www-i6.informatik.rwth-aachen.de/publications/download/820/Sundermeyer-2012.pdf
+
+    Args:
+        configs (DictConfig): configuration set.
+        vocab (Vocabulary): the class of vocabulary
+
+    Inputs:
+        - **inputs** (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be
+            a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
+
+    Returns:
+        * outputs (dict): Result of model predictions.
+    """
     def __init__(self, configs: DictConfig, vocab: Vocabulary, ) -> None:
         super(LSTMLanguageModel, self).__init__(configs, vocab)
 
     def build_model(self):
-        self.lm = LSTMForCausalLM(
+        self.lm = LSTMForLanguageModel(
             num_classes=self.num_classes,
             max_length=self.configs.model.max_length,
             hidden_state_dim=self.configs.model.hidden_state_dim,

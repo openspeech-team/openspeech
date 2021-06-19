@@ -24,7 +24,7 @@ import torch
 import torch.nn as nn
 from typing import Optional, Tuple
 
-from openspeech.lm.openspeech_for_causal_lm import OpenspeechCausalLMBase
+from openspeech.lm.openspeech_lm import OpenspeechLanguageModelBase
 from openspeech.modules import (
     TransformerEmbedding,
     PositionalEncoding,
@@ -36,7 +36,7 @@ from openspeech.modules import (
 )
 
 
-class TransformerForCausalLMLayer(nn.Module):
+class TransformerForLanguageModelLayer(nn.Module):
     def __init__(
             self,
             d_model: int = 768,
@@ -44,7 +44,7 @@ class TransformerForCausalLMLayer(nn.Module):
             d_ff: int = 2048,
             dropout_p: float = 0.3,
     ) -> None:
-        super(TransformerForCausalLMLayer, self).__init__()
+        super(TransformerForLanguageModelLayer, self).__init__()
         self.attention_prenorm = nn.LayerNorm(d_model)
         self.attention = MultiHeadAttention(d_model, num_attention_heads)
         self.feed_forward_prenorm = nn.LayerNorm(d_model)
@@ -68,7 +68,31 @@ class TransformerForCausalLMLayer(nn.Module):
         return outputs
 
 
-class TransformerForCausalLM(OpenspeechCausalLMBase):
+class TransformerForLanguageModel(OpenspeechLanguageModelBase):
+    """
+    Language Modelling is the core problem for a number of of natural language processing tasks such as speech to text,
+    conversational system, and text summarization. A trained language model learns the likelihood of occurrence
+    of a word based on the previous sequence of words used in the text.
+
+    Args:
+        num_classes (int): number of classification
+        max_length (int): max decoding length (default: 128)
+        d_model (int): dimension of model (default: 768)
+        d_ff (int): dimension of feed forward network (default: 1536)
+        num_attention_heads (int): number of attention heads (default: 8)
+        pad_id (int, optional): index of the pad symbol (default: 0)
+        sos_id (int, optional): index of the start of sentence symbol (default: 1)
+        eos_id (int, optional): index of the end of sentence symbol (default: 2)
+        num_layers (int, optional): number of transformer layers (default: 2)
+        dropout_p (float, optional): dropout probability of decoders (default: 0.2)
+
+    Inputs:, inputs, input_lengths
+        inputs (torch.LongTensor): A input sequence passed to decoders. `IntTensor` of size ``(batch, seq_length)``
+        input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
+
+    Returns:
+        * logits (torch.FloatTensor): Log probability of model predictions.
+    """
     def __init__(
             self,
             num_classes: int,
@@ -82,7 +106,7 @@ class TransformerForCausalLM(OpenspeechCausalLMBase):
             num_layers: int = 2,
             dropout_p: float = 0.3,
     ):
-        super(TransformerForCausalLM, self).__init__()
+        super(TransformerForLanguageModel, self).__init__()
         self.d_model = d_model
         self.num_classes = num_classes
         self.num_layers = num_layers
@@ -94,7 +118,7 @@ class TransformerForCausalLM(OpenspeechCausalLMBase):
         self.positional_encoding = PositionalEncoding(d_model)
         self.input_dropout = nn.Dropout(p=dropout_p)
         self.layers = nn.ModuleList([
-            TransformerForCausalLMLayer(
+            TransformerForLanguageModelLayer(
                 d_model=d_model,
                 num_attention_heads=num_attention_heads,
                 d_ff=d_ff,
@@ -126,6 +150,16 @@ class TransformerForCausalLM(OpenspeechCausalLMBase):
         return step_outputs
 
     def forward(self, inputs: torch.Tensor, input_lengths: torch.Tensor) -> torch.Tensor:
+        """
+        Forward propagate a `encoder_outputs` for training.
+
+        Args:
+            inputs (torch.LongTensor): A input sequence passed to decoders. `IntTensor` of size ``(batch, seq_length)``
+            input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
+
+        Returns:
+            * logits (torch.FloatTensor): Log probability of model predictions.
+        """
         logits = list()
 
         step_outputs = self.forward_step(inputs, input_lengths)

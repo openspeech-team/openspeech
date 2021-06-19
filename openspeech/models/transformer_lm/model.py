@@ -25,7 +25,7 @@ from omegaconf import DictConfig
 from collections import OrderedDict
 from typing import Dict
 
-from openspeech.lm.transformer_for_causal_lm import TransformerForCausalLM
+from openspeech.lm.transformer_lm import TransformerForLanguageModel
 from openspeech.models import register_model, OpenspeechModel
 from openspeech.models.transformer_lm.configurations import TransformerLanguageModelConfigs
 from openspeech.vocabs.vocab import Vocabulary
@@ -33,11 +33,27 @@ from openspeech.vocabs.vocab import Vocabulary
 
 @register_model('transformer_lm', dataclass=TransformerLanguageModelConfigs)
 class TransformerLanguageModel(OpenspeechModel):
+    r"""
+    Transformer language model.
+    Paper: https://arxiv.org/abs/1904.09408
+
+    Args:
+        configs (DictConfig): configuration set.
+        vocab (Vocabulary): the class of vocabulary
+
+    Inputs:
+        - **inputs** (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be
+            a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
+        - **input_lengths** (torch.LongTensor): The length of input tensor. ``(batch)``
+
+    Returns:
+        * outputs (dict): Result of model predictions.
+    """
     def __init__(self, configs: DictConfig, vocab: Vocabulary, ) -> None:
         super(TransformerLanguageModel, self).__init__(configs, vocab)
 
     def build_model(self):
-        self.lm = TransformerForCausalLM(
+        self.lm = TransformerForLanguageModel(
             num_classes=self.num_classes,
             max_length=self.configs.model.max_length,
             d_model=self.configs.model.d_model,

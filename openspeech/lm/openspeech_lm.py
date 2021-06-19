@@ -23,10 +23,10 @@
 import torch.nn as nn
 
 
-class OpenspeechCausalLMBase(nn.Module):
+class OpenspeechLanguageModelBase(nn.Module):
     r""" Interface of OpenSpeech decoder. """
     def __init__(self):
-        super(OpenspeechCausalLMBase, self).__init__()
+        super(OpenspeechLanguageModelBase, self).__init__()
 
     def count_parameters(self) -> int:
         r""" Count parameters of decoders """

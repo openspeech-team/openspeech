@@ -25,17 +25,30 @@ from omegaconf import DictConfig
 from collections import OrderedDict
 from typing import Dict
 
-from openspeech.models import OpenspeechModel
+from openspeech.lm.transformer_for_causal_lm import TransformerForCausalLM
+from openspeech.models import register_model, OpenspeechModel
+from openspeech.models.transformer_lm.configurations import TransformerLanguageModelConfigs
 from openspeech.vocabs.vocab import Vocabulary
 
 
-class OpenspeechLanguageModel(OpenspeechModel):
+@register_model('transformer_lm', dataclass=TransformerLanguageModelConfigs)
+class TransformerLanguageModel(OpenspeechModel):
     def __init__(self, configs: DictConfig, vocab: Vocabulary, ) -> None:
-        super(OpenspeechLanguageModel, self).__init__(configs, vocab)
-        self.teacher_forcing_ratio = configs.model.teacher_forcing_ratio
+        super(TransformerLanguageModel, self).__init__(configs, vocab)
 
     def build_model(self):
-        raise NotImplementedError
+        self.lm = TransformerForCausalLM(
+            num_classes=self.num_classes,
+            max_length=self.configs.model.max_length,
+            d_model=self.configs.model.d_model,
+            d_ff=self.configs.model.d_ff,
+            num_attention_heads=self.configs.model.num_attention_heads,
+            pad_id=self.vocab.pad_id,
+            sos_id=self.vocab.sos_id,
+            eos_id=self.vocab.eos_id,
+            dropout_p=self.configs.model.dropout_p,
+            num_layers=self.configs.model.num_layers,
+        )
 
     def collect_outputs(
             self,
@@ -46,7 +59,10 @@ class OpenspeechLanguageModel(OpenspeechModel):
         perplexity = self.criterion(logits, targets[:, 1:])
         predictions = logits.max(-1)[1]
 
-        self.info({f"{stage}_perplexity": perplexity})
+        self.info({
+            f"{stage}_perplexity": perplexity,
+            "learning_rate": self.get_lr(),
+        })
 
         return OrderedDict({
             "perplexity": perplexity,
@@ -55,8 +71,8 @@ class OpenspeechLanguageModel(OpenspeechModel):
             "predictions": predictions,
         })
 
-    def forward(self, inputs: torch.Tensor) -> Dict[str, torch.Tensor]:
-        logits = self.lm(inputs, teacher_forcing_ratio=0.0)
+    def forward(self, inputs: torch.Tensor, input_lengths: torch.Tensor) -> Dict[str, torch.Tensor]:
+        logits = self.lm(inputs, input_lengths)
         predictions = logits.max(-1)[1]
         return {
             "predictions": predictions,
@@ -74,8 +90,8 @@ class OpenspeechLanguageModel(OpenspeechModel):
         Returns:
             loss (torch.Tensor): loss for training
         """
-        inputs, targets = batch
-        logits = self.lm(inputs, teacher_forcing_ratio=self.teacher_forcing_ratio)
+        inputs, input_lengths, targets = batch
+        logits = self.lm(inputs, input_lengths)
         return self.collect_outputs(
             stage='train',
             logits=logits,
@@ -93,8 +109,8 @@ class OpenspeechLanguageModel(OpenspeechModel):
         Returns:
             loss (torch.Tensor): loss for training
         """
-        inputs, targets = batch
-        logits = self.lm(inputs, teacher_forcing_ratio=0.0)
+        inputs, input_lengths, targets = batch
+        logits = self.lm(inputs, input_lengths)
         return self.collect_outputs(
             stage='val',
             logits=logits,
@@ -112,8 +128,8 @@ class OpenspeechLanguageModel(OpenspeechModel):
         Returns:
             loss (torch.Tensor): loss for training
         """
-        inputs, targets = batch
-        logits = self.lm(inputs, teacher_forcing_ratio=0.0)
+        inputs, input_lengths, targets = batch
+        logits = self.lm(inputs, input_lengths)
         return self.collect_outputs(
             stage='test',
             logits=logits,

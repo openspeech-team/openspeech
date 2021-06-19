@@ -3,44 +3,44 @@ import logging
 import torch
 
 from openspeech.criterion import Perplexity, PerplexityLossConfigs
-from openspeech.models.lstm_lm.configurations import LSTMLanguageModelConfigs
-from openspeech.models.lstm_lm.model import LSTMLanguageModel
-from openspeech.utils import DUMMY_LM_INPUTS, DUMMY_LM_TARGETS, build_dummy_configs
+from openspeech.models.transformer_lm.configurations import TransformerLanguageModelConfigs
+from openspeech.models.transformer_lm.model import TransformerLanguageModel
+from openspeech.utils import DUMMY_LM_INPUTS, DUMMY_LM_TARGETS, DYMMY_LM_INPUT_LENGTHS, build_dummy_configs
 from openspeech.vocabs.ksponspeech.character import KsponSpeechCharacterVocabulary
 
 logger = logging.getLogger(__name__)
 
 
-class TestLSTMLanguageModel(unittest.TestCase):
+class TestTransformerLanguageModel(unittest.TestCase):
     def test_forward(self):
         configs = build_dummy_configs(
-            model_configs=LSTMLanguageModelConfigs,
+            model_configs=TransformerLanguageModelConfigs,
             criterion_configs=PerplexityLossConfigs(),
         )
         vocab = KsponSpeechCharacterVocabulary(configs)
-        model = LSTMLanguageModel(configs, vocab)
+        model = TransformerLanguageModel(configs, vocab)
         model.build_model()
+        model.configure_optimizers()
 
         criterion = Perplexity(configs, vocab)
         optimizer = torch.optim.Adam(model.parameters(), lr=1e-04)
-        ptimizer = torch.optim.Adam(model.parameters(), lr=1e-04)
 
         for i in range(3):
-            outputs = model(DUMMY_LM_INPUTS)
+            outputs = model(DUMMY_LM_INPUTS, DYMMY_LM_INPUT_LENGTHS)
             loss = criterion(outputs['logits'], DUMMY_LM_TARGETS)
             loss.backward()
             optimizer.step()
             assert type(loss.item()) == float
 
         for i in range(3):
-            outputs = model(DUMMY_LM_INPUTS)
+            outputs = model(DUMMY_LM_INPUTS, DYMMY_LM_INPUT_LENGTHS)
             loss = criterion(outputs['logits'], DUMMY_LM_TARGETS)
             loss.backward()
             optimizer.step()
             assert type(loss.item()) == float
 
         for i in range(3):
-            outputs = model(DUMMY_LM_INPUTS)
+            outputs = model(DUMMY_LM_INPUTS, DYMMY_LM_INPUT_LENGTHS)
             loss = criterion(outputs['logits'], DUMMY_LM_TARGETS)
             loss.backward()
             optimizer.step()
@@ -48,28 +48,34 @@ class TestLSTMLanguageModel(unittest.TestCase):
 
     def test_training_step(self):
         configs = build_dummy_configs(
-            model_configs=LSTMLanguageModelConfigs,
+            model_configs=TransformerLanguageModelConfigs,
             criterion_configs=PerplexityLossConfigs(),
         )
         vocab = KsponSpeechCharacterVocabulary(configs)
-        model = LSTMLanguageModel(configs, vocab)
+        model = TransformerLanguageModel(configs, vocab)
         model.build_model()
+        model.configure_optimizers()
 
         for i in range(5):
-            outputs = model.training_step(batch=(DUMMY_LM_INPUTS, DUMMY_LM_TARGETS), batch_idx=i)
+            outputs = model.training_step(
+                batch=(DUMMY_LM_INPUTS, DYMMY_LM_INPUT_LENGTHS, DUMMY_LM_TARGETS), batch_idx=i
+            )
             assert type(outputs["perplexity"].item()) == float
 
     def test_validation_step(self):
         configs = build_dummy_configs(
-            model_configs=LSTMLanguageModelConfigs,
+            model_configs=TransformerLanguageModelConfigs,
             criterion_configs=PerplexityLossConfigs(),
         )
         vocab = KsponSpeechCharacterVocabulary(configs)
-        model = LSTMLanguageModel(configs, vocab)
+        model = TransformerLanguageModel(configs, vocab)
         model.build_model()
+        model.configure_optimizers()
 
         for i in range(5):
-            outputs = model.validation_step(batch=(DUMMY_LM_INPUTS, DUMMY_LM_TARGETS), batch_idx=i)
+            outputs = model.training_step(
+                batch=(DUMMY_LM_INPUTS, DYMMY_LM_INPUT_LENGTHS, DUMMY_LM_TARGETS), batch_idx=i
+            )
             assert type(outputs["perplexity"].item()) == float
 
 

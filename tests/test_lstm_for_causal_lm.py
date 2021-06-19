@@ -3,21 +3,21 @@ import logging
 import torch
 
 from openspeech.criterion import Perplexity, PerplexityLossConfigs
-from openspeech.decoders.lstm_decoder import LSTMDecoder
+from openspeech.lm.lstm_for_causal_lm import LSTMForCausalLM
 from openspeech.utils import DUMMY_TARGETS, build_dummy_configs
 from openspeech.vocabs.ksponspeech.character import KsponSpeechCharacterVocabulary
 
 logger = logging.getLogger(__name__)
 
 
-class TestLSTMDecoder(unittest.TestCase):
+class TestLSTMForCausalLM(unittest.TestCase):
     def test_lstm_forward(self):
         configs = build_dummy_configs(
             criterion_configs=PerplexityLossConfigs(),
         )
         vocab = KsponSpeechCharacterVocabulary(configs)
 
-        model = LSTMDecoder(
+        model = LSTMForCausalLM(
             num_classes=4,
             max_length=32,
             hidden_state_dim=64,
@@ -60,7 +60,7 @@ class TestLSTMDecoder(unittest.TestCase):
         )
         vocab = KsponSpeechCharacterVocabulary(configs)
 
-        model = LSTMDecoder(
+        model = LSTMForCausalLM(
             num_classes=4,
             max_length=32,
             hidden_state_dim=64,

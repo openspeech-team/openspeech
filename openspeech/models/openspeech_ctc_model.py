@@ -82,6 +82,7 @@ class OpenspeechCTCModel(OpenspeechModel):
             f"{stage}_wer": wer,
             f"{stage}_cer": cer,
             f"{stage}_loss": loss,
+            "learning_rate": self.get_lr(),
         })
 
         return OrderedDict({

@@ -25,20 +25,19 @@ from omegaconf import DictConfig
 from collections import OrderedDict
 from typing import Dict
 
-from openspeech.decoders.lstm_decoder import LSTMDecoder
-from openspeech.models import register_model
+from openspeech.lm.lstm_for_causal_lm import LSTMForCausalLM
+from openspeech.models import register_model, OpenspeechModel
 from openspeech.models.lstm_lm.configurations import LSTMLanguageModelConfigs
-from openspeech.models.openspeech_language_model import OpenspeechLanguageModel
 from openspeech.vocabs.vocab import Vocabulary
 
 
 @register_model('lstm_lm', dataclass=LSTMLanguageModelConfigs)
-class LSTMLanguageModel(OpenspeechLanguageModel):
+class LSTMLanguageModel(OpenspeechModel):
     def __init__(self, configs: DictConfig, vocab: Vocabulary, ) -> None:
         super(LSTMLanguageModel, self).__init__(configs, vocab)
 
     def build_model(self):
-        self.lm = LSTMDecoder(
+        self.lm = LSTMForCausalLM(
             num_classes=self.num_classes,
             max_length=self.configs.model.max_length,
             hidden_state_dim=self.configs.model.hidden_state_dim,
@@ -50,8 +49,34 @@ class LSTMLanguageModel(OpenspeechLanguageModel):
             rnn_type=self.configs.model.rnn_type,
         )
 
+    def collect_outputs(
+            self,
+            stage: str,
+            logits: torch.Tensor,
+            targets: torch.Tensor,
+    ) -> OrderedDict:
+        perplexity = self.criterion(logits, targets[:, 1:])
+        predictions = logits.max(-1)[1]
+
+        self.info({
+            f"{stage}_perplexity": perplexity,
+            "learning_rate": self.get_lr(),
+        })
+
+        return OrderedDict({
+            "perplexity": perplexity,
+            "logits": logits,
+            "targets": targets,
+            "predictions": predictions,
+        })
+
     def forward(self, inputs: torch.Tensor) -> Dict[str, torch.Tensor]:
-        return super().forward(inputs)
+        logits = self.lm(inputs, teacher_forcing_ratio=0.0)
+        predictions = logits.max(-1)[1]
+        return {
+            "predictions": predictions,
+            "logits": logits,
+        }
 
     def training_step(self, batch: tuple, batch_idx: int) -> OrderedDict:
         r"""
@@ -64,7 +89,13 @@ class LSTMLanguageModel(OpenspeechLanguageModel):
         Returns:
             loss (torch.Tensor): loss for training
         """
-        return super().training_step(batch, batch_idx)
+        inputs, input_lengths, targets = batch
+        logits = self.lm(inputs, teacher_forcing_ratio=self.teacher_forcing_ratio)
+        return self.collect_outputs(
+            stage='train',
+            logits=logits,
+            targets=targets,
+        )
 
     def validation_step(self, batch: tuple, batch_idx: int) -> OrderedDict:
         r"""
@@ -77,7 +108,13 @@ class LSTMLanguageModel(OpenspeechLanguageModel):
         Returns:
             loss (torch.Tensor): loss for training
         """
-        return super().validation_step(batch, batch_idx)
+        inputs, input_lengths, targets = batch
+        logits = self.lm(inputs, teacher_forcing_ratio=0.0)
+        return self.collect_outputs(
+            stage='val',
+            logits=logits,
+            targets=targets,
+        )
 
     def test_step(self, batch: tuple, batch_idx: int) -> OrderedDict:
         r"""
@@ -90,4 +127,10 @@ class LSTMLanguageModel(OpenspeechLanguageModel):
         Returns:
             loss (torch.Tensor): loss for training
         """
-        return super().test_step(batch, batch_idx)
+        inputs, input_lengths, targets = batch
+        logits = self.lm(inputs, teacher_forcing_ratio=0.0)
+        return self.collect_outputs(
+            stage='test',
+            logits=logits,
+            targets=targets,
+        )

@@ -24,12 +24,12 @@ import torch
 import torch.nn as nn
 import random
 
-from .openspeech_decoder import OpenspeechDecoder
-from ..modules import Linear, View
+from openspeech.lm.openspeech_for_causal_lm import OpenspeechCausalLMBase
+from openspeech.modules import Linear, View
 from typing import Optional, Tuple
 
 
-class LSTMDecoder(OpenspeechDecoder):
+class LSTMForCausalLM(OpenspeechCausalLMBase):
     supported_rnns = {
         'lstm': nn.LSTM,
         'gru': nn.GRU,
@@ -48,7 +48,7 @@ class LSTMDecoder(OpenspeechDecoder):
             rnn_type: str = 'lstm',
             dropout_p: float = 0.3,
     ) -> None:
-        super(LSTMDecoder, self).__init__()
+        super(LSTMForCausalLM, self).__init__()
         self.hidden_state_dim = hidden_state_dim
         self.num_classes = num_classes
         self.num_layers = num_layers

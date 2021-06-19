@@ -97,6 +97,7 @@ class OpenspeechTransducerModel(OpenspeechModel):
                 f"{stage}_loss": loss,
                 f"{stage}_wer": wer,
                 f"{stage}_cer": cer,
+                "learning_rate": self.get_lr(),
             })
 
             return OrderedDict({

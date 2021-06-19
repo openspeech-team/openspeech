@@ -98,6 +98,7 @@ DUMMY_LM_INPUTS = torch.LongTensor([
     [2, 3, 3, 3, 3, 3, 2, 3, 2],
     [2, 3, 3, 3, 3, 3, 2, 2, 0],
 ])
+DYMMY_LM_INPUT_LENGTHS = torch.IntTensor([9, 8, 7])
 DUMMY_LM_TARGETS = torch.LongTensor([
     [3, 3, 3, 3, 3, 2, 2, 1, 0],
     [3, 3, 3, 3, 3, 2, 1, 2, 0],

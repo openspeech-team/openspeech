@@ -85,8 +85,8 @@ Because of these advantages, many end-to-end speech recognition related open sou
   
 ## Why shouldn't I use OpenSpeech?
   
-- This library provides code for learning ASR models, but does not provide APIs by pre-trained models.  
-- We do not provide pre-training mechanisms such as Wav2vec 2.0 since pre-training costs a lot of computation. Though computation optimization is very important, and this library does not provide that optimization.
+- This library provides code for training ASR models, but does not provide APIs by pre-trained models.  
+- This library does not provides pre-trained models.
   
 ## Model architectures  
   
@@ -95,6 +95,7 @@ We support all the models below. Note that, the important concepts of the model 
 1. [**DeepSpeech2**](https://sooftware.github.io/OpenSpeech/DeepSpeech2.html) (from Baidu Research) released with paper [Deep Speech 2: End-to-End Speech Recognition in
 English and Mandarin](https://arxiv.org/abs/1512.02595.pdf), by Dario Amodei, Rishita Anubhai, Eric Battenberg, Carl Case, Jared Casper, Bryan Catanzaro, Jingdong Chen, Mike Chrzanowski, Adam Coates, Greg Diamos, Erich Elsen, Jesse Engel, Linxi Fan, Christopher Fougner, Tony Han, Awni Hannun, Billy Jun, Patrick LeGresley, Libby Lin, Sharan Narang, Andrew Ng, Sherjil Ozair, Ryan Prenger, Jonathan Raiman, Sanjeev Satheesh, David Seetapun, Shubho Sengupta, Yi Wang, Zhiqian Wang, Chong Wang, Bo Xiao, Dani Yogatama, Jun Zhan, Zhenyao Zhu. 
 2. [**RNN-Transducer**](https://sooftware.github.io/OpenSpeech/RNN%20Transducer.html) (from University of Toronto) released with paper [Sequence Transduction with Recurrent Neural Networks](https://arxiv.org/abs/1211.3711.pdf), by Alex Graves.
+3. [**LSTM Language Model**]() (from RWTH Aachen University) released with paper [LSTM Neural Networks for Language Modeling](http://www-i6.informatik.rwth-aachen.de/publications/download/820/Sundermeyer-2012.pdf), by  Martin Sundermeyer, Ralf Schluter, and Hermann Ney.  
 3. [**Listen Attend Spell**](https://sooftware.github.io/OpenSpeech/Listen%20Attend%20Spell.html) (from Carnegie Mellon University and Google Brain) released with paper [Listen, Attend and Spell](https://arxiv.org/abs/1508.01211), by William Chan, Navdeep Jaitly, Quoc V. Le, Oriol Vinyals.  
 4. [**Location-aware attention based Listen Attend Spell**](https://sooftware.github.io/OpenSpeech/Listen%20Attend%20Spell%20(location-aware).html) (from University of Wrocław and Jacobs University and Universite de Montreal) released with paper [Attention-Based Models for Speech Recognition](https://arxiv.org/abs/1506.07503), by Jan Chorowski, Dzmitry Bahdanau, Dmitriy Serdyuk, Kyunghyun Cho, Yoshua Bengio.  
 5. [**Joint CTC-Attention based Listen Attend Spell**](https://sooftware.github.io/OpenSpeech/Joint%20CTC%20LAS.html) (from Mitsubishi Electric Research Laboratories and Carnegie Mellon University) released with paper [Joint CTC-Attention based End-to-End Speech Recognition using Multi-task Learning](https://arxiv.org/abs/1609.06773), by Suyoun Kim, Takaaki Hori, Shinji Watanabe.  
@@ -104,6 +105,7 @@ English and Mandarin](https://arxiv.org/abs/1512.02595.pdf), by Dario Amodei, Ri
 9. [**VGG-Transformer**](https://sooftware.github.io/OpenSpeech/VGG%20Transformer.html) (from Facebook AI Research) released with paper [Transformers with convolutional context for ASR](https://arxiv.org/abs/1904.11660), by Abdelrahman Mohamed, Dmytro Okhonko, Luke Zettlemoyer.  
 10. [**Transformer with CTC**](https://sooftware.github.io/OpenSpeech/Transformer%20with%20CTC.html) (from NTT Communication Science Laboratories, Waseda University, Center for Language and Speech Processing, Johns Hopkins University) released with paper [Improving Transformer-based End-to-End Speech Recognition with Connectionist Temporal Classification and Language Model Integration](https://www.isca-speech.org/archive/Interspeech_2019/pdfs/1938.pdf), by Shigeki Karita, Nelson Enrique Yalta Soplin, Shinji Watanabe, Marc Delcroix, Atsunori Ogawa, Tomohiro Nakatani.
 11. [**Joint CTC-Attention based Transformer**](https://sooftware.github.io/OpenSpeech/Joint%20CTC%20Transformer.html)(from NTT Corporation) released with paper [Self-Distillation for Improving CTC-Transformer-based ASR Systems](https://www.isca-speech.org/archive/Interspeech_2020/pdfs/1223.pdf), by Takafumi Moriya, Tsubasa Ochiai, Shigeki Karita, Hiroshi Sato, Tomohiro Tanaka, Takanori Ashihara, Ryo Masumura, Yusuke Shinohara, Marc Delcroix.
+12. [**Transformer Language Model**]() (from Amazon Web Services) released with paper [Language Models with Transformers](https://arxiv.org/abs/1904.09408), by Chenguang Wang, Mu Li, Alexander J. Smola.
 12. [**Jasper**](https://sooftware.github.io/OpenSpeech/Jasper10x5.html) (from NVIDIA and New York University) released with paper [Jasper: An End-to-End Convolutional Neural Acoustic Model](https://arxiv.org/pdf/1904.03288.pdf), by Jason Li, Vitaly Lavrukhin, Boris Ginsburg, Ryan Leary, Oleksii Kuchaiev, Jonathan M. Cohen, Huyen Nguyen, Ravi Teja Gadde.   
 13. [**QuartzNet**](https://sooftware.github.io/OpenSpeech/QuartzNet15x5.html) (from NVIDIA and Univ. of Illinois and Univ. of Saint Petersburg) released with paper [QuartzNet: Deep Automatic Speech Recognition with 1D Time-Channel Separable Convolutions](https://arxiv.org/abs/1910.10261.pdf), by Samuel Kriman, Stanislav Beliaev, Boris Ginsburg, Jocelyn Huang, Oleksii Kuchaiev, Vitaly Lavrukhin, Ryan Leary, Jason Li, Yang Zhang.  
 14. [**Transformer Transducer**](https://sooftware.github.io/OpenSpeech/Transformer%20Transducer.html) (from Facebook AI) released with paper [Transformer-Transducer:
@@ -154,7 +156,7 @@ Please send e-mail including the approved screenshot to sh951011@gmail.com.
   
 ### Manifest File
   
-- Manifest file format:
+- Acoustic model manifest file format:
   
 ```
 LibriSpeech/test-other/8188/269288/8188-269288-0052.flac        ▁ANNIE ' S ▁MANNER ▁WAS ▁VERY ▁MYSTERIOUS       4039 20 5 531 17 84 2352
@@ -248,6 +250,33 @@ $ python ./openspeech_cli/hydra_eval.py \
     eval.ensemble_weights=(0.3, 0.7) \
     eval.ensemble_method=weighted \
     eval.manifest_file_path=$MANIFEST_FILE_PATH  
+```
+
+### Language model training example
+  
+Language model training requires only data to be prepared in the following format:  
+  
+```
+openspeech is a framework for making end-to-end speech recognizers.
+end to end automatic speech recognition is an emerging paradigm in the field of neural network-based speech recognition that offers multiple benefits.
+because of these advantages, many end-to-end speech recognition related open sources have emerged.
+...
+...
+```
+  
+Note that you need to use the same vocabulary as the acoustic model.
+  
+- Example: Train the `lstm_lm` model:
+```
+$ python ./openspeech_cli/hydra_lm_train.py \
+    dataset=lm \
+    dataset.dataset_path=../../../lm.txt \
+    vocab=kspon_character \
+    vocab.vocab_path=../../../labels.csv \
+    model=lstm_lm \
+    lr_scheduler=tri_stage \
+    trainer=gpu \
+    criterion=perplexity
 ```
   
 ## Installation

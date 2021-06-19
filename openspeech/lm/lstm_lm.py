@@ -24,12 +24,35 @@ import torch
 import torch.nn as nn
 import random
 
-from openspeech.lm.openspeech_for_causal_lm import OpenspeechCausalLMBase
+from openspeech.lm.openspeech_lm import OpenspeechLanguageModelBase
 from openspeech.modules import Linear, View
 from typing import Optional, Tuple
 
 
-class LSTMForCausalLM(OpenspeechCausalLMBase):
+class LSTMForLanguageModel(OpenspeechLanguageModelBase):
+    """
+    Language Modelling is the core problem for a number of of natural language processing tasks such as speech to text,
+    conversational system, and text summarization. A trained language model learns the likelihood of occurrence
+    of a word based on the previous sequence of words used in the text.
+
+    Args:
+        num_classes (int): number of classification
+        max_length (int): max decoding length (default: 128)
+        hidden_state_dim (int): dimension of hidden state vector (default: 768)
+        rnn_type (str, optional): type of RNN cell (default: lstm)
+        pad_id (int, optional): index of the pad symbol (default: 0)
+        sos_id (int, optional): index of the start of sentence symbol (default: 1)
+        eos_id (int, optional): index of the end of sentence symbol (default: 2)
+        num_layers (int, optional): number of recurrent layers (default: 2)
+        dropout_p (float, optional): dropout probability of decoders (default: 0.2)
+
+    Inputs: inputs, teacher_forcing_ratio
+        inputs (torch.LongTensr): A input sequence passed to decoders. `IntTensor` of size ``(batch, seq_length)``
+        teacher_forcing_ratio (float): ratio of teacher forcing
+
+    Returns:
+        * logits (torch.FloatTensor): Log probability of model predictions.
+    """
     supported_rnns = {
         'lstm': nn.LSTM,
         'gru': nn.GRU,
@@ -40,7 +63,7 @@ class LSTMForCausalLM(OpenspeechCausalLMBase):
             self,
             num_classes: int,
             max_length: int = 128,
-            hidden_state_dim: int = 1024,
+            hidden_state_dim: int = 768,
             pad_id: int = 0,
             sos_id: int = 1,
             eos_id: int = 2,
@@ -48,7 +71,7 @@ class LSTMForCausalLM(OpenspeechCausalLMBase):
             rnn_type: str = 'lstm',
             dropout_p: float = 0.3,
     ) -> None:
-        super(LSTMForCausalLM, self).__init__()
+        super(LSTMForLanguageModel, self).__init__()
         self.hidden_state_dim = hidden_state_dim
         self.num_classes = num_classes
         self.num_layers = num_layers
@@ -132,6 +155,4 @@ class LSTMForCausalLM(OpenspeechCausalLMBase):
                 logits.append(step_output)
                 input_var = logits[-1].topk(1)[1]
 
-        logits = torch.stack(logits, dim=1)
-
-        return logits
+        return torch.stack(logits, dim=1)

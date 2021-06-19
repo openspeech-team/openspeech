@@ -130,11 +130,13 @@ class TransformerDecoder(OpenspeechDecoder):
         num_classes: umber of classes
         d_model: dimension of model
         d_ff: dimension of feed forward network
-        num_layers: number of decoders layers
+        num_layers: number of layers
         num_heads: number of attention heads
         dropout_p: probability of dropout
-        pad_id: identification of pad token
-        eos_id: identification of end of sentence token
+        pad_id (int, optional): index of the pad symbol (default: 0)
+        sos_id (int, optional): index of the start of sentence symbol (default: 1)
+        eos_id (int, optional): index of the end of sentence symbol (default: 2)
+        max_length (int): max decoding length
     """
 
     def __init__(

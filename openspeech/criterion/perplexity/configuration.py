@@ -31,7 +31,7 @@ class PerplexityLossConfigs(OpenspeechDataclass):
     This is the configuration class to store the configuration of a
     :class: `~openspeech.criterion.Perplexity`.
 
-    It is used to initiated an `CrossEntropyLoss` criterion.
+    It is used to initiated an `Perplexity` criterion.
 
     Configuration objects inherit from :class: `~openspeech.dataclass.configs.OpenspeechDataclass`.
 

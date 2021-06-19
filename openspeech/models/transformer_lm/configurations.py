@@ -29,9 +29,9 @@ from openspeech.dataclass.configurations import OpenspeechDataclass
 class TransformerLanguageModelConfigs(OpenspeechDataclass):
     r"""
     This is the configuration class to store the configuration of
-    a :class:`~openspeech.models.ListenAttendSpellWithMultiHead`.
+    a :class:`~openspeech.models.TransformerLanguageModel`.
 
-    It is used to initiated an `ListenAttendSpellWithMultiHead` model.
+    It is used to initiated an `TransformerLanguageModel` model.
 
     Configuration objects inherit from :class: `~openspeech.dataclass.configs.OpenspeechDataclass`.
 

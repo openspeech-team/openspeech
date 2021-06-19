@@ -3,25 +3,25 @@ import logging
 import torch
 
 from openspeech.criterion import Perplexity, PerplexityLossConfigs
-from openspeech.lm.transformer_for_causal_lm import TransformerForCausalLM
+from openspeech.lm.transformer_lm import TransformerForLanguageModel
 from openspeech.utils import build_dummy_configs, DUMMY_LM_INPUTS, DUMMY_INPUT_LENGTHS, DUMMY_TARGETS
 from openspeech.vocabs.ksponspeech.character import KsponSpeechCharacterVocabulary
 
 logger = logging.getLogger(__name__)
 
 
-class TestTransformerForCausalLM(unittest.TestCase):
+class TestTransformerForLanguageModel(unittest.TestCase):
     def test_forward(self):
         configs = build_dummy_configs(
             criterion_configs=PerplexityLossConfigs(),
         )
         vocab = KsponSpeechCharacterVocabulary(configs)
 
-        model = TransformerForCausalLM(
+        model = TransformerForLanguageModel(
             num_classes=4,
             max_length=32,
             d_model=64,
-            num_heads=4,
+            num_attention_heads=4,
             d_ff=128,
             pad_id=0,
             sos_id=1,
@@ -46,11 +46,11 @@ class TestTransformerForCausalLM(unittest.TestCase):
         )
         vocab = KsponSpeechCharacterVocabulary(configs)
 
-        model = TransformerForCausalLM(
+        model = TransformerForLanguageModel(
             num_classes=4,
             max_length=32,
             d_model=64,
-            num_heads=4,
+            num_attention_heads=4,
             d_ff=128,
             pad_id=0,
             sos_id=1,

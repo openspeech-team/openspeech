@@ -127,6 +127,8 @@ from .vgg_transformer.model import VGGTransformerModel
 from .vgg_transformer.configurations import VGGTransformerConfigs
 from .lstm_lm.model import LSTMLanguageModel
 from .lstm_lm.configurations import LSTMLanguageModelConfigs
+from .transformer_lm.configurations import TransformerLanguageModelConfigs
+from .transformer_lm.model import TransformerForLanguageModel
 
 __all__ = [
     "OpenspeechModel",
@@ -176,4 +178,6 @@ __all__ = [
     "TransformerWithCTCModel",
     "LSTMLanguageModel",
     "LSTMLanguageModelConfigs",
+    "TransformerLanguageModelConfigs",
+    "TransformerForLanguageModel",
 ]

@@ -1,6 +1,6 @@
 <div align="center">
   
-![image](https://user-images.githubusercontent.com/38921656/120214584-a2000200-c26f-11eb-934c-30697330613e.png)
+<img src="https://github.com/sooftware/OpenSpeech/blob/main/docs/img/os_logo.png" width=500>
   
   
 <p align="center">
@@ -21,14 +21,14 @@
   
 ---
   
-<img src="https://user-images.githubusercontent.com/42150335/120691940-14781880-c4e2-11eb-8b1d-34390631cd55.png" height=20> OpenSpeech provides reference implementations of various ASR modeling papers and three languages recipe to perform tasks on automatic speech recognition. We aim to make ASR technology easier to use for everyone.    
+<img src="https://github.com/sooftware/OpenSpeech/blob/main/docs/img/logo.png" height=20> OpenSpeech provides reference implementations of various ASR modeling papers and three languages recipe to perform tasks on automatic speech recognition. We aim to make ASR technology easier to use for everyone.    
    
 
-<img src="https://user-images.githubusercontent.com/42150335/120691940-14781880-c4e2-11eb-8b1d-34390631cd55.png" height=20>  OpenSpeech is backed by the two powerful libraries — [PyTorch-Lightning](https://github.com/PyTorchLightning/pytorch-lightning) and [Hydra](https://github.com/facebookresearch/hydra). 
+<img src="https://github.com/sooftware/OpenSpeech/blob/main/docs/img/logo.png" height=20>  OpenSpeech is backed by the two powerful libraries — [PyTorch-Lightning](https://github.com/PyTorchLightning/pytorch-lightning) and [Hydra](https://github.com/facebookresearch/hydra). 
 Various features are available in the above two libraries, including Multi-GPU and TPU training, Mixed-precision, and hierarchical configuration management.
   
   
-<img src="https://user-images.githubusercontent.com/42150335/120691940-14781880-c4e2-11eb-8b1d-34390631cd55.png" height=20>  We appreciate any kind of feedback or contribution. Feel free to proceed with small issues like bug fixes, documentation improvement. For major contributions and new features, please discuss with the collaborators in corresponding issues.  
+<img src="https://github.com/sooftware/OpenSpeech/blob/main/docs/img/logo.png" height=20>  We appreciate any kind of feedback or contribution. Feel free to proceed with small issues like bug fixes, documentation improvement. For major contributions and new features, please discuss with the collaborators in corresponding issues.  
   
 ## Contents
   

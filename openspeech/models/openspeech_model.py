@@ -166,14 +166,22 @@ class OpenspeechModel(pl.LightningModule):
         )
         scheduler = SCHEDULER_REGISTRY[self.configs.lr_scheduler.scheduler_name](self.optimizer, self.configs)
 
-        if self.configs.lr_scheduler.scheduler_name in ("reduce_lr_on_plateau", "warmup_reduce_lr_on_plateau"):
+        if self.configs.lr_scheduler.scheduler_name == "reduce_lr_on_plateau":
             lr_scheduler = {
                 'scheduler': scheduler,
                 'monitor': 'val_loss',
+                'interval': 'epoch',
+            }
+        elif self.configs.lr_scheduler.scheduler_name == "warmup_reduce_lr_on_plateau":
+            lr_scheduler = {
+                'scheduler': scheduler,
+                'monitor': 'val_loss',
+                'interval': 'step',
             }
         else:
             lr_scheduler = {
-                'scheduler': scheduler
+                'scheduler': scheduler,
+                'interval': 'step',
             }
 
         return {

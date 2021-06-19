@@ -81,7 +81,7 @@ class TransformerLanguageModel(OpenspeechModel):
         })
 
         return OrderedDict({
-            "perplexity": perplexity,
+            "loss": perplexity,
             "logits": logits,
             "targets": targets,
             "predictions": predictions,

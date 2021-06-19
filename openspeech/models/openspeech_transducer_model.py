@@ -93,35 +93,37 @@ class OpenspeechTransducerModel(OpenspeechModel):
             wer = self.wer_metric(targets[:, 1:], predictions)
             cer = self.cer_metric(targets[:, 1:], predictions)
 
-            self.log_steps(stage, wer, cer, loss)
-
-            tqdm_dict = {
+            self.info({
                 f"{stage}_loss": loss,
-                "wer": wer,
-                "cer": cer,
-            }
+                f"{stage}_wer": wer,
+                f"{stage}_cer": cer,
+            })
 
             return OrderedDict({
                 "loss": loss,
-                "progress_bar": tqdm_dict,
-                "log": tqdm_dict,
+                "wer": wer,
+                "cer": cer,
+                "predictions": predictions,
+                "targets": targets,
+                "logits": logits,
             })
 
         else:
             wer = self.wer_metric(targets[:, 1:], predictions)
             cer = self.cer_metric(targets[:, 1:], predictions)
-            self.log_steps(stage, wer, cer)
 
-            progress_bar_dict = {
-                f"{stage}_loss": None,
-                "wer": wer,
-                "cer": cer,
-            }
+            self.info({
+                f"{stage}_wer": wer,
+                f"{stage}_cer": cer,
+            })
 
             return OrderedDict({
                 "loss": None,
-                "progress_bar": progress_bar_dict,
-                "log": progress_bar_dict,
+                "wer": wer,
+                "cer": cer,
+                "predictions": predictions,
+                "targets": targets,
+                "logits": logits,
             })
 
     def _expand_for_joint(self, encoder_outputs: Tensor, decoder_outputs: Tensor) -> Tuple[Tensor, Tensor]:
@@ -282,7 +284,7 @@ class OpenspeechTransducerModel(OpenspeechModel):
         predictions = torch.stack(predictions)
 
         return self.collect_outputs(
-            'valid',
+            'val',
             logits=None,
             input_lengths=input_lengths,
             targets=targets,

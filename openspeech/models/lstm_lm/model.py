@@ -56,22 +56,16 @@ class LSTMLanguageModel(OpenspeechModel):
             logits: torch.Tensor,
             targets: torch.Tensor,
     ) -> OrderedDict:
-        loss = self.criterion(logits, targets[:, 1:])
-        y_hats = logits.max(-1)[1]
+        perplexity = self.criterion(logits, targets[:, 1:])
+        predictions = logits.max(-1)[1]
 
-        wer = self.wer_metric(targets, y_hats)
-        cer = self.cer_metric(targets, y_hats)
-
-        self.log_steps(stage, wer, cer, loss)
-
-        progress_bar_dict = {
-            f"{stage}_perplexity": loss,
-        }
+        self.info({f"{stage}_perplexity": perplexity})
 
         return OrderedDict({
-            "loss": loss,
-            "progress_bar": progress_bar_dict,
-            "log": progress_bar_dict,
+            "perplexity": perplexity,
+            "logits": logits,
+            "targets": targets,
+            "predictions": predictions,
         })
 
     def forward(self, inputs: torch.Tensor) -> Dict[str, torch.Tensor]:
@@ -115,7 +109,7 @@ class LSTMLanguageModel(OpenspeechModel):
         inputs, targets = batch
         logits = self.lm(inputs, teacher_forcing_ratio=0.0)
         return self.collect_outputs(
-            stage='valid',
+            stage='val',
             logits=logits,
             targets=targets,
         )

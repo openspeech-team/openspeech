@@ -23,15 +23,15 @@
 import torch
 import torch.nn as nn
 import pytorch_lightning as pl
-from typing import Dict, Optional, List, Tuple, Callable
+from typing import Dict
 from omegaconf import DictConfig
 from torch import Tensor
-from torch.optim import Optimizer
+from torch.optim import Adam, Adagrad, Adadelta, Adamax, AdamW, SGD, ASGD
 
+from openspeech.optim import AdamP, RAdam, Novograd
 from openspeech.criterion import CRITERION_REGISTRY
 from openspeech.metrics import WordErrorRate, CharacterErrorRate
 from openspeech.optim.scheduler import SCHEDULER_REGISTRY
-from openspeech.utils import get_class_name
 from openspeech.vocabs.vocab import Vocabulary
 
 
@@ -71,34 +71,15 @@ class OpenspeechModel(pl.LightningModule):
     def set_beam_decoder(self, beam_size: int = 3):
         raise NotImplementedError
 
-    def log_steps(
-            self,
-            stage: str,
-            wer: float,
-            cer: float,
-            loss: Optional[float] = None,
-            cross_entropy_loss: Optional[float] = None,
-            ctc_loss: Optional[float] = None,
-    ) -> None:
+    def info(self, dictionary: dict) -> None:
         r"""
-        Provides log dictionary.
+        Logging information from dictionary.
 
         Args:
-            stage (str): current stage (train, valid, test)
-            wer (float): word error rate
-            cer (float): character error rate
-            loss (float): loss of model's prediction
-            cross_entropy_loss (Optional, float): cross entropy loss of model's prediction
-            ctc_loss (Optional, float): ctc loss of model's prediction
+            dictionary (dict): dictionary contains information.
         """
-        self.log(f"{stage}_wer", wer)
-        self.log(f"{stage}_cer", cer)
-        if loss is not None:
-            self.log(f"{stage}_loss", loss)
-        if cross_entropy_loss is not None:
-            self.log(f"{stage}_cross_entropy_loss", cross_entropy_loss)
-        if ctc_loss is not None:
-            self.log(f"{stage}_ctc_loss", ctc_loss)
+        for key, value in dictionary.items():
+            self.log(key, value, prog_bar=True)
 
     def forward(self, inputs: torch.FloatTensor, input_lengths: torch.LongTensor) -> Dict[str, Tensor]:
         r"""
@@ -140,18 +121,6 @@ class OpenspeechModel(pl.LightningModule):
         """
         raise NotImplementedError
 
-    def validation_epoch_end(self, outputs: dict) -> dict:
-        self.current_val_loss = torch.stack([output['loss'] for output in outputs]).mean()
-
-        if get_class_name(self.scheduler) == "WarmupReduceLROnPlateauScheduler" \
-            or get_class_name(self.scheduler) == "ReduceLROnPlateauScheduler":
-            self.scheduler.step(self.current_val_loss)
-
-        return {
-            'loss': self.current_val_loss,
-            'log': {'val_loss': self.current_val_loss},
-        }
-
     def test_step(self, batch: tuple, batch_idx: int):
         r"""
         Forward propagate a `inputs` and `targets` pair for test.
@@ -171,12 +140,9 @@ class OpenspeechModel(pl.LightningModule):
 
 
         Returns:
-            - **Two lists** - The first list has multiple optimizers, and the second has multiple LR schedulers
+            - **Dictionary** - The first item has multiple optimizers, and the second has multiple LR schedulers
                 (or multiple ``lr_dict``).
         """
-        from torch.optim import Adam, Adagrad, Adadelta, Adamax, AdamW, SGD, ASGD
-        from openspeech.optim import AdamP, RAdam, Novograd
-
         SUPPORTED_OPTIMIZERS = {
             "adam": Adam,
             "adamp": AdamP,
@@ -198,14 +164,22 @@ class OpenspeechModel(pl.LightningModule):
             self.parameters(),
             lr=self.configs.lr_scheduler.lr,
         )
-        self.scheduler = {
-            "scheduler": SCHEDULER_REGISTRY[self.configs.lr_scheduler.scheduler_name](
-                optimizer=self.optimizer,
-                configs=self.configs,
-            ),
-            "name": "learning_rate"
+        scheduler = SCHEDULER_REGISTRY[self.configs.lr_scheduler.scheduler_name](self.optimizer, self.configs)
+
+        if self.configs.lr_scheduler.scheduler_name in ("reduce_lr_on_plateau", "warmup_reduce_lr_on_plateau"):
+            lr_scheduler = {
+                'scheduler': scheduler,
+                'monitor': 'val_loss',
+            }
+        else:
+            lr_scheduler = {
+                'scheduler': scheduler
+            }
+
+        return {
+            'optimizer': self.optimizer,
+            'lr_scheduler': lr_scheduler
         }
-        return [self.optimizer], [self.scheduler]
 
     def configure_criterion(self, criterion_name: str) -> nn.Module:
         r"""

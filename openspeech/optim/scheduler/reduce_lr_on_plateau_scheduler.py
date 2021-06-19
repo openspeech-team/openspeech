@@ -20,10 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import torch
 from dataclasses import dataclass, field
 from omegaconf import DictConfig
 from torch.optim import Optimizer
+from typing import Optional
 
 from openspeech.dataclass.configurations import LearningRateSchedulerConfigs
 from openspeech.optim.scheduler import register_scheduler
@@ -66,7 +66,7 @@ class ReduceLROnPlateauScheduler(LearningRateScheduler):
         self.val_loss = 100.0
         self.count = 0
 
-    def step(self, val_loss: float):
+    def step(self, val_loss: Optional[float] = None):
         if val_loss is not None:
             if self.val_loss < val_loss:
                 self.count += 1

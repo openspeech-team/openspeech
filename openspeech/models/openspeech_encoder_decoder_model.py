@@ -82,23 +82,27 @@ class OpenspeechEncoderDecoderModel(OpenspeechModel):
         else:
             raise ValueError(f"Unsupported criterion: {self.criterion}")
 
-        y_hats = logits.max(-1)[1]
+        predictions = logits.max(-1)[1]
 
-        wer = self.wer_metric(targets[:, 1:], y_hats)
-        cer = self.cer_metric(targets[:, 1:], y_hats)
+        wer = self.wer_metric(targets[:, 1:], predictions)
+        cer = self.cer_metric(targets[:, 1:], predictions)
 
-        self.log_steps(stage, wer, cer, loss, cross_entropy_loss, ctc_loss)
-
-        progress_bar_dict = {
+        self.info({
             f"{stage}_loss": loss,
-            "wer": wer,
-            "cer": cer,
-        }
+            f"{stage}_cross_entropy_loss": cross_entropy_loss,
+            f"{stage}_ctc_loss": ctc_loss,
+            f"{stage}_wer": wer,
+            f"{stage}_cer": cer,
+        })
 
         return OrderedDict({
             "loss": loss,
-            "progress_bar": progress_bar_dict,
-            "log": progress_bar_dict,
+            "cross_entropy_loss": cross_entropy_loss,
+            "ctc_loss": ctc_loss,
+            "predictions": predictions,
+            "targets": targets,
+            "logits": logits,
+            "learning_rate": self.get_lr(),
         })
 
     def forward(self, inputs: Tensor, input_lengths: Tensor) -> Dict[str, Tensor]:
@@ -193,7 +197,7 @@ class OpenspeechEncoderDecoderModel(OpenspeechModel):
             teacher_forcing_ratio=0.0,
         )
         return self.collect_outputs(
-            stage='valid',
+            stage='val',
             logits=logits,
             encoder_logits=encoder_logits,
             encoder_output_lengths=encoder_output_lengths,

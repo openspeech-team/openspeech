@@ -78,18 +78,17 @@ class OpenspeechCTCModel(OpenspeechModel):
         wer = self.wer_metric(targets[:, 1:], predictions)
         cer = self.cer_metric(targets[:, 1:], predictions)
 
-        self.log_steps(stage, wer, cer, loss)
-
-        progress_bar_dict = {
+        self.info({
+            f"{stage}_wer": wer,
+            f"{stage}_cer": cer,
             f"{stage}_loss": loss,
-            "wer": wer,
-            "cer": cer,
-        }
+            "learning_rate": self.get_lr(),
+        })
 
         return OrderedDict({
             "loss": loss,
-            "progress_bar": progress_bar_dict,
-            "log": progress_bar_dict
+            "wer": wer,
+            "cer": cer,
         })
 
     def forward(self, inputs: torch.FloatTensor, input_lengths: torch.IntTensor) -> Dict[str, torch.Tensor]:
@@ -156,7 +155,7 @@ class OpenspeechCTCModel(OpenspeechModel):
         inputs, targets, input_lengths, target_lengths = batch
         logits, output_lengths = self.encoder(inputs, input_lengths)
         return self.collect_outputs(
-            stage='valid',
+            stage='val',
             logits=logits,
             output_lengths=output_lengths,
             targets=targets,

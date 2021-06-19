@@ -29,9 +29,10 @@ from omegaconf import DictConfig
 from typing import Optional, Tuple
 from torch.utils.data import DataLoader
 
-from openspeech.data.dataset import SpeechToTextDataset
+from openspeech.data.audio.dataset import SpeechToTextDataset
 from openspeech.datasets import register_data_module
-from openspeech.data.data_loader import BucketingSampler, AudioDataLoader
+from openspeech.data.sampler import BucketingSampler
+from openspeech.data.audio.data_loader import AudioDataLoader
 from openspeech.vocabs.vocab import Vocabulary
 from openspeech.vocabs import VOCAB_REGISTRY
 from openspeech.datasets.aishell.preprocess import (

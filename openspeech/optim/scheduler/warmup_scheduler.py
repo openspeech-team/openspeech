@@ -40,7 +40,7 @@ class WarmupLRSchedulerConfigs(LearningRateSchedulerConfigs):
         default=1e-04, metadata={"help": "Maximum learning rate."}
     )
     init_lr: float = field(
-        default=1e-10, metadata={"help": "Initial learning rate."}
+        default=1e-7, metadata={"help": "Initial learning rate."}
     )
     warmup_steps: int = field(
         default=4000, metadata={"help": "Warmup the learning rate linearly for the first N updates"}

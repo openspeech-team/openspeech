@@ -37,6 +37,9 @@ class TriStageLRSchedulerConfigs(LearningRateSchedulerConfigs):
     scheduler_name: str = field(
         default="tri_stage", metadata={"help": "Name of learning rate scheduler."}
     )
+    init_lr: float = field(
+        default=1e-7, metadata={"help": "Initial learning rate."}
+    )
     init_lr_scale: float = field(
         default=0.01, metadata={"help": "Initial learning rate scale."}
     )

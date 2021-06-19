@@ -20,8 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from torch.optim.lr_scheduler import _LRScheduler
 
-class LearningRateScheduler(object):
+
+class LearningRateScheduler(_LRScheduler):
     r"""
     Provides inteface of learning rate scheduler.
 

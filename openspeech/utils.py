@@ -27,7 +27,7 @@ import importlib
 from collections import OrderedDict
 from typing import Tuple, Union, Iterable
 from omegaconf import DictConfig, OmegaConf
-
+from pytorch_lightning.callbacks import LearningRateMonitor
 
 PYTORCH_IMPORT_ERROR = """
 Openspeech requires the PyTorch library but it was not found in your environment. Checkout the instructions on the
@@ -93,6 +93,17 @@ DUMMY_TARGETS = torch.LongTensor([
 DUMMY_TARGET_LENGTHS = torch.IntTensor([9, 8, 7])
 DUMMY_TRANSCRIPTS = "OPENSPEECH IS AWESOME"
 
+DUMMY_LM_INPUTS = torch.LongTensor([
+    [2, 3, 3, 3, 3, 3, 2, 2, 0],
+    [2, 3, 3, 3, 3, 3, 2, 3, 2],
+    [2, 3, 3, 3, 3, 3, 2, 2, 0],
+])
+DYMMY_LM_INPUT_LENGTHS = torch.IntTensor([9, 8, 7])
+DUMMY_LM_TARGETS = torch.LongTensor([
+    [3, 3, 3, 3, 3, 2, 2, 1, 0],
+    [3, 3, 3, 3, 3, 2, 1, 2, 0],
+    [3, 3, 3, 3, 3, 2, 2, 0, 1],
+])
 
 def is_pytorch_available():
     return importlib.util.find_spec("torch") is not None
@@ -192,7 +203,7 @@ def parse_configs(configs: DictConfig) -> Tuple[Union[TensorBoardLogger, bool], 
     if configs.trainer.logger == "tensorboard":
         logger = TensorBoardLogger("logs/")
     elif configs.trainer.logger == "wandb":
-        logger = WandbLogger("logs/")
+        logger = WandbLogger(project=f"{configs.model.model_name}-{configs.dataset.dataset}", job_type='train')
     else:
         logger = True
 
@@ -216,7 +227,8 @@ def get_pl_trainer(
                              gradient_clip_val=configs.trainer.gradient_clip_val,
                              logger=logger,
                              auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
-                             max_epochs=configs.trainer.max_epochs)
+                             max_epochs=configs.trainer.max_epochs,
+                             callbacks=[LearningRateMonitor(logging_interval='step')])
     elif configs.trainer.name == "gpu":
         trainer = pl.Trainer(accelerator=configs.trainer.accelerator,
                              gpus=num_devices,
@@ -226,7 +238,8 @@ def get_pl_trainer(
                              gradient_clip_val=configs.trainer.gradient_clip_val,
                              logger=logger,
                              auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
-                             max_epochs=configs.trainer.max_epochs)
+                             max_epochs=configs.trainer.max_epochs,
+                             callbacks=[LearningRateMonitor(logging_interval='step')])
     elif configs.trainer.name == "tpu":
         trainer = pl.Trainer(accelerator=configs.trainer.accelerator,
                              tpu_cores=configs.trainer.tpu_cores,
@@ -236,7 +249,8 @@ def get_pl_trainer(
                              gradient_clip_val=configs.trainer.gradient_clip_val,
                              logger=logger,
                              auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
-                             max_epochs=configs.trainer.max_epochs)
+                             max_epochs=configs.trainer.max_epochs,
+                             callbacks=[LearningRateMonitor(logging_interval='step')])
     elif configs.trainer.name == "gpu-fp16":
         trainer = pl.Trainer(precision=configs.trainer.precision,
                              accelerator=configs.trainer.accelerator,
@@ -248,7 +262,8 @@ def get_pl_trainer(
                              gradient_clip_val=configs.trainer.gradient_clip_val,
                              logger=logger,
                              auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
-                             max_epochs=configs.trainer.max_epochs)
+                             max_epochs=configs.trainer.max_epochs,
+                             callbacks=[LearningRateMonitor(logging_interval='step')])
     elif configs.trainer.name == "tpu-fp16":
         trainer = pl.Trainer(precision=configs.trainer.precision,
                              accelerator=configs.trainer.accelerator,
@@ -259,7 +274,8 @@ def get_pl_trainer(
                              gradient_clip_val=configs.trainer.gradient_clip_val,
                              logger=logger,
                              auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
-                             max_epochs=configs.trainer.max_epochs)
+                             max_epochs=configs.trainer.max_epochs,
+                             callbacks=[LearningRateMonitor(logging_interval='step')])
     elif configs.trainer.name == "cpu-fp64":
         trainer = pl.Trainer(precision=configs.trainer.precision,
                              accelerator=configs.trainer.accelerator,
@@ -269,7 +285,8 @@ def get_pl_trainer(
                              gradient_clip_val=configs.trainer.gradient_clip_val,
                              logger=logger,
                              auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
-                             max_epochs=configs.trainer.max_epochs)
+                             max_epochs=configs.trainer.max_epochs,
+                             callbacks=[LearningRateMonitor(logging_interval='step')])
     else:
         raise ValueError(f"Unsupported trainer: {configs.trainer.name}")
 

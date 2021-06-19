@@ -34,3 +34,6 @@ class Vocabulary(object):
 
     def label_to_string(self, labels):
         raise NotImplementedError
+
+    def string_to_label(self, labels):
+        raise NotImplementedError

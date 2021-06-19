@@ -29,9 +29,9 @@ from omegaconf import DictConfig
 from torch import Tensor
 from torch.utils.data import Dataset
 
-from . import AUDIO_FEATURE_TRANSFORM_REGISTRY
-from .audio.augment import JoiningAugment, NoiseInjector, SpecAugment, TimeStretchAugment
-from .audio.load import load_audio
+from openspeech.data import AUDIO_FEATURE_TRANSFORM_REGISTRY
+from openspeech.data.audio.augment import JoiningAugment, NoiseInjector, SpecAugment, TimeStretchAugment
+from openspeech.data.audio.load import load_audio
 
 logger = logging.getLogger(__name__)
 

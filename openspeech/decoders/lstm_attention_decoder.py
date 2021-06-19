@@ -36,7 +36,7 @@ from openspeech.modules import (
 )
 
 
-class LSTMDecoder(OpenspeechDecoder):
+class LSTMAttentionDecoder(OpenspeechDecoder):
     r"""
     Converts higher level features (from encoders) into output utterances
     by specifying a probability distribution over sequences of characters.
@@ -85,7 +85,7 @@ class LSTMDecoder(OpenspeechDecoder):
             rnn_type: str = 'lstm',
             dropout_p: float = 0.3,
     ) -> None:
-        super(LSTMDecoder, self).__init__()
+        super(LSTMAttentionDecoder, self).__init__()
         self.hidden_state_dim = hidden_state_dim
         self.num_classes = num_classes
         self.num_heads = num_heads

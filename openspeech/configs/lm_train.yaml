@@ -1,0 +1,9 @@
+# @package _group_
+
+defaults:
+  - dataset: null
+  - criterion: null
+  - lr_scheduler: null
+  - model: null
+  - trainer: gpu
+  - vocab: null

@@ -20,8 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import torch
 import sentencepiece as spm
-from dataclasses import dataclass, MISSING, field
+from dataclasses import dataclass, field
 from omegaconf import DictConfig
 
 from openspeech.dataclass.configurations import VocabularyConfigs
@@ -93,3 +94,8 @@ class KsponSpeechSubwordVocabulary(Vocabulary):
                 sentence = self.sp.DecodeIds([int(l) for l in label])
             sentences.append(sentence)
         return sentences
+
+    def string_to_label(self, sentence):
+        text = " ".join(self.sp.EncodeAsPieces(sentence))
+        label = " ".join([str(self.sp.PieceToId(token)) for token in text])
+        return label

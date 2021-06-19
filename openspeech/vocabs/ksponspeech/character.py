@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import torch
 import csv
 from omegaconf import DictConfig
 from dataclasses import dataclass, MISSING, field
@@ -94,6 +95,17 @@ class KsponSpeechCharacterVocabulary(Vocabulary):
                 sentence += self.id_dict[label.item()]
             sentences.append(sentence)
         return sentences
+
+    def string_to_label(self, sentence):
+        label = str()
+
+        for ch in sentence:
+            try:
+                label += (str(self.vocab_dict[ch]) + ' ')
+            except KeyError:
+                continue
+
+        return label[:-1]
 
     def load_vocab(self, vocab_path, encoding='utf-8'):
         r"""

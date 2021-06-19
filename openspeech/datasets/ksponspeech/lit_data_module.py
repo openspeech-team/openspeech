@@ -25,10 +25,11 @@ import logging
 import pytorch_lightning as pl
 from typing import Optional
 from omegaconf import DictConfig
-from openspeech.data.dataset import SpeechToTextDataset
+from openspeech.data.audio.dataset import SpeechToTextDataset
 
 from openspeech.datasets import register_data_module
-from openspeech.data.data_loader import AudioDataLoader, BucketingSampler
+from openspeech.data.sampler import BucketingSampler
+from openspeech.data.audio.data_loader import AudioDataLoader
 from openspeech.datasets.ksponspeech.preprocess.preprocess import preprocess, preprocess_test_data
 from openspeech.datasets.ksponspeech.preprocess.character import generate_character_script, generate_character_labels
 from openspeech.datasets.ksponspeech.preprocess.grapheme import sentence_to_grapheme
@@ -56,7 +57,7 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
         super(LightningKsponSpeechDataModule, self).__init__()
         self.configs = configs
         self.dataset = dict()
-        self.logger = logging.getLogger("openspeech.data.ksponspeech.lit_data_module")
+        self.logger = logging.getLogger(__name__)
         self.encoding = 'utf-8' if self.configs.vocab.unit == 'kspon_subword' else 'cp949'
 
     def _generate_manifest_files(self, manifest_file_path: str) -> None:
@@ -122,7 +123,7 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
             self.logger.info("Manifest file is not exists !!\n"
                              "Generate manifest files..")
             if not os.path.exists(self.configs.dataset.dataset_path):
-                raise ValueError("Dataset path is not valid.")
+                raise FileNotFoundError
             self._generate_manifest_files(self.configs.dataset.manifest_file_path)
         return VOCAB_REGISTRY[self.configs.vocab.unit](self.configs)
 

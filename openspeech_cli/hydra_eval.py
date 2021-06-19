@@ -28,8 +28,9 @@ from omegaconf import DictConfig, OmegaConf
 from openspeech.metrics import WordErrorRate, CharacterErrorRate
 from pytorch_lightning.utilities import rank_zero_info
 
-from openspeech.data.dataset import SpeechToTextDataset
-from openspeech.data.data_loader import load_dataset, AudioDataLoader, BucketingSampler
+from openspeech.data.audio.dataset import SpeechToTextDataset
+from openspeech.data.sampler import BucketingSampler
+from openspeech.data.audio.data_loader import load_dataset, AudioDataLoader
 from openspeech.dataclass.initialize import hydra_eval_init
 from openspeech.models import MODEL_REGISTRY
 

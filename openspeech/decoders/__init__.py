@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 from .openspeech_decoder import OpenspeechDecoder
-from .lstm_decoder import LSTMDecoder
+from .lstm_attention_decoder import LSTMAttentionDecoder
 from .rnn_transducer_decoder import RNNTransducerDecoder
 from .transformer_decoder import TransformerDecoder
 from .transformer_transducer_decoder import TransformerTransducerDecoder

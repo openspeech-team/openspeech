@@ -23,9 +23,9 @@
 from hydra.core.config_store import ConfigStore
 
 
-def hydra_init() -> None:
+def hydra_train_init() -> None:
     r""" initialize ConfigStore for hydra-train """
-    from openspeech.dataclass import OPENSPEECH_CONFIGS, DATASET_DATACLASS_REGISTRY, TRAINER_DATACLASS_REGISTRY
+    from openspeech.dataclass import OPENSPEECH_TRAIN_CONFIGS, DATASET_DATACLASS_REGISTRY, TRAINER_DATACLASS_REGISTRY
     from openspeech.models import MODEL_DATACLASS_REGISTRY
     from openspeech.criterion import CRITERION_DATACLASS_REGISTRY
     from openspeech.data import AUDIO_FEATURE_TRANSFORM_DATACLASS_REGISTRY
@@ -46,7 +46,32 @@ def hydra_init() -> None:
 
     cs = ConfigStore.instance()
 
-    for group in OPENSPEECH_CONFIGS:
+    for group in OPENSPEECH_TRAIN_CONFIGS:
+        dataclass_registry = registries[group]
+
+        for k, v in dataclass_registry.items():
+            cs.store(group=group, name=k, node=v, provider="openspeech")
+
+
+def hydra_lm_train_init() -> None:
+    from openspeech.dataclass import OPENSPEECH_LM_TRAIN_CONFIGS, DATASET_DATACLASS_REGISTRY, TRAINER_DATACLASS_REGISTRY
+    from openspeech.models import MODEL_DATACLASS_REGISTRY
+    from openspeech.criterion import CRITERION_DATACLASS_REGISTRY
+    from openspeech.optim.scheduler import SCHEDULER_DATACLASS_REGISTRY
+    from openspeech.vocabs import VOCAB_DATACLASS_REGISTRY
+
+    registries = {
+        "dataset": DATASET_DATACLASS_REGISTRY,
+        "trainer": TRAINER_DATACLASS_REGISTRY,
+        "model": MODEL_DATACLASS_REGISTRY,
+        "criterion": CRITERION_DATACLASS_REGISTRY,
+        "lr_scheduler": SCHEDULER_DATACLASS_REGISTRY,
+        "vocab": VOCAB_DATACLASS_REGISTRY,
+    }
+
+    cs = ConfigStore.instance()
+
+    for group in OPENSPEECH_LM_TRAIN_CONFIGS:
         dataclass_registry = registries[group]
 
         for k, v in dataclass_registry.items():

@@ -29,7 +29,7 @@ from openspeech.models import register_model
 from openspeech.models.conformer_lstm.configurations import ConformerLSTMConfigs
 from openspeech.encoders import ConformerEncoder
 from openspeech.models import OpenspeechEncoderDecoderModel
-from openspeech.decoders import LSTMDecoder
+from openspeech.decoders import LSTMAttentionDecoder
 from openspeech.vocabs.vocab import Vocabulary
 
 
@@ -71,7 +71,7 @@ class ConformerLSTMModel(OpenspeechEncoderDecoderModel):
             half_step_residual=self.configs.model.half_step_residual,
             joint_ctc_attention=False,
         )
-        self.decoder = LSTMDecoder(
+        self.decoder = LSTMAttentionDecoder(
             num_classes=self.num_classes,
             max_length=self.configs.model.max_length,
             hidden_state_dim=self.configs.model.encoder_dim,

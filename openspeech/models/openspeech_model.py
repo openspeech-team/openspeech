@@ -184,10 +184,7 @@ class OpenspeechModel(pl.LightningModule):
                 'interval': 'step',
             }
 
-        return {
-            'optimizer': self.optimizer,
-            'lr_scheduler': lr_scheduler
-        }
+        return [self.optimizer], [lr_scheduler]
 
     def configure_criterion(self, criterion_name: str) -> nn.Module:
         r"""

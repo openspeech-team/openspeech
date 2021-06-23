@@ -48,7 +48,7 @@ class ConformerEncoder(OpenspeechEncoder):
         conv_dropout_p (float, optional): Probability of conformer convolution module dropout
         conv_kernel_size (int or tuple, optional): Size of the convolving kernel
         half_step_residual (bool): Flag indication whether to use half step residual or not
-        joint_ctc_attention (bool, optional): flag indication joint ctc attention or not
+            joint_ctc_attention (bool, optional): flag indication joint ctc attention or not
 
     Inputs: inputs, input_lengths
         - **inputs** (batch, time, dim): Tensor containing input vector

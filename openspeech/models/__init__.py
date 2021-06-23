@@ -89,6 +89,12 @@ from .conformer_lstm.model import ConformerLSTMModel
 from .conformer_lstm.configurations import ConformerLSTMConfigs
 from .conformer_transducer.model import ConformerTransducerModel
 from .conformer_transducer.configurations import ConformerTransducerConfigs
+from .contextnet.model import ContextNetModel
+from .contextnet.configurations import ContextNetConfigs
+from .contextnet_lstm.model import ContextNetLSTMModel
+from .contextnet_lstm.configurations import ContextNetLSTMConfigs
+from .contextnet_transducer.model import ContextNetTransducerModel
+from .contextnet_transducer.configurations import ContextNetTransducerConfigs
 from .deep_cnn_with_joint_ctc_listen_attend_spell.model import DeepCNNWithJointCTCListenAttendSpellModel
 from .deep_cnn_with_joint_ctc_listen_attend_spell.configurations import DeepCNNWithJointCTCListenAttendSpellConfigs
 from .deepspeech2.model import DeepSpeech2Model
@@ -141,6 +147,12 @@ __all__ = [
     "ConformerLSTMConfigs",
     "ConformerTransducerModel",
     "ConformerTransducerConfigs",
+    "ContextNetModel",
+    "ContextNetConfigs",
+    "ContextNetLSTMModel",
+    "ContextNetLSTMConfigs",
+    "ContextNetTransducerModel",
+    "ContextNetTransducerConfigs",
     "DeepCNNWithJointCTCListenAttendSpellModel",
     "DeepCNNWithJointCTCListenAttendSpellConfigs",
     "DeepSpeech2Model",

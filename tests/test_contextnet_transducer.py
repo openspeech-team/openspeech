@@ -3,7 +3,7 @@ import torch
 import logging
 
 from openspeech.criterion.transducer.transducer import TransducerLossConfigs
-from openspeech.models import ConformerTransducerModel, ConformerTransducerConfigs
+from openspeech.models import ContextNetTransducerModel, ContextNetTransducerConfigs
 from openspeech.utils import DUMMY_INPUTS, DUMMY_INPUT_LENGTHS, DUMMY_TARGETS, DUMMY_TARGET_LENGTHS, \
     build_dummy_configs, WARPRNNT_IMPORT_ERROR
 from openspeech.vocabs.ksponspeech.character import KsponSpeechCharacterVocabulary
@@ -19,12 +19,12 @@ logger = logging.getLogger(__name__)
 class TestConformerTransducer(unittest.TestCase):
     def test_forward(self):
         configs = build_dummy_configs(
-            model_configs=ConformerTransducerConfigs(),
+            model_configs=ContextNetTransducerConfigs(),
             criterion_configs=TransducerLossConfigs(),
         )
 
         vocab = KsponSpeechCharacterVocabulary(configs)
-        model = ConformerTransducerModel(configs, vocab)
+        model = ContextNetTransducerModel(configs, vocab)
         model.build_model()
 
         optimizer = torch.optim.Adam(model.parameters(), lr=1e-04)
@@ -47,12 +47,12 @@ class TestConformerTransducer(unittest.TestCase):
 
     def test_training_step(self):
         configs = build_dummy_configs(
-            model_configs=ConformerTransducerConfigs(),
+            model_configs=ContextNetTransducerConfigs(),
             criterion_configs=TransducerLossConfigs(),
         )
 
         vocab = KsponSpeechCharacterVocabulary(configs)
-        model = ConformerTransducerModel(configs, vocab)
+        model = ContextNetTransducerModel(configs, vocab)
         model.build_model()
 
         for i in range(3):
@@ -63,12 +63,12 @@ class TestConformerTransducer(unittest.TestCase):
 
     def test_validation_step(self):
         configs = build_dummy_configs(
-            model_configs=ConformerTransducerConfigs(),
+            model_configs=ContextNetTransducerConfigs(),
             criterion_configs=TransducerLossConfigs(),
         )
 
         vocab = KsponSpeechCharacterVocabulary(configs)
-        model = ConformerTransducerModel(configs, vocab)
+        model = ContextNetTransducerModel(configs, vocab)
         model.build_model()
 
         for i in range(3):
@@ -79,12 +79,12 @@ class TestConformerTransducer(unittest.TestCase):
 
     def test_test_step(self):
         configs = build_dummy_configs(
-            model_configs=ConformerTransducerConfigs(),
+            model_configs=ContextNetTransducerConfigs(),
             criterion_configs=TransducerLossConfigs(),
         )
 
         vocab = KsponSpeechCharacterVocabulary(configs)
-        model = ConformerTransducerModel(configs, vocab)
+        model = ContextNetTransducerModel(configs, vocab)
         model.build_model()
 
         for i in range(3):

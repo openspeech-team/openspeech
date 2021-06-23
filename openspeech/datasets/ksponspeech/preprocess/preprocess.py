@@ -138,12 +138,10 @@ def preprocess(dataset_path, mode='phonetic'):
                 if not os.path.isdir(path):
                     continue
 
-                files = os.listdir(path)
-
                 # list-up files
                 sub_file_list = []
                 audio_sub_file_list = []
-                for file_name in files:
+                for file_name in os.listdir(path):
                     if file_name.endswith('.txt'):
                         sub_file_list.append(os.path.join(path, file_name))
                         audio_sub_file_list.append(os.path.join(folder, subfolder, file_name))

@@ -22,6 +22,7 @@
 
 from .openspeech_encoder import OpenspeechEncoder
 from .conformer_encoder import ConformerEncoder
+from .contextnet_encoder import ContextNetEncoder
 from .convolutional_lstm_encoder import ConvolutionalLSTMEncoder
 from .convolutional_transformer_encoder import ConvolutionalTransformerEncoder
 from .lstm_encoder import LSTMEncoder

@@ -2,57 +2,70 @@ import unittest
 import torch
 import logging
 
-from openspeech.criterion.transducer.transducer import TransducerLossConfigs
-from openspeech.models import ConformerTransducerModel, ConformerTransducerConfigs
-from openspeech.utils import DUMMY_INPUTS, DUMMY_INPUT_LENGTHS, DUMMY_TARGETS, DUMMY_TARGET_LENGTHS, \
-    build_dummy_configs, WARPRNNT_IMPORT_ERROR
+from openspeech.models import ContextNetLSTMConfigs, ContextNetLSTMModel
 from openspeech.vocabs.ksponspeech.character import KsponSpeechCharacterVocabulary
-
-try:
-    from warp_rnnt import rnnt_loss
-except ImportError:
-    raise ImportError(WARPRNNT_IMPORT_ERROR)
+from openspeech.utils import (
+    DUMMY_INPUTS,
+    DUMMY_INPUT_LENGTHS,
+    DUMMY_TARGETS,
+    DUMMY_TARGET_LENGTHS,
+    build_dummy_configs,
+)
+from openspeech.criterion.label_smoothed_cross_entropy.label_smoothed_cross_entropy import (
+    LabelSmoothedCrossEntropyLossConfigs,
+    LabelSmoothedCrossEntropyLoss,
+)
 
 logger = logging.getLogger(__name__)
 
 
-class TestConformerTransducer(unittest.TestCase):
+class TestConformerLSTM(unittest.TestCase):
     def test_forward(self):
         configs = build_dummy_configs(
-            model_configs=ConformerTransducerConfigs(),
-            criterion_configs=TransducerLossConfigs(),
+            model_configs=ContextNetLSTMConfigs(),
+            criterion_configs=LabelSmoothedCrossEntropyLossConfigs(),
         )
 
         vocab = KsponSpeechCharacterVocabulary(configs)
-        model = ConformerTransducerModel(configs, vocab)
+        model = ContextNetLSTMModel(configs, vocab)
         model.build_model()
 
+        criterion = LabelSmoothedCrossEntropyLoss(configs, num_classes=len(vocab), vocab=vocab)
         optimizer = torch.optim.Adam(model.parameters(), lr=1e-04)
 
         for i in range(3):
             outputs = model(DUMMY_INPUTS, DUMMY_INPUT_LENGTHS)
 
-            loss = rnnt_loss(
-                outputs["logits"],
-                DUMMY_TARGETS,
-                outputs["encoder_output_lengths"],
-                DUMMY_TARGET_LENGTHS,
-                reduction="mean",
-                blank=vocab.blank_id,
-                gather=True,
-            )
+            loss = criterion(outputs["logits"], DUMMY_TARGETS[:, 1:])
             loss.backward()
             optimizer.step()
+            print(loss.item())
+
             assert type(loss.item()) == float
 
-    def test_training_step(self):
+    def test_beam_search(self):
         configs = build_dummy_configs(
-            model_configs=ConformerTransducerConfigs(),
-            criterion_configs=TransducerLossConfigs(),
+            model_configs=ContextNetLSTMConfigs(),
+            criterion_configs=LabelSmoothedCrossEntropyLossConfigs(),
         )
 
         vocab = KsponSpeechCharacterVocabulary(configs)
-        model = ConformerTransducerModel(configs, vocab)
+        model = ContextNetLSTMModel(configs, vocab)
+        model.build_model()
+        model.set_beam_decoder(beam_size=3)
+
+        for i in range(3):
+            prediction = model(DUMMY_INPUTS, DUMMY_INPUT_LENGTHS)["predictions"]
+            assert isinstance(prediction, torch.Tensor)
+
+    def test_training_step(self):
+        configs = build_dummy_configs(
+            model_configs=ContextNetLSTMConfigs(),
+            criterion_configs=LabelSmoothedCrossEntropyLossConfigs(),
+        )
+
+        vocab = KsponSpeechCharacterVocabulary(configs)
+        model = ContextNetLSTMModel(configs, vocab)
         model.build_model()
 
         for i in range(3):
@@ -63,12 +76,12 @@ class TestConformerTransducer(unittest.TestCase):
 
     def test_validation_step(self):
         configs = build_dummy_configs(
-            model_configs=ConformerTransducerConfigs(),
-            criterion_configs=TransducerLossConfigs(),
+            model_configs=ContextNetLSTMConfigs(),
+            criterion_configs=LabelSmoothedCrossEntropyLossConfigs(),
         )
 
         vocab = KsponSpeechCharacterVocabulary(configs)
-        model = ConformerTransducerModel(configs, vocab)
+        model = ContextNetLSTMModel(configs, vocab)
         model.build_model()
 
         for i in range(3):
@@ -79,12 +92,12 @@ class TestConformerTransducer(unittest.TestCase):
 
     def test_test_step(self):
         configs = build_dummy_configs(
-            model_configs=ConformerTransducerConfigs(),
-            criterion_configs=TransducerLossConfigs(),
+            model_configs=ContextNetLSTMConfigs(),
+            criterion_configs=LabelSmoothedCrossEntropyLossConfigs(),
         )
 
         vocab = KsponSpeechCharacterVocabulary(configs)
-        model = ConformerTransducerModel(configs, vocab)
+        model = ContextNetLSTMModel(configs, vocab)
         model.build_model()
 
         for i in range(3):

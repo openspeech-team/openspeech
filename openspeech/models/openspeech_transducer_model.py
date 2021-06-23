@@ -252,7 +252,7 @@ class OpenspeechTransducerModel(OpenspeechModel):
         return self.collect_outputs(
             'train',
             logits=logits,
-            input_lengths=input_lengths,
+            input_lengths=output_lengths,
             targets=targets,
             target_lengths=target_lengths,
         )
@@ -287,7 +287,7 @@ class OpenspeechTransducerModel(OpenspeechModel):
         return self.collect_outputs(
             'val',
             logits=None,
-            input_lengths=input_lengths,
+            input_lengths=output_lengths,
             targets=targets,
             target_lengths=target_lengths,
             predictions=predictions,
@@ -323,7 +323,7 @@ class OpenspeechTransducerModel(OpenspeechModel):
         return self.collect_outputs(
             'test',
             logits=None,
-            input_lengths=input_lengths,
+            input_lengths=output_lengths,
             targets=targets,
             target_lengths=target_lengths,
             predictions=predictions,

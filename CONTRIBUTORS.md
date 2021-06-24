@@ -25,8 +25,8 @@ English and Mandarin](https://arxiv.org/abs/1512.02595.pdf), by Dario Amodei, Ri
   15. [**Conformer**](https://sooftware.github.io/OpenSpeech/Conformer%20Transducer.html) (from Google) released with paper [Conformer: Convolution-augmented Transformer for Speech Recognition](https://arxiv.org/abs/2005.08100), by Anmol Gulati, James Qin, Chung-Cheng Chiu, Niki Parmar, Yu Zhang, Jiahui Yu, Wei Han, Shibo Wang, Zhengdong Zhang, Yonghui Wu, Ruoming Pang.  
   16. [**Conformer with CTC**](https://sooftware.github.io/OpenSpeech/Conformer.html) (from Northwestern Polytechnical University and University of Bordeaux and Johns Hopkins University and Human Dataware Lab and Kyoto University and NTT Corporation and Shanghai Jiao Tong University and  Chinese Academy of Sciences) released with paper [Recent Developments on ESPNET Toolkit Boosted by Conformer](https://arxiv.org/abs/2010.13956.pdf), by Pengcheng Guo, Florian Boyer, Xuankai Chang, Tomoki Hayashi, Yosuke Higuchi, Hirofumi Inaguma, Naoyuki Kamo, Chenda Li, Daniel Garcia-Romero, Jiatong Shi, Jing Shi, Shinji Watanabe, Kun Wei, Wangyou Zhang, Yuekai Zhang.
   17. [**Conformer with LSTM Decoder**](https://sooftware.github.io/OpenSpeech/Conformer%20LSTM.html) (from IBM Research AI) released with paper [On the limit of English conversational speech recognition](https://arxiv.org/abs/2105.00982.pdf), by Zoltán Tüske, George Saon, Brian Kingsbury.
-  13. [**LSTM Language Model**]() (from RWTH Aachen University) released with paper [LSTM Neural Networks for Language Modeling](http://www-i6.informatik.rwth-aachen.de/publications/download/820/Sundermeyer-2012.pdf), by  Martin Sundermeyer, Ralf Schluter, and Hermann Ney.
-  12. [**Transformer Language Model**]() (from Amazon Web Services) released with paper [Language Models with Transformers](https://arxiv.org/abs/1904.09408), by Chenguang Wang, Mu Li, Alexander J. Smola.
+  18. [**LSTM Language Model**]() (from RWTH Aachen University) released with paper [LSTM Neural Networks for Language Modeling](http://www-i6.informatik.rwth-aachen.de/publications/download/820/Sundermeyer-2012.pdf), by  Martin Sundermeyer, Ralf Schluter, and Hermann Ney.
+  19. [**Transformer Language Model**]() (from Amazon Web Services) released with paper [Language Models with Transformers](https://arxiv.org/abs/1904.09408), by Chenguang Wang, Mu Li, Alexander J. Smola.
   
 - Recipe:
   1. [LibriSpeech](https://www.openslr.org/12)
@@ -43,6 +43,7 @@ English and Mandarin](https://arxiv.org/abs/1512.02595.pdf), by Dario Amodei, Ri
   
   1. [**Transformer Transducer**](https://sooftware.github.io/OpenSpeech/Transformer%20Transducer.html) (from Facebook AI) released with paper [Transformer-Transducer:
 End-to-End Speech Recognition with Self-Attention](https://arxiv.org/abs/1910.12977.pdf), by Ching-Feng Yeh, Jay Mahadeokar, Kaustubh Kalgaonkar, Yongqiang Wang, Duc Le, Mahaveer Jain, Kjell Schubert, Christian Fuegen, Michael L. Seltzer.  
+  2. [**ContextNet**]() (from Google) released with paper [ContextNet: Improving Convolutional Neural Networks for Automatic Speech Recognition with Global Context](https://arxiv.org/abs/2005.03191), by Wei Han, Zhengdong Zhang, Yu Zhang, Jiahui Yu, Chung-Cheng Chiu, James Qin, Anmol Gulati, Ruoming Pang, Yonghui Wu.
   
 
 ### [Soyoung Cho](https://github.com/SoYoungCho)

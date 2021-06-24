@@ -126,23 +126,25 @@ def preprocess(dataset_path, mode='phonetic'):
     transcripts = list()
 
     with Parallel(n_jobs=cpu_count() - 1) as parallel:
-
         for folder in os.listdir(dataset_path):
             # folder : {KsponSpeech_01, ..., KsponSpeech_05}
-            if not folder.startswith('KsponSpeech'):
-                continue
             path = os.path.join(dataset_path, folder)
-            for idx, subfolder in tqdm(list(enumerate(os.listdir(path))), desc=f'Preprocess text files on {path}'):
+            if not folder.startswith('KsponSpeech') or not os.path.isdir(path):
+                continue
+
+            subfolders = os.listdir(path)
+            for idx, subfolder in tqdm(list(enumerate(subfolders)), desc=f'Preprocess text files on {path}'):
                 path = os.path.join(dataset_path, folder, subfolder)
+                if not os.path.isdir(path):
+                    continue
 
                 # list-up files
-                sub_file_list = [
-                    os.path.join(path, file_name) for file_name in os.listdir(path) if file_name.endswith('.txt')
-                ]
-                audio_sub_file_list = [
-                    os.path.join(folder, subfolder, file_name)
-                    for file_name in os.listdir(path) if file_name.endswith('.txt')
-                ]
+                sub_file_list = []
+                audio_sub_file_list = []
+                for file_name in os.listdir(path):
+                    if file_name.endswith('.txt'):
+                        sub_file_list.append(os.path.join(path, file_name))
+                        audio_sub_file_list.append(os.path.join(folder, subfolder, file_name))
 
                 # do parallel and get results
                 new_sentences = parallel(

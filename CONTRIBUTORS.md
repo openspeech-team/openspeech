@@ -51,3 +51,8 @@ End-to-End Speech Recognition with Self-Attention](https://arxiv.org/abs/1910.12
 - Usability Check
 - Documentation
 - Logo design
+
+
+### [Younghun Kim](https://github.com/dudgns0908)
+- Contributor.
+- Optimizing the KsponSpeech preprocessing  

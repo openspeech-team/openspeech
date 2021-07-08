@@ -11,7 +11,7 @@ from openspeech.vocabs.ksponspeech.character import KsponSpeechCharacterVocabula
 logger = logging.getLogger(__name__)
 
 
-class TestConformer(unittest.TestCase):
+class TestContextNet(unittest.TestCase):
     def test_forward(self):
         configs = build_dummy_configs(model_configs=ContextNetConfigs(), criterion_configs=CTCLossConfigs())
 

@@ -16,7 +16,7 @@ except ImportError:
 logger = logging.getLogger(__name__)
 
 
-class TestConformerTransducer(unittest.TestCase):
+class TestContextNetTransducer(unittest.TestCase):
     def test_forward(self):
         configs = build_dummy_configs(
             model_configs=ContextNetTransducerConfigs(),

@@ -19,7 +19,7 @@ from openspeech.criterion.label_smoothed_cross_entropy.label_smoothed_cross_entr
 logger = logging.getLogger(__name__)
 
 
-class TestConformerLSTM(unittest.TestCase):
+class TestContextNetLSTM(unittest.TestCase):
     def test_forward(self):
         configs = build_dummy_configs(
             model_configs=ContextNetLSTMConfigs(),

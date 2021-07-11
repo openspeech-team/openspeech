@@ -92,7 +92,16 @@ DUMMY_TARGETS = torch.LongTensor([
 ])
 DUMMY_TARGET_LENGTHS = torch.IntTensor([9, 8, 7])
 DUMMY_TRANSCRIPTS = "OPENSPEECH IS AWESOME"
-
+DUMMY_TARGETS1 = torch.LongTensor([
+    [6, 6, 4, 6, 5, 1, 0, 0],
+    [6, 6, 4, 6, 5, 1, 0, 0],
+    [6, 6, 4, 6, 5, 1, 0, 0],
+])
+DUMMY_TARGETS2 = torch.LongTensor([
+    [9, 5, 4, 6, 5, 1, 0, 0],
+    [5, 7, 4, 6, 5, 1, 0, 0],
+    [8, 9, 4, 6, 5, 1, 0, 0],
+])
 DUMMY_LM_INPUTS = torch.LongTensor([
     [2, 3, 3, 3, 3, 3, 2, 2, 0],
     [2, 3, 3, 3, 3, 3, 2, 3, 2],
@@ -104,6 +113,7 @@ DUMMY_LM_TARGETS = torch.LongTensor([
     [3, 3, 3, 3, 3, 2, 1, 2, 0],
     [3, 3, 3, 3, 3, 2, 2, 0, 1],
 ])
+
 
 def is_pytorch_available():
     return importlib.util.find_spec("torch") is not None
@@ -311,6 +321,8 @@ def build_dummy_configs(
     from openspeech.models import ConformerConfigs
     from openspeech.criterion import CrossEntropyLossConfigs
     from openspeech.vocabs.ksponspeech.character import KsponSpeechCharacterVocabConfigs
+    from openspeech.vocabs.librispeech.character import LibriSpeechCharacterVocabConfigs
+    from openspeech.vocabs.aishell.character import AIShellCharacterVocabConfigs
     from openspeech.data.audio.melspectrogram.melspectrogram import MelSpectrogramConfigs
     from openspeech.dataclass import CPUTrainerConfigs
     from openspeech.optim.scheduler.warmup_reduce_lr_on_plateau_scheduler import WarmupReduceLROnPlateauConfigs
@@ -321,9 +333,18 @@ def build_dummy_configs(
     if vocab_configs is None:
         vocab_configs = KsponSpeechCharacterVocabConfigs()
         vocab_configs.vocab_path = "labels.csv"
+    elif vocab_configs == KsponSpeechCharacterVocabConfigs():
+        vocab_configs.vocab_path = "test_kspon_labels.csv"
+        vocab_configs.encoding = "cp949"
+    elif vocab_configs == LibriSpeechCharacterVocabConfigs():
+        vocab_configs.vocab_path = "test_libri_labels.csv"
+        vocab_configs.encoding = "cp949"
+    elif vocab_configs == AIShellCharacterVocabConfigs():
+        vocab_configs.vocab_path = "test_aishell_labels.csv"
+        vocab_configs.encoding = "cp949"
 
     if criterion_configs is None:
-        criterion_configs = CrossEntropyLossConfigs
+        criterion_configs = CrossEntropyLossConfigs()
 
     if trainer_configs is None:
         trainer_configs = CPUTrainerConfigs()

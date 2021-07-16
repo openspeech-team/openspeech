@@ -143,7 +143,7 @@ KsponSpeech is a large-scale spontaneous speech corpus of Korean. This corpus co
 |AISHELL-1|character|[[Link]](https://drive.google.com/file/d/1qUEu-txKjB8QVSauWEA8tOPysYT990B7/view?usp=sharing)|[[Link]](https://drive.google.com/file/d/1pnZ8cpWm7HLkemeRLXIznlqzKL4Uyf03/view?usp=sharing)|-|  
 |KsponSpeech|character|[[Link]](https://drive.google.com/file/d/1JkimBCPi68wko-8wiKW0MQv1yE8rrNAP/view?usp=sharing)|[[Link]](https://drive.google.com/file/d/1hDvFTo4czh29sdSKTuqTlHAe37tOyofy/view?usp=sharing)|-|  
 |KsponSpeech|subword|[[Link]](https://drive.google.com/file/d/1S9umHLLGlKF-bk1OU_WNGMftl93ZhiQW/view?usp=sharing)|[[Link]](https://drive.google.com/file/d/1YmhxXjT8n65Ag8kLkWf3luwsenvx_xm6/view?usp=sharing)|[[Link]](https://drive.google.com/file/d/1YI_2TdAajiRVasOUcsUuNwQ1CJ9LPkkc/view?usp=sharing)|  
-|KsponSpeech|grapheme|[[Link]](https://drive.google.com/file/d/1cVHBnubAQEVyNdy1oJN6gPk65R0Wr7Wp/view?usp=sharing)|[[Link]](https://drive.google.com/file/d/11cGb0lKDVtjtZzyHHDKU6YKaY3LrnIhS/view?usp=sharing)|-|   
+|KsponSpeech|grapheme|[[Link]](https://drive.google.com/file/d/1BSDHnByD33vfkBVTwT9AlU_rYc02dBtG/view?usp=sharing)|[[Link]](https://drive.google.com/file/d/1HnupfQwiziXaRIhquUTKo9cUfDwkpuMo/view?usp=sharing)|-|   
   
 KsponSpeech needs permission from [AI Hub](https://aihub.or.kr/).   
 Please send e-mail including the approved screenshot to sh951011@gmail.com.

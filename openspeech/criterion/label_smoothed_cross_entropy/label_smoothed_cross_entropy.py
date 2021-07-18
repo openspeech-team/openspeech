@@ -28,7 +28,7 @@ from torch import Tensor
 
 from .. import register_criterion
 from ..label_smoothed_cross_entropy.configuration import LabelSmoothedCrossEntropyLossConfigs
-from ...vocabs.vocab import Vocabulary
+from ...tokenizers.tokenizer import Tokenizer
 
 
 @register_criterion("label_smoothed_cross_entropy", dataclass=LabelSmoothedCrossEntropyLossConfigs)
@@ -36,15 +36,10 @@ class LabelSmoothedCrossEntropyLoss(nn.Module):
     r"""
     Label smoothed cross entropy loss function.
 
-    Configurations:
-        criterion_name (str): name of criterion
-        reduction (str): reduction method of criterion
-        smoothing (float): ratio of smoothing loss (confidence = 1.0 - smoothing)
-
     Args:
         configs (DictConfig): hydra configuration set
         num_classes (int): the number of classfication
-        vocab (Vocabulary): the set of unique words used in the text corpus
+        tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
 
     Inputs: logits, targets
         - **logits** (torch.FloatTensor): probability distribution value from model and it has a logarithm shape.
@@ -59,14 +54,14 @@ class LabelSmoothedCrossEntropyLoss(nn.Module):
             self,
             configs: DictConfig,
             num_classes: int,
-            vocab: Vocabulary,
+            tokenizer: Tokenizer,
     ) -> None:
         super(LabelSmoothedCrossEntropyLoss, self).__init__()
         self.confidence = 1.0 - configs.criterion.smoothing
         self.smoothing = configs.criterion.smoothing
         self.num_classes = num_classes
         self.dim = -1
-        self.ignore_index = vocab.pad_id
+        self.ignore_index = tokenizer.pad_id
         self.reduction = configs.criterion.reduction.lower()
 
         if self.reduction == 'sum':

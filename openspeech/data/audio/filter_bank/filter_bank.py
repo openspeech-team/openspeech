@@ -34,14 +34,6 @@ class FilterBankFeatureTransform(object):
     r"""
     Create a fbank from a raw audio signal. This matches the input/output of Kaldi's compute-fbank-feats.
 
-    Configurations:
-        name (str): name of feature transform. (default: fbank)
-        sample_rate (int): sampling rate of audio (default: 16000)
-        frame_length (float): frame length for spectrogram (default: 20.0)
-        frame_shift (float): length of hop between STFT (default: 10.0)
-        del_silence (bool): flag indication whether to apply delete silence or not (default: False)
-        num_mels (int): the number of mfc coefficients to retain. (default: 80)
-
     Args:
         configs (DictConfig): hydra configuraion set
 

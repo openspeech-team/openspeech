@@ -1,0 +1,479 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Feature Transform &mdash; Openspeech v0.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Datasets" href="Datasets.html" />
+    <link rel="prev" title="Data Augment" href="Data%20Augment.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Openspeech
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">GETTING STARTED</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notes/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/hydra_configs.html">Openspeech’s Hydra configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/configs.html">Openspeech’s configurations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OPENSPEECH MODELS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Model.html">Openspeech Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20CTC%20Model.html">Openspeech CTC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Encoder%20Decoder%20Model.html">Openspeech Encoder Decoder Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Transducer%20Model.html">Openspeech Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Language%20Model.html">Openspeech Language Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MODEL ARCHITECTURES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Conformer.html">Conformer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/ContextNet.html">ContextNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/DeepSpeech2.html">DeepSpeech2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Jasper.html">Jasper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Listen%20Attend%20Spell.html">Listen Attend Spell Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/LSTM%20LM.html">LSTM Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/QuartzNet.html">QuartzNet Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/RNN%20Transducer.html">RNN Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer.html">Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer%20LM.html">Transformer Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer%20Transducer.html">Transformer Transducer Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">CORPUS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../corpus/AISHELL-1.html">AISHELL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corpus/KsponSpeech.html">KsponSpeech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corpus/LibriSpeech.html">LibriSpeech</a></li>
+</ul>
+<p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Criterion.html">Criterion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Augment.html">Data Augment</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Feature Transform</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.data.audio.load">Load Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.data.audio.spectrogram.spectrogram">Spectrogram Feature Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.data.audio.spectrogram.configuration">Spectrogram Feature Transform Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.data.audio.melspectrogram.melspectrogram">Mel-Spectrogram Feature Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.data.audio.melspectrogram.configuration">Mel-Spectrogram Feature Transform Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.data.audio.filter_bank.filter_bank">Filter-Bank Feature Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.data.audio.filter_bank.configuration">Filter-Bank Feature Transform Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.data.audio.mfcc.mfcc">MFCC Feature Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.data.audio.mfcc.configuration">MFCC Feature Transform Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Loaders.html">Data Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Decoders.html">Decoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Encoders.html">Encoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Optim.html">Optim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Search.html">Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tokenizers.html">Tokenizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Metric.html">Metric</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Openspeech</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Feature Transform</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/modules/Feature Transform.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="feature-transform">
+<h1>Feature Transform<a class="headerlink" href="#feature-transform" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-openspeech.data.audio.load">
+<span id="load-audio"></span><h2>Load Audio<a class="headerlink" href="#module-openspeech.data.audio.load" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="openspeech.data.audio.load.load_audio">
+<code class="sig-prename descclassname"><span class="pre">openspeech.data.audio.load.</span></code><code class="sig-name descname"><span class="pre">load_audio</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">audio_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">del_silence</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a><a class="reference internal" href="../_modules/openspeech/data/audio/load.html#load_audio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.data.audio.load.load_audio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load audio file (PCM) to sound. if del_silence is True, Eliminate all sounds below 30dB.
+If exception occurs in numpy.memmap(), return None.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.data.audio.spectrogram.spectrogram">
+<span id="spectrogram-feature-transform"></span><h2>Spectrogram Feature Transform<a class="headerlink" href="#module-openspeech.data.audio.spectrogram.spectrogram" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.data.audio.spectrogram.spectrogram.SpectrogramFeatureTransform">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">openspeech.data.audio.spectrogram.spectrogram.</span></code><code class="sig-name descname"><span class="pre">SpectrogramFeatureTransform</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">omegaconf.dictconfig.DictConfig</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/data/audio/spectrogram/spectrogram.html#SpectrogramFeatureTransform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.data.audio.spectrogram.spectrogram.SpectrogramFeatureTransform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a spectrogram from a audio signal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>configs</strong> (<em>DictConfig</em>) – configuraion set</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A spectrogram feature. The shape is <code class="docutils literal notranslate"><span class="pre">(seq_length,</span> <span class="pre">num_mels)</span></code></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.data.audio.spectrogram.configuration">
+<span id="spectrogram-feature-transform-configuration"></span><h2>Spectrogram Feature Transform Configuration<a class="headerlink" href="#module-openspeech.data.audio.spectrogram.configuration" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.data.audio.spectrogram.configuration.SpectrogramConfigs">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">openspeech.data.audio.spectrogram.configuration.</span></code><code class="sig-name descname"><span class="pre">SpectrogramConfigs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'spectrogram'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">16000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_length</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><span class="pre">float</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">20.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_shift</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><span class="pre">float</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">del_silence</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_mels</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">161</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_spec_augment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_noise_augment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_time_stretch_augment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_joining_augment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/data/audio/spectrogram/configuration.html#SpectrogramConfigs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.data.audio.spectrogram.configuration.SpectrogramConfigs" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the configuration class to store the configuration of
+a <code class="xref py py-class docutils literal notranslate"><span class="pre">SpectrogramTransform</span></code>.</p>
+<p>It is used to initiated an <cite>SpectrogramTransform</cite> feature transform.</p>
+<p>Configuration objects inherit from :class: <cite>~openspeech.dataclass.OpenspeechDataclass</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – name of feature transform. (default: spectrogram)</p></li>
+<li><p><strong>sample_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – sampling rate of audio (default: 16000)</p></li>
+<li><p><strong>frame_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – frame length for spectrogram (default: 20.0)</p></li>
+<li><p><strong>frame_shift</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – length of hop between STFT (default: 10.0)</p></li>
+<li><p><strong>del_silence</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply delete silence or not (default: False)</p></li>
+<li><p><strong>num_mels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the number of mfc coefficients to retain. (default: 161)</p></li>
+<li><p><strong>apply_spec_augment</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply spec augment or not (default: True)</p></li>
+<li><p><strong>apply_noise_augment</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply noise augment or not (default: False)</p></li>
+<li><p><strong>apply_time_stretch_augment</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply time stretch augment or not (default: False)</p></li>
+<li><p><strong>apply_joining_augment</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply audio joining augment or not (default: False)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.data.audio.melspectrogram.melspectrogram">
+<span id="mel-spectrogram-feature-transform"></span><h2>Mel-Spectrogram Feature Transform<a class="headerlink" href="#module-openspeech.data.audio.melspectrogram.melspectrogram" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.data.audio.melspectrogram.melspectrogram.MelSpectrogramFeatureTransform">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">openspeech.data.audio.melspectrogram.melspectrogram.</span></code><code class="sig-name descname"><span class="pre">MelSpectrogramFeatureTransform</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">omegaconf.dictconfig.DictConfig</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/data/audio/melspectrogram/melspectrogram.html#MelSpectrogramFeatureTransform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.data.audio.melspectrogram.melspectrogram.MelSpectrogramFeatureTransform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create MelSpectrogram for a raw audio signal. This is a composition of Spectrogram and MelScale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>configs</strong> (<em>DictConfig</em>) – configuraion set</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A mel-spectrogram feature. The shape is <code class="docutils literal notranslate"><span class="pre">(seq_length,</span> <span class="pre">num_mels)</span></code></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.data.audio.melspectrogram.configuration">
+<span id="mel-spectrogram-feature-transform-configuration"></span><h2>Mel-Spectrogram Feature Transform Configuration<a class="headerlink" href="#module-openspeech.data.audio.melspectrogram.configuration" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.data.audio.melspectrogram.configuration.MelSpectrogramConfigs">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">openspeech.data.audio.melspectrogram.configuration.</span></code><code class="sig-name descname"><span class="pre">MelSpectrogramConfigs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'melspectrogram'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">16000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_length</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><span class="pre">float</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">20.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_shift</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><span class="pre">float</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">del_silence</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_mels</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">80</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_spec_augment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_noise_augment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_time_stretch_augment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_joining_augment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/data/audio/melspectrogram/configuration.html#MelSpectrogramConfigs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.data.audio.melspectrogram.configuration.MelSpectrogramConfigs" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the configuration class to store the configuration of
+a <code class="xref py py-class docutils literal notranslate"><span class="pre">MelSpectrogramFeatureTransform</span></code>.</p>
+<p>It is used to initiated an <cite>MelSpectrogramFeatureTransform</cite> feature transform.</p>
+<p>Configuration objects inherit from :class: <cite>~openspeech.dataclass.OpenspeechDataclass</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – name of feature transform. (default: melspectrogram)</p></li>
+<li><p><strong>sample_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – sampling rate of audio (default: 16000)</p></li>
+<li><p><strong>frame_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – frame length for spectrogram (default: 20.0)</p></li>
+<li><p><strong>frame_shift</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – length of hop between STFT (default: 10.0)</p></li>
+<li><p><strong>del_silence</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply delete silence or not (default: False)</p></li>
+<li><p><strong>num_mels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the number of mfc coefficients to retain. (default: 80)</p></li>
+<li><p><strong>apply_spec_augment</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply spec augment or not (default: True)</p></li>
+<li><p><strong>apply_noise_augment</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply noise augment or not (default: False)</p></li>
+<li><p><strong>apply_time_stretch_augment</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply time stretch augment or not (default: False)</p></li>
+<li><p><strong>apply_joining_augment</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply audio joining augment or not (default: False)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.data.audio.filter_bank.filter_bank">
+<span id="filter-bank-feature-transform"></span><h2>Filter-Bank Feature Transform<a class="headerlink" href="#module-openspeech.data.audio.filter_bank.filter_bank" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.data.audio.filter_bank.filter_bank.FilterBankFeatureTransform">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">openspeech.data.audio.filter_bank.filter_bank.</span></code><code class="sig-name descname"><span class="pre">FilterBankFeatureTransform</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">omegaconf.dictconfig.DictConfig</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/data/audio/filter_bank/filter_bank.html#FilterBankFeatureTransform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.data.audio.filter_bank.filter_bank.FilterBankFeatureTransform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a fbank from a raw audio signal. This matches the input/output of Kaldi’s compute-fbank-feats.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>configs</strong> (<em>DictConfig</em>) – hydra configuraion set</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Inputs:</dt><dd><p>signal (np.ndarray): signal from audio file.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A fbank identical to what Kaldi would output. The shape is <code class="docutils literal notranslate"><span class="pre">(seq_length,</span> <span class="pre">num_mels)</span></code></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.data.audio.filter_bank.configuration">
+<span id="filter-bank-feature-transform-configuration"></span><h2>Filter-Bank Feature Transform Configuration<a class="headerlink" href="#module-openspeech.data.audio.filter_bank.configuration" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.data.audio.filter_bank.configuration.FilterBankConfigs">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">openspeech.data.audio.filter_bank.configuration.</span></code><code class="sig-name descname"><span class="pre">FilterBankConfigs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'fbank'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">16000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_length</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><span class="pre">float</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">20.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_shift</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><span class="pre">float</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">del_silence</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_mels</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">80</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_spec_augment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_noise_augment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_time_stretch_augment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_joining_augment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/data/audio/filter_bank/configuration.html#FilterBankConfigs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.data.audio.filter_bank.configuration.FilterBankConfigs" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the configuration class to store the configuration of
+a <code class="xref py py-class docutils literal notranslate"><span class="pre">FilterBankFeatureTransform</span></code>.</p>
+<p>It is used to initiated an <cite>FilterBankFeatureTransform</cite> feature transform.</p>
+<p>Configuration objects inherit from :class: <cite>~openspeech.dataclass.configs.OpenspeechDataclass</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – name of feature transform. (default: fbank)</p></li>
+<li><p><strong>sample_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – sampling rate of audio (default: 16000)</p></li>
+<li><p><strong>frame_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – frame length for spectrogram (default: 20.0)</p></li>
+<li><p><strong>frame_shift</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – length of hop between STFT (default: 10.0)</p></li>
+<li><p><strong>del_silence</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply delete silence or not (default: False)</p></li>
+<li><p><strong>num_mels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the number of mfc coefficients to retain. (default: 80)</p></li>
+<li><p><strong>apply_spec_augment</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply spec augment or not (default: True)</p></li>
+<li><p><strong>apply_noise_augment</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply noise augment or not (default: False)</p></li>
+<li><p><strong>apply_time_stretch_augment</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply time stretch augment or not (default: False)</p></li>
+<li><p><strong>apply_joining_augment</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply audio joining augment or not (default: False)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.data.audio.mfcc.mfcc">
+<span id="mfcc-feature-transform"></span><h2>MFCC Feature Transform<a class="headerlink" href="#module-openspeech.data.audio.mfcc.mfcc" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.data.audio.mfcc.mfcc.MFCCFeatureTransform">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">openspeech.data.audio.mfcc.mfcc.</span></code><code class="sig-name descname"><span class="pre">MFCCFeatureTransform</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">omegaconf.dictconfig.DictConfig</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/data/audio/mfcc/mfcc.html#MFCCFeatureTransform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.data.audio.mfcc.mfcc.MFCCFeatureTransform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the Mel-frequency cepstrum coefficients from an audio signal.</p>
+<p>By default, this calculates the MFCC on the DB-scaled Mel spectrogram.
+This is not the textbook implementation, but is implemented here to
+give consistency with librosa.</p>
+<p>This output depends on the maximum value in the input spectrogram, and so
+may return different values for an audio clip split into snippets vs. a
+a full clip.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>configs</strong> (<em>DictConfig</em>) – configuraion set</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A mfcc feature. The shape is <code class="docutils literal notranslate"><span class="pre">(seq_length,</span> <span class="pre">num_mels)</span></code></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.data.audio.mfcc.configuration">
+<span id="mfcc-feature-transform-configuration"></span><h2>MFCC Feature Transform Configuration<a class="headerlink" href="#module-openspeech.data.audio.mfcc.configuration" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.data.audio.mfcc.configuration.MFCCConfigs">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">openspeech.data.audio.mfcc.configuration.</span></code><code class="sig-name descname"><span class="pre">MFCCConfigs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'mfcc'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">16000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_length</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><span class="pre">float</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">20.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_shift</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><span class="pre">float</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">del_silence</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_mels</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">40</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_spec_augment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_noise_augment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_time_stretch_augment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_joining_augment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/data/audio/mfcc/configuration.html#MFCCConfigs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.data.audio.mfcc.configuration.MFCCConfigs" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the configuration class to store the configuration of
+a <code class="xref py py-class docutils literal notranslate"><span class="pre">MFCCFeatureTransform</span></code>.</p>
+<p>It is used to initiated an <cite>MFCCFeatureTransform</cite> feature transform.</p>
+<p>Configuration objects inherit from :class: <cite>~openspeech.dataclass.OpenspeechDataclass</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – name of feature transform. (default: mfcc)</p></li>
+<li><p><strong>sample_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – sampling rate of audio (default: 16000)</p></li>
+<li><p><strong>frame_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – frame length for spectrogram (default: 20.0)</p></li>
+<li><p><strong>frame_shift</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – length of hop between STFT (default: 10.0)</p></li>
+<li><p><strong>del_silence</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply delete silence or not (default: False)</p></li>
+<li><p><strong>num_mels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the number of mfc coefficients to retain. (default: 40)</p></li>
+<li><p><strong>apply_spec_augment</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply spec augment or not (default: True)</p></li>
+<li><p><strong>apply_noise_augment</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply noise augment or not (default: False)</p></li>
+<li><p><strong>apply_time_stretch_augment</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply time stretch augment or not (default: False)</p></li>
+<li><p><strong>apply_joining_augment</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flag indication whether to apply audio joining augment or not (default: False)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="Datasets.html" class="btn btn-neutral float-right" title="Datasets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Data%20Augment.html" class="btn btn-neutral float-left" title="Data Augment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Kim, Soohwan and Ha, Sangchun and Cho, Soyoung.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

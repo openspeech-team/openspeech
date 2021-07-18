@@ -21,15 +21,18 @@
 # SOFTWARE.
 
 from omegaconf import DictConfig
-from torch import Tensor
-from typing import Dict
-from collections import OrderedDict
 
 from openspeech.models import register_model, OpenspeechEncoderDecoderModel
 from openspeech.decoders import LSTMAttentionDecoder
-from openspeech.encoders import LSTMEncoder
-from openspeech.models.listen_attend_spell.configurations import ListenAttendSpellConfigs
-from openspeech.vocabs.vocab import Vocabulary
+from openspeech.encoders import LSTMEncoder, ConvolutionalLSTMEncoder
+from openspeech.tokenizers.tokenizer import Tokenizer
+from openspeech.models.listen_attend_spell.configurations import (
+    ListenAttendSpellConfigs,
+    JointCTCListenAttendSpellConfigs,
+    ListenAttendSpellWithLocationAwareConfigs,
+    ListenAttendSpellWithMultiHeadConfigs,
+    DeepCNNWithJointCTCListenAttendSpellConfigs,
+)
 
 
 @register_model('listen_attend_spell', dataclass=ListenAttendSpellConfigs)
@@ -40,19 +43,18 @@ class ListenAttendSpellModel(OpenspeechEncoderDecoderModel):
 
     Args:
         configs (DictConfig): configuration set.
-        vocab (Vocabulary): the class of vocabulary
+        tokenizer (Tokeizer): tokenizer is in charge of preparing the inputs for a model.
 
     Inputs:
-        - **inputs** (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be
-            a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
+        - **inputs** (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
         - **input_lengths** (torch.LongTensor): The length of input tensor. ``(batch)``
 
     Returns:
-        * outputs (dict): Result of model predictions.
+        outputs (dict): Result of model predictions.
     """
 
-    def __init__(self, configs: DictConfig, vocab: Vocabulary, ) -> None:
-        super(ListenAttendSpellModel, self).__init__(configs, vocab)
+    def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
+        super(ListenAttendSpellModel, self).__init__(configs, tokenizer)
 
     def build_model(self):
         self.encoder = LSTMEncoder(
@@ -72,9 +74,9 @@ class ListenAttendSpellModel(OpenspeechEncoderDecoderModel):
             num_classes=self.num_classes,
             max_length=self.configs.model.max_length,
             hidden_state_dim=decoder_hidden_state_dim,
-            pad_id=self.vocab.pad_id,
-            sos_id=self.vocab.sos_id,
-            eos_id=self.vocab.eos_id,
+            pad_id=self.tokenizer.pad_id,
+            sos_id=self.tokenizer.sos_id,
+            eos_id=self.tokenizer.eos_id,
             num_heads=self.configs.model.num_attention_heads,
             dropout_p=self.configs.model.decoder_dropout_p,
             num_layers=self.configs.model.num_decoder_layers,
@@ -90,55 +92,234 @@ class ListenAttendSpellModel(OpenspeechEncoderDecoderModel):
             beam_size=beam_size,
         )
 
-    def forward(self, inputs: Tensor, input_lengths: Tensor) -> Dict[str, Tensor]:
-        r"""
-        Forward propagate a `inputs` and `targets` pair for inference.
 
-        Inputs:
-            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded
-                `FloatTensor` of size ``(batch, seq_length, dimension)``.
-            input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
+@register_model('listen_attend_spell_with_location_aware', dataclass=ListenAttendSpellWithLocationAwareConfigs)
+class ListenAttendSpellWithLocationAwareModel(OpenspeechEncoderDecoderModel):
+    r"""
+    Listen, Attend and Spell model with configurable encoder and decoder.
+    Paper: https://arxiv.org/abs/1508.01211
 
-        Returns:
-            * outputs (dict): Result of model predictions.
-        """
-        return super(ListenAttendSpellModel, self).forward(inputs, input_lengths)
+    Args:
+        configs (DictConfig): configuration set.
+        tokenizer (Tokeizer): tokenizer is in charge of preparing the inputs for a model.
 
-    def training_step(self, batch: tuple, batch_idx: int) -> OrderedDict:
-        r"""
-        Forward propagate a `inputs` and `targets` pair for training.
+    Inputs:
+        - **inputs** (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
+        - **input_lengths** (torch.LongTensor): The length of input tensor. ``(batch)``
 
-        Inputs:
-            batch (tuple): A train batch contains `inputs`, `targets`, `input_lengths`, `target_lengths`
-            batch_idx (int): The index of batch
+    Returns:
+        outputs (dict): Result of model predictions.
+    """
 
-        Returns:
-            loss (torch.Tensor): loss for training
-        """
-        return super(ListenAttendSpellModel, self).training_step(batch, batch_idx)
+    def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
+        super(ListenAttendSpellWithLocationAwareModel, self).__init__(configs, tokenizer)
 
-    def validation_step(self, batch: tuple, batch_idx: int) -> OrderedDict:
-        r"""
-        Forward propagate a `inputs` and `targets` pair for validation.
+    def build_model(self):
+        self.encoder = LSTMEncoder(
+            input_dim=self.configs.audio.num_mels,
+            num_layers=self.configs.model.num_encoder_layers,
+            num_classes=self.num_classes,
+            hidden_state_dim=self.configs.model.hidden_state_dim,
+            dropout_p=self.configs.model.encoder_dropout_p,
+            bidirectional=self.configs.model.encoder_bidirectional,
+            rnn_type=self.configs.model.rnn_type,
+            joint_ctc_attention=self.configs.model.joint_ctc_attention,
+        )
+        decoder_hidden_state_dim = self.configs.model.hidden_state_dim << 1 \
+            if self.configs.model.encoder_bidirectional \
+            else self.configs.model.hidden_state_dim
+        self.decoder = LSTMAttentionDecoder(
+            num_classes=self.num_classes,
+            max_length=self.configs.model.max_length,
+            hidden_state_dim=decoder_hidden_state_dim,
+            pad_id=self.tokenizer.pad_id,
+            sos_id=self.tokenizer.sos_id,
+            eos_id=self.tokenizer.eos_id,
+            num_heads=self.configs.model.num_attention_heads,
+            dropout_p=self.configs.model.decoder_dropout_p,
+            num_layers=self.configs.model.num_decoder_layers,
+            attn_mechanism=self.configs.model.decoder_attn_mechanism,
+            rnn_type=self.configs.model.rnn_type,
+        )
 
-        Inputs:
-            batch (tuple): A train batch contains `inputs`, `targets`, `input_lengths`, `target_lengths`
-            batch_idx (int): The index of batch
+    def set_beam_decoder(self, beam_size: int = 3):
+        """ Setting beam search decoder """
+        from openspeech.search import BeamSearchLSTM
+        self.decoder = BeamSearchLSTM(
+            decoder=self.decoder,
+            beam_size=beam_size,
+        )
 
-        Returns:
-            loss (torch.Tensor): loss for training
-        """
-        return super(ListenAttendSpellModel, self).validation_step(batch, batch_idx)
 
-    def test_step(self, batch: tuple, batch_idx: int) -> OrderedDict:
-        r"""
-        Forward propagate a `inputs` and `targets` pair for test.
+@register_model('listen_attend_spell_with_multi_head', dataclass=ListenAttendSpellWithMultiHeadConfigs)
+class ListenAttendSpellWithMultiHeadModel(OpenspeechEncoderDecoderModel):
+    r"""
+    Listen, Attend and Spell model with configurable encoder and decoder.
+    Paper: https://arxiv.org/abs/1508.01211
 
-        Inputs:
-            batch (tuple): A train batch contains `inputs`, `targets`, `input_lengths`, `target_lengths`
-            batch_idx (int): The index of batch
+    Args:
+        configs (DictConfig): configuration set.
+        tokenizer (Tokeizer): tokenizer is in charge of preparing the inputs for a model.
 
-        Returns:
-            loss (torch.Tensor): loss for training
-        """
-        return super(ListenAttendSpellModel, self).test_step(batch, batch_idx)
+    Inputs:
+        - **inputs** (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
+        - **input_lengths** (torch.LongTensor): The length of input tensor. ``(batch)``
+
+    Returns:
+        outputs (dict): Result of model predictions.
+    """
+
+    def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
+        super(ListenAttendSpellWithMultiHeadModel, self).__init__(configs, tokenizer)
+
+    def build_model(self):
+        self.encoder = LSTMEncoder(
+            input_dim=self.configs.audio.num_mels,
+            num_layers=self.configs.model.num_encoder_layers,
+            num_classes=self.num_classes,
+            hidden_state_dim=self.configs.model.hidden_state_dim,
+            dropout_p=self.configs.model.encoder_dropout_p,
+            bidirectional=self.configs.model.encoder_bidirectional,
+            rnn_type=self.configs.model.rnn_type,
+            joint_ctc_attention=self.configs.model.joint_ctc_attention,
+        )
+        decoder_hidden_state_dim = self.configs.model.hidden_state_dim << 1 \
+            if self.configs.model.encoder_bidirectional \
+            else self.configs.model.hidden_state_dim
+        self.decoder = LSTMAttentionDecoder(
+            num_classes=self.num_classes,
+            max_length=self.configs.model.max_length,
+            hidden_state_dim=decoder_hidden_state_dim,
+            pad_id=self.tokenizer.pad_id,
+            sos_id=self.tokenizer.sos_id,
+            eos_id=self.tokenizer.eos_id,
+            num_heads=self.configs.model.num_attention_heads,
+            dropout_p=self.configs.model.decoder_dropout_p,
+            num_layers=self.configs.model.num_decoder_layers,
+            attn_mechanism=self.configs.model.decoder_attn_mechanism,
+            rnn_type=self.configs.model.rnn_type,
+        )
+
+    def set_beam_decoder(self, beam_size: int = 3):
+        """ Setting beam search decoder """
+        from openspeech.search import BeamSearchLSTM
+        self.decoder = BeamSearchLSTM(
+            decoder=self.decoder,
+            beam_size=beam_size,
+        )
+
+
+@register_model('joint_ctc_listen_attend_spell', dataclass=JointCTCListenAttendSpellConfigs)
+class JointCTCListenAttendSpellModel(OpenspeechEncoderDecoderModel):
+    r"""
+    Joint CTC-Attention Listen, Attend and Spell model with configurable encoder and decoder.
+    Paper: https://arxiv.org/abs/1609.06773
+
+    Args:
+        configs (DictConfig): configuration set.
+        tokenizer (Tokeizer): tokenizer is in charge of preparing the inputs for a model.
+
+    Inputs:
+        - **inputs** (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
+        - **input_lengths** (torch.LongTensor): The length of input tensor. ``(batch)``
+
+    Returns:
+        outputs (dict): Result of model predictions.
+    """
+
+    def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
+        super(JointCTCListenAttendSpellModel, self).__init__(configs, tokenizer)
+
+    def build_model(self):
+        self.encoder = LSTMEncoder(
+            input_dim=self.configs.audio.num_mels,
+            num_layers=self.configs.model.num_encoder_layers,
+            num_classes=self.num_classes,
+            hidden_state_dim=self.configs.model.hidden_state_dim,
+            dropout_p=self.configs.model.encoder_dropout_p,
+            bidirectional=self.configs.model.encoder_bidirectional,
+            rnn_type=self.configs.model.rnn_type,
+            joint_ctc_attention=self.configs.model.joint_ctc_attention,
+        )
+        decoder_hidden_state_dim = self.configs.model.hidden_state_dim << 1 \
+            if self.configs.model.encoder_bidirectional \
+            else self.configs.model.hidden_state_dim
+        self.decoder = LSTMAttentionDecoder(
+            num_classes=self.num_classes,
+            max_length=self.configs.model.max_length,
+            hidden_state_dim=decoder_hidden_state_dim,
+            pad_id=self.tokenizer.pad_id,
+            sos_id=self.tokenizer.sos_id,
+            eos_id=self.tokenizer.eos_id,
+            num_heads=self.configs.model.num_attention_heads,
+            dropout_p=self.configs.model.decoder_dropout_p,
+            num_layers=self.configs.model.num_decoder_layers,
+            attn_mechanism=self.configs.model.decoder_attn_mechanism,
+            rnn_type=self.configs.model.rnn_type,
+        )
+
+    def set_beam_decoder(self, beam_size: int = 3):
+        """ Setting beam search decoder """
+        from openspeech.search.beam_search_lstm import BeamSearchLSTM
+        self.decoder = BeamSearchLSTM(
+            decoder=self.decoder,
+            beam_size=beam_size,
+        )
+
+
+@register_model('deep_cnn_with_joint_ctc_listen_attend_spell', dataclass=DeepCNNWithJointCTCListenAttendSpellConfigs)
+class DeepCNNWithJointCTCListenAttendSpellModel(OpenspeechEncoderDecoderModel):
+    r"""
+    Listen, Attend and Spell model with configurable encoder and decoder.
+    Paper: https://arxiv.org/abs/1508.01211
+
+    Args:
+        configs (DictConfig): configuration set.
+        tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
+
+    Inputs:
+        - **inputs** (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
+        - **input_lengths** (torch.LongTensor): The length of input tensor. ``(batch)``
+
+    Returns:
+        outputs (dict): Result of model predictions.
+    """
+
+    def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
+        super(DeepCNNWithJointCTCListenAttendSpellModel, self).__init__(configs, tokenizer)
+
+    def build_model(self):
+        self.encoder = ConvolutionalLSTMEncoder(
+            input_dim=self.configs.audio.num_mels,
+            num_layers=self.configs.model.num_encoder_layers,
+            num_classes=self.num_classes,
+            hidden_state_dim=self.configs.model.hidden_state_dim,
+            dropout_p=self.configs.model.encoder_dropout_p,
+            bidirectional=self.configs.model.encoder_bidirectional,
+            rnn_type=self.configs.model.rnn_type,
+            joint_ctc_attention=self.configs.model.joint_ctc_attention,
+        )
+        decoder_hidden_state_dim = self.configs.model.hidden_state_dim << 1 \
+            if self.configs.model.encoder_bidirectional \
+            else self.configs.model.hidden_state_dim
+        self.decoder = LSTMAttentionDecoder(
+            num_classes=self.num_classes,
+            max_length=self.configs.model.max_length,
+            hidden_state_dim=decoder_hidden_state_dim,
+            pad_id=self.tokenizer.pad_id,
+            sos_id=self.tokenizer.sos_id,
+            eos_id=self.tokenizer.eos_id,
+            num_heads=self.configs.model.num_attention_heads,
+            dropout_p=self.configs.model.decoder_dropout_p,
+            num_layers=self.configs.model.num_decoder_layers,
+            attn_mechanism=self.configs.model.decoder_attn_mechanism,
+            rnn_type=self.configs.model.rnn_type,
+        )
+
+    def set_beam_decoder(self, beam_size: int = 3):
+        """ Setting beam search decoder """
+        from openspeech.search import BeamSearchLSTM
+        self.decoder = BeamSearchLSTM(
+            decoder=self.decoder,
+            beam_size=beam_size,
+        )

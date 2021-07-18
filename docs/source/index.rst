@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to Openspeech's documentation!
-=====================================
+===========================================
 
 .. toctree::
    :maxdepth: 1
@@ -16,46 +16,55 @@ Welcome to Openspeech's documentation!
 
 .. toctree::
    :maxdepth: 1
+   :caption: OPENSPEECH MODELS
+
+   models/Openspeech Model
+   models/Openspeech CTC Model
+   models/Openspeech Encoder Decoder Model
+   models/Openspeech Transducer Model
+   models/Openspeech Language Model
+
+.. toctree::
+   :maxdepth: 1
    :caption: MODEL ARCHITECTURES
 
-   Openspeech Model
-   Conformer
-   Conformer LSTM
-   Conformer Transducer
-   Deep CNN with Joint CTC LAS
-   DeepSpeech2
-   Jasper5x3
-   Jasper10x5
-   Joint CTC Conformer LSTM
-   Joint CTC LAS
-   Joint CTC Transformer
-   Listen Attend Spell
-   Listen Attend Spell (location-aware)
-   Listen Attend Spell (multi-head)
-   QuartzNet5x5
-   QuartzNet10x5
-   QuartzNet15x5
-   RNN Transducer
-   Transformer
-   Transformer Transducer
-   Transformer with CTC
-   VGG Transformer
+   architectures/Conformer
+   architectures/ContextNet
+   architectures/DeepSpeech2
+   architectures/Jasper
+   architectures/Listen Attend Spell
+   architectures/LSTM LM
+   architectures/QuartzNet
+   architectures/RNN Transducer
+   architectures/Transformer
+   architectures/Transformer LM
+   architectures/Transformer Transducer
+
+.. toctree::
+   :maxdepth: 1
+   :caption: CORPUS
+
+   corpus/AISHELL-1
+   corpus/KsponSpeech
+   corpus/LibriSpeech
 
 .. toctree::
    :maxdepth: 1
    :caption: LIBRARY REFERENCE
 
-   Audio
-   Criterion
-   Data
-   Datasets
-   Decoders
-   Encoders
-   Modules
-   Optim
-   Beam Search
-   Vocabulary
-   Metric
+   modules/Criterion
+   modules/Data Augment
+   modules/Feature Transform
+   modules/Datasets
+   modules/Data Loaders
+   modules/Decoders
+   modules/Encoders
+   modules/Modules
+   modules/Optim
+   modules/Search
+   modules/Tokenizers
+   modules/Metric
+
 
 Indices and tables
 ==================

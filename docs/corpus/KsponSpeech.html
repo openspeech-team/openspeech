@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>KsponSpeech &mdash; Openspeech v0.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="LibriSpeech" href="LibriSpeech.html" />
+    <link rel="prev" title="AISHELL" href="AISHELL-1.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Openspeech
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">GETTING STARTED</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notes/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/hydra_configs.html">Openspeech’s Hydra configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/configs.html">Openspeech’s configurations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OPENSPEECH MODELS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Model.html">Openspeech Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20CTC%20Model.html">Openspeech CTC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Encoder%20Decoder%20Model.html">Openspeech Encoder Decoder Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Transducer%20Model.html">Openspeech Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Language%20Model.html">Openspeech Language Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MODEL ARCHITECTURES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Conformer.html">Conformer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/ContextNet.html">ContextNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/DeepSpeech2.html">DeepSpeech2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Jasper.html">Jasper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Listen%20Attend%20Spell.html">Listen Attend Spell Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/LSTM%20LM.html">LSTM Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/QuartzNet.html">QuartzNet Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/RNN%20Transducer.html">RNN Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer.html">Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer%20LM.html">Transformer Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer%20Transducer.html">Transformer Transducer Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">CORPUS</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="AISHELL-1.html">AISHELL</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">KsponSpeech</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">KsponSpeech</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="LibriSpeech.html">LibriSpeech</a></li>
+</ul>
+<p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Criterion.html">Criterion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Data%20Augment.html">Data Augment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Feature%20Transform.html">Feature Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Data%20Loaders.html">Data Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Decoders.html">Decoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Encoders.html">Encoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Optim.html">Optim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Search.html">Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Tokenizers.html">Tokenizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Metric.html">Metric</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Openspeech</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>KsponSpeech</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/corpus/KsponSpeech.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ksponspeech">
+<h1>KsponSpeech<a class="headerlink" href="#ksponspeech" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>KsponSpeech<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-openspeech.datasets.ksponspeech.lit_data_module"></span><dl class="py class">
+<dt id="openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">openspeech.datasets.ksponspeech.lit_data_module.</span></code><code class="sig-name descname"><span class="pre">LightningKsponSpeechDataModule</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/datasets/ksponspeech/lit_data_module.html#LightningKsponSpeechDataModule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lightning data module for KsponSpeech. KsponSpeech corpus contains 969 h of general open-domain dialog utterances,
+spoken by about 2000 native Korean speakers in a clean environment. All data were constructed by recording the
+dialogue of two people freely conversing on a variety of topics and manually transcribing the utterances.
+The transcription provides a dual transcription consisting of orthography and pronunciation,
+and disfluency tags for spontaneity of speech, such as filler words, repeated words, and word fragments.</p>
+<dl class="py attribute">
+<dt id="openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.KSPONSPEECH_TRAIN_NUM">
+<code class="sig-name descname"><span class="pre">KSPONSPEECH_TRAIN_NUM</span></code><a class="headerlink" href="#openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.KSPONSPEECH_TRAIN_NUM" title="Permalink to this definition">¶</a></dt>
+<dd><p>the number of KsponSpeech’s train data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>configs</strong> (<em>DictConfig</em>) – configuration set.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.prepare_data">
+<code class="sig-name descname"><span class="pre">prepare_data</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/datasets/ksponspeech/lit_data_module.html#LightningKsponSpeechDataModule.prepare_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.prepare_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepare KsponSpeech manifest file. If there is not exist manifest file, generate manifest file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>tokenizer is in charge of preparing the inputs for a model.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tokenizer (<a class="reference internal" href="../modules/Tokenizers.html#openspeech.tokenizers.tokenizer.Tokenizer" title="openspeech.tokenizers.tokenizer.Tokenizer">Tokenizer</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.setup">
+<code class="sig-name descname"><span class="pre">setup</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stage</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../modules/Tokenizers.html#openspeech.tokenizers.tokenizer.Tokenizer" title="openspeech.tokenizers.tokenizer.Tokenizer"><span class="pre">openspeech.tokenizers.tokenizer.Tokenizer</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/datasets/ksponspeech/lit_data_module.html#LightningKsponSpeechDataModule.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.setup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split <cite>train</cite> and <cite>valid</cite> dataset for training.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stage</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – stage of training. <cite>train</cite> or <cite>valid</cite></p></li>
+<li><p><strong>tokenizer</strong> (<a class="reference internal" href="../modules/Tokenizers.html#openspeech.tokenizers.tokenizer.Tokenizer" title="openspeech.tokenizers.tokenizer.Tokenizer"><em>Tokenizer</em></a>) – tokenizer is in charge of preparing the inputs for a model.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.test_dataloader">
+<code class="sig-name descname"><span class="pre">test_dataloader</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="../modules/Data%20Loaders.html#openspeech.data.audio.data_loader.AudioDataLoader" title="openspeech.data.audio.data_loader.AudioDataLoader"><span class="pre">openspeech.data.audio.data_loader.AudioDataLoader</span></a><a class="reference internal" href="../_modules/openspeech/datasets/ksponspeech/lit_data_module.html#LightningKsponSpeechDataModule.test_dataloader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.test_dataloader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return data loader for training.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.train_dataloader">
+<code class="sig-name descname"><span class="pre">train_dataloader</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="../modules/Data%20Loaders.html#openspeech.data.audio.data_loader.AudioDataLoader" title="openspeech.data.audio.data_loader.AudioDataLoader"><span class="pre">openspeech.data.audio.data_loader.AudioDataLoader</span></a><a class="reference internal" href="../_modules/openspeech/datasets/ksponspeech/lit_data_module.html#LightningKsponSpeechDataModule.train_dataloader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.train_dataloader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return data loader for training.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.val_dataloader">
+<code class="sig-name descname"><span class="pre">val_dataloader</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="../modules/Data%20Loaders.html#openspeech.data.audio.data_loader.AudioDataLoader" title="openspeech.data.audio.data_loader.AudioDataLoader"><span class="pre">openspeech.data.audio.data_loader.AudioDataLoader</span></a><a class="reference internal" href="../_modules/openspeech/datasets/ksponspeech/lit_data_module.html#LightningKsponSpeechDataModule.val_dataloader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.datasets.ksponspeech.lit_data_module.LightningKsponSpeechDataModule.val_dataloader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return data loader for validation.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="LibriSpeech.html" class="btn btn-neutral float-right" title="LibriSpeech" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="AISHELL-1.html" class="btn btn-neutral float-left" title="AISHELL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Kim, Soohwan and Ha, Sangchun and Cho, Soyoung.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

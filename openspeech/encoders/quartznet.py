@@ -41,8 +41,7 @@ class QuartzNet(nn.Module):
         num_classes (int): number of classification.
 
     Inputs:
-        inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded
-            `FloatTensor` of size ``(batch, seq_length, dimension)``.
+        inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
         input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
 
     Returns:
@@ -100,8 +99,7 @@ class QuartzNet(nn.Module):
         Forward propagate a `inputs` for  encoder_only training.
 
         Args:
-            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded
-                `FloatTensor` of size ``(batch, seq_length, dimension)``.
+            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
             input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
 
         Returns:

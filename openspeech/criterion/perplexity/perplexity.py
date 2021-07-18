@@ -27,7 +27,7 @@ from omegaconf import DictConfig
 
 from .. import register_criterion
 from ..perplexity.configuration import PerplexityLossConfigs
-from ...vocabs.vocab import Vocabulary
+from ...tokenizers.tokenizer import Tokenizer
 
 
 @register_criterion("perplexity", dataclass=PerplexityLossConfigs)
@@ -37,13 +37,9 @@ class Perplexity(nn.Module):
     Perplexity is the token averaged likelihood.  When the averaging options are the
     same, it is the exponential of negative log-likelihood.
 
-    Configurations:
-        criterion_name (str): name of criterion
-        reduction (str): reduction method of criterion
-
     Args:
         configs (DictConfig): hydra configuration set
-        vocab (Vocabulary): the set of unique words used in the text corpus
+        tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
 
     Inputs: logits, targets
         - **logits** (torch.FloatTensor): probability distribution value from model and it has a logarithm shape.
@@ -52,17 +48,17 @@ class Perplexity(nn.Module):
             The `LongTensor` of size ``(batch, target_length)``
 
     Returns: loss
-        * loss (float): loss for training
+        - loss (float): loss for training
     """
     def __init__(
             self,
             configs: DictConfig,
-            vocab: Vocabulary,
+            tokenizer: Tokenizer,
     ) -> None:
         super(Perplexity, self).__init__()
         self.cross_entropy_loss = nn.CrossEntropyLoss(
             reduction=configs.criterion.reduction,
-            ignore_index=vocab.pad_id,
+            ignore_index=tokenizer.pad_id,
         )
 
     def forward(self, logits: Tensor, targets: Tensor) -> Tensor:

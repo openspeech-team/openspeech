@@ -28,7 +28,7 @@ from omegaconf import DictConfig
 from openspeech.models import OpenspeechCTCModel, register_model
 from openspeech.encoders.deepspeech2 import DeepSpeech2
 from openspeech.models.deepspeech2.configurations import DeepSpeech2Configs
-from openspeech.vocabs.vocab import Vocabulary
+from openspeech.tokenizers.tokenizer import Tokenizer
 
 
 @register_model('deepspeech2', dataclass=DeepSpeech2Configs)
@@ -39,19 +39,18 @@ class DeepSpeech2Model(OpenspeechCTCModel):
 
     Args:
         configs (DictConfig): configuration set.
-        vocab (Vocabulary): the class of vocabulary
+        tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
 
     Inputs:
-        inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded
-            `FloatTensor` of size ``(batch, seq_length, dimension)``.
+        inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
         input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
 
     Returns:
-        * dict (dict): Result of model predictions that contains `y_hats`, `logits`, `output_lengths`
+        outputs (dict): Result of model predictions that contains `y_hats`, `logits`, `output_lengths`
     """
 
-    def __init__(self, configs: DictConfig, vocab: Vocabulary, ) -> None:
-        super(DeepSpeech2Model, self).__init__(configs, vocab)
+    def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
+        super(DeepSpeech2Model, self).__init__(configs, tokenizer)
 
     def build_model(self):
         self.encoder = DeepSpeech2(
@@ -70,12 +69,11 @@ class DeepSpeech2Model(OpenspeechCTCModel):
         Forward propagate a `inputs` and `targets` pair for inference.
 
         Inputs:
-            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded
-                `FloatTensor` of size ``(batch, seq_length, dimension)``.
+            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
             input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
 
         Returns:
-            * dict (dict): Result of model predictions that contains `y_hats`, `logits`, `output_lengths`
+            outputs (dict): Result of model predictions that contains `y_hats`, `logits`, `output_lengths`
         """
         return super(DeepSpeech2Model, self).forward(inputs, input_lengths)
 

@@ -308,8 +308,8 @@ class LearningRateSchedulerConfigs(OpenspeechDataclass):
 
 
 @dataclass
-class VocabularyConfigs(OpenspeechDataclass):
-    """ Super class of vocabulary dataclass """
+class TokenizerConfigs(OpenspeechDataclass):
+    """ Super class of tokenizer dataclass """
     sos_token: str = field(
         default="<sos>", metadata={"help": "Start of sentence token"}
     )
@@ -384,25 +384,26 @@ class EnsembleEvaluationConfigs(OpenspeechDataclass):
 
 
 def generate_openspeech_configs_with_help():
-    from openspeech.dataclass import OPENSPEECH_TRAIN_CONFIGS, TRAINER_DATACLASS_REGISTRY
+    from openspeech.dataclass import OPENSPEECH_TRAIN_CONFIGS, TRAINER_DATACLASS_REGISTRY, AUGMENT_DATACLASS_REGISTRY, \
+        DATASET_DATACLASS_REGISTRY
     from openspeech.models import MODEL_DATACLASS_REGISTRY
     from openspeech.criterion import CRITERION_DATACLASS_REGISTRY
     from openspeech.data import AUDIO_FEATURE_TRANSFORM_DATACLASS_REGISTRY
     from openspeech.optim.scheduler import SCHEDULER_DATACLASS_REGISTRY
-    from openspeech.vocabs import VOCAB_DATACLASS_REGISTRY
-    from openspeech.datasets import DATA_MODULE_REGISTRY
+    from openspeech.tokenizers import TOKENIZER_DATACLASS_REGISTRY
 
     registries = {
         "audio": AUDIO_FEATURE_TRANSFORM_DATACLASS_REGISTRY,
+        "augment": AUGMENT_DATACLASS_REGISTRY,
         "trainer": TRAINER_DATACLASS_REGISTRY,
         "model": MODEL_DATACLASS_REGISTRY,
         "criterion": CRITERION_DATACLASS_REGISTRY,
-        "dataset": DATA_MODULE_REGISTRY,
+        "dataset": DATASET_DATACLASS_REGISTRY,
         "lr_scheduler": SCHEDULER_DATACLASS_REGISTRY,
-        "vocab": VOCAB_DATACLASS_REGISTRY,
+        "tokenizer": TOKENIZER_DATACLASS_REGISTRY,
     }
 
-    with open("../../../configuration.md", "w") as f:
+    with open("configuration.md", "w") as f:
         for group in OPENSPEECH_TRAIN_CONFIGS:
             dataclass_registry = registries[group]
 

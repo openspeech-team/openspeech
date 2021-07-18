@@ -47,8 +47,8 @@ class SpeechToTextDataset(Dataset):
         dataset_path (str): path of librispeech dataset
         audio_paths (list): list of audio path
         transcripts (list): list of transript
-        sos_id (int): identification of <|startofsentence|>
-        eos_id (int): identification of <|endofsentence|>
+        sos_id (int): identification of <startofsentence>
+        eos_id (int): identification of <endofsentence>
         del_silence (bool): flag indication whether to apply delete silence or not
         apply_spec_augment (bool): flag indication whether to apply spec augment or not
         apply_noise_augment (bool): flag indication whether to apply noise augment or not

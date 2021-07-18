@@ -31,8 +31,7 @@ class OpenspeechEncoder(nn.Module):
     Base Interface of Openspeech Encoder.
 
     Inputs:
-        inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded
-            `FloatTensor` of size ``(batch, seq_length, dimension)``.
+        inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
         input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
     """
     supported_activations = {
@@ -67,8 +66,7 @@ class OpenspeechEncoder(nn.Module):
         Forward propagate for encoders training.
 
         Inputs:
-            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded
-                `FloatTensor` of size ``(batch, seq_length, dimension)``.
+            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
             input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
         """
         raise NotImplementedError

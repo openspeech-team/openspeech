@@ -32,7 +32,7 @@ from openspeech.optim import AdamP, RAdam, Novograd
 from openspeech.criterion import CRITERION_REGISTRY
 from openspeech.metrics import WordErrorRate, CharacterErrorRate
 from openspeech.optim.scheduler import SCHEDULER_REGISTRY
-from openspeech.vocabs.vocab import Vocabulary
+from openspeech.tokenizers.tokenizer import Tokenizer
 
 
 class OpenspeechModel(pl.LightningModule):
@@ -44,25 +44,25 @@ class OpenspeechModel(pl.LightningModule):
 
     Args:
         configs (DictConfig): configuration set.
-        vocab (Vocabulary): the class of vocabulary
+        tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
 
     Inputs:
-        inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded
-            `FloatTensor` of size ``(batch, seq_length, dimension)``.
+        inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
         input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
 
     Returns:
-        * y_hats (torch.FloatTensor): Result of model predictions.
+        outputs (dict): Result of model predictions.
     """
-    def __init__(self, configs: DictConfig, vocab: Vocabulary) -> None:
+    def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(OpenspeechModel, self).__init__()
         self.configs = configs
-        self.num_classes = len(vocab)
+        self.num_classes = len(tokenizer)
         self.gradient_clip_val = configs.trainer.gradient_clip_val
-        self.vocab = vocab
+        self.tokenizer = tokenizer
         self.current_val_loss = 100.0
-        self.wer_metric = WordErrorRate(vocab)
-        self.cer_metric = CharacterErrorRate(vocab)
+        self.wer_metric = WordErrorRate(tokenizer)
+        self.cer_metric = CharacterErrorRate(tokenizer)
+        self.tokenizer = tokenizer
         self.criterion = self.configure_criterion(configs.criterion.criterion_name)
 
     def build_model(self):
@@ -86,12 +86,11 @@ class OpenspeechModel(pl.LightningModule):
         Forward propagate a `inputs` and `targets` pair for inference.
 
         Inputs:
-            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded
-                `FloatTensor` of size ``(batch, seq_length, dimension)``.
+            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
             input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
 
         Returns:
-            * outputs (dict): Result of model predictions.
+            outputs (dict): Result of model predictions.
         """
         raise NotImplementedError
 
@@ -140,8 +139,7 @@ class OpenspeechModel(pl.LightningModule):
 
 
         Returns:
-            - **Dictionary** - The first item has multiple optimizers, and the second has multiple LR schedulers
-                (or multiple ``lr_dict``).
+            - **Dictionary** - The first item has multiple optimizers, and the second has multiple LR schedulers (or multiple ``lr_dict``).
         """
         SUPPORTED_OPTIMIZERS = {
             "adam": Adam,
@@ -200,12 +198,12 @@ class OpenspeechModel(pl.LightningModule):
             return CRITERION_REGISTRY[criterion_name](
                 configs=self.configs,
                 num_classes=self.num_classes,
-                vocab=self.vocab,
+                tokenizer=self.tokenizer,
             )
         else:
             return CRITERION_REGISTRY[criterion_name](
                 configs=self.configs,
-                vocab=self.vocab,
+                tokenizer=self.tokenizer,
             )
 
     def get_lr(self):

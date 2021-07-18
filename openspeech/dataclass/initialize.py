@@ -30,7 +30,7 @@ def hydra_train_init() -> None:
     from openspeech.criterion import CRITERION_DATACLASS_REGISTRY
     from openspeech.data import AUDIO_FEATURE_TRANSFORM_DATACLASS_REGISTRY
     from openspeech.optim.scheduler import SCHEDULER_DATACLASS_REGISTRY
-    from openspeech.vocabs import VOCAB_DATACLASS_REGISTRY
+    from openspeech.tokenizers import TOKENIZER_DATACLASS_REGISTRY
     from openspeech.dataclass import AUGMENT_DATACLASS_REGISTRY
 
     registries = {
@@ -41,7 +41,7 @@ def hydra_train_init() -> None:
         "model": MODEL_DATACLASS_REGISTRY,
         "criterion": CRITERION_DATACLASS_REGISTRY,
         "lr_scheduler": SCHEDULER_DATACLASS_REGISTRY,
-        "vocab": VOCAB_DATACLASS_REGISTRY,
+        "tokenizer": TOKENIZER_DATACLASS_REGISTRY,
     }
 
     cs = ConfigStore.instance()
@@ -58,7 +58,7 @@ def hydra_lm_train_init() -> None:
     from openspeech.models import MODEL_DATACLASS_REGISTRY
     from openspeech.criterion import CRITERION_DATACLASS_REGISTRY
     from openspeech.optim.scheduler import SCHEDULER_DATACLASS_REGISTRY
-    from openspeech.vocabs import VOCAB_DATACLASS_REGISTRY
+    from openspeech.tokenizers import TOKENIZER_DATACLASS_REGISTRY
 
     registries = {
         "dataset": DATASET_DATACLASS_REGISTRY,
@@ -66,7 +66,7 @@ def hydra_lm_train_init() -> None:
         "model": MODEL_DATACLASS_REGISTRY,
         "criterion": CRITERION_DATACLASS_REGISTRY,
         "lr_scheduler": SCHEDULER_DATACLASS_REGISTRY,
-        "vocab": VOCAB_DATACLASS_REGISTRY,
+        "vocab": TOKENIZER_DATACLASS_REGISTRY,
     }
 
     cs = ConfigStore.instance()

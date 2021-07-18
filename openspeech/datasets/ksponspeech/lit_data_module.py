@@ -34,14 +34,18 @@ from openspeech.datasets.ksponspeech.preprocess.preprocess import preprocess, pr
 from openspeech.datasets.ksponspeech.preprocess.character import generate_character_script, generate_character_labels
 from openspeech.datasets.ksponspeech.preprocess.grapheme import sentence_to_grapheme
 from openspeech.datasets.ksponspeech.preprocess.subword import train_sentencepiece, sentence_to_subwords
-from openspeech.vocabs import VOCAB_REGISTRY
-from openspeech.vocabs.vocab import Vocabulary
+from openspeech.tokenizers import TOKENIZER_REGISTRY
+from openspeech.tokenizers.tokenizer import Tokenizer
 
 
 @register_data_module('ksponspeech')
 class LightningKsponSpeechDataModule(pl.LightningDataModule):
     r"""
-    Lightning data module for KsponSpeech.
+    Lightning data module for KsponSpeech. KsponSpeech corpus contains 969 h of general open-domain dialog utterances,
+    spoken by about 2000 native Korean speakers in a clean environment. All data were constructed by recording the
+    dialogue of two people freely conversing on a variety of topics and manually transcribing the utterances.
+    The transcription provides a dual transcription consisting of orthography and pronunciation,
+    and disfluency tags for spontaneity of speech, such as filler words, repeated words, and word fragments.
 
     Attributes:
         KSPONSPEECH_TRAIN_NUM (int): the number of KsponSpeech's train data.
@@ -58,7 +62,7 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
         self.configs = configs
         self.dataset = dict()
         self.logger = logging.getLogger(__name__)
-        self.encoding = 'utf-8' if self.configs.vocab.unit == 'kspon_subword' else 'cp949'
+        self.encoding = 'utf-8' if self.configs.tokenizer.unit == 'kspon_subword' else 'cp949'
 
     def _generate_manifest_files(self, manifest_file_path: str) -> None:
         r"""
@@ -75,21 +79,21 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
         audio_paths = train_valid_audio_paths + test_audio_paths
         transcripts = train_valid_transcripts + test_transcripts
 
-        if self.configs.vocab.unit == 'kspon_character':
-            generate_character_labels(transcripts, self.configs.vocab.vocab_path)
-            generate_character_script(audio_paths, transcripts, manifest_file_path, self.configs.vocab.vocab_path)
+        if self.configs.tokenizer.unit == 'kspon_character':
+            generate_character_labels(transcripts, self.configs.tokenizer.vocab_path)
+            generate_character_script(audio_paths, transcripts, manifest_file_path, self.configs.tokenizer.vocab_path)
 
-        elif self.configs.vocab.unit == 'kspon_subword':
-            train_sentencepiece(transcripts, self.configs.vocab.vocab_size, self.configs.vocab.blank_token)
+        elif self.configs.tokenizer.unit == 'kspon_subword':
+            train_sentencepiece(transcripts, self.configs.tokenizer.vocab_size, self.configs.tokenizer.blank_token)
             sentence_to_subwords(
-                audio_paths, transcripts, manifest_file_path, sp_model_path=self.configs.vocab.sp_model_path
+                audio_paths, transcripts, manifest_file_path, sp_model_path=self.configs.tokenizer.sp_model_path
             )
 
-        elif self.configs.vocab.unit == 'kspon_grapheme':
-            sentence_to_grapheme(audio_paths, transcripts, manifest_file_path, self.configs.vocab.vocab_path)
+        elif self.configs.tokenizer.unit == 'kspon_grapheme':
+            sentence_to_grapheme(audio_paths, transcripts, manifest_file_path, self.configs.tokenizer.vocab_path)
 
         else:
-            raise ValueError(f"Unsupported vocab : {self.configs.vocab.unit}")
+            raise ValueError(f"Unsupported vocab : {self.configs.tokenizer.unit}")
 
     def _parse_manifest_file(self):
         r"""
@@ -117,7 +121,7 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
         Prepare KsponSpeech manifest file. If there is not exist manifest file, generate manifest file.
 
         Returns:
-            vocab (Vocabulary): vocab class of KsponSpeech.
+            tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
         """
         if not os.path.exists(self.configs.dataset.manifest_file_path):
             self.logger.info("Manifest file is not exists !!\n"
@@ -125,15 +129,15 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
             if not os.path.exists(self.configs.dataset.dataset_path):
                 raise FileNotFoundError
             self._generate_manifest_files(self.configs.dataset.manifest_file_path)
-        return VOCAB_REGISTRY[self.configs.vocab.unit](self.configs)
+        return TOKENIZER_REGISTRY[self.configs.tokenizer.unit](self.configs)
 
-    def setup(self, stage: Optional[str] = None, vocab: Vocabulary = None):
+    def setup(self, stage: Optional[str] = None, tokenizer: Tokenizer = None):
         r"""
         Split `train` and `valid` dataset for training.
 
         Args:
             stage (str): stage of training. `train` or `valid`
-            vocab (Vocabulary): vocab class of KsponSpeech.
+            tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
 
         Returns:
             None
@@ -163,8 +167,8 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
                 dataset_path=dataset_path,
                 audio_paths=audio_paths[stage],
                 transcripts=transcripts[stage],
-                sos_id=vocab.sos_id,
-                eos_id=vocab.eos_id,
+                sos_id=tokenizer.sos_id,
+                eos_id=tokenizer.eos_id,
                 apply_spec_augment=self.configs.audio.apply_spec_augment if stage == 'train' else False,
                 del_silence=self.configs.audio.del_silence if stage == 'train' else False,
             )

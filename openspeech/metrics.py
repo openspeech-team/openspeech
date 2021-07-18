@@ -33,10 +33,10 @@ class ErrorRate(object):
         Do not use this class directly, use one of the sub classes.
     """
 
-    def __init__(self, vocab) -> None:
+    def __init__(self, tokenizer) -> None:
         self.total_dist = 0.0
         self.total_length = 0.0
-        self.vocab = vocab
+        self.tokenizer = tokenizer
 
     def __call__(self, targets, y_hats):
         r"""
@@ -70,8 +70,8 @@ class ErrorRate(object):
         total_length = 0
 
         for (target, y_hat) in zip(targets, y_hats):
-            s1 = self.vocab.label_to_string(target)
-            s2 = self.vocab.label_to_string(y_hat)
+            s1 = self.tokenizer.decode(target)
+            s2 = self.tokenizer.decode(y_hat)
 
             dist, length = self.metric(s1, s2)
 
@@ -89,8 +89,8 @@ class CharacterErrorRate(ErrorRate):
     Computes the Character Error Rate, defined as the edit distance between the
     two provided sentences after tokenizing to characters.
     """
-    def __init__(self, vocab):
-        super(CharacterErrorRate, self).__init__(vocab)
+    def __init__(self, tokenizer):
+        super(CharacterErrorRate, self).__init__(tokenizer)
 
     def metric(self, s1: str, s2: str) -> Tuple[float, int]:
         r"""
@@ -126,8 +126,8 @@ class WordErrorRate(ErrorRate):
     Computes the Word Error Rate, defined as the edit distance between the
     two provided sentences after tokenizing to words.
     """
-    def __init__(self, vocab):
-        super(WordErrorRate, self).__init__(vocab)
+    def __init__(self, tokenizer):
+        super(WordErrorRate, self).__init__(tokenizer)
 
     def metric(self, s1: str, s2: str) -> Tuple[float, int]:
         r"""

@@ -25,7 +25,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='openspeech-core',
-    version='0.2',
+    version='0.3.0',
     description='Open-Source Toolkit for End-to-End Automatic Speech Recognition',
     author='Kim, Soohwan and Ha, Sangchun and Cho, Soyoung',
     author_email='sh951011@gmail.com, seomk9896@naver.com, soyoung.cho@kaist.ac.kr',

@@ -40,10 +40,10 @@ def hydra_main(configs: DictConfig) -> None:
     logger, num_devices = parse_configs(configs)
 
     data_module = DATA_MODULE_REGISTRY[configs.dataset.dataset](configs)
-    vocab = data_module.prepare_data()
-    data_module.setup(vocab=vocab)
+    tokenizer = data_module.prepare_data()
+    data_module.setup(tokenizer=tokenizer)
 
-    model = MODEL_REGISTRY[configs.model.model_name](configs=configs, vocab=vocab)
+    model = MODEL_REGISTRY[configs.model.model_name](configs=configs, tokenizer=tokenizer)
     model.build_model()
 
     trainer = get_pl_trainer(configs, num_devices, logger)

@@ -25,12 +25,17 @@ from torch import Tensor
 from typing import Dict
 from collections import OrderedDict
 
-from openspeech.models import register_model
+from openspeech.decoders import RNNTransducerDecoder, LSTMAttentionDecoder
+from openspeech.models import register_model, OpenspeechTransducerModel, OpenspeechEncoderDecoderModel
 from openspeech.models import OpenspeechCTCModel
-from openspeech.models.contextnet.configurations import ContextNetConfigs
 from openspeech.encoders import ContextNetEncoder
 from openspeech.modules.wrapper import Linear
-from openspeech.vocabs.vocab import Vocabulary
+from openspeech.tokenizers.tokenizer import Tokenizer
+from openspeech.models.contextnet.configurations import (
+    ContextNetConfigs,
+    ContextNetTransducerConfigs,
+    ContextNetLSTMConfigs,
+)
 
 
 @register_model('contextnet', dataclass=ContextNetConfigs)
@@ -40,18 +45,17 @@ class ContextNetModel(OpenspeechCTCModel):
 
     Args:
         configs (DictConfig): configuration set.
-        vocab (Vocabulary): the class of vocabulary
+        tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
 
     Inputs:
-        inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded
-            `FloatTensor` of size ``(batch, seq_length, dimension)``.
+        inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
         input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
 
     Returns:
-        * dict (dict): Result of model predictions that contains `y_hats`, `logits`, `output_lengths`
+        outputs (dict): Result of model predictions that contains `y_hats`, `logits`, `output_lengths`
     """
-    def __init__(self, configs: DictConfig, vocab: Vocabulary,) -> None:
-        super(ContextNetModel, self).__init__(configs, vocab)
+    def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
+        super(ContextNetModel, self).__init__(configs, tokenizer)
         self.fc = Linear(self.configs.model.encoder_dim, self.num_classes, bias=False)
 
     def build_model(self):
@@ -71,12 +75,11 @@ class ContextNetModel(OpenspeechCTCModel):
         Forward propagate a `inputs` and `targets` pair for inference.
 
         Inputs:
-            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded
-                `FloatTensor` of size ``(batch, seq_length, dimension)``.
+            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
             input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
 
         Returns:
-            * dict (dict): Result of model predictions that contains `y_hats`, `logits`, `output_lengths`
+            outputs (dict): Result of model predictions that contains `y_hats`, `logits`, `output_lengths`
         """
         return super(ContextNetModel, self).forward(inputs, input_lengths)
 
@@ -144,4 +147,103 @@ class ContextNetModel(OpenspeechCTCModel):
             output_lengths=output_lengths,
             targets=targets,
             target_lengths=target_lengths,
+        )
+
+
+@register_model('contextnet_lstm', dataclass=ContextNetLSTMConfigs)
+class ContextNetLSTMModel(OpenspeechEncoderDecoderModel):
+    r"""
+    ContextNet encoder + LSTM decoder.
+
+    Args:
+        configs (DictConfig): configuraion set
+        tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
+
+    Inputs:
+        inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
+        input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
+
+    Returns:
+        outputs (dict): Result of model predictions that contains `y_hats`, `logits`,
+            `encoder_outputs`, `encoder_logits`, `encoder_output_lengths`.
+    """
+
+    def __init__(self, configs: DictConfig, tokenizer: Tokenizer, ) -> None:
+        super(ContextNetLSTMModel, self).__init__(configs, tokenizer)
+
+    def build_model(self):
+        self.encoder = ContextNetEncoder(
+            num_classes=self.num_classes,
+            model_size=self.configs.model.model_size,
+            input_dim=self.configs.audio.num_mels,
+            num_layers=self.configs.model.num_encoder_layers,
+            kernel_size=self.configs.model.kernel_size,
+            num_channels=self.configs.model.num_channels,
+            output_dim=self.configs.model.encoder_dim,
+            joint_ctc_attention=False,
+        )
+        self.decoder = LSTMAttentionDecoder(
+            num_classes=self.num_classes,
+            max_length=self.configs.model.max_length,
+            hidden_state_dim=self.configs.model.encoder_dim,
+            pad_id=self.tokenizer.pad_id,
+            sos_id=self.tokenizer.sos_id,
+            eos_id=self.tokenizer.eos_id,
+            num_heads=self.configs.model.num_attention_heads,
+            dropout_p=self.configs.model.decoder_dropout_p,
+            num_layers=self.configs.model.num_decoder_layers,
+            attn_mechanism=self.configs.model.decoder_attn_mechanism,
+            rnn_type=self.configs.model.rnn_type,
+        )
+
+    def set_beam_decoder(self, beam_size: int = 3):
+        """ Setting beam search decoder """
+        from openspeech.search import BeamSearchLSTM
+        self.decoder = BeamSearchLSTM(
+            decoder=self.decoder,
+            beam_size=beam_size,
+        )
+
+
+@register_model('contextnet_transducer', dataclass=ContextNetTransducerConfigs)
+class ContextNetTransducerModel(OpenspeechTransducerModel):
+    r"""
+    ContextNet: Improving Convolutional Neural Networks for Automatic Speech Recognition with Global Context
+    Paper: https://arxiv.org/abs/2005.03191
+
+    Args:
+        configs (DictConfig): configuraion set.
+        tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
+
+    Inputs:
+        inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
+        input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
+
+    Returns:
+        outputs (dict): Result of model predictions.
+    """
+
+    def __init__(self, configs: DictConfig, tokenizer: Tokenizer, ) -> None:
+        super(ContextNetTransducerModel, self).__init__(configs, tokenizer)
+
+    def build_model(self):
+        self.encoder = ContextNetEncoder(
+            num_classes=self.num_classes,
+            model_size=self.configs.model.model_size,
+            input_dim=self.configs.audio.num_mels,
+            num_layers=self.configs.model.num_encoder_layers,
+            kernel_size=self.configs.model.kernel_size,
+            num_channels=self.configs.model.num_channels,
+            output_dim=self.configs.model.encoder_dim,
+            joint_ctc_attention=False,
+        )
+        self.decoder = RNNTransducerDecoder(
+            num_classes=self.num_classes,
+            hidden_state_dim=self.configs.model.decoder_hidden_state_dim,
+            output_dim=self.configs.model.decoder_output_dim,
+            num_layers=self.configs.model.num_decoder_layers,
+            rnn_type=self.configs.model.rnn_type,
+            sos_id=self.tokenizer.sos_id,
+            eos_id=self.tokenizer.eos_id,
+            dropout_p=self.configs.model.decoder_dropout_p,
         )

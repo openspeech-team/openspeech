@@ -83,58 +83,82 @@ for file in os.listdir(models_dir):
         module = importlib.import_module(f"openspeech.models.{model_name}")
 
 
-from .conformer.model import ConformerModel
-from .conformer.configurations import ConformerConfigs
-from .conformer_lstm.model import ConformerLSTMModel
-from .conformer_lstm.configurations import ConformerLSTMConfigs
-from .conformer_transducer.model import ConformerTransducerModel
-from .conformer_transducer.configurations import ConformerTransducerConfigs
-from .contextnet.model import ContextNetModel
-from .contextnet.configurations import ContextNetConfigs
-from .contextnet_lstm.model import ContextNetLSTMModel
-from .contextnet_lstm.configurations import ContextNetLSTMConfigs
-from .contextnet_transducer.model import ContextNetTransducerModel
-from .contextnet_transducer.configurations import ContextNetTransducerConfigs
-from .deep_cnn_with_joint_ctc_listen_attend_spell.model import DeepCNNWithJointCTCListenAttendSpellModel
-from .deep_cnn_with_joint_ctc_listen_attend_spell.configurations import DeepCNNWithJointCTCListenAttendSpellConfigs
-from .deepspeech2.model import DeepSpeech2Model
-from .deepspeech2.configurations import DeepSpeech2Configs
-from .jasper5x3.model import Jasper5x3Model
-from .jasper5x3.configurations import Jasper5x3Config
-from .jasper10x5.model import Jasper10x5Model
-from .jasper10x5.configurations import Jasper10x5Config
-from .joint_ctc_conformer_lstm.model import JointCTCConformerLSTMModel
-from .joint_ctc_conformer_lstm.configurations import JointCTCConformerLSTMConfigs
-from .joint_ctc_listen_attend_spell.model import JointCTCListenAttendSpellModel
-from .joint_ctc_listen_attend_spell.configurations import JointCTCListenAttendSpellConfigs
-from .joint_ctc_transformer.model import JointCTCTransformerModel
-from .joint_ctc_transformer.configurations import JointCTCTransformerConfigs
-from .listen_attend_spell.model import ListenAttendSpellModel
-from .listen_attend_spell.configurations import ListenAttendSpellConfigs
-from .listen_attend_spell_with_location_aware.model import ListenAttendSpellWithLocationAwareModel
-from .listen_attend_spell_with_location_aware.configurations import ListenAttendSpellWithLocationAwareConfigs
-from .listen_attend_spell_with_multi_head.model import ListenAttendSpellWithMultiHeadModel
-from .listen_attend_spell_with_multi_head.configurations import ListenAttendSpellWithMultiHeadConfigs
-from .quartznet5x5.model import QuartzNet5x5Model
-from .quartznet5x5.configurations import QuartzNet5x5Configs
-from .quartznet10x5.model import QuartzNet10x5Model
-from .quartznet10x5.configurations import QuartzNet10x5Configs
-from .quartznet15x5.model import QuartzNet15x5Model
-from .quartznet15x5.configurations import QuartzNet15x5Configs
-from .rnn_transducer.model import RNNTransducerModel
-from .rnn_transducer.configurations import RNNTransducerConfigs
-from .transformer.model import TransformerModel
-from .transformer.configurations import TransformerConfigs
-from .transformer_transducer.model import TransformerTransducerModel
-from .transformer_transducer.configurations import TransformerTransducerConfigs
-from .transformer_with_ctc.model import TransformerWithCTCModel
-from .transformer_with_ctc.configurations import TransformerWithCTCConfigs
-from .vgg_transformer.model import VGGTransformerModel
-from .vgg_transformer.configurations import VGGTransformerConfigs
-from .lstm_lm.model import LSTMLanguageModel
-from .lstm_lm.configurations import LSTMLanguageModelConfigs
-from .transformer_lm.configurations import TransformerLanguageModelConfigs
-from .transformer_lm.model import TransformerForLanguageModel
+from .conformer import (
+    ConformerLSTMConfigs,
+    ConformerTransducerConfigs,
+    ConformerConfigs,
+    JointCTCConformerLSTMConfigs,
+    ConformerModel,
+    ConformerLSTMModel,
+    ConformerTransducerModel,
+    JointCTCConformerLSTMModel,
+)
+
+from .contextnet import (
+    ContextNetTransducerConfigs,
+    ContextNetLSTMConfigs,
+    ContextNetConfigs,
+    ContextNetModel,
+    ContextNetTransducerModel,
+    ContextNetLSTMModel,
+)
+from .deepspeech2 import (
+    DeepSpeech2Model,
+    DeepSpeech2Configs,
+)
+from .jasper import (
+    Jasper5x3Config,
+    Jasper10x5Config,
+    Jasper5x3Model,
+    Jasper10x5Model,
+)
+from .listen_attend_spell import (
+    ListenAttendSpellConfigs,
+    ListenAttendSpellWithMultiHeadConfigs,
+    ListenAttendSpellWithLocationAwareConfigs,
+    DeepCNNWithJointCTCListenAttendSpellConfigs,
+    JointCTCListenAttendSpellConfigs,
+    ListenAttendSpellModel,
+    ListenAttendSpellWithMultiHeadModel,
+    ListenAttendSpellWithLocationAwareModel,
+    JointCTCListenAttendSpellModel,
+    DeepCNNWithJointCTCListenAttendSpellModel
+)
+from .quartznet import (
+    QuartzNet5x5Configs,
+    QuartzNet15x5Configs,
+    QuartzNet10x5Configs,
+    QuartzNet5x5Model,
+    QuartzNet15x5Model,
+    QuartzNet10x5Model,
+)
+
+from .rnn_transducer import (
+    RNNTransducerModel,
+    RNNTransducerConfigs,
+)
+from .transformer import (
+    TransformerConfigs,
+    TransformerWithCTCConfigs,
+    VGGTransformerConfigs,
+    JointCTCTransformerConfigs,
+    TransformerModel,
+    TransformerWithCTCModel,
+    VGGTransformerModel,
+    JointCTCTransformerModel,
+)
+from .lstm_lm import (
+    LSTMLanguageModel,
+    LSTMLanguageModelConfigs,
+)
+from .transformer_lm import (
+    TransformerLanguageModelConfigs,
+    TransformerLanguageModel
+)
+from .transformer_transducer import (
+    TransformerTransducerModel,
+    TransformerTransducerConfigs,
+)
 
 __all__ = [
     "OpenspeechModel",
@@ -191,5 +215,4 @@ __all__ = [
     "LSTMLanguageModel",
     "LSTMLanguageModelConfigs",
     "TransformerLanguageModelConfigs",
-    "TransformerForLanguageModel",
 ]

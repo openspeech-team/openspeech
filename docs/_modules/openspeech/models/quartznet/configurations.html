@@ -1,0 +1,437 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>openspeech.models.quartznet.configurations &mdash; Openspeech v0.3.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> Openspeech
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">GETTING STARTED</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notes/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notes/hydra_configs.html">Openspeech’s Hydra configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notes/configs.html">Openspeech’s configurations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OPENSPEECH MODELS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/Openspeech%20Model.html">Openspeech Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/Openspeech%20CTC%20Model.html">Openspeech CTC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/Openspeech%20Encoder%20Decoder%20Model.html">Openspeech Encoder Decoder Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/Openspeech%20Transducer%20Model.html">Openspeech Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/Openspeech%20Language%20Model.html">Openspeech Language Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MODEL ARCHITECTURES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architectures/Conformer.html">Conformer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architectures/ContextNet.html">ContextNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architectures/DeepSpeech2.html">DeepSpeech2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architectures/Jasper.html">Jasper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architectures/Listen%20Attend%20Spell.html">Listen Attend Spell Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architectures/LSTM%20LM.html">LSTM Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architectures/QuartzNet.html">QuartzNet Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architectures/RNN%20Transducer.html">RNN Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architectures/Transformer.html">Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architectures/Transformer%20LM.html">Transformer Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architectures/Transformer%20Transducer.html">Transformer Transducer Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">CORPUS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../corpus/AISHELL-1.html">AISHELL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../corpus/KsponSpeech.html">KsponSpeech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../corpus/LibriSpeech.html">LibriSpeech</a></li>
+</ul>
+<p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/Criterion.html">Criterion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/Data%20Augment.html">Data Augment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/Feature%20Transform.html">Feature Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/Data%20Loaders.html">Data Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/Decoders.html">Decoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/Encoders.html">Encoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/Modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/Optim.html">Optim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/Search.html">Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/Tokenizers.html">Tokenizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/Metric.html">Metric</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Openspeech</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>openspeech.models.quartznet.configurations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for openspeech.models.quartznet.configurations</h1><div class="highlight"><pre>
+<span></span><span class="c1"># MIT License</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (c) 2021 Soohwan Kim and Sangchun Ha and Soyoung Cho</span>
+<span class="c1">#</span>
+<span class="c1"># Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="c1"># of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="c1"># in the Software without restriction, including without limitation the rights</span>
+<span class="c1"># to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="c1"># copies of the Software, and to permit persons to whom the Software is</span>
+<span class="c1"># furnished to do so, subject to the following conditions:</span>
+<span class="c1">#</span>
+<span class="c1"># The above copyright notice and this permission notice shall be included in all</span>
+<span class="c1"># copies or substantial portions of the Software.</span>
+<span class="c1">#</span>
+<span class="c1"># THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="c1"># IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="c1"># FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="c1"># AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="c1"># LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="c1"># OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="c1"># SOFTWARE.</span>
+
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+
+<span class="kn">from</span> <span class="nn">openspeech.dataclass.configurations</span> <span class="kn">import</span> <span class="n">OpenspeechDataclass</span>
+
+
+<div class="viewcode-block" id="QuartzNet5x5Configs"><a class="viewcode-back" href="../../../../architectures/QuartzNet.html#openspeech.models.quartznet.configurations.QuartzNet5x5Configs">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">QuartzNet5x5Configs</span><span class="p">(</span><span class="n">OpenspeechDataclass</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is the configuration class to store the configuration of</span>
+<span class="sd">    a :class:`~openspeech.models.QuartzNet5x5`.</span>
+
+<span class="sd">    It is used to initiated an `QuartzNet5x5` model.</span>
+
+<span class="sd">    Configuration objects inherit from :class: `~openspeech.dataclass.configs.OpenspeechDataclass`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model_name (str): Model name (default: quartznet5x5)</span>
+<span class="sd">        num_blocks (int): Number of quartznet blocks (default: 5)</span>
+<span class="sd">        num_sub_blocks (int): Number of quartznet sub blocks (default: 5)</span>
+<span class="sd">        in_channels (str): Output channels of jasper block&#39;s convolution</span>
+<span class="sd">        out_channels (str): Output channels of jasper block&#39;s convolution</span>
+<span class="sd">        kernel_size (str): Kernel size of jasper block&#39;s convolution</span>
+<span class="sd">        dilation (str): Dilation of jasper block&#39;s convolution</span>
+<span class="sd">        dropout_p (str): Dropout probability</span>
+<span class="sd">        optimizer (str): Optimizer for training.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;quartznet5x5&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Model name&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">num_blocks</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Number of quartznet blocks&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">num_sub_blocks</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Number of quartznet sub blocks&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">in_channels</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;(None, 256, 256, 256, 512, 512, 512, 512, 1024)&quot;</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Input channels of jasper blocks&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">out_channels</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;(256, 256, 256, 512, 512, 512, 512, 1024, None)&quot;</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Output channels of jasper block&#39;s convolution&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">kernel_size</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;(33, 33, 39, 51, 63, 75, 87, 1, 1)&quot;</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Kernel size of jasper block&#39;s convolution&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">dilation</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;(1, 1, 1, 1, 1, 1, 1, 1, 2)&quot;</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Dilation of jasper block&#39;s convolution&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">dropout_p</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;(0.2, None, None, None, None, None, 0.2, 0.2, 0.2)&quot;</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Dropout probability&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">optimizer</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;novograd&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Optimizer for training.&quot;</span><span class="p">}</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="QuartzNet10x5Configs"><a class="viewcode-back" href="../../../../architectures/QuartzNet.html#openspeech.models.quartznet.configurations.QuartzNet10x5Configs">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">QuartzNet10x5Configs</span><span class="p">(</span><span class="n">OpenspeechDataclass</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is the configuration class to store the configuration of</span>
+<span class="sd">    a :class:`~openspeech.models.QuartzNet10x5`.</span>
+
+<span class="sd">    It is used to initiated an `QuartzNet10x5` model.</span>
+
+<span class="sd">    Configuration objects inherit from :class: `~openspeech.dataclass.configs.OpenspeechDataclass`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model_name (str): Model name (default: quartznet5x5)</span>
+<span class="sd">        num_blocks (int): Number of quartznet blocks (default: 10)</span>
+<span class="sd">        num_sub_blocks (int): Number of quartznet sub blocks (default: 5)</span>
+<span class="sd">        in_channels (str): Output channels of jasper block&#39;s convolution</span>
+<span class="sd">        out_channels (str): Output channels of jasper block&#39;s convolution</span>
+<span class="sd">        kernel_size (str): Kernel size of jasper block&#39;s convolution</span>
+<span class="sd">        dilation (str): Dilation of jasper block&#39;s convolution</span>
+<span class="sd">        dropout_p (str): Dropout probability</span>
+<span class="sd">        optimizer (str): Optimizer for training.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;quartznet10x5&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Model name&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">num_blocks</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Number of quartznet blocks&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">num_sub_blocks</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Number of quartznet sub blocks&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">in_channels</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;(None, 256, 256, 256, 256, 256, 512, 512, 512, 512, 512, 512, 512, 1024)&quot;</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Input channels of jasper blocks&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">out_channels</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;(256, 256, 256, 256, 256, 512, 512, 512, 512, 512, 512, 512, 1024, None)&quot;</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Output channels of jasper block&#39;s convolution&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">kernel_size</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;(33, 33, 33, 39, 39, 51, 51, 63, 63, 75, 75, 87, 1, 1)&quot;</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Kernel size of jasper block&#39;s convolution&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">dilation</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2)&quot;</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Dilation of jasper block&#39;s convolution&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">dropout_p</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;(0.2, None, None, None, None, None, None, None, None, None, None, 0.2, 0.2, 0.2)&quot;</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Dropout probability&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">optimizer</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;novograd&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Optimizer for training.&quot;</span><span class="p">}</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="QuartzNet15x5Configs"><a class="viewcode-back" href="../../../../architectures/QuartzNet.html#openspeech.models.quartznet.configurations.QuartzNet15x5Configs">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">QuartzNet15x5Configs</span><span class="p">(</span><span class="n">OpenspeechDataclass</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is the configuration class to store the configuration of</span>
+<span class="sd">    a :class:`~openspeech.models.QuartzNet15x5`.</span>
+
+<span class="sd">    It is used to initiated an `QuartzNet15x5` model.</span>
+
+<span class="sd">    Configuration objects inherit from :class: `~openspeech.dataclass.configs.OpenspeechDataclass`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model_name (str): Model name (default: quartznet15x5)</span>
+<span class="sd">        num_blocks (int): Number of quartznet blocks (default: 15)</span>
+<span class="sd">        num_sub_blocks (int): Number of quartznet sub blocks (default: 5)</span>
+<span class="sd">        in_channels (str): Output channels of jasper block&#39;s convolution</span>
+<span class="sd">        out_channels (str): Output channels of jasper block&#39;s convolution</span>
+<span class="sd">        kernel_size (str): Kernel size of jasper block&#39;s convolution</span>
+<span class="sd">        dilation (str): Dilation of jasper block&#39;s convolution</span>
+<span class="sd">        dropout_p (str): Dropout probability</span>
+<span class="sd">        optimizer (str): Optimizer for training.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;quartznet15x5&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Model name&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">num_blocks</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Number of quartznet5x5 blocks&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">num_sub_blocks</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Number of quartznet5x5 sub blocks&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">in_channels</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;(None, 256, 256, 256, 256, 256, 256, 256, &quot;</span>
+                <span class="s2">&quot;512, 512, 512, 512, 512, 512, 512, 512, 512, 512, 1024)&quot;</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Input channels of jasper blocks&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">out_channels</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;(256, 256, 256, 256, 256, 256, 256, &quot;</span>
+                <span class="s2">&quot;512, 512, 512, 512, 512, 512, 512, 512, 512, 512, 1024, None)&quot;</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Output channels of jasper block&#39;s convolution&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">kernel_size</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;(33, 33, 33, 33, 39, 39, 39, 51, 51, 51, 63, 63, 63, 75, 75, 75, 87, 1, 1)&quot;</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Kernel size of jasper block&#39;s convolution&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">dilation</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2)&quot;</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Dilation of jasper block&#39;s convolution&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">dropout_p</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;(0.2, None, None, None, None, None, None, None, None, &quot;</span>
+                <span class="s2">&quot;None, None, None, None, None, None, None, 0.2, 0.2, 0.2)&quot;</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Dropout probability&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">optimizer</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;novograd&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;Optimizer for training.&quot;</span><span class="p">}</span>
+    <span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Kim, Soohwan and Ha, Sangchun and Cho, Soyoung.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

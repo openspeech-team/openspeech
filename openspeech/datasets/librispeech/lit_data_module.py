@@ -32,8 +32,8 @@ from openspeech.data.audio.dataset import SpeechToTextDataset
 from torch.utils.data import DataLoader
 
 from openspeech.datasets import register_data_module
-from openspeech.vocabs import VOCAB_REGISTRY
-from openspeech.vocabs.vocab import Vocabulary
+from openspeech.tokenizers import TOKENIZER_REGISTRY
+from openspeech.tokenizers.tokenizer import Tokenizer
 from openspeech.data.sampler import BucketingSampler
 from openspeech.data.audio.data_loader import AudioDataLoader
 
@@ -41,7 +41,9 @@ from openspeech.data.audio.data_loader import AudioDataLoader
 @register_data_module('librispeech')
 class LightningLibriSpeechDataModule(pl.LightningDataModule):
     """
-    PyTorch Lightning Data Module for LibriSpeech Dataset.
+    PyTorch Lightning Data Module for LibriSpeech Dataset. LibriSpeech is a corpus of approximately 1000 hours of read
+    English speech with sampling rate of 16 kHz, prepared by Vassil Panayotov with the assistance of Daniel Povey.
+    The data is derived from read audiobooks from the LibriVox project, and has been carefully segmented and aligned.
 
     Args:
         configs (DictConfig): configuraion set
@@ -123,19 +125,19 @@ class LightningLibriSpeechDataModule(pl.LightningDataModule):
                     os.path.join(self.configs.dataset.dataset_path, train_dir, subfolder),
                 )
 
-    def prepare_data(self) -> Vocabulary:
+    def prepare_data(self) -> Tokenizer:
         """
         Prepare librispeech data
 
         Returns:
-            vocab (Vocabulary): vocab class of LibriSpeech.
+            tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
         """
-        if self.configs.vocab.unit == 'libri_subword':
+        if self.configs.tokenizer.unit == 'libri_subword':
             from openspeech.datasets.librispeech.preprocess.subword import generate_manifest_files
-        elif self.configs.vocab.unit == 'libri_character':
+        elif self.configs.tokenizer.unit == 'libri_character':
             from openspeech.datasets.librispeech.preprocess.character import generate_manifest_files
         else:
-            raise ValueError(f"Unsupported vocabulary unit: {self.configs.vocab.unit}")
+            raise ValueError(f"Unsupported vocabulary unit: {self.configs.tokenizer.unit}")
 
         if self.configs.dataset.dataset_download:
             self._download_dataset()
@@ -144,23 +146,23 @@ class LightningLibriSpeechDataModule(pl.LightningDataModule):
             self.logger.info("Manifest file is not exists !!\n"
                              "Generate manifest files..")
 
-            if hasattr(self.configs.vocab, "vocab_size"):
+            if hasattr(self.configs.tokenizer, "vocab_size"):
                 generate_manifest_files(
                     dataset_path=self.configs.dataset.dataset_path,
                     manifest_file_path=self.configs.dataset.manifest_file_path,
-                    vocab_path=self.configs.vocab.vocab_path,
-                    vocab_size=self.configs.vocab.vocab_size,
+                    vocab_path=self.configs.tokenizer.vocab_path,
+                    vocab_size=self.configs.tokenizer.vocab_size,
                 )
             else:
                 generate_manifest_files(
                     dataset_path=self.configs.dataset.dataset_path,
                     manifest_file_path=self.configs.dataset.manifest_file_path,
-                    vocab_path=self.configs.vocab.vocab_path,
+                    vocab_path=self.configs.tokenizer.vocab_path,
                 )
 
-        return VOCAB_REGISTRY[self.configs.vocab.unit](self.configs)
+        return TOKENIZER_REGISTRY[self.configs.tokenizer.unit](self.configs)
 
-    def setup(self, stage: Optional[str] = None, vocab: Vocabulary = None) -> None:
+    def setup(self, stage: Optional[str] = None, tokenizer: Tokenizer = None) -> None:
         r""" Split dataset into train, valid, and test. """
         valid_end_idx = self.LIBRISPEECH_TRAIN_NUM + self.LIBRISPEECH_VALID_NUM
         audio_paths, transcripts = self._parse_manifest_file(self.configs.dataset.manifest_file_path)
@@ -182,8 +184,8 @@ class LightningLibriSpeechDataModule(pl.LightningDataModule):
                 dataset_path=self.configs.dataset.dataset_path,
                 audio_paths=audio_paths[stage],
                 transcripts=transcripts[stage],
-                sos_id=vocab.sos_id,
-                eos_id=vocab.eos_id,
+                sos_id=tokenizer.sos_id,
+                eos_id=tokenizer.eos_id,
                 apply_spec_augment=self.configs.audio.apply_spec_augment if stage == 'train' else False,
                 del_silence=self.configs.audio.del_silence if stage == 'train' else False,
             )

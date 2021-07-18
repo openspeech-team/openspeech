@@ -27,7 +27,7 @@ from omegaconf import DictConfig
 from .. import register_criterion
 from ..transducer.configuration import TransducerLossConfigs
 from ...utils import WARPRNNT_IMPORT_ERROR
-from ...vocabs.vocab import Vocabulary
+from ...tokenizers.tokenizer import Tokenizer
 
 
 @register_criterion("transducer", dataclass=TransducerLossConfigs)
@@ -35,14 +35,9 @@ class TransducerLoss(nn.Module):
     r"""
     Compute path-aware regularization transducer loss.
 
-    Configurations:
-        criterion_name (str): name of criterion
-        blank (int): blank label.
-        gather (bool): reduce memory consumption.
-
     Args:
         configs (DictConfig): hydra configuration set
-        vocab (Vocabulary): the set of unique words used in the text corpus
+        tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
 
     Inputs:
         logits (torch.FloatTensor): Input tensor with shape (N, T, U, V)
@@ -57,7 +52,7 @@ class TransducerLoss(nn.Module):
             length of the transcription for each sample in the minibatch.
 
     Returns:
-        * loss (torch.FloatTensor): transducer loss
+        - loss (torch.FloatTensor): transducer loss
 
     Reference:
         A. Graves: Sequence Transduction with Recurrent Neural Networks:
@@ -67,7 +62,7 @@ class TransducerLoss(nn.Module):
     def __init__(
             self,
             configs: DictConfig,
-            vocab: Vocabulary,
+            tokenizer: Tokenizer,
     ) -> None:
         super().__init__()
         try:
@@ -75,7 +70,7 @@ class TransducerLoss(nn.Module):
         except ImportError:
             raise ImportError(WARPRNNT_IMPORT_ERROR)
         self.rnnt_loss = rnnt_loss
-        self.blank_id = vocab.blank_id
+        self.blank_id = tokenizer.blank_id
         self.reduction = configs.criterion.reduction
         self.gather = configs.criterion.gather
 

@@ -29,5 +29,5 @@ import openspeech.decoders
 import openspeech.models
 import openspeech.search
 import openspeech.optim
-import openspeech.vocabs
+import openspeech.tokenizers
 import openspeech.metrics

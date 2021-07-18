@@ -49,15 +49,15 @@ def hydra_main(configs: DictConfig) -> None:
     if configs.eval.beam_size > 1:
         model.set_beam_decoder(beam_size=configs.eval.beam_size)
 
-    vocab = model.vocab
+    tokenizer = model.tokenizer
 
     dataset = SpeechToTextDataset(
         configs=configs,
         dataset_path=configs.eval.dataset_path,
         audio_paths=audio_paths,
         transcripts=transcripts,
-        sos_id=vocab.sos_id,
-        eos_id=vocab.eos_id,
+        sos_id=tokenizer.sos_id,
+        eos_id=tokenizer.eos_id,
     )
     sampler = BucketingSampler(
         data_source=dataset,
@@ -69,8 +69,8 @@ def hydra_main(configs: DictConfig) -> None:
         batch_sampler=sampler,
     )
 
-    wer_metric = WordErrorRate(vocab)
-    cer_metric = CharacterErrorRate(vocab)
+    wer_metric = WordErrorRate(tokenizer)
+    cer_metric = CharacterErrorRate(tokenizer)
 
     for i, (batch) in enumerate(data_loader):
         inputs, targets, input_lengths, target_lengths = batch

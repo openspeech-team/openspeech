@@ -30,7 +30,7 @@ from openspeech.models import register_model, OpenspeechTransducerModel
 from openspeech.decoders import TransformerTransducerDecoder
 from openspeech.encoders import TransformerTransducerEncoder
 from openspeech.models.transformer_transducer.configurations import TransformerTransducerConfigs
-from openspeech.vocabs.vocab import Vocabulary
+from openspeech.tokenizers.tokenizer import Tokenizer
 
 
 @register_model('transformer_transducer', dataclass=TransformerTransducerConfigs)
@@ -43,19 +43,18 @@ class TransformerTransducerModel(OpenspeechTransducerModel):
 
     Args:
         configs (DictConfig): configuraion set
-        vocab (Vocabulary): vocab of training data
+        tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
 
     Inputs:
-        inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded
-            `FloatTensor` of size ``(batch, seq_length, dimension)``.
+        inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
         input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
 
     Returns:
-        * y_hats (torch.FloatTensor): Result of model predictions.
+        outputs (dict): Result of model predictions.
     """
 
-    def __init__(self, configs: DictConfig, vocab: Vocabulary, ) -> None:
-        super(TransformerTransducerModel, self).__init__(configs, vocab)
+    def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
+        super(TransformerTransducerModel, self).__init__(configs, tokenizer)
 
     def build_model(self):
         self.encoder = TransformerTransducerEncoder(
@@ -75,9 +74,9 @@ class TransformerTransducerModel(OpenspeechTransducerModel):
             num_heads=self.configs.model.num_attention_heads,
             dropout=self.configs.model.label_dropout_p,
             max_positional_length=self.configs.model.max_positional_length,
-            pad_id=self.vocab.pad_id,
-            sos_id=self.vocab.sos_id,
-            eos_id=self.vocab.eos_id,
+            pad_id=self.tokenizer.pad_id,
+            sos_id=self.tokenizer.sos_id,
+            eos_id=self.tokenizer.eos_id,
         )
 
     def decode(self, encoder_outputs: Tensor, max_length: int) -> Tensor:
@@ -85,12 +84,11 @@ class TransformerTransducerModel(OpenspeechTransducerModel):
         Decode `encoder_outputs`.
 
         Args:
-            encoder_outputs (torch.FloatTensor): A output sequence of encoders. `FloatTensor` of size
-                ``(seq_length, dimension)``
+            encoder_outputs (torch.FloatTensor): A output sequence of encoders. `FloatTensor` of size ``(seq_length, dimension)``
             max_length (int): max decoding time step
 
         Returns:
-            * y_hats (torch.IntTensor): model's predictions.
+            y_hats (torch.IntTensor): model's predictions.
         """
         batch = encoder_outputs.size(0)
         pred_tokens = list()
@@ -114,12 +112,11 @@ class TransformerTransducerModel(OpenspeechTransducerModel):
         Decode `encoder_outputs`.
 
         Args:
-            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded
-                `FloatTensor` of size ``(batch, seq_length, dimension)``.
+            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
             input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
 
         Returns:
-            * outputs (dict): Result of model predictions.
+            outputs (dict): Result of model predictions.
         """
         encoder_outputs, _ = self.encoder(inputs, input_lengths)
         max_length = encoder_outputs.size(1)

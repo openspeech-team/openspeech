@@ -41,8 +41,7 @@ class RNNTransducerEncoder(OpenspeechEncoder):
         bidirectional (bool, optional): if True, becomes a bidirectional encoders (default: True)
 
     Inputs: inputs, input_lengths
-        inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded
-            `FloatTensor` of size ``(batch, seq_length, dimension)``.
+        inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
         input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
 
     Returns:
@@ -96,8 +95,7 @@ class RNNTransducerEncoder(OpenspeechEncoder):
         Forward propagate a `inputs` for  encoders training.
 
         Args:
-            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded
-                `FloatTensor` of size ``(batch, seq_length, dimension)``.
+            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
             input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
 
         Returns:

@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from .base import OpenspeechBeamSearchBase
+from .beam_search_base import OpenspeechBeamSearchBase
 from .beam_search_ctc import BeamSearchCTC
 from .beam_search_lstm import BeamSearchLSTM
 from .beam_search_transformer import BeamSearchTransformer

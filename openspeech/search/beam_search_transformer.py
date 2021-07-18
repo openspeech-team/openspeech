@@ -22,11 +22,27 @@
 
 import torch
 
-from openspeech.search.base import OpenspeechBeamSearchBase
+from openspeech.search.beam_search_base import OpenspeechBeamSearchBase
 from openspeech.decoders import TransformerDecoder
 
 
 class BeamSearchTransformer(OpenspeechBeamSearchBase):
+    r"""
+    Transformer Beam Search Decoder
+
+    Args: decoder, beam_size, batch_size
+        decoder (DecoderLSTM): base decoder of lstm model.
+        beam_size (int): size of beam.
+
+    Inputs: encoder_outputs, targets, encoder_output_lengths, teacher_forcing_ratio
+        encoder_outputs (torch.FloatTensor): A output sequence of encoders. `FloatTensor` of size ``(batch, seq_length, dimension)``
+        targets (torch.LongTensor): A target sequence passed to decoders. `IntTensor` of size ``(batch, seq_length)``
+        encoder_output_lengths (torch.LongTensor): A encoder output lengths sequence. `LongTensor` of size ``(batch)``
+        teacher_forcing_ratio (float): Ratio of teacher forcing.
+
+    Returns:
+        * logits (torch.FloatTensor): Log probability of model predictions.
+    """
     def __init__(self, decoder: TransformerDecoder, beam_size: int = 3) -> None:
         super(BeamSearchTransformer, self).__init__(decoder, beam_size)
         self.use_cuda = True if torch.cuda.is_available() else False

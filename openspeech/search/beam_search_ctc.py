@@ -40,13 +40,12 @@ class BeamSearchCTC(nn.Module):
         num_processes (int): parallelize the batch using num_processes workers.
         blank_id (int): this should be the index of the CTC blank token
 
-    Inputs:
-        predicted_probs: Tensor of character probabilities, where probs[c,t] is the probability of
-            character c at time t
-        sizes: Size of each sequence in the mini-batch
+    Inputs: logits, sizes
+        - logits: Tensor of character probabilities, where probs[c,t] is the probability of character c at time t
+        - sizes: Size of each sequence in the mini-batch
 
     Returns:
-        outputs: sequences of the model's best prediction
+        - outputs: sequences of the model's best prediction
     """
     def __init__(
             self,
@@ -73,9 +72,8 @@ class BeamSearchCTC(nn.Module):
         r"""
         Decodes probability output using ctcdecode package.
 
-        Inputs:
-            logits: Tensor of character probabilities, where probs[c,t] is the probability of
-                character c at time t
+        Inputs: logits, sizes
+            logits: Tensor of character probabilities, where probs[c,t] is the probability of character c at time t
             sizes: Size of each sequence in the mini-batch
 
         Returns:

@@ -29,12 +29,19 @@ logger = logging.getLogger(__name__)
 
 
 class TextDataset(Dataset):
-    def __init__(self, transcripts: list, vocab):
+    """
+    Dataset for language modeling.
+
+    Args:
+        transcripts (list): list of transcript
+        tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
+    """
+    def __init__(self, transcripts: list, tokenizer):
         super(TextDataset, self).__init__()
         self.transcripts = transcripts
-        self.vocab = vocab
-        self.sos_id = vocab.sos_id
-        self.eos_id = vocab.eos_id
+        self.tokenizer = tokenizer
+        self.sos_id = tokenizer.sos_id
+        self.eos_id = tokenizer.eos_id
 
     def _get_inputs(self, transcript):
         tokens = transcript.split(' ')
@@ -57,7 +64,7 @@ class TextDataset(Dataset):
         return transcript
 
     def __getitem__(self, idx):
-        transcript = self.vocab.string_to_label(self.transcripts[idx])
+        transcript = self.tokenizer(self.transcripts[idx])
         inputs = torch.LongTensor(self._get_inputs(transcript))
         targets = torch.LongTensor(self._get_targets(transcript))
         return inputs, targets

@@ -177,6 +177,15 @@ class TimeStretchAugment(object):
 
 
 class JoiningAugment(object):
+    """
+    Data augment by concatenating audio signals
+
+    Inputs:
+        signal: np.ndarray [shape=(n,)] audio time series
+
+    Returns: signal
+        - **signal**: concatenated signal
+    """
     def __init__(self):
         super(JoiningAugment, self).__init__()
 

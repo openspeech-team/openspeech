@@ -45,8 +45,7 @@ class RNNTransducerDecoder(OpenspeechDecoder):
     Inputs: inputs, input_lengths
         inputs (torch.LongTensor): A target sequence passed to decoders. `IntTensor` of size ``(batch, seq_length)``
         input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
-        hidden_states (torch.FloatTensor): A previous hidden state of decoders. `FloatTensor` of size
-            ``(batch, seq_length, dimension)``
+        hidden_states (torch.FloatTensor): A previous hidden state of decoders. `FloatTensor` of size ``(batch, seq_length, dimension)``
 
     Returns:
         (Tensor, Tensor):
@@ -104,8 +103,7 @@ class RNNTransducerDecoder(OpenspeechDecoder):
         Forward propage a `inputs` (targets) for training.
 
         Inputs:
-            inputs (torch.LongTensor): A input sequence passed to label encoder. Typically inputs will be a padded
-                `LongTensor` of size ``(batch, target_length)``
+            inputs (torch.LongTensor): A input sequence passed to label encoder. Typically inputs will be a padded `LongTensor` of size ``(batch, target_length)``
             input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
             hidden_states (torch.FloatTensor): Previous hidden states.
 

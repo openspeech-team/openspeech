@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Openspeech’s configurations &mdash; Openspeech v0.1 documentation</title>
+  <title>Openspeech’s configurations &mdash; Openspeech v0.3.0 documentation</title>
   
 
   
@@ -32,14 +32,13 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Openspeech Model" href="../Openspeech Model.html" />
+    <link rel="next" title="Openspeech Model" href="../models/Openspeech%20Model.html" />
     <link rel="prev" title="Openspeech’s Hydra configuration" href="hydra_configs.html" /> 
 </head>
 
@@ -87,46 +86,65 @@
             
               <p class="caption"><span class="caption-text">GETTING STARTED</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="intro.html">Why should I use openspeech?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="intro.html#why-shouldn-t-i-use-openspeech">Why shouldn’t I use openspeech?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="intro.html#model-architectures">Model architectures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="intro.html#get-started">Get Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="intro.html#installation">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="intro.html#troubleshoots-and-contributing">Troubleshoots and Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="intro.html#citation">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hydra_configs.html">Openspeech’s Hydra configuration</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Openspeech’s configurations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#common"><code class="docutils literal notranslate"><span class="pre">common</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#audio"><code class="docutils literal notranslate"><span class="pre">audio</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mfcc"><code class="docutils literal notranslate"><span class="pre">mfcc</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#melspectrogram"><code class="docutils literal notranslate"><span class="pre">melspectrogram</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fbank"><code class="docutils literal notranslate"><span class="pre">fbank</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spectrogram"><code class="docutils literal notranslate"><span class="pre">spectrogram</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#augment"><code class="docutils literal notranslate"><span class="pre">augment</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#default"><code class="docutils literal notranslate"><span class="pre">default</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dataset"><code class="docutils literal notranslate"><span class="pre">dataset</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#kspon"><code class="docutils literal notranslate"><span class="pre">kspon</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#libri"><code class="docutils literal notranslate"><span class="pre">libri</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#aishell"><code class="docutils literal notranslate"><span class="pre">aishell</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#audio"><code class="docutils literal notranslate"><span class="pre">audio</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#fbank"><code class="docutils literal notranslate"><span class="pre">fbank</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#melspectrogram"><code class="docutils literal notranslate"><span class="pre">melspectrogram</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#spectrogram"><code class="docutils literal notranslate"><span class="pre">spectrogram</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mfcc"><code class="docutils literal notranslate"><span class="pre">mfcc</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ksponspeech"><code class="docutils literal notranslate"><span class="pre">ksponspeech</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#librispeech"><code class="docutils literal notranslate"><span class="pre">librispeech</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lm"><code class="docutils literal notranslate"><span class="pre">lm</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#model"><code class="docutils literal notranslate"><span class="pre">model</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#listen-attend-spell"><code class="docutils literal notranslate"><span class="pre">listen_attend_spell</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#conformer-encoder-only"><code class="docutils literal notranslate"><span class="pre">conformer_encoder_only</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#listen-attend-spell-with-location-aware"><code class="docutils literal notranslate"><span class="pre">listen_attend_spell_with_location_aware</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#listen-attend-spell-with-multi-head"><code class="docutils literal notranslate"><span class="pre">listen_attend_spell_with_multi_head</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#joint-ctc-listen-attend-spell"><code class="docutils literal notranslate"><span class="pre">joint_ctc_listen_attend_spell</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deep-cnn-with-joint-ctc-listen-attend-spell"><code class="docutils literal notranslate"><span class="pre">deep_cnn_with_joint_ctc_listen_attend_spell</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#deepspeech2"><code class="docutils literal notranslate"><span class="pre">deepspeech2</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#jasper"><code class="docutils literal notranslate"><span class="pre">jasper</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#transformer"><code class="docutils literal notranslate"><span class="pre">transformer</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#conformer-transducer"><code class="docutils literal notranslate"><span class="pre">conformer_transducer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lstm-lm"><code class="docutils literal notranslate"><span class="pre">lstm_lm</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rnn-transducer"><code class="docutils literal notranslate"><span class="pre">rnn_transducer</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#transformer-transducer"><code class="docutils literal notranslate"><span class="pre">transformer_transducer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transformer-lm"><code class="docutils literal notranslate"><span class="pre">transformer_lm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transformer"><code class="docutils literal notranslate"><span class="pre">transformer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#joint-ctc-transformer"><code class="docutils literal notranslate"><span class="pre">joint_ctc_transformer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transformer-with-ctc"><code class="docutils literal notranslate"><span class="pre">transformer_with_ctc</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vgg-transformer"><code class="docutils literal notranslate"><span class="pre">vgg_transformer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#conformer"><code class="docutils literal notranslate"><span class="pre">conformer</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#conformer-lstm"><code class="docutils literal notranslate"><span class="pre">conformer_lstm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#conformer-transducer"><code class="docutils literal notranslate"><span class="pre">conformer_transducer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#joint-ctc-conformer-lstm"><code class="docutils literal notranslate"><span class="pre">joint_ctc_conformer_lstm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transformer-transducer"><code class="docutils literal notranslate"><span class="pre">transformer_transducer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quartznet5x5"><code class="docutils literal notranslate"><span class="pre">quartznet5x5</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quartznet10x5"><code class="docutils literal notranslate"><span class="pre">quartznet10x5</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quartznet15x5"><code class="docutils literal notranslate"><span class="pre">quartznet15x5</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#contextnet"><code class="docutils literal notranslate"><span class="pre">contextnet</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#contextnet-lstm"><code class="docutils literal notranslate"><span class="pre">contextnet_lstm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#contextnet-transducer"><code class="docutils literal notranslate"><span class="pre">contextnet_transducer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jasper5x3"><code class="docutils literal notranslate"><span class="pre">jasper5x3</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jasper10x5"><code class="docutils literal notranslate"><span class="pre">jasper10x5</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#criterion"><code class="docutils literal notranslate"><span class="pre">criterion</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#label-smoothed-cross-entropy"><code class="docutils literal notranslate"><span class="pre">label_smoothed_cross_entropy</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#joint-ctc-cross-entropy"><code class="docutils literal notranslate"><span class="pre">joint_ctc_cross_entropy</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cross-entropy"><code class="docutils literal notranslate"><span class="pre">cross_entropy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#perplexity"><code class="docutils literal notranslate"><span class="pre">perplexity</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#transducer"><code class="docutils literal notranslate"><span class="pre">transducer</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ctc"><code class="docutils literal notranslate"><span class="pre">ctc</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cross-entropy"><code class="docutils literal notranslate"><span class="pre">cross_entropy</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#lr-scheduler"><code class="docutils literal notranslate"><span class="pre">lr_scheduler</span></code></a><ul>
@@ -146,7 +164,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#cpu-fp64"><code class="docutils literal notranslate"><span class="pre">cpu-fp64</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#vocab"><code class="docutils literal notranslate"><span class="pre">vocab</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tokenizer"><code class="docutils literal notranslate"><span class="pre">tokenizer</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#libri-subword"><code class="docutils literal notranslate"><span class="pre">libri_subword</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#libri-character"><code class="docutils literal notranslate"><span class="pre">libri_character</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#aishell-character"><code class="docutils literal notranslate"><span class="pre">aishell_character</span></code></a></li>
@@ -158,44 +176,48 @@
 </ul>
 </li>
 </ul>
+<p class="caption"><span class="caption-text">OPENSPEECH MODELS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Model.html">Openspeech Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20CTC%20Model.html">Openspeech CTC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Encoder%20Decoder%20Model.html">Openspeech Encoder Decoder Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Transducer%20Model.html">Openspeech Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Language%20Model.html">Openspeech Language Model</a></li>
+</ul>
 <p class="caption"><span class="caption-text">MODEL ARCHITECTURES</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Openspeech Model.html">Openspeech Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Conformer.html">Conformer Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Conformer LSTM.html">Conformer LSTM Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Conformer Transducer.html">Conformer Transducer Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Deep CNN with Joint CTC LAS.html">Deep CNN with Joint CTC LAS Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../DeepSpeech2.html">DeepSpeech2 Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Jasper5x3.html">Jasper5x3 Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Jasper10x5.html">Jasper10x5 Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Joint CTC Conformer LSTM.html">Joint CTC Conformer LSTM Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Joint CTC LAS.html">Joint CTC LAS Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Joint CTC Transformer.html">Joint CTC Transformer Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Listen Attend Spell.html">Listen Attend Spell Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Listen Attend Spell (location-aware).html">Listen Attend Spell (location-aware) Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Listen Attend Spell (multi-head).html">Listen Attend Spell (multi-head) Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../QuartzNet5x5.html">QuartzNet 5x5 Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../QuartzNet10x5.html">QuartzNet 10x5 Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../QuartzNet15x5.html">QuartzNet 15x5 Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../RNN Transducer.html">RNN Transducer Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Transformer.html">Transformer Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Transformer Transducer.html">Transformer Transducer Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Transformer with CTC.html">Transformer with CTC Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../VGG Transformer.html">VGG Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Conformer.html">Conformer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/ContextNet.html">ContextNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/DeepSpeech2.html">DeepSpeech2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Jasper.html">Jasper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Listen%20Attend%20Spell.html">Listen Attend Spell Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/LSTM%20LM.html">LSTM Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/QuartzNet.html">QuartzNet Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/RNN%20Transducer.html">RNN Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer.html">Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer%20LM.html">Transformer Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer%20Transducer.html">Transformer Transducer Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">CORPUS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../corpus/AISHELL-1.html">AISHELL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corpus/KsponSpeech.html">KsponSpeech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corpus/LibriSpeech.html">LibriSpeech</a></li>
 </ul>
 <p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Audio.html">Audio</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Criterion.html">Criterion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Data.html">Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Datasets.html">Datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Decoders.html">Decoders</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Encoders.html">Encoders</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Modules.html">Modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Optim.html">Optim</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Beam Search.html">Search</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Vocabulary.html">Vocabulary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Metric.html">Metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Criterion.html">Criterion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Data%20Augment.html">Data Augment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Feature%20Transform.html">Feature Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Data%20Loaders.html">Data Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Decoders.html">Decoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Encoders.html">Encoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Optim.html">Optim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Search.html">Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Tokenizers.html">Tokenizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Metric.html">Metric</a></li>
 </ul>
 
             
@@ -266,97 +288,146 @@
   <div class="section" id="openspeech-s-configurations">
 <h1>Openspeech’s configurations<a class="headerlink" href="#openspeech-s-configurations" title="Permalink to this headline">¶</a></h1>
 <p>This page describes all configurations in <code class="docutils literal notranslate"><span class="pre">Openspeech</span></code>.</p>
-<div class="section" id="common">
-<h2><code class="docutils literal notranslate"><span class="pre">common</span></code><a class="headerlink" href="#common" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="kspon">
-<h3><code class="docutils literal notranslate"><span class="pre">kspon</span></code><a class="headerlink" href="#kspon" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">dataset</span></code> : Select dataset for training (librispeech, ksponspeech, aishell)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">dataset_path</span></code> : Path of dataset</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">manifest_file_path</span></code> : Path of manifest file</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">preprocess_mode</span></code> : KsponSpeech preprocess mode</p></li>
-</ul>
-</div>
-<div class="section" id="libri">
-<h3><code class="docutils literal notranslate"><span class="pre">libri</span></code><a class="headerlink" href="#libri" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">dataset</span></code> : Select dataset for training (librispeech, ksponspeech, aishell)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">dataset_path</span></code> : Path of dataset</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">dataset_download</span></code> : Flag indication whether to download dataset or not.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">manifest_file_path</span></code> : Path of manifest file</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">preprocess_mode</span></code> : KsponSpeech preprocess mode</p></li>
-</ul>
-</div>
-<div class="section" id="aishell">
-<h3><code class="docutils literal notranslate"><span class="pre">aishell</span></code><a class="headerlink" href="#aishell" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">dataset</span></code> : Select dataset for training (librispeech, ksponspeech, aishell)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">dataset_path</span></code> : Path of dataset</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">dataset_download</span></code> : Flag indication whether to download dataset or not.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">manifest_file_path</span></code> : Path of manifest file</p></li>
-</ul>
-</div>
-</div>
 <div class="section" id="audio">
 <h2><code class="docutils literal notranslate"><span class="pre">audio</span></code><a class="headerlink" href="#audio" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="fbank">
-<h3><code class="docutils literal notranslate"><span class="pre">fbank</span></code><a class="headerlink" href="#fbank" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="mfcc">
+<h3><code class="docutils literal notranslate"><span class="pre">mfcc</span></code><a class="headerlink" href="#mfcc" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> : Name of dataset.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sample_rate</span></code> : Sampling rate of audio</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">frame_length</span></code> : Frame length for spectrogram</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">frame_shift</span></code> : Length of hop between STFT</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">apply_spec_augment</span></code> : Flag indication whether to apply spec augment or not</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">freq_mask_para</span></code> : Hyper Parameter for freq masking to limit freq masking length</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">freq_mask_num</span></code> : How many freq-masked area to make</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">time_mask_num</span></code> : How many time-masked area to make</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">del_silence</span></code> : Flag indication whether to apply delete silence or not</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> : Name of dataset.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">num_mels</span></code> : The number of mfc coefficients to retain.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_spec_augment</span></code> : Flag indication whether to apply spec augment or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_noise_augment</span></code> : Flag indication whether to apply noise augment or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_time_stretch_augment</span></code> : Flag indication whether to apply time stretch augment or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_joining_augment</span></code> : Flag indication whether to apply audio joining augment or not</p></li>
 </ul>
 </div>
 <div class="section" id="melspectrogram">
 <h3><code class="docutils literal notranslate"><span class="pre">melspectrogram</span></code><a class="headerlink" href="#melspectrogram" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> : Name of dataset.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sample_rate</span></code> : Sampling rate of audio</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">frame_length</span></code> : Frame length for spectrogram</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">frame_shift</span></code> : Length of hop between STFT</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">apply_spec_augment</span></code> : Flag indication whether to apply spec augment or not</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">freq_mask_para</span></code> : Hyper Parameter for freq masking to limit freq masking length</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">freq_mask_num</span></code> : How many freq-masked area to make</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">time_mask_num</span></code> : How many time-masked area to make</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">del_silence</span></code> : Flag indication whether to apply delete silence or not</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> : Name of dataset.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">num_mels</span></code> : The number of mfc coefficients to retain.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_spec_augment</span></code> : Flag indication whether to apply spec augment or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_noise_augment</span></code> : Flag indication whether to apply noise augment or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_time_stretch_augment</span></code> : Flag indication whether to apply time stretch augment or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_joining_augment</span></code> : Flag indication whether to apply audio joining augment or not</p></li>
+</ul>
+</div>
+<div class="section" id="fbank">
+<h3><code class="docutils literal notranslate"><span class="pre">fbank</span></code><a class="headerlink" href="#fbank" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> : Name of dataset.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sample_rate</span></code> : Sampling rate of audio</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frame_length</span></code> : Frame length for spectrogram</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frame_shift</span></code> : Length of hop between STFT</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">del_silence</span></code> : Flag indication whether to apply delete silence or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_mels</span></code> : The number of mfc coefficients to retain.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_spec_augment</span></code> : Flag indication whether to apply spec augment or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_noise_augment</span></code> : Flag indication whether to apply noise augment or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_time_stretch_augment</span></code> : Flag indication whether to apply time stretch augment or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_joining_augment</span></code> : Flag indication whether to apply audio joining augment or not</p></li>
 </ul>
 </div>
 <div class="section" id="spectrogram">
 <h3><code class="docutils literal notranslate"><span class="pre">spectrogram</span></code><a class="headerlink" href="#spectrogram" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> : Name of dataset.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sample_rate</span></code> : Sampling rate of audio</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">frame_length</span></code> : Frame length for spectrogram</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">frame_shift</span></code> : Length of hop between STFT</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">apply_spec_augment</span></code> : Flag indication whether to apply spec augment or not</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">freq_mask_para</span></code> : Hyper Parameter for freq masking to limit freq masking length</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">freq_mask_num</span></code> : How many freq-masked area to make</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">time_mask_num</span></code> : How many time-masked area to make</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">del_silence</span></code> : Flag indication whether to apply delete silence or not</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> : Name of dataset.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">num_mels</span></code> : The number of mfc coefficients to retain. Spectrogram is independent of mel, but uses the ‘num_mels’ variable to unify feature size variables</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_mels</span></code> : Spectrogram is independent of mel, but uses the ‘num_mels’ variable to unify feature size variables</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_spec_augment</span></code> : Flag indication whether to apply spec augment or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_noise_augment</span></code> : Flag indication whether to apply noise augment or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_time_stretch_augment</span></code> : Flag indication whether to apply time stretch augment or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_joining_augment</span></code> : Flag indication whether to apply audio joining augment or not</p></li>
 </ul>
 </div>
-<div class="section" id="mfcc">
-<h3><code class="docutils literal notranslate"><span class="pre">mfcc</span></code><a class="headerlink" href="#mfcc" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="augment">
+<h2><code class="docutils literal notranslate"><span class="pre">augment</span></code><a class="headerlink" href="#augment" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="default">
+<h3><code class="docutils literal notranslate"><span class="pre">default</span></code><a class="headerlink" href="#default" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">sample_rate</span></code> : Sampling rate of audio</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">frame_length</span></code> : Frame length for spectrogram</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">frame_shift</span></code> : Length of hop between STFT</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">apply_spec_augment</span></code> : Flag indication whether to apply spec augment or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_noise_augment</span></code> : Flag indication whether to apply noise augment or not Noise augment requires <code class="docutils literal notranslate"><span class="pre">noise_dataset_path</span></code>. <code class="docutils literal notranslate"><span class="pre">noise_dataset_dir</span></code> should be contain audio files.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_joining_augment</span></code> : Flag indication whether to apply joining augment or not If true, create a new audio file by connecting two audio randomly</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_time_stretch_augment</span></code> : Flag indication whether to apply spec augment or not</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">freq_mask_para</span></code> : Hyper Parameter for freq masking to limit freq masking length</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">freq_mask_num</span></code> : How many freq-masked area to make</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">time_mask_num</span></code> : How many time-masked area to make</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">del_silence</span></code> : Flag indication whether to apply delete silence or not</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> : Name of dataset.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">num_mels</span></code> : The number of mfc coefficients to retain.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">noise_dataset_dir</span></code> : How many time-masked area to make</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">noise_level</span></code> : Noise adjustment level</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">time_stretch_min_rate</span></code> : Minimum rate of audio time stretch</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">time_stretch_max_rate</span></code> : Maximum rate of audio time stretch</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="dataset">
+<h2><code class="docutils literal notranslate"><span class="pre">dataset</span></code><a class="headerlink" href="#dataset" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="kspon">
+<h3><code class="docutils literal notranslate"><span class="pre">kspon</span></code><a class="headerlink" href="#kspon" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset</span></code> : Select dataset for training (librispeech, ksponspeech, aishell, lm)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset_path</span></code> : Path of dataset</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_dataset_path</span></code> : Path of evaluation dataset</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">manifest_file_path</span></code> : Path of manifest file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_manifest_dir</span></code> : Path of directory contains test manifest files</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">preprocess_mode</span></code> : KsponSpeech preprocess mode {phonetic, spelling}</p></li>
+</ul>
+</div>
+<div class="section" id="libri">
+<h3><code class="docutils literal notranslate"><span class="pre">libri</span></code><a class="headerlink" href="#libri" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset</span></code> : Select dataset for training (librispeech, ksponspeech, aishell, lm)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset_path</span></code> : Path of dataset</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset_download</span></code> : Flag indication whether to download dataset or not.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">manifest_file_path</span></code> : Path of manifest file</p></li>
+</ul>
+</div>
+<div class="section" id="aishell">
+<h3><code class="docutils literal notranslate"><span class="pre">aishell</span></code><a class="headerlink" href="#aishell" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset</span></code> : Select dataset for training (librispeech, ksponspeech, aishell, lm)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset_path</span></code> : Path of dataset</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset_download</span></code> : Flag indication whether to download dataset or not.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">manifest_file_path</span></code> : Path of manifest file</p></li>
+</ul>
+</div>
+<div class="section" id="ksponspeech">
+<h3><code class="docutils literal notranslate"><span class="pre">ksponspeech</span></code><a class="headerlink" href="#ksponspeech" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset</span></code> : Select dataset for training (librispeech, ksponspeech, aishell, lm)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset_path</span></code> : Path of dataset</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_dataset_path</span></code> : Path of evaluation dataset</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">manifest_file_path</span></code> : Path of manifest file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_manifest_dir</span></code> : Path of directory contains test manifest files</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">preprocess_mode</span></code> : KsponSpeech preprocess mode {phonetic, spelling}</p></li>
+</ul>
+</div>
+<div class="section" id="librispeech">
+<h3><code class="docutils literal notranslate"><span class="pre">librispeech</span></code><a class="headerlink" href="#librispeech" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset</span></code> : Select dataset for training (librispeech, ksponspeech, aishell, lm)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset_path</span></code> : Path of dataset</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset_download</span></code> : Flag indication whether to download dataset or not.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">manifest_file_path</span></code> : Path of manifest file</p></li>
+</ul>
+</div>
+<div class="section" id="lm">
+<h3><code class="docutils literal notranslate"><span class="pre">lm</span></code><a class="headerlink" href="#lm" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset</span></code> : Select dataset for training (librispeech, ksponspeech, aishell, lm)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset_path</span></code> : Path of dataset</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">valid_ratio</span></code> : Ratio of validation data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_ratio</span></code> : Ratio of test data</p></li>
 </ul>
 </div>
 </div>
@@ -365,7 +436,82 @@
 <div class="section" id="listen-attend-spell">
 <h3><code class="docutils literal notranslate"><span class="pre">listen_attend_spell</span></code><a class="headerlink" href="#listen-attend-spell" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_encoder_layers</span></code> : The number of encoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_decoder_layers</span></code> : The number of decoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hidden_state_dim</span></code> : The hidden state dimension of encoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoder_dropout_p</span></code> : The dropout probability of encoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoder_bidirectional</span></code> : If True, becomes a bidirectional encoders</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rnn_type</span></code> : Type of rnn cell (rnn, lstm, gru)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">joint_ctc_attention</span></code> : Flag indication joint ctc attention or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_length</span></code> : Max decoding length.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_attention_heads</span></code> : The number of attention heads.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decoder_dropout_p</span></code> : The dropout probability of decoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decoder_attn_mechanism</span></code> : The attention mechanism for decoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">teacher_forcing_ratio</span></code> : The ratio of teacher forcing.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
+</ul>
+</div>
+<div class="section" id="listen-attend-spell-with-location-aware">
+<h3><code class="docutils literal notranslate"><span class="pre">listen_attend_spell_with_location_aware</span></code><a class="headerlink" href="#listen-attend-spell-with-location-aware" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_encoder_layers</span></code> : The number of encoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_decoder_layers</span></code> : The number of decoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hidden_state_dim</span></code> : The hidden state dimension of encoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoder_dropout_p</span></code> : The dropout probability of encoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoder_bidirectional</span></code> : If True, becomes a bidirectional encoders</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rnn_type</span></code> : Type of rnn cell (rnn, lstm, gru)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">joint_ctc_attention</span></code> : Flag indication joint ctc attention or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_length</span></code> : Max decoding length.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_attention_heads</span></code> : The number of attention heads.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decoder_dropout_p</span></code> : The dropout probability of decoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decoder_attn_mechanism</span></code> : The attention mechanism for decoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">teacher_forcing_ratio</span></code> : The ratio of teacher forcing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
+</ul>
+</div>
+<div class="section" id="listen-attend-spell-with-multi-head">
+<h3><code class="docutils literal notranslate"><span class="pre">listen_attend_spell_with_multi_head</span></code><a class="headerlink" href="#listen-attend-spell-with-multi-head" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_encoder_layers</span></code> : The number of encoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_decoder_layers</span></code> : The number of decoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hidden_state_dim</span></code> : The hidden state dimension of encoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoder_dropout_p</span></code> : The dropout probability of encoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoder_bidirectional</span></code> : If True, becomes a bidirectional encoders</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rnn_type</span></code> : Type of rnn cell (rnn, lstm, gru)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">joint_ctc_attention</span></code> : Flag indication joint ctc attention or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_length</span></code> : Max decoding length.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_attention_heads</span></code> : The number of attention heads.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decoder_dropout_p</span></code> : The dropout probability of decoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decoder_attn_mechanism</span></code> : The attention mechanism for decoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">teacher_forcing_ratio</span></code> : The ratio of teacher forcing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
+</ul>
+</div>
+<div class="section" id="joint-ctc-listen-attend-spell">
+<h3><code class="docutils literal notranslate"><span class="pre">joint_ctc_listen_attend_spell</span></code><a class="headerlink" href="#joint-ctc-listen-attend-spell" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_encoder_layers</span></code> : The number of encoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_decoder_layers</span></code> : The number of decoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hidden_state_dim</span></code> : The hidden state dimension of encoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoder_dropout_p</span></code> : The dropout probability of encoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoder_bidirectional</span></code> : If True, becomes a bidirectional encoders</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rnn_type</span></code> : Type of rnn cell (rnn, lstm, gru)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">joint_ctc_attention</span></code> : Flag indication joint ctc attention or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_length</span></code> : Max decoding length.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_attention_heads</span></code> : The number of attention heads.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decoder_dropout_p</span></code> : The dropout probability of decoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decoder_attn_mechanism</span></code> : The attention mechanism for decoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">teacher_forcing_ratio</span></code> : The ratio of teacher forcing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
+</ul>
+</div>
+<div class="section" id="deep-cnn-with-joint-ctc-listen-attend-spell">
+<h3><code class="docutils literal notranslate"><span class="pre">deep_cnn_with_joint_ctc_listen_attend_spell</span></code><a class="headerlink" href="#deep-cnn-with-joint-ctc-listen-attend-spell" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">num_encoder_layers</span></code> : The number of encoder layers.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">num_decoder_layers</span></code> : The number of decoder layers.</p></li>
@@ -381,31 +527,12 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">decoder_dropout_p</span></code> : The dropout probability of decoder.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">decoder_attn_mechanism</span></code> : The attention mechanism for decoder.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">teacher_forcing_ratio</span></code> : The ratio of teacher forcing.</p></li>
-</ul>
-</div>
-<div class="section" id="conformer-encoder-only">
-<h3><code class="docutils literal notranslate"><span class="pre">conformer_encoder_only</span></code><a class="headerlink" href="#conformer-encoder-only" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">encoder_dim</span></code> : Dimension of encoder.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">num_encoder_layers</span></code> : The number of encoder layers.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">num_attention_heads</span></code> : The number of attention heads.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">feed_forward_expansion_factor</span></code> : The expansion factor of feed forward module.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">conv_expansion_factor</span></code> : The expansion factor of convolution module.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">input_dropout_p</span></code> : The dropout probability of inputs.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">feed_forward_dropout_p</span></code> : The dropout probability of feed forward module.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">attention_dropout_p</span></code> : The dropout probability of attention module.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">conv_dropout_p</span></code> : The dropout probability of convolution module.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">conv_kernel_size</span></code> : The kernel size of convolution.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">half_step_residual</span></code> : Flag indication whether to use half step residual or not</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">joint_ctc_attention</span></code> : Flag indication joint ctc attention or not</p></li>
 </ul>
 </div>
 <div class="section" id="deepspeech2">
 <h3><code class="docutils literal notranslate"><span class="pre">deepspeech2</span></code><a class="headerlink" href="#deepspeech2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">rnn_type</span></code> : Type of rnn cell (rnn, lstm, gru)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">num_rnn_layers</span></code> : The number of rnn layers</p></li>
@@ -413,20 +540,72 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">dropout_p</span></code> : The dropout probability of model.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">bidirectional</span></code> : If True, becomes a bidirectional encoders</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">activation</span></code> : Type of activation function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
 </ul>
 </div>
-<div class="section" id="jasper">
-<h3><code class="docutils literal notranslate"><span class="pre">jasper</span></code><a class="headerlink" href="#jasper" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="lstm-lm">
+<h3><code class="docutils literal notranslate"><span class="pre">lstm_lm</span></code><a class="headerlink" href="#lstm-lm" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">version</span></code> : Jasper’s version. Supports <code class="docutils literal notranslate"><span class="pre">10x5</span></code>, <code class="docutils literal notranslate"><span class="pre">5x3</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_layers</span></code> : The number of encoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hidden_state_dim</span></code> : The hidden state dimension of encoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dropout_p</span></code> : The dropout probability of encoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rnn_type</span></code> : Type of rnn cell (rnn, lstm, gru)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_length</span></code> : Max decoding length.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">teacher_forcing_ratio</span></code> : The ratio of teacher forcing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
+</ul>
+</div>
+<div class="section" id="rnn-transducer">
+<h3><code class="docutils literal notranslate"><span class="pre">rnn_transducer</span></code><a class="headerlink" href="#rnn-transducer" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoder_hidden_state_dim</span></code> : Dimension of encoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decoder_hidden_state_dim</span></code> : Dimension of decoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_encoder_layers</span></code> : The number of encoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_decoder_layers</span></code> : The number of decoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoder_dropout_p</span></code> : The dropout probability of encoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decoder_dropout_p</span></code> : The dropout probability of decoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bidirectional</span></code> : If True, becomes a bidirectional encoders</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rnn_type</span></code> : Type of rnn cell (rnn, lstm, gru)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output_dim</span></code> : Dimension of outputs</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
+</ul>
+</div>
+<div class="section" id="transformer-lm">
+<h3><code class="docutils literal notranslate"><span class="pre">transformer_lm</span></code><a class="headerlink" href="#transformer-lm" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_layers</span></code> : The number of encoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">d_model</span></code> : The dimension of model.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">d_ff</span></code> : The dimenstion of feed forward network.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_attention_heads</span></code> : The number of attention heads.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dropout_p</span></code> : The dropout probability of encoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_length</span></code> : Max decoding length.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
 </ul>
 </div>
 <div class="section" id="transformer">
 <h3><code class="docutils literal notranslate"><span class="pre">transformer</span></code><a class="headerlink" href="#transformer" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">d_model</span></code> : Dimension of model.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">d_ff</span></code> : Dimenstion of feed forward network.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_attention_heads</span></code> : The number of attention heads.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_encoder_layers</span></code> : The number of encoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_decoder_layers</span></code> : The number of decoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoder_dropout_p</span></code> : The dropout probability of encoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decoder_dropout_p</span></code> : The dropout probability of decoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ffnet_style</span></code> : Style of feed forward network. (ff, conv)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_length</span></code> : Max decoding length.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">teacher_forcing_ratio</span></code> : The ratio of teacher forcing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">joint_ctc_attention</span></code> : Flag indication joint ctc attention or not</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
+</ul>
+</div>
+<div class="section" id="joint-ctc-transformer">
+<h3><code class="docutils literal notranslate"><span class="pre">joint_ctc_transformer</span></code><a class="headerlink" href="#joint-ctc-transformer" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">extractor</span></code> : The CNN feature extractor.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">d_model</span></code> : Dimension of model.</p></li>
@@ -440,12 +619,86 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">max_length</span></code> : Max decoding length.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">teacher_forcing_ratio</span></code> : The ratio of teacher forcing.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">joint_ctc_attention</span></code> : Flag indication joint ctc attention or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
+</ul>
+</div>
+<div class="section" id="transformer-with-ctc">
+<h3><code class="docutils literal notranslate"><span class="pre">transformer_with_ctc</span></code><a class="headerlink" href="#transformer-with-ctc" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">d_model</span></code> : Dimension of model.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">d_ff</span></code> : Dimenstion of feed forward network.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_attention_heads</span></code> : The number of attention heads.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_encoder_layers</span></code> : The number of encoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoder_dropout_p</span></code> : The dropout probability of encoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ffnet_style</span></code> : Style of feed forward network. (ff, conv)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
+</ul>
+</div>
+<div class="section" id="vgg-transformer">
+<h3><code class="docutils literal notranslate"><span class="pre">vgg_transformer</span></code><a class="headerlink" href="#vgg-transformer" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">extractor</span></code> : The CNN feature extractor.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">d_model</span></code> : Dimension of model.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">d_ff</span></code> : Dimenstion of feed forward network.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_attention_heads</span></code> : The number of attention heads.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_encoder_layers</span></code> : The number of encoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_decoder_layers</span></code> : The number of decoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoder_dropout_p</span></code> : The dropout probability of encoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decoder_dropout_p</span></code> : The dropout probability of decoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ffnet_style</span></code> : Style of feed forward network. (ff, conv)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_length</span></code> : Max decoding length.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">teacher_forcing_ratio</span></code> : The ratio of teacher forcing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">joint_ctc_attention</span></code> : Flag indication joint ctc attention or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
+</ul>
+</div>
+<div class="section" id="conformer">
+<h3><code class="docutils literal notranslate"><span class="pre">conformer</span></code><a class="headerlink" href="#conformer" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoder_dim</span></code> : Dimension of encoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_encoder_layers</span></code> : The number of encoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_attention_heads</span></code> : The number of attention heads.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">feed_forward_expansion_factor</span></code> : The expansion factor of feed forward module.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conv_expansion_factor</span></code> : The expansion factor of convolution module.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input_dropout_p</span></code> : The dropout probability of inputs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">feed_forward_dropout_p</span></code> : The dropout probability of feed forward module.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">attention_dropout_p</span></code> : The dropout probability of attention module.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conv_dropout_p</span></code> : The dropout probability of convolution module.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conv_kernel_size</span></code> : The kernel size of convolution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">half_step_residual</span></code> : Flag indication whether to use half step residual or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
+</ul>
+</div>
+<div class="section" id="conformer-lstm">
+<h3><code class="docutils literal notranslate"><span class="pre">conformer_lstm</span></code><a class="headerlink" href="#conformer-lstm" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoder_dim</span></code> : Dimension of encoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_encoder_layers</span></code> : The number of encoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_attention_heads</span></code> : The number of attention heads.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">feed_forward_expansion_factor</span></code> : The expansion factor of feed forward module.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conv_expansion_factor</span></code> : The expansion factor of convolution module.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input_dropout_p</span></code> : The dropout probability of inputs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">feed_forward_dropout_p</span></code> : The dropout probability of feed forward module.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">attention_dropout_p</span></code> : The dropout probability of attention module.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conv_dropout_p</span></code> : The dropout probability of convolution module.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conv_kernel_size</span></code> : The kernel size of convolution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">half_step_residual</span></code> : Flag indication whether to use half step residual or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_decoder_layers</span></code> : The number of decoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decoder_dropout_p</span></code> : The dropout probability of decoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_length</span></code> : Max decoding length.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">teacher_forcing_ratio</span></code> : The ratio of teacher forcing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rnn_type</span></code> : Type of rnn cell (rnn, lstm, gru)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decoder_attn_mechanism</span></code> : The attention mechanism for decoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
 </ul>
 </div>
 <div class="section" id="conformer-transducer">
 <h3><code class="docutils literal notranslate"><span class="pre">conformer_transducer</span></code><a class="headerlink" href="#conformer-transducer" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">encoder_dim</span></code> : Dimension of encoder.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">num_encoder_layers</span></code> : The number of encoder layers.</p></li>
@@ -462,32 +715,40 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">decoder_dropout_p</span></code> : The dropout probability of decoder.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">max_length</span></code> : Max decoding length.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">teacher_forcing_ratio</span></code> :  The ratio of teacher forcing.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">joint_ctc_attention</span></code> : Flag indication joint ctc attention or not</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">rnn_type</span></code> : Type of rnn cell (rnn, lstm, gru)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">decoder_hidden_state_dim</span></code> : Hidden state dimension of decoder.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">decoder_output_dim</span></code> : Output dimension of decoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
 </ul>
 </div>
-<div class="section" id="rnn-transducer">
-<h3><code class="docutils literal notranslate"><span class="pre">rnn_transducer</span></code><a class="headerlink" href="#rnn-transducer" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="joint-ctc-conformer-lstm">
+<h3><code class="docutils literal notranslate"><span class="pre">joint_ctc_conformer_lstm</span></code><a class="headerlink" href="#joint-ctc-conformer-lstm" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">encoder_hidden_state_dim</span></code> : Dimension of encoder.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">decoder_hidden_state_dim</span></code> : Dimension of decoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoder_dim</span></code> : Dimension of encoder.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">num_encoder_layers</span></code> : The number of encoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_attention_heads</span></code> : The number of attention heads.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">feed_forward_expansion_factor</span></code> : The expansion factor of feed forward module.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conv_expansion_factor</span></code> : The expansion factor of convolution module.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input_dropout_p</span></code> : The dropout probability of inputs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">feed_forward_dropout_p</span></code> : The dropout probability of feed forward module.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">attention_dropout_p</span></code> : The dropout probability of attention module.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conv_dropout_p</span></code> : The dropout probability of convolution module.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conv_kernel_size</span></code> : The kernel size of convolution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">half_step_residual</span></code> : Flag indication whether to use half step residual or not</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">num_decoder_layers</span></code> : The number of decoder layers.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">encoder_dropout_p</span></code> : The dropout probability of encoder.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">decoder_dropout_p</span></code> : The dropout probability of decoder.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">bidirectional</span></code> : If True, becomes a bidirectional encoders</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_decoder_attention_heads</span></code> : The number of decoder attention heads.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_length</span></code> : Max decoding length.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">teacher_forcing_ratio</span></code> :  The ratio of teacher forcing.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">rnn_type</span></code> : Type of rnn cell (rnn, lstm, gru)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">output_dim</span></code> : Dimension of outputs</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decoder_attn_mechanism</span></code> : The attention mechanism for decoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
 </ul>
 </div>
 <div class="section" id="transformer-transducer">
 <h3><code class="docutils literal notranslate"><span class="pre">transformer_transducer</span></code><a class="headerlink" href="#transformer-transducer" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">encoder_dim</span></code> : Dimension of encoder name</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">d_ff</span></code> : Dimension of feed forward network</p></li>
@@ -500,31 +761,129 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">decoder_output_dim</span></code> : Dimension of model output.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">conv_kernel_size</span></code> : Kernel size of convolution layer.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">max_positional_length</span></code> : Max length of positional encoding.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
 </ul>
 </div>
-<div class="section" id="conformer-lstm">
-<h3><code class="docutils literal notranslate"><span class="pre">conformer_lstm</span></code><a class="headerlink" href="#conformer-lstm" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="quartznet5x5">
+<h3><code class="docutils literal notranslate"><span class="pre">quartznet5x5</span></code><a class="headerlink" href="#quartznet5x5" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">encoder_dim</span></code> : Dimension of encoder.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">num_encoder_layers</span></code> : The number of encoder layers.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">num_attention_heads</span></code> : The number of attention heads.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">feed_forward_expansion_factor</span></code> : The expansion factor of feed forward module.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">conv_expansion_factor</span></code> : The expansion factor of convolution module.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">input_dropout_p</span></code> : The dropout probability of inputs.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">feed_forward_dropout_p</span></code> : The dropout probability of feed forward module.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">attention_dropout_p</span></code> : The dropout probability of attention module.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">conv_dropout_p</span></code> : The dropout probability of convolution module.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">conv_kernel_size</span></code> : The kernel size of convolution.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">half_step_residual</span></code> : Flag indication whether to use half step residual or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_blocks</span></code> : Number of quartznet blocks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_sub_blocks</span></code> : Number of quartznet sub blocks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in_channels</span></code> : Input channels of jasper blocks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">out_channels</span></code> : Output channels of jasper block’s convolution</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_size</span></code> : Kernel size of jasper block’s convolution</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dilation</span></code> : Dilation of jasper block’s convolution</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dropout_p</span></code> : Dropout probability</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
+</ul>
+</div>
+<div class="section" id="quartznet10x5">
+<h3><code class="docutils literal notranslate"><span class="pre">quartznet10x5</span></code><a class="headerlink" href="#quartznet10x5" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_blocks</span></code> : Number of quartznet blocks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_sub_blocks</span></code> : Number of quartznet sub blocks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in_channels</span></code> : Input channels of jasper blocks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">out_channels</span></code> : Output channels of jasper block’s convolution</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_size</span></code> : Kernel size of jasper block’s convolution</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dilation</span></code> : Dilation of jasper block’s convolution</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dropout_p</span></code> : Dropout probability</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
+</ul>
+</div>
+<div class="section" id="quartznet15x5">
+<h3><code class="docutils literal notranslate"><span class="pre">quartznet15x5</span></code><a class="headerlink" href="#quartznet15x5" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_blocks</span></code> : Number of quartznet5x5 blocks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_sub_blocks</span></code> : Number of quartznet5x5 sub blocks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in_channels</span></code> : Input channels of jasper blocks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">out_channels</span></code> : Output channels of jasper block’s convolution</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_size</span></code> : Kernel size of jasper block’s convolution</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dilation</span></code> : Dilation of jasper block’s convolution</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dropout_p</span></code> : Dropout probability</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
+</ul>
+</div>
+<div class="section" id="contextnet">
+<h3><code class="docutils literal notranslate"><span class="pre">contextnet</span></code><a class="headerlink" href="#contextnet" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">model_size</span></code> : Model size</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input_dim</span></code> : Dimension of input vector</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_encoder_layers</span></code> : The number of convolution layers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_size</span></code> : Value of convolution kernel size</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_channels</span></code> : The number of channels in the convolution filter</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoder_dim</span></code> : Dimension of encoder output vector</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training</p></li>
+</ul>
+</div>
+<div class="section" id="contextnet-lstm">
+<h3><code class="docutils literal notranslate"><span class="pre">contextnet_lstm</span></code><a class="headerlink" href="#contextnet-lstm" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">model_size</span></code> : Model size</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input_dim</span></code> : Dimension of input vector</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_encoder_layers</span></code> : The number of convolution layers</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">num_decoder_layers</span></code> : The number of decoder layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_size</span></code> : Value of convolution kernel size</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_channels</span></code> : The number of channels in the convolution filter</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoder_dim</span></code> : Dimension of encoder output vector</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_attention_heads</span></code> : The number of attention heads.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">attention_dropout_p</span></code> : The dropout probability of attention module.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">decoder_dropout_p</span></code> : The dropout probability of decoder.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">max_length</span></code> : Max decoding length.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">teacher_forcing_ratio</span></code> :  The ratio of teacher forcing.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">joint_ctc_attention</span></code> : Flag indication joint ctc attention or not</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">teacher_forcing_ratio</span></code> : The ratio of teacher forcing.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">rnn_type</span></code> : Type of rnn cell (rnn, lstm, gru)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">decoder_attn_mechanism</span></code> : The attention mechanism for decoder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
+</ul>
+</div>
+<div class="section" id="contextnet-transducer">
+<h3><code class="docutils literal notranslate"><span class="pre">contextnet_transducer</span></code><a class="headerlink" href="#contextnet-transducer" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">model_size</span></code> : Model size</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input_dim</span></code> : Dimension of input vector</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_encoder_layers</span></code> : The number of convolution layers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_decoder_layers</span></code> : The number of rnn layers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_size</span></code> : Value of convolution kernel size</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_channels</span></code> : The number of channels in the convolution filter</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hidden_dim</span></code> : The number of features in the decoder hidden state</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoder_dim</span></code> : Dimension of encoder output vector</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decoder_output_dim</span></code> : Dimension of decoder output vector</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dropout</span></code> : Dropout probability of decoder</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rnn_type</span></code> : Type of rnn cell</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training</p></li>
+</ul>
+</div>
+<div class="section" id="jasper5x3">
+<h3><code class="docutils literal notranslate"><span class="pre">jasper5x3</span></code><a class="headerlink" href="#jasper5x3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_blocks</span></code> : Number of jasper blocks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_sub_blocks</span></code> : Number of jasper sub blocks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in_channels</span></code> : Input channels of jasper blocks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">out_channels</span></code> : Output channels of jasper block’s convolution</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_size</span></code> : Kernel size of jasper block’s convolution</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dilation</span></code> : Dilation of jasper block’s convolution</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dropout_p</span></code> : Dropout probability</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
+</ul>
+</div>
+<div class="section" id="jasper10x5">
+<h3><code class="docutils literal notranslate"><span class="pre">jasper10x5</span></code><a class="headerlink" href="#jasper10x5" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model_name</span></code> : Model name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_blocks</span></code> : Number of jasper blocks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_sub_blocks</span></code> : Number of jasper sub blocks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in_channels</span></code> : Input channels of jasper blocks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">out_channels</span></code> : Output channels of jasper block’s convolution</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_size</span></code> : Kernel size of jasper block’s convolution</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dilation</span></code> : Dilation of jasper block’s convolution</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dropout_p</span></code> : Dropout probability</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optimizer</span></code> : Optimizer for training.</p></li>
 </ul>
 </div>
 </div>
@@ -533,42 +892,50 @@
 <div class="section" id="label-smoothed-cross-entropy">
 <h3><code class="docutils literal notranslate"><span class="pre">label_smoothed_cross_entropy</span></code><a class="headerlink" href="#label-smoothed-cross-entropy" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">reduction</span></code> : Reduction method of criterion</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">criterion_name</span></code> : Criterion name for training.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reduction</span></code> : Reduction method of criterion</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">smoothing</span></code> : Ratio of smoothing loss (confidence = 1.0 - smoothing)</p></li>
 </ul>
 </div>
 <div class="section" id="joint-ctc-cross-entropy">
 <h3><code class="docutils literal notranslate"><span class="pre">joint_ctc_cross_entropy</span></code><a class="headerlink" href="#joint-ctc-cross-entropy" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">reduction</span></code> : Reduction method of criterion</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">criterion_name</span></code> : Criterion name for training.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reduction</span></code> : Reduction method of criterion</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ctc_weight</span></code> : Weight of ctc loss for training.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cross_entropy_weight</span></code> : Weight of cross entropy loss for training.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">smoothing</span></code> : Ratio of smoothing loss (confidence = 1.0 - smoothing)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">zero_infinity</span></code> : Whether to zero infinite losses and the associated gradients.</p></li>
 </ul>
 </div>
-<div class="section" id="cross-entropy">
-<h3><code class="docutils literal notranslate"><span class="pre">cross_entropy</span></code><a class="headerlink" href="#cross-entropy" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="perplexity">
+<h3><code class="docutils literal notranslate"><span class="pre">perplexity</span></code><a class="headerlink" href="#perplexity" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">reduction</span></code> : Reduction method of criterion</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">criterion_name</span></code> : Criterion name for training</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reduction</span></code> : Reduction method of criterion</p></li>
 </ul>
 </div>
 <div class="section" id="transducer">
 <h3><code class="docutils literal notranslate"><span class="pre">transducer</span></code><a class="headerlink" href="#transducer" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">reduction</span></code> : Reduction method of criterion</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">criterion_name</span></code> : Criterion name for training.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reduction</span></code> : Reduction method of criterion</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gather</span></code> : Reduce memory consumption.</p></li>
 </ul>
 </div>
 <div class="section" id="ctc">
 <h3><code class="docutils literal notranslate"><span class="pre">ctc</span></code><a class="headerlink" href="#ctc" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">reduction</span></code> : Reduction method of criterion</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">criterion_name</span></code> : Criterion name for training</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reduction</span></code> : Reduction method of criterion</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">zero_infinity</span></code> : Whether to zero infinite losses and the associated gradients.</p></li>
+</ul>
+</div>
+<div class="section" id="cross-entropy">
+<h3><code class="docutils literal notranslate"><span class="pre">cross_entropy</span></code><a class="headerlink" href="#cross-entropy" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">criterion_name</span></code> : Criterion name for training</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reduction</span></code> : Reduction method of criterion</p></li>
 </ul>
 </div>
 </div>
@@ -612,13 +979,9 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">lr</span></code> : Learning rate</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">scheduler_name</span></code> : Name of learning rate scheduler.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">init_lr</span></code> : Initial learning rate.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">peak_lr</span></code> : Maximum learning rate.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">final_lr</span></code> : Final learning rate.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">init_lr_scale</span></code> : Initial learning rate scale.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">final_lr_scale</span></code> : Final learning rate scale</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">warmup_steps</span></code> : Warmup the learning rate linearly for the first N updates</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">hold_steps</span></code> : Hold the learning rate for the N updates</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">decay_steps</span></code> : Decay the learning rate linearly for the N updates</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">phase_ratio</span></code> : Automatically sets warmup/hold/decay steps to the ratio specified here from max_updates. the ratios must add up to 1.0</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">total_steps</span></code> : Total training steps.</p></li>
 </ul>
 </div>
@@ -647,7 +1010,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">batch_size</span></code> : Size of batch</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">check_val_every_n_epoch</span></code> : Check val every n train epochs.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">gradient_clip_val</span></code> : 0 means don’t clip.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">use_tensorboard</span></code> : If set to True, will use tensorboard log.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logger</span></code> : Training logger. {wandb, tensorboard}</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">max_epochs</span></code> : Stop training once this number of epochs is reached.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">auto_scale_batch_size</span></code> : If set to True, will initially run a batch size finder trying to find the largest batch size that fits into memory.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> : Trainer name</p></li>
@@ -665,7 +1028,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">batch_size</span></code> : Size of batch</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">check_val_every_n_epoch</span></code> : Check val every n train epochs.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">gradient_clip_val</span></code> : 0 means don’t clip.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">use_tensorboard</span></code> : If set to True, will use tensorboard log.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logger</span></code> : Training logger. {wandb, tensorboard}</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">max_epochs</span></code> : Stop training once this number of epochs is reached.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">auto_scale_batch_size</span></code> : If set to True, will initially run a batch size finder trying to find the largest batch size that fits into memory.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> : Trainer name</p></li>
@@ -684,7 +1047,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">batch_size</span></code> : Size of batch</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">check_val_every_n_epoch</span></code> : Check val every n train epochs.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">gradient_clip_val</span></code> : 0 means don’t clip.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">use_tensorboard</span></code> : If set to True, will use tensorboard log.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logger</span></code> : Training logger. {wandb, tensorboard}</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">max_epochs</span></code> : Stop training once this number of epochs is reached.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">auto_scale_batch_size</span></code> : If set to True, will initially run a batch size finder trying to find the largest batch size that fits into memory.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> : Trainer name</p></li>
@@ -704,7 +1067,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">batch_size</span></code> : Size of batch</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">check_val_every_n_epoch</span></code> : Check val every n train epochs.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">gradient_clip_val</span></code> : 0 means don’t clip.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">use_tensorboard</span></code> : If set to True, will use tensorboard log.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logger</span></code> : Training logger. {wandb, tensorboard}</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">max_epochs</span></code> : Stop training once this number of epochs is reached.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">auto_scale_batch_size</span></code> : If set to True, will initially run a batch size finder trying to find the largest batch size that fits into memory.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> : Trainer name</p></li>
@@ -725,7 +1088,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">batch_size</span></code> : Size of batch</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">check_val_every_n_epoch</span></code> : Check val every n train epochs.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">gradient_clip_val</span></code> : 0 means don’t clip.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">use_tensorboard</span></code> : If set to True, will use tensorboard log.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logger</span></code> : Training logger. {wandb, tensorboard}</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">max_epochs</span></code> : Stop training once this number of epochs is reached.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">auto_scale_batch_size</span></code> : If set to True, will initially run a batch size finder trying to find the largest batch size that fits into memory.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> : Trainer name</p></li>
@@ -747,7 +1110,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">batch_size</span></code> : Size of batch</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">check_val_every_n_epoch</span></code> : Check val every n train epochs.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">gradient_clip_val</span></code> : 0 means don’t clip.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">use_tensorboard</span></code> : If set to True, will use tensorboard log.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logger</span></code> : Training logger. {wandb, tensorboard}</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">max_epochs</span></code> : Stop training once this number of epochs is reached.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">auto_scale_batch_size</span></code> : If set to True, will initially run a batch size finder trying to find the largest batch size that fits into memory.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> : Trainer name</p></li>
@@ -758,8 +1121,8 @@
 </ul>
 </div>
 </div>
-<div class="section" id="vocab">
-<h2><code class="docutils literal notranslate"><span class="pre">vocab</span></code><a class="headerlink" href="#vocab" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="tokenizer">
+<h2><code class="docutils literal notranslate"><span class="pre">tokenizer</span></code><a class="headerlink" href="#tokenizer" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="libri-subword">
 <h3><code class="docutils literal notranslate"><span class="pre">libri_subword</span></code><a class="headerlink" href="#libri-subword" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -769,7 +1132,6 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">blank_token</span></code> : Blank token (for CTC training)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">encoding</span></code> : Encoding of vocab</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">unit</span></code> : Unit of vocabulary.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sp_model_path</span></code> : Path of sentencepiece model.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">vocab_size</span></code> : Size of vocabulary.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">vocab_path</span></code> : Path of vocabulary file.</p></li>
 </ul>
@@ -844,7 +1206,7 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../Openspeech Model.html" class="btn btn-neutral float-right" title="Openspeech Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../models/Openspeech%20Model.html" class="btn btn-neutral float-right" title="Openspeech Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="hydra_configs.html" class="btn btn-neutral float-left" title="Openspeech’s Hydra configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

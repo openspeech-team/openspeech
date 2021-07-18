@@ -6,4 +6,4 @@ defaults:
   - lr_scheduler: null
   - model: null
   - trainer: gpu
-  - vocab: null
+  - tokenizer: null

@@ -34,14 +34,6 @@ class SpectrogramFeatureTransform(object):
     r"""
     Create a spectrogram from a audio signal.
 
-    Configurations:
-        name (str): name of feature transform. (default: spectrogram)
-        sample_rate (int): sampling rate of audio (default: 16000)
-        frame_length (float): frame length for spectrogram (default: 20.0)
-        frame_shift (float): length of hop between STFT (default: 10.0)
-        del_silence (bool): flag indication whether to apply delete silence or not (default: False)
-        num_mels (int): the number of mfc coefficients to retain. (default: 161)
-
     Args:
         configs (DictConfig): configuraion set
 

@@ -27,7 +27,7 @@ from omegaconf import DictConfig
 
 from openspeech.models import OpenspeechModel
 from openspeech.utils import get_class_name
-from openspeech.vocabs.vocab import Vocabulary
+from openspeech.tokenizers.tokenizer import Tokenizer
 
 
 class OpenspeechEncoderDecoderModel(OpenspeechModel):
@@ -36,19 +36,19 @@ class OpenspeechEncoderDecoderModel(OpenspeechModel):
 
     Args:
         configs (DictConfig): configuration set.
-        vocab (Vocabulary): the class of vocabulary
+        tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
 
     Inputs:
-        - **inputs** (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be
-            a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
+        - **inputs** (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
         - **input_lengths** (torch.LongTensor): The length of input tensor. ``(batch)``
 
     Returns:
-        - **y_hats** (torch.FloatTensor): Result of model predictions.
+        outputs (dict): Result of model predictions that contains `predictions`, `logits`, `encoder_outputs`,
+                `encoder_logits`, `encoder_output_lengths`.
     """
 
-    def __init__(self, configs: DictConfig, vocab: Vocabulary, ) -> None:
-        super(OpenspeechEncoderDecoderModel, self).__init__(configs, vocab)
+    def __init__(self, configs: DictConfig, tokenizer: Tokenizer, ) -> None:
+        super(OpenspeechEncoderDecoderModel, self).__init__(configs, tokenizer)
         self.teacher_forcing_ratio = configs.model.teacher_forcing_ratio
         self.encoder = None
         self.decoder = None
@@ -110,12 +110,11 @@ class OpenspeechEncoderDecoderModel(OpenspeechModel):
         Forward propagate a `inputs` and `targets` pair for inference.
 
         Inputs:
-            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded
-                `FloatTensor` of size ``(batch, seq_length, dimension)``.
+            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
             input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
 
         Returns:
-            * dict (dict): Result of model predictions that contains `predictions`, `logits`, `encoder_outputs`,
+            outputs (dict): Result of model predictions that contains `predictions`, `logits`, `encoder_outputs`,
                 `encoder_logits`, `encoder_output_lengths`.
         """
         logits = None

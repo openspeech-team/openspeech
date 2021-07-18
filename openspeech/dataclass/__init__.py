@@ -44,7 +44,7 @@ OPENSPEECH_TRAIN_CONFIGS = [
     "criterion",
     "lr_scheduler",
     "trainer",
-    "vocab",
+    "tokenizer",
 ]
 
 OPENSPEECH_LM_TRAIN_CONFIGS = [
@@ -53,7 +53,7 @@ OPENSPEECH_LM_TRAIN_CONFIGS = [
     "criterion",
     "lr_scheduler",
     "trainer",
-    "vocab",
+    "tokenizer",
 ]
 
 DATASET_DATACLASS_REGISTRY = {

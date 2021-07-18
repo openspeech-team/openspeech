@@ -22,7 +22,7 @@
 
 import torch
 
-from openspeech.search.base import OpenspeechBeamSearchBase
+from openspeech.search.beam_search_base import OpenspeechBeamSearchBase
 from openspeech.decoders import LSTMAttentionDecoder
 
 
@@ -33,15 +33,11 @@ class BeamSearchLSTM(OpenspeechBeamSearchBase):
     Args: decoder, beam_size, batch_size
         decoder (DecoderLSTM): base decoder of lstm model.
         beam_size (int): size of beam.
-        batch_size (int): size of batch.
 
     Inputs: encoder_outputs, targets, encoder_output_lengths, teacher_forcing_ratio
-        encoder_outputs (torch.FloatTensor): A output sequence of encoders. `FloatTensor` of size
-            ``(batch, seq_length, dimension)``
-        targets (torch.LongTensor): A target sequence passed to decoders. `IntTensor` of size
-            ``(batch, seq_length)``
-        encoder_output_lengths (torch.LongTensor): A encoder output lengths sequence. `LongTensor` of size
-            ``(batch)``
+        encoder_outputs (torch.FloatTensor): A output sequence of encoders. `FloatTensor` of size ``(batch, seq_length, dimension)``
+        targets (torch.LongTensor): A target sequence passed to decoders. `IntTensor` of size ``(batch, seq_length)``
+        encoder_output_lengths (torch.LongTensor): A encoder output lengths sequence. `LongTensor` of size ``(batch)``
         teacher_forcing_ratio (float): Ratio of teacher forcing.
 
     Returns:
@@ -62,8 +58,7 @@ class BeamSearchLSTM(OpenspeechBeamSearchBase):
         Beam search decoding.
 
         Inputs: encoder_outputs
-            encoder_outputs (torch.FloatTensor): A output sequence of encoders. `FloatTensor` of size
-                ``(batch, seq_length, dimension)``
+            encoder_outputs (torch.FloatTensor): A output sequence of encoders. `FloatTensor` of size ``(batch, seq_length, dimension)``
 
         Returns:
             * logits (torch.FloatTensor): Log probability of model predictions.

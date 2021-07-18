@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Introduction &mdash; Openspeech v0.1 documentation</title>
+  <title>Introduction &mdash; Openspeech v0.3.0 documentation</title>
   
 
   
@@ -32,7 +32,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -95,10 +94,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#supported-datasets">Supported Datasets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#manifest-file">Manifest File</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#training-examples">Training examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#evaluation-examples">Evaluation examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#language-model-training-example">Language model training example</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-from-pypi">Install from pypi</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#install-from-source">Install from source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#install-apex-for-16-bit-training">Install Apex (for 16-bit training)</a></li>
 </ul>
@@ -114,44 +116,48 @@
 <li class="toctree-l1"><a class="reference internal" href="hydra_configs.html">Openspeech’s Hydra configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configs.html">Openspeech’s configurations</a></li>
 </ul>
+<p class="caption"><span class="caption-text">OPENSPEECH MODELS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Model.html">Openspeech Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20CTC%20Model.html">Openspeech CTC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Encoder%20Decoder%20Model.html">Openspeech Encoder Decoder Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Transducer%20Model.html">Openspeech Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Language%20Model.html">Openspeech Language Model</a></li>
+</ul>
 <p class="caption"><span class="caption-text">MODEL ARCHITECTURES</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Openspeech Model.html">Openspeech Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Conformer.html">Conformer Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Conformer LSTM.html">Conformer LSTM Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Conformer Transducer.html">Conformer Transducer Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Deep CNN with Joint CTC LAS.html">Deep CNN with Joint CTC LAS Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../DeepSpeech2.html">DeepSpeech2 Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Jasper5x3.html">Jasper5x3 Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Jasper10x5.html">Jasper10x5 Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Joint CTC Conformer LSTM.html">Joint CTC Conformer LSTM Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Joint CTC LAS.html">Joint CTC LAS Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Joint CTC Transformer.html">Joint CTC Transformer Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Listen Attend Spell.html">Listen Attend Spell Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Listen Attend Spell (location-aware).html">Listen Attend Spell (location-aware) Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Listen Attend Spell (multi-head).html">Listen Attend Spell (multi-head) Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../QuartzNet5x5.html">QuartzNet 5x5 Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../QuartzNet10x5.html">QuartzNet 10x5 Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../QuartzNet15x5.html">QuartzNet 15x5 Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../RNN Transducer.html">RNN Transducer Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Transformer.html">Transformer Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Transformer Transducer.html">Transformer Transducer Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Transformer with CTC.html">Transformer with CTC Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../VGG Transformer.html">VGG Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Conformer.html">Conformer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/ContextNet.html">ContextNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/DeepSpeech2.html">DeepSpeech2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Jasper.html">Jasper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Listen%20Attend%20Spell.html">Listen Attend Spell Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/LSTM%20LM.html">LSTM Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/QuartzNet.html">QuartzNet Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/RNN%20Transducer.html">RNN Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer.html">Transformer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer%20LM.html">Transformer Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer%20Transducer.html">Transformer Transducer Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">CORPUS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../corpus/AISHELL-1.html">AISHELL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corpus/KsponSpeech.html">KsponSpeech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corpus/LibriSpeech.html">LibriSpeech</a></li>
 </ul>
 <p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Audio.html">Audio</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Criterion.html">Criterion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Data.html">Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Datasets.html">Datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Decoders.html">Decoders</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Encoders.html">Encoders</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Modules.html">Modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Optim.html">Optim</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Beam Search.html">Search</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Vocabulary.html">Vocabulary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Metric.html">Metric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Criterion.html">Criterion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Data%20Augment.html">Data Augment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Feature%20Transform.html">Feature Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Data%20Loaders.html">Data Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Decoders.html">Decoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Encoders.html">Encoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Optim.html">Optim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Search.html">Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Tokenizers.html">Tokenizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Metric.html">Metric</a></li>
 </ul>
 
             
@@ -268,25 +274,28 @@ Various features are available in the above two libraries, including Multi-GPU a
 <h2>Model architectures<a class="headerlink" href="#model-architectures" title="Permalink to this headline">¶</a></h2>
 <p>We support all the models below. Note that, the important concepts of the model have been implemented to match, but the details of the implementation may vary.</p>
 <ol class="simple">
-<li><p><a class="reference external" href="#"><strong>DeepSpeech2</strong></a> (from Baidu Research) released with paper <a class="reference external" href="https://arxiv.org/abs/1512.02595.pdf">Deep Speech 2: End-to-End Speech Recognition in
+<li><p><a class="reference external" href="https://sooftware.github.io/openspeech/artectures/DeepSpeech2.html"><strong>DeepSpeech2</strong></a> (from Baidu Research) released with paper <a class="reference external" href="https://arxiv.org/abs/1512.02595.pdf">Deep Speech 2: End-to-End Speech Recognition in
 English and Mandarin</a>, by Dario Amodei, Rishita Anubhai, Eric Battenberg, Carl Case, Jared Casper, Bryan Catanzaro, Jingdong Chen, Mike Chrzanowski, Adam Coates, Greg Diamos, Erich Elsen, Jesse Engel, Linxi Fan, Christopher Fougner, Tony Han, Awni Hannun, Billy Jun, Patrick LeGresley, Libby Lin, Sharan Narang, Andrew Ng, Sherjil Ozair, Ryan Prenger, Jonathan Raiman, Sanjeev Satheesh, David Seetapun, Shubho Sengupta, Yi Wang, Zhiqian Wang, Chong Wang, Bo Xiao, Dani Yogatama, Jun Zhan, Zhenyao Zhu.</p></li>
-<li><p><a class="reference external" href="#"><strong>RNN-Transducer</strong></a> (from University of Toronto) released with paper <a class="reference external" href="https://arxiv.org/abs/1211.3711.pdf">Sequence Transduction with Recurrent Neural Networks</a>, by Alex Graves.</p></li>
-<li><p><a class="reference external" href="https://sooftware.github.io/openspeech/Listen%20Attend%20Spell.html"><strong>Listen Attend Spell</strong></a> (from Carnegie Mellon University and Google Brain) released with paper <a class="reference external" href="https://arxiv.org/abs/1508.01211">Listen, Attend and Spell</a>, by William Chan, Navdeep Jaitly, Quoc V. Le, Oriol Vinyals.</p></li>
-<li><p><a class="reference external" href="#"><strong>Location-aware attention based Listen Attend Spell</strong></a> (from University of Wrocław and Jacobs University and Universite de Montreal ) released with paper <a class="reference external" href="https://arxiv.org/abs/1506.07503">Attention-Based Models for Speech Recognition</a>, by Jan Chorowski, Dzmitry Bahdanau, Dmitriy Serdyuk, Kyunghyun Cho, Yoshua Bengio.</p></li>
-<li><p><a class="reference external" href="#"><strong>Joint CTC-Attention based Listen Attend Spell</strong></a> (from Mitsubishi Electric Research Laboratories and Carnegie Mellon University) released with paper <a class="reference external" href="https://arxiv.org/abs/1609.06773">Joint CTC-Attention based End-to-End Speech Recognition using Multi-task Learning</a>, by Suyoun Kim, Takaaki Hori, Shinji Watanabe.</p></li>
-<li><p><a class="reference external" href="#"><strong>Deep CNN Encoder with Joint CTC-Attention Listen Attend Spell</strong></a> (from Mitsubishi Electric Research Laboratories and Massachusetts Institute of Technology and Carnegie Mellon University) released with paper <a class="reference external" href="https://arxiv.org/abs/1706.02737">Advances in Joint CTC-Attention based End-to-End Speech Recognition with a Deep CNN Encoder and RNN-LM</a>, by Takaaki Hori, Shinji Watanabe, Yu Zhang, William Chan.</p></li>
-<li><p><a class="reference external" href="#"><strong>Multi-head attention based Listen Attend Spell</strong></a> (from Google) released with paper <a class="reference external" href="https://arxiv.org/abs/1712.01769">State-of-the-art Speech Recognition With Sequence-to-Sequence Models</a>, by Chung-Cheng Chiu, Tara N. Sainath, Yonghui Wu, Rohit Prabhavalkar, Patrick Nguyen, Zhifeng Chen, Anjuli Kannan, Ron J. Weiss, Kanishka Rao, Ekaterina Gonina, Navdeep Jaitly, Bo Li, Jan Chorowski, Michiel Bacchiani.</p></li>
-<li><p><a class="reference external" href="#"><strong>Speech-Transformer</strong></a> (from University of Chinese Academy of Sciences and Institute of Automation and Chinese Academy of Sciences) released with paper <a class="reference external" href="https://ieeexplore.ieee.org/document/8462506">Speech-Transformer: A No-Recurrence Sequence-to-Sequence Model for Speech Recognition</a>, by Linhao Dong; Shuang Xu; Bo Xu.</p></li>
-<li><p><a class="reference external" href="#"><strong>VGG-Transformer</strong></a> (from Facebook AI Research) released with paper <a class="reference external" href="https://arxiv.org/abs/1904.11660">Transformers with convolutional context for ASR</a>, by Abdelrahman Mohamed, Dmytro Okhonko, Luke Zettlemoyer.</p></li>
-<li><p><a class="reference external" href="https://github.com/sooftware/openspeech-dev/issues/151"><strong>Transformer with CTC</strong></a> (from NTT Communication Science Laboratories, Waseda University, Center for Language and Speech Processing, Johns Hopkins University) released with paper <a class="reference external" href="https://www.isca-speech.org/archive/Interspeech_2019/pdfs/1938.pdf">Improving Transformer-based End-to-End Speech Recognition with Connectionist Temporal Classification and Language Model Integration</a>, by Shigeki Karita, Nelson Enrique Yalta Soplin, Shinji Watanabe, Marc Delcroix, Atsunori Ogawa, Tomohiro Nakatani.</p></li>
-<li><p><a class="reference external" href="https://github.com/sooftware/openspeech-dev/issues/151"><strong>Joint CTC-Attention based Transformer</strong></a>(from NTT Corporation) released with paper <a class="reference external" href="https://www.isca-speech.org/archive/Interspeech_2020/pdfs/1223.pdf">Self-Distillation for Improving CTC-Transformer-based ASR Systems</a>, by Takafumi Moriya, Tsubasa Ochiai, Shigeki Karita, Hiroshi Sato, Tomohiro Tanaka, Takanori Ashihara, Ryo Masumura, Yusuke Shinohara, Marc Delcroix.</p></li>
-<li><p><a class="reference external" href="#"><strong>Jasper</strong></a> (from NVIDIA and New York University) released with paper <a class="reference external" href="https://arxiv.org/pdf/1904.03288.pdf">Jasper: An End-to-End Convolutional Neural Acoustic Model</a>, by Jason Li, Vitaly Lavrukhin, Boris Ginsburg, Ryan Leary, Oleksii Kuchaiev, Jonathan M. Cohen, Huyen Nguyen, Ravi Teja Gadde.</p></li>
-<li><p><a class="reference external" href="#"><strong>QuartzNet</strong></a> (from NVIDIA and Univ. of Illinois and Univ. of Saint Petersburg) released with paper <a class="reference external" href="https://arxiv.org/abs/1910.10261.pdf">QuartzNet: Deep Automatic Speech Recognition with 1D Time-Channel Separable Convolutions</a>, by Samuel Kriman, Stanislav Beliaev, Boris Ginsburg, Jocelyn Huang, Oleksii Kuchaiev, Vitaly Lavrukhin, Ryan Leary, Jason Li, Yang Zhang.</p></li>
-<li><p><a class="reference external" href="#"><strong>Transformer Transducer</strong></a> (from Facebook AI) released with paper <a class="reference external" href="https://arxiv.org/abs/1910.12977.pdf">Transformer-Transducer:
+<li><p><a class="reference external" href="https://sooftware.github.io/openspeech/artectures//RNN%20Transducer.html"><strong>RNN-Transducer</strong></a> (from University of Toronto) released with paper <a class="reference external" href="https://arxiv.org/abs/1211.3711.pdf">Sequence Transduction with Recurrent Neural Networks</a>, by Alex Graves.</p></li>
+<li><p><a class="reference external" href="https://sooftware.github.io/openspeech/artectures/LSTM%20LM.html"><strong>LSTM Language Model</strong></a> (from RWTH Aachen University) released with paper <a class="reference external" href="http://www-i6.informatik.rwth-aachen.de/publications/download/820/Sundermeyer-2012.pdf">LSTM Neural Networks for Language Modeling</a>, by  Martin Sundermeyer, Ralf Schluter, and Hermann Ney.</p></li>
+<li><p><a class="reference external" href="https://sooftware.github.io/openspeech/artectures/Listen%20Attend%20Spell.html"><strong>Listen Attend Spell</strong></a> (from Carnegie Mellon University and Google Brain) released with paper <a class="reference external" href="https://arxiv.org/abs/1508.01211">Listen, Attend and Spell</a>, by William Chan, Navdeep Jaitly, Quoc V. Le, Oriol Vinyals.</p></li>
+<li><p><a class="reference external" href="https://sooftware.github.io/OpenSpeech/Listen%20Attend%20Spell%20(location-aware).html"><strong>Location-aware attention based Listen Attend Spell</strong></a> (from University of Wrocław and Jacobs University and Universite de Montreal) released with paper <a class="reference external" href="https://arxiv.org/abs/1506.07503">Attention-Based Models for Speech Recognition</a>, by Jan Chorowski, Dzmitry Bahdanau, Dmitriy Serdyuk, Kyunghyun Cho, Yoshua Bengio.</p></li>
+<li><p><a class="reference external" href="https://sooftware.github.io/OpenSpeech/Joint%20CTC%20LAS.html"><strong>Joint CTC-Attention based Listen Attend Spell</strong></a> (from Mitsubishi Electric Research Laboratories and Carnegie Mellon University) released with paper <a class="reference external" href="https://arxiv.org/abs/1609.06773">Joint CTC-Attention based End-to-End Speech Recognition using Multi-task Learning</a>, by Suyoun Kim, Takaaki Hori, Shinji Watanabe.</p></li>
+<li><p><a class="reference external" href="https://sooftware.github.io/OpenSpeech/Deep%20CNN%20with%20Joint%20CTC%20LAS.html"><strong>Deep CNN Encoder with Joint CTC-Attention Listen Attend Spell</strong></a> (from Mitsubishi Electric Research Laboratories and Massachusetts Institute of Technology and Carnegie Mellon University) released with paper <a class="reference external" href="https://arxiv.org/abs/1706.02737">Advances in Joint CTC-Attention based End-to-End Speech Recognition with a Deep CNN Encoder and RNN-LM</a>, by Takaaki Hori, Shinji Watanabe, Yu Zhang, William Chan.</p></li>
+<li><p><a class="reference external" href="https://sooftware.github.io/OpenSpeech/Listen%20Attend%20Spell%20(multi-head).html"><strong>Multi-head attention based Listen Attend Spell</strong></a> (from Google) released with paper <a class="reference external" href="https://arxiv.org/abs/1712.01769">State-of-the-art Speech Recognition With Sequence-to-Sequence Models</a>, by Chung-Cheng Chiu, Tara N. Sainath, Yonghui Wu, Rohit Prabhavalkar, Patrick Nguyen, Zhifeng Chen, Anjuli Kannan, Ron J. Weiss, Kanishka Rao, Ekaterina Gonina, Navdeep Jaitly, Bo Li, Jan Chorowski, Michiel Bacchiani.</p></li>
+<li><p><a class="reference external" href="https://sooftware.github.io/OpenSpeech/Transformer.html"><strong>Speech-Transformer</strong></a> (from University of Chinese Academy of Sciences and Institute of Automation and Chinese Academy of Sciences) released with paper <a class="reference external" href="https://ieeexplore.ieee.org/document/8462506">Speech-Transformer: A No-Recurrence Sequence-to-Sequence Model for Speech Recognition</a>, by Linhao Dong; Shuang Xu; Bo Xu.</p></li>
+<li><p><a class="reference external" href="https://sooftware.github.io/OpenSpeech/VGG%20Transformer.html"><strong>VGG-Transformer</strong></a> (from Facebook AI Research) released with paper <a class="reference external" href="https://arxiv.org/abs/1904.11660">Transformers with convolutional context for ASR</a>, by Abdelrahman Mohamed, Dmytro Okhonko, Luke Zettlemoyer.</p></li>
+<li><p><a class="reference external" href="https://sooftware.github.io/OpenSpeech/Transformer%20with%20CTC.html"><strong>Transformer with CTC</strong></a> (from NTT Communication Science Laboratories, Waseda University, Center for Language and Speech Processing, Johns Hopkins University) released with paper <a class="reference external" href="https://www.isca-speech.org/archive/Interspeech_2019/pdfs/1938.pdf">Improving Transformer-based End-to-End Speech Recognition with Connectionist Temporal Classification and Language Model Integration</a>, by Shigeki Karita, Nelson Enrique Yalta Soplin, Shinji Watanabe, Marc Delcroix, Atsunori Ogawa, Tomohiro Nakatani.</p></li>
+<li><p><a class="reference external" href="https://sooftware.github.io/OpenSpeech/Joint%20CTC%20Transformer.html"><strong>Joint CTC-Attention based Transformer</strong></a>(from NTT Corporation) released with paper <a class="reference external" href="https://www.isca-speech.org/archive/Interspeech_2020/pdfs/1223.pdf">Self-Distillation for Improving CTC-Transformer-based ASR Systems</a>, by Takafumi Moriya, Tsubasa Ochiai, Shigeki Karita, Hiroshi Sato, Tomohiro Tanaka, Takanori Ashihara, Ryo Masumura, Yusuke Shinohara, Marc Delcroix.</p></li>
+<li><p><a class="reference external" href="#"><strong>Transformer Language Model</strong></a> (from Amazon Web Services) released with paper <a class="reference external" href="https://arxiv.org/abs/1904.09408">Language Models with Transformers</a>, by Chenguang Wang, Mu Li, Alexander J. Smola.</p></li>
+<li><p><a class="reference external" href="https://sooftware.github.io/OpenSpeech/Jasper10x5.html"><strong>Jasper</strong></a> (from NVIDIA and New York University) released with paper <a class="reference external" href="https://arxiv.org/pdf/1904.03288.pdf">Jasper: An End-to-End Convolutional Neural Acoustic Model</a>, by Jason Li, Vitaly Lavrukhin, Boris Ginsburg, Ryan Leary, Oleksii Kuchaiev, Jonathan M. Cohen, Huyen Nguyen, Ravi Teja Gadde.</p></li>
+<li><p><a class="reference external" href="https://sooftware.github.io/OpenSpeech/QuartzNet15x5.html"><strong>QuartzNet</strong></a> (from NVIDIA and Univ. of Illinois and Univ. of Saint Petersburg) released with paper <a class="reference external" href="https://arxiv.org/abs/1910.10261.pdf">QuartzNet: Deep Automatic Speech Recognition with 1D Time-Channel Separable Convolutions</a>, by Samuel Kriman, Stanislav Beliaev, Boris Ginsburg, Jocelyn Huang, Oleksii Kuchaiev, Vitaly Lavrukhin, Ryan Leary, Jason Li, Yang Zhang.</p></li>
+<li><p><a class="reference external" href="https://sooftware.github.io/OpenSpeech/Transformer%20Transducer.html"><strong>Transformer Transducer</strong></a> (from Facebook AI) released with paper <a class="reference external" href="https://arxiv.org/abs/1910.12977.pdf">Transformer-Transducer:
 End-to-End Speech Recognition with Self-Attention</a>, by Ching-Feng Yeh, Jay Mahadeokar, Kaustubh Kalgaonkar, Yongqiang Wang, Duc Le, Mahaveer Jain, Kjell Schubert, Christian Fuegen, Michael L. Seltzer.</p></li>
-<li><p><a class="reference external" href="#"><strong>Conformer</strong></a> (from Google) released with paper <a class="reference external" href="https://arxiv.org/abs/2005.08100">Conformer: Convolution-augmented Transformer for Speech Recognition</a>, by Anmol Gulati, James Qin, Chung-Cheng Chiu, Niki Parmar, Yu Zhang, Jiahui Yu, Wei Han, Shibo Wang, Zhengdong Zhang, Yonghui Wu, Ruoming Pang.</p></li>
-<li><p><a class="reference external" href="#"><strong>Conformer with CTC</strong></a> (from Northwestern Polytechnical University and University of Bordeaux and Johns Hopkins University and Human Dataware Lab and Kyoto University and NTT Corporation and Shanghai Jiao Tong University and  Chinese Academy of Sciences) released with paper <a class="reference external" href="https://arxiv.org/abs/2010.13956.pdf">RECENT DEVELOPMENTS ON ESPNET TOOLKIT BOOSTED BY CONFORMER</a>, by Pengcheng Guo, Florian Boyer, Xuankai Chang, Tomoki Hayashi, Yosuke Higuchi, Hirofumi Inaguma, Naoyuki Kamo, Chenda Li, Daniel Garcia-Romero, Jiatong Shi, Jing Shi, Shinji Watanabe, Kun Wei, Wangyou Zhang, Yuekai Zhang.</p></li>
-<li><p><a class="reference external" href="#"><strong>Conformer with LSTM Decoder</strong></a> (from IBM Research AI) released with paper <a class="reference external" href="https://arxiv.org/abs/2105.00982.pdf">On the limit of English conversational speech recognition</a>, by Zoltán Tüske, George Saon, Brian Kingsbury.</p></li>
+<li><p><a class="reference external" href="https://sooftware.github.io/OpenSpeech/Conformer%20Transducer.html"><strong>Conformer</strong></a> (from Google) released with paper <a class="reference external" href="https://arxiv.org/abs/2005.08100">Conformer: Convolution-augmented Transformer for Speech Recognition</a>, by Anmol Gulati, James Qin, Chung-Cheng Chiu, Niki Parmar, Yu Zhang, Jiahui Yu, Wei Han, Shibo Wang, Zhengdong Zhang, Yonghui Wu, Ruoming Pang.</p></li>
+<li><p><a class="reference external" href="https://sooftware.github.io/OpenSpeech/Conformer.html"><strong>Conformer with CTC</strong></a> (from Northwestern Polytechnical University and University of Bordeaux and Johns Hopkins University and Human Dataware Lab and Kyoto University and NTT Corporation and Shanghai Jiao Tong University and  Chinese Academy of Sciences) released with paper <a class="reference external" href="https://arxiv.org/abs/2010.13956.pdf">Recent Developments on ESPNET Toolkit Boosted by Conformer</a>, by Pengcheng Guo, Florian Boyer, Xuankai Chang, Tomoki Hayashi, Yosuke Higuchi, Hirofumi Inaguma, Naoyuki Kamo, Chenda Li, Daniel Garcia-Romero, Jiatong Shi, Jing Shi, Shinji Watanabe, Kun Wei, Wangyou Zhang, Yuekai Zhang.</p></li>
+<li><p><a class="reference external" href="https://sooftware.github.io/OpenSpeech/Conformer%20LSTM.html"><strong>Conformer with LSTM Decoder</strong></a> (from IBM Research AI) released with paper <a class="reference external" href="https://arxiv.org/abs/2105.00982.pdf">On the limit of English conversational speech recognition</a>, by Zoltán Tüske, George Saon, Brian Kingsbury.</p></li>
+<li><p><a class="reference external" href="https://sooftware.github.io/OpenSpeech/ContextNet.html"><strong>ContextNet</strong></a> (from Google) released with paper <a class="reference external" href="https://arxiv.org/abs/2005.03191">ContextNet: Improving Convolutional Neural Networks for Automatic Speech Recognition with Global Context</a>, by Wei Han, Zhengdong Zhang, Yu Zhang, Jiahui Yu, Chung-Cheng Chiu, James Qin, Anmol Gulati, Ruoming Pang, Yonghui Wu.</p></li>
 </ol>
 </div>
 <div class="section" id="get-started">
@@ -294,18 +303,18 @@ End-to-End Speech Recognition with Self-Attention</a>, by Ching-Feng Yeh, Jay Ma
 <p>We use <a class="reference external" href="https://github.com/facebookresearch/hydra">Hydra</a> to control all the training configurations.
 If you are not familiar with Hydra we recommend visiting the <a class="reference external" href="https://hydra.cc/">Hydra website</a>.
 Generally, Hydra is an open-source framework that simplifies the development of research applications by providing the ability to create a hierarchical configuration dynamically.
-If you want to know how we used Hydra, it’ll help if you read <a class="reference external" href="https://sooftware.github.io/openspeech/notes/hydra_configs.html">here</a>.</p>
+If you want to know how we used Hydra, we recommend you to read <a class="reference external" href="https://sooftware.github.io/OpenSpeech/notes/hydra_configs.html">here</a>.</p>
 <div class="section" id="supported-datasets">
 <h3>Supported Datasets<a class="headerlink" href="#supported-datasets" title="Permalink to this headline">¶</a></h3>
-<p>We supports <a class="reference external" href="https://www.openslr.org/12">LibriSpeech</a>, <a class="reference external" href="https://aihub.or.kr/aidata/105">KsponSpeech</a>, and <a class="reference external" href="https://www.openslr.org/33/">AISHELL-1</a>.</p>
-<p>LibriSpeech is a corpus of approximately 1000 hours of 16kHz read English speech, prepared by Vassil Panayotov with the assistance of Daniel Povey. The data is derived from read audiobooks from the LibriVox project, and has been carefully segmented and aligned.</p>
-<p>Aishell is an open-source Chinese Mandarin speech corpus published by Beijing Shell Shell Technology Co.,Ltd. 400 people from different accent areas in China are invited to participate in the recording, which is conducted in a quiet indoor environment using high fidelity microphone and downsampled to 16kHz.</p>
-<p>KsponSpeech is a large-scale spontaneous speech corpus of Korean. This corpus contains 969 h of general open-domain dialog utterances, spoken by about 2000 native Korean speakers in a clean environment. All data were constructed by recording the dialogue of two people freely conversing on a variety of topics and manually transcribing the utterances. To start training, the KsponSpeech dataset must be prepared in advance. To download KsponSpeech, you needs permission from <a class="reference external" href="https://aihub.or.kr/">AI Hub</a>.</p>
+<p>We support <a class="reference external" href="https://www.openslr.org/12">LibriSpeech</a>, <a class="reference external" href="https://aihub.or.kr/aidata/105">KsponSpeech</a>, and <a class="reference external" href="https://www.openslr.org/33/">AISHELL-1</a>.</p>
+<p>LibriSpeech is a corpus of approximately 1,000 hours of 16kHz read English speech, prepared by Vassil Panayotov with the assistance of Daniel Povey. The data was derived from reading audiobooks from the LibriVox project, and has been carefully segmented and aligned.</p>
+<p>Aishell is an open-source Chinese Mandarin speech corpus published by Beijing Shell Shell Technology Co.,Ltd. 400 people from different accent areas in China were invited to participate in the recording, which was conducted in a quiet indoor environment using high fidelity microphone and downsampled to 16kHz.</p>
+<p>KsponSpeech is a large-scale spontaneous speech corpus of Korean. This corpus contains 969 hours of general open-domain dialog utterances, spoken by about 2,000 native Korean speakers in a clean environment. All data were constructed by recording the dialogue of two people freely conversing on a variety of topics and manually transcribing the utterances. To start training, the KsponSpeech dataset must be prepared in advance. To download KsponSpeech, you need permission from <a class="reference external" href="https://aihub.or.kr/">AI Hub</a>.</p>
 </div>
 <div class="section" id="manifest-file">
 <h3>Manifest File<a class="headerlink" href="#manifest-file" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Manifest file format:</p></li>
+<li><p>Acoustic model manifest file format:</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>LibriSpeech/test-other/8188/269288/8188-269288-0052.flac        ▁ANNIE &#39; S ▁MANNER ▁WAS ▁VERY ▁MYSTERIOUS       4039 20 5 531 17 84 2352
 LibriSpeech/test-other/8188/269288/8188-269288-0053.flac        ▁ANNIE ▁DID ▁NOT ▁MEAN ▁TO ▁CONFIDE ▁IN ▁ANYONE ▁THAT ▁NIGHT ▁AND ▁THE ▁KIND EST ▁THING ▁WAS ▁TO ▁LEAVE ▁HER ▁A LONE    4039 99 35 251 9 4758 11 2454 16 199 6 4 323 200 255 17 9 370 30 10 492
@@ -329,7 +338,7 @@ LibriSpeech/test-other/8188/269288/8188-269288-0057.flac        ▁OH ▁THIS �
     dataset.dataset_download=True \
     dataset.dataset_path=$DATASET_PATH \
     dataset.manifest_file_path=$MANIFEST_FILE_PATH \  
-    vocab=libri_subword \
+    tokenizer=libri_subword \
     model=conformer_lstm \
     audio=fbank \
     lr_scheduler=warmup_reduce_lr_on_plateau \
@@ -347,7 +356,7 @@ LibriSpeech/test-other/8188/269288/8188-269288-0057.flac        ▁OH ▁THIS �
     dataset.manifest_file_path=$MANIFEST_FILE_PATH \  
     dataset.test_dataset_path=$TEST_DATASET_PATH \
     dataset.test_manifest_dir=$TEST_MANIFEST_DIR \
-    vocab=kspon_character \
+    tokenizer=kspon_character \
     model=listen_attend_spell \
     audio=melspectrogram \
     lr_scheduler=warmup_reduce_lr_on_plateau \
@@ -364,7 +373,7 @@ LibriSpeech/test-other/8188/269288/8188-269288-0057.flac        ▁OH ▁THIS �
     dataset.dataset_path=$DATASET_PATH \
     dataset.dataset_download=True \
     dataset.manifest_file_path=$MANIFEST_FILE_PATH \  
-    vocab=aishell_character \
+    tokenizer=aishell_character \
     model=quartznet15x5 \
     audio=mfcc \
     lr_scheduler=warmup_reduce_lr_on_plateau \
@@ -373,10 +382,63 @@ LibriSpeech/test-other/8188/269288/8188-269288-0057.flac        ▁OH ▁THIS �
 </pre></div>
 </div>
 </div>
+<div class="section" id="evaluation-examples">
+<h3>Evaluation examples<a class="headerlink" href="#evaluation-examples" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Example1: Evaluation the <code class="docutils literal notranslate"><span class="pre">listen_attend_spell</span></code> model:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python ./openspeech_cli/hydra_eval.py \
+    audio=melspectrogram \
+    eval.model_name=listen_attend_spell \
+    eval.dataset_path=$DATASET_PATH \
+    eval.checkpoint_path=$CHECKPOINT_PATH \
+    eval.manifest_file_path=$MANIFEST_FILE_PATH  
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Example2: Evaluation the <code class="docutils literal notranslate"><span class="pre">listen_attend_spell</span></code>, <code class="docutils literal notranslate"><span class="pre">conformer_lstm</span></code> models with ensemble:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python ./openspeech_cli/hydra_eval.py \
+    audio=melspectrogram \
+    eval.model_names=(listen_attend_spell, conformer_lstm) \
+    eval.dataset_path=$DATASET_PATH \
+    eval.checkpoint_paths=($CHECKPOINT_PATH1, $CHECKPOINT_PATH2) \
+    eval.ensemble_weights=(0.3, 0.7) \
+    eval.ensemble_method=weighted \
+    eval.manifest_file_path=$MANIFEST_FILE_PATH  
+</pre></div>
+</div>
+</div>
+<div class="section" id="language-model-training-example">
+<h3>Language model training example<a class="headerlink" href="#language-model-training-example" title="Permalink to this headline">¶</a></h3>
+<p>Language model training requires only data to be prepared in the following format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openspeech</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">framework</span> <span class="k">for</span> <span class="n">making</span> <span class="n">end</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">end</span> <span class="n">speech</span> <span class="n">recognizers</span><span class="o">.</span>
+<span class="n">end</span> <span class="n">to</span> <span class="n">end</span> <span class="n">automatic</span> <span class="n">speech</span> <span class="n">recognition</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">emerging</span> <span class="n">paradigm</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">field</span> <span class="n">of</span> <span class="n">neural</span> <span class="n">network</span><span class="o">-</span><span class="n">based</span> <span class="n">speech</span> <span class="n">recognition</span> <span class="n">that</span> <span class="n">offers</span> <span class="n">multiple</span> <span class="n">benefits</span><span class="o">.</span>
+<span class="n">because</span> <span class="n">of</span> <span class="n">these</span> <span class="n">advantages</span><span class="p">,</span> <span class="n">many</span> <span class="n">end</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">end</span> <span class="n">speech</span> <span class="n">recognition</span> <span class="n">related</span> <span class="nb">open</span> <span class="n">sources</span> <span class="n">have</span> <span class="n">emerged</span><span class="o">.</span>
+<span class="o">...</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>Note that you need to use the same vocabulary as the acoustic model.</p>
+<ul class="simple">
+<li><p>Example: Train the <code class="docutils literal notranslate"><span class="pre">lstm_lm</span></code> model:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python ./openspeech_cli/hydra_lm_train.py \
+    dataset=lm \
+    dataset.dataset_path=../../../lm.txt \
+    tokenizer=kspon_character \
+    tokenizer.vocab_path=../../../labels.csv \
+    model=lstm_lm \
+    lr_scheduler=tri_stage \
+    trainer=gpu \
+    criterion=perplexity
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>This project recommends Python 3.7 or higher.<br />I recommend creating a new virtual environment for this project (using virtual env or conda).</p>
+<p>This project recommends Python 3.7 or higher.<br />We recommend creating a new virtual environment for this project (using virtual env or conda).</p>
 <div class="section" id="prerequisites">
 <h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -391,9 +453,16 @@ LibriSpeech/test-other/8188/269288/8188-269288-0057.flac        ▁OH ▁THIS �
 <li><p>ctcdecode: Refer to <a class="reference external" href="https://github.com/parlance/ctcdecode">ctcdecode page</a> to install the library.</p></li>
 </ul>
 </div>
+<div class="section" id="install-from-pypi">
+<h3>Install from pypi<a class="headerlink" href="#install-from-pypi" title="Permalink to this headline">¶</a></h3>
+<p>You can install OpenSpeech with pypi.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">openspeech</span><span class="o">-</span><span class="n">core</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="install-from-source">
 <h3>Install from source<a class="headerlink" href="#install-from-source" title="Permalink to this headline">¶</a></h3>
-<p>Currently I only support installation from source code using setuptools. Checkout the source code and run the<br />following commands:</p>
+<p>Currently we only support installation from source code using setuptools. Checkout the source code and run the<br />following commands:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./install.sh
 </pre></div>
 </div>
@@ -425,7 +494,7 @@ $ pip install -v --no-cache-dir --global-option=&quot;--cpp_ext&quot; --global-o
 </div>
 <div class="section" id="troubleshoots-and-contributing">
 <h2>Troubleshoots and Contributing<a class="headerlink" href="#troubleshoots-and-contributing" title="Permalink to this headline">¶</a></h2>
-<p>If you have any questions, bug reports, and feature requests, please <a class="reference external" href="https://github.com/sooftware/openspeech/issues">open an issue</a> on Github.</p>
+<p>If you have any questions, bug reports, and feature requests, please <a class="reference external" href="https://github.com/sooftware/OpenSpeech/issues">open an issue</a> on Github.</p>
 <p>We appreciate any kind of feedback or contribution.  Feel free to proceed with small issues like bug fixes, documentation improvement.  For major contributions and new features, please discuss with the collaborators in corresponding issues.</p>
 <div class="section" id="code-style">
 <h3>Code Style<a class="headerlink" href="#code-style" title="Permalink to this headline">¶</a></h3>
@@ -433,18 +502,18 @@ $ pip install -v --no-cache-dir --global-option=&quot;--cpp_ext&quot; --global-o
 </div>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
-<p>This project is licensed under the MIT LICENSE - see the <a class="reference external" href="https://github.com/sooftware/openspeech/blob/master/LICENSE">LICENSE.md</a> file for details</p>
+<p>This project is licensed under the MIT LICENSE - see the <a class="reference external" href="https://github.com/sooftware/OpenSpeech/blob/master/LICENSE">LICENSE.md</a> file for details</p>
 </div>
 </div>
 <div class="section" id="citation">
 <h2>Citation<a class="headerlink" href="#citation" title="Permalink to this headline">¶</a></h2>
 <p>If you use the system for academic work, please cite:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@GITHUB</span><span class="p">{</span><span class="mi">2021</span><span class="o">-</span><span class="n">openspeech</span><span class="p">,</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@GITHUB</span><span class="p">{</span><span class="mi">2021</span><span class="o">-</span><span class="n">OpenSpeech</span><span class="p">,</span>
   <span class="n">author</span>       <span class="o">=</span> <span class="p">{</span><span class="n">Kim</span><span class="p">,</span> <span class="n">Soohwan</span> <span class="ow">and</span> <span class="n">Ha</span><span class="p">,</span> <span class="n">Sangchun</span> <span class="ow">and</span> <span class="n">Cho</span><span class="p">,</span> <span class="n">Soyoung</span><span class="p">},</span>
   <span class="n">author</span> <span class="n">email</span> <span class="o">=</span> <span class="p">{</span><span class="n">sh951011</span><span class="nd">@gmail</span><span class="o">.</span><span class="n">com</span><span class="p">,</span> <span class="n">seomk9896</span><span class="nd">@naver</span><span class="o">.</span><span class="n">com</span><span class="p">,</span> <span class="n">soyoung</span><span class="o">.</span><span class="n">cho</span><span class="nd">@kaist</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">kr</span><span class="p">}</span>
-  <span class="n">title</span>        <span class="o">=</span> <span class="p">{</span><span class="n">Openspeech</span><span class="p">:</span> <span class="n">Open</span><span class="o">-</span><span class="n">Source</span> <span class="n">Toolkit</span> <span class="k">for</span> <span class="n">End</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">End</span> <span class="n">Speech</span> <span class="n">Recognition</span><span class="p">},</span>
-  <span class="n">howpublished</span> <span class="o">=</span> <span class="p">{</span>\<span class="n">url</span><span class="p">{</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">sooftware</span><span class="o">/</span><span class="n">openspeech</span><span class="p">}},</span>
-  <span class="n">docs</span>         <span class="o">=</span> <span class="p">{</span>\<span class="n">url</span><span class="p">{</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">sooftware</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">openspeech</span><span class="p">}},</span>
+  <span class="n">title</span>        <span class="o">=</span> <span class="p">{</span><span class="n">OpenSpeech</span><span class="p">:</span> <span class="n">Open</span><span class="o">-</span><span class="n">Source</span> <span class="n">Toolkit</span> <span class="k">for</span> <span class="n">End</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">End</span> <span class="n">Speech</span> <span class="n">Recognition</span><span class="p">},</span>
+  <span class="n">howpublished</span> <span class="o">=</span> <span class="p">{</span>\<span class="n">url</span><span class="p">{</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">sooftware</span><span class="o">/</span><span class="n">OpenSpeech</span><span class="p">}},</span>
+  <span class="n">docs</span>         <span class="o">=</span> <span class="p">{</span>\<span class="n">url</span><span class="p">{</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">sooftware</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">OpenSpeech</span><span class="p">}},</span>
   <span class="n">year</span>         <span class="o">=</span> <span class="p">{</span><span class="mi">2021</span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>

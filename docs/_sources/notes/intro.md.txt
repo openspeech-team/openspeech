@@ -35,47 +35,49 @@ We appreciate any kind of feedback or contribution. Feel free to proceed with sm
   
 We support all the models below. Note that, the important concepts of the model have been implemented to match, but the details of the implementation may vary.  
   
-1. [**DeepSpeech2**]() (from Baidu Research) released with paper [Deep Speech 2: End-to-End Speech Recognition in
+1. [**DeepSpeech2**](https://sooftware.github.io/openspeech/artectures/DeepSpeech2.html) (from Baidu Research) released with paper [Deep Speech 2: End-to-End Speech Recognition in
 English and Mandarin](https://arxiv.org/abs/1512.02595.pdf), by Dario Amodei, Rishita Anubhai, Eric Battenberg, Carl Case, Jared Casper, Bryan Catanzaro, Jingdong Chen, Mike Chrzanowski, Adam Coates, Greg Diamos, Erich Elsen, Jesse Engel, Linxi Fan, Christopher Fougner, Tony Han, Awni Hannun, Billy Jun, Patrick LeGresley, Libby Lin, Sharan Narang, Andrew Ng, Sherjil Ozair, Ryan Prenger, Jonathan Raiman, Sanjeev Satheesh, David Seetapun, Shubho Sengupta, Yi Wang, Zhiqian Wang, Chong Wang, Bo Xiao, Dani Yogatama, Jun Zhan, Zhenyao Zhu. 
-2. [**RNN-Transducer**]() (from University of Toronto) released with paper [Sequence Transduction with Recurrent Neural Networks](https://arxiv.org/abs/1211.3711.pdf), by Alex Graves.
-3. [**Listen Attend Spell**](https://sooftware.github.io/openspeech/Listen%20Attend%20Spell.html) (from Carnegie Mellon University and Google Brain) released with paper [Listen, Attend and Spell](https://arxiv.org/abs/1508.01211), by William Chan, Navdeep Jaitly, Quoc V. Le, Oriol Vinyals.  
-4. [**Location-aware attention based Listen Attend Spell**]() (from University of Wrocław and Jacobs University and Universite de Montreal ) released with paper [Attention-Based Models for Speech Recognition](https://arxiv.org/abs/1506.07503), by Jan Chorowski, Dzmitry Bahdanau, Dmitriy Serdyuk, Kyunghyun Cho, Yoshua Bengio.  
-5. [**Joint CTC-Attention based Listen Attend Spell**]() (from Mitsubishi Electric Research Laboratories and Carnegie Mellon University) released with paper [Joint CTC-Attention based End-to-End Speech Recognition using Multi-task Learning](https://arxiv.org/abs/1609.06773), by Suyoun Kim, Takaaki Hori, Shinji Watanabe.  
-6. [**Deep CNN Encoder with Joint CTC-Attention Listen Attend Spell**]() (from Mitsubishi Electric Research Laboratories and Massachusetts Institute of Technology and Carnegie Mellon University) released with paper [Advances in Joint CTC-Attention based End-to-End Speech Recognition with a Deep CNN Encoder and RNN-LM](https://arxiv.org/abs/1706.02737), by Takaaki Hori, Shinji Watanabe, Yu Zhang, William Chan.
-7. [**Multi-head attention based Listen Attend Spell**]() (from Google) released with paper [State-of-the-art Speech Recognition With Sequence-to-Sequence Models](https://arxiv.org/abs/1712.01769), by Chung-Cheng Chiu, Tara N. Sainath, Yonghui Wu, Rohit Prabhavalkar, Patrick Nguyen, Zhifeng Chen, Anjuli Kannan, Ron J. Weiss, Kanishka Rao, Ekaterina Gonina, Navdeep Jaitly, Bo Li, Jan Chorowski, Michiel Bacchiani.  
-8. [**Speech-Transformer**]() (from University of Chinese Academy of Sciences and Institute of Automation and Chinese Academy of Sciences) released with paper [Speech-Transformer: A No-Recurrence Sequence-to-Sequence Model for Speech Recognition](https://ieeexplore.ieee.org/document/8462506), by Linhao Dong; Shuang Xu; Bo Xu.
-9. [**VGG-Transformer**]() (from Facebook AI Research) released with paper [Transformers with convolutional context for ASR](https://arxiv.org/abs/1904.11660), by Abdelrahman Mohamed, Dmytro Okhonko, Luke Zettlemoyer.  
-10. [**Transformer with CTC**](https://github.com/sooftware/openspeech-dev/issues/151) (from NTT Communication Science Laboratories, Waseda University, Center for Language and Speech Processing, Johns Hopkins University) released with paper [Improving Transformer-based End-to-End Speech Recognition with Connectionist Temporal Classification and Language Model Integration](https://www.isca-speech.org/archive/Interspeech_2019/pdfs/1938.pdf), by Shigeki Karita, Nelson Enrique Yalta Soplin, Shinji Watanabe, Marc Delcroix, Atsunori Ogawa, Tomohiro Nakatani.
-11. [**Joint CTC-Attention based Transformer**](https://github.com/sooftware/openspeech-dev/issues/151)(from NTT Corporation) released with paper [Self-Distillation for Improving CTC-Transformer-based ASR Systems](https://www.isca-speech.org/archive/Interspeech_2020/pdfs/1223.pdf), by Takafumi Moriya, Tsubasa Ochiai, Shigeki Karita, Hiroshi Sato, Tomohiro Tanaka, Takanori Ashihara, Ryo Masumura, Yusuke Shinohara, Marc Delcroix.
-12. [**Jasper**]() (from NVIDIA and New York University) released with paper [Jasper: An End-to-End Convolutional Neural Acoustic Model](https://arxiv.org/pdf/1904.03288.pdf), by Jason Li, Vitaly Lavrukhin, Boris Ginsburg, Ryan Leary, Oleksii Kuchaiev, Jonathan M. Cohen, Huyen Nguyen, Ravi Teja Gadde.   
-13. [**QuartzNet**]() (from NVIDIA and Univ. of Illinois and Univ. of Saint Petersburg) released with paper [QuartzNet: Deep Automatic Speech Recognition with 1D Time-Channel Separable Convolutions](https://arxiv.org/abs/1910.10261.pdf), by Samuel Kriman, Stanislav Beliaev, Boris Ginsburg, Jocelyn Huang, Oleksii Kuchaiev, Vitaly Lavrukhin, Ryan Leary, Jason Li, Yang Zhang.  
-14. [**Transformer Transducer**]() (from Facebook AI) released with paper [Transformer-Transducer:
+2. [**RNN-Transducer**](https://sooftware.github.io/openspeech/artectures//RNN%20Transducer.html) (from University of Toronto) released with paper [Sequence Transduction with Recurrent Neural Networks](https://arxiv.org/abs/1211.3711.pdf), by Alex Graves.
+3. [**LSTM Language Model**](https://sooftware.github.io/openspeech/artectures/LSTM%20LM.html) (from RWTH Aachen University) released with paper [LSTM Neural Networks for Language Modeling](http://www-i6.informatik.rwth-aachen.de/publications/download/820/Sundermeyer-2012.pdf), by  Martin Sundermeyer, Ralf Schluter, and Hermann Ney.  
+4. [**Listen Attend Spell**](https://sooftware.github.io/openspeech/artectures/Listen%20Attend%20Spell.html) (from Carnegie Mellon University and Google Brain) released with paper [Listen, Attend and Spell](https://arxiv.org/abs/1508.01211), by William Chan, Navdeep Jaitly, Quoc V. Le, Oriol Vinyals.  
+5. [**Location-aware attention based Listen Attend Spell**](https://sooftware.github.io/OpenSpeech/Listen%20Attend%20Spell%20(location-aware).html) (from University of Wrocław and Jacobs University and Universite de Montreal) released with paper [Attention-Based Models for Speech Recognition](https://arxiv.org/abs/1506.07503), by Jan Chorowski, Dzmitry Bahdanau, Dmitriy Serdyuk, Kyunghyun Cho, Yoshua Bengio.  
+6. [**Joint CTC-Attention based Listen Attend Spell**](https://sooftware.github.io/OpenSpeech/Joint%20CTC%20LAS.html) (from Mitsubishi Electric Research Laboratories and Carnegie Mellon University) released with paper [Joint CTC-Attention based End-to-End Speech Recognition using Multi-task Learning](https://arxiv.org/abs/1609.06773), by Suyoun Kim, Takaaki Hori, Shinji Watanabe.  
+7. [**Deep CNN Encoder with Joint CTC-Attention Listen Attend Spell**](https://sooftware.github.io/OpenSpeech/Deep%20CNN%20with%20Joint%20CTC%20LAS.html) (from Mitsubishi Electric Research Laboratories and Massachusetts Institute of Technology and Carnegie Mellon University) released with paper [Advances in Joint CTC-Attention based End-to-End Speech Recognition with a Deep CNN Encoder and RNN-LM](https://arxiv.org/abs/1706.02737), by Takaaki Hori, Shinji Watanabe, Yu Zhang, William Chan.
+8. [**Multi-head attention based Listen Attend Spell**](https://sooftware.github.io/OpenSpeech/Listen%20Attend%20Spell%20(multi-head).html) (from Google) released with paper [State-of-the-art Speech Recognition With Sequence-to-Sequence Models](https://arxiv.org/abs/1712.01769), by Chung-Cheng Chiu, Tara N. Sainath, Yonghui Wu, Rohit Prabhavalkar, Patrick Nguyen, Zhifeng Chen, Anjuli Kannan, Ron J. Weiss, Kanishka Rao, Ekaterina Gonina, Navdeep Jaitly, Bo Li, Jan Chorowski, Michiel Bacchiani.  
+9. [**Speech-Transformer**](https://sooftware.github.io/OpenSpeech/Transformer.html) (from University of Chinese Academy of Sciences and Institute of Automation and Chinese Academy of Sciences) released with paper [Speech-Transformer: A No-Recurrence Sequence-to-Sequence Model for Speech Recognition](https://ieeexplore.ieee.org/document/8462506), by Linhao Dong; Shuang Xu; Bo Xu.
+10. [**VGG-Transformer**](https://sooftware.github.io/OpenSpeech/VGG%20Transformer.html) (from Facebook AI Research) released with paper [Transformers with convolutional context for ASR](https://arxiv.org/abs/1904.11660), by Abdelrahman Mohamed, Dmytro Okhonko, Luke Zettlemoyer.  
+11. [**Transformer with CTC**](https://sooftware.github.io/OpenSpeech/Transformer%20with%20CTC.html) (from NTT Communication Science Laboratories, Waseda University, Center for Language and Speech Processing, Johns Hopkins University) released with paper [Improving Transformer-based End-to-End Speech Recognition with Connectionist Temporal Classification and Language Model Integration](https://www.isca-speech.org/archive/Interspeech_2019/pdfs/1938.pdf), by Shigeki Karita, Nelson Enrique Yalta Soplin, Shinji Watanabe, Marc Delcroix, Atsunori Ogawa, Tomohiro Nakatani.
+12. [**Joint CTC-Attention based Transformer**](https://sooftware.github.io/OpenSpeech/Joint%20CTC%20Transformer.html)(from NTT Corporation) released with paper [Self-Distillation for Improving CTC-Transformer-based ASR Systems](https://www.isca-speech.org/archive/Interspeech_2020/pdfs/1223.pdf), by Takafumi Moriya, Tsubasa Ochiai, Shigeki Karita, Hiroshi Sato, Tomohiro Tanaka, Takanori Ashihara, Ryo Masumura, Yusuke Shinohara, Marc Delcroix.
+13. [**Transformer Language Model**]() (from Amazon Web Services) released with paper [Language Models with Transformers](https://arxiv.org/abs/1904.09408), by Chenguang Wang, Mu Li, Alexander J. Smola.
+14. [**Jasper**](https://sooftware.github.io/OpenSpeech/Jasper10x5.html) (from NVIDIA and New York University) released with paper [Jasper: An End-to-End Convolutional Neural Acoustic Model](https://arxiv.org/pdf/1904.03288.pdf), by Jason Li, Vitaly Lavrukhin, Boris Ginsburg, Ryan Leary, Oleksii Kuchaiev, Jonathan M. Cohen, Huyen Nguyen, Ravi Teja Gadde.   
+15. [**QuartzNet**](https://sooftware.github.io/OpenSpeech/QuartzNet15x5.html) (from NVIDIA and Univ. of Illinois and Univ. of Saint Petersburg) released with paper [QuartzNet: Deep Automatic Speech Recognition with 1D Time-Channel Separable Convolutions](https://arxiv.org/abs/1910.10261.pdf), by Samuel Kriman, Stanislav Beliaev, Boris Ginsburg, Jocelyn Huang, Oleksii Kuchaiev, Vitaly Lavrukhin, Ryan Leary, Jason Li, Yang Zhang.  
+16. [**Transformer Transducer**](https://sooftware.github.io/OpenSpeech/Transformer%20Transducer.html) (from Facebook AI) released with paper [Transformer-Transducer:
 End-to-End Speech Recognition with Self-Attention](https://arxiv.org/abs/1910.12977.pdf), by Ching-Feng Yeh, Jay Mahadeokar, Kaustubh Kalgaonkar, Yongqiang Wang, Duc Le, Mahaveer Jain, Kjell Schubert, Christian Fuegen, Michael L. Seltzer.  
-15. [**Conformer**]() (from Google) released with paper [Conformer: Convolution-augmented Transformer for Speech Recognition](https://arxiv.org/abs/2005.08100), by Anmol Gulati, James Qin, Chung-Cheng Chiu, Niki Parmar, Yu Zhang, Jiahui Yu, Wei Han, Shibo Wang, Zhengdong Zhang, Yonghui Wu, Ruoming Pang.  
-16. [**Conformer with CTC**]() (from Northwestern Polytechnical University and University of Bordeaux and Johns Hopkins University and Human Dataware Lab and Kyoto University and NTT Corporation and Shanghai Jiao Tong University and  Chinese Academy of Sciences) released with paper [RECENT DEVELOPMENTS ON ESPNET TOOLKIT BOOSTED BY CONFORMER](https://arxiv.org/abs/2010.13956.pdf), by Pengcheng Guo, Florian Boyer, Xuankai Chang, Tomoki Hayashi, Yosuke Higuchi, Hirofumi Inaguma, Naoyuki Kamo, Chenda Li, Daniel Garcia-Romero, Jiatong Shi, Jing Shi, Shinji Watanabe, Kun Wei, Wangyou Zhang, Yuekai Zhang.
-17. [**Conformer with LSTM Decoder**]() (from IBM Research AI) released with paper [On the limit of English conversational speech recognition](https://arxiv.org/abs/2105.00982.pdf), by Zoltán Tüske, George Saon, Brian Kingsbury.
+17. [**Conformer**](https://sooftware.github.io/OpenSpeech/Conformer%20Transducer.html) (from Google) released with paper [Conformer: Convolution-augmented Transformer for Speech Recognition](https://arxiv.org/abs/2005.08100), by Anmol Gulati, James Qin, Chung-Cheng Chiu, Niki Parmar, Yu Zhang, Jiahui Yu, Wei Han, Shibo Wang, Zhengdong Zhang, Yonghui Wu, Ruoming Pang.  
+18. [**Conformer with CTC**](https://sooftware.github.io/OpenSpeech/Conformer.html) (from Northwestern Polytechnical University and University of Bordeaux and Johns Hopkins University and Human Dataware Lab and Kyoto University and NTT Corporation and Shanghai Jiao Tong University and  Chinese Academy of Sciences) released with paper [Recent Developments on ESPNET Toolkit Boosted by Conformer](https://arxiv.org/abs/2010.13956.pdf), by Pengcheng Guo, Florian Boyer, Xuankai Chang, Tomoki Hayashi, Yosuke Higuchi, Hirofumi Inaguma, Naoyuki Kamo, Chenda Li, Daniel Garcia-Romero, Jiatong Shi, Jing Shi, Shinji Watanabe, Kun Wei, Wangyou Zhang, Yuekai Zhang.
+19. [**Conformer with LSTM Decoder**](https://sooftware.github.io/OpenSpeech/Conformer%20LSTM.html) (from IBM Research AI) released with paper [On the limit of English conversational speech recognition](https://arxiv.org/abs/2105.00982.pdf), by Zoltán Tüske, George Saon, Brian Kingsbury.
+20. [**ContextNet**](https://sooftware.github.io/OpenSpeech/ContextNet.html) (from Google) released with paper [ContextNet: Improving Convolutional Neural Networks for Automatic Speech Recognition with Global Context](https://arxiv.org/abs/2005.03191), by Wei Han, Zhengdong Zhang, Yu Zhang, Jiahui Yu, Chung-Cheng Chiu, James Qin, Anmol Gulati, Ruoming Pang, Yonghui Wu.
   
 ### Get Started
   
 We use [Hydra](https://github.com/facebookresearch/hydra) to control all the training configurations. 
 If you are not familiar with Hydra we recommend visiting the [Hydra website](https://hydra.cc/). 
 Generally, Hydra is an open-source framework that simplifies the development of research applications by providing the ability to create a hierarchical configuration dynamically. 
-If you want to know how we used Hydra, it'll help if you read [here](https://sooftware.github.io/openspeech/notes/hydra_configs.html).
+If you want to know how we used Hydra, we recommend you to read [here](https://sooftware.github.io/OpenSpeech/notes/hydra_configs.html).
   
 #### Supported Datasets
  
-We supports [LibriSpeech](https://www.openslr.org/12), [KsponSpeech](https://aihub.or.kr/aidata/105), and [AISHELL-1](https://www.openslr.org/33/).   
+We support [LibriSpeech](https://www.openslr.org/12), [KsponSpeech](https://aihub.or.kr/aidata/105), and [AISHELL-1](https://www.openslr.org/33/).   
   
-LibriSpeech is a corpus of approximately 1000 hours of 16kHz read English speech, prepared by Vassil Panayotov with the assistance of Daniel Povey. The data is derived from read audiobooks from the LibriVox project, and has been carefully segmented and aligned.   
+LibriSpeech is a corpus of approximately 1,000 hours of 16kHz read English speech, prepared by Vassil Panayotov with the assistance of Daniel Povey. The data was derived from reading audiobooks from the LibriVox project, and has been carefully segmented and aligned.   
    
-Aishell is an open-source Chinese Mandarin speech corpus published by Beijing Shell Shell Technology Co.,Ltd. 400 people from different accent areas in China are invited to participate in the recording, which is conducted in a quiet indoor environment using high fidelity microphone and downsampled to 16kHz.
+Aishell is an open-source Chinese Mandarin speech corpus published by Beijing Shell Shell Technology Co.,Ltd. 400 people from different accent areas in China were invited to participate in the recording, which was conducted in a quiet indoor environment using high fidelity microphone and downsampled to 16kHz.
   
-KsponSpeech is a large-scale spontaneous speech corpus of Korean. This corpus contains 969 h of general open-domain dialog utterances, spoken by about 2000 native Korean speakers in a clean environment. All data were constructed by recording the dialogue of two people freely conversing on a variety of topics and manually transcribing the utterances. To start training, the KsponSpeech dataset must be prepared in advance. To download KsponSpeech, you needs permission from [AI Hub](https://aihub.or.kr/).
-
-   
+KsponSpeech is a large-scale spontaneous speech corpus of Korean. This corpus contains 969 hours of general open-domain dialog utterances, spoken by about 2,000 native Korean speakers in a clean environment. All data were constructed by recording the dialogue of two people freely conversing on a variety of topics and manually transcribing the utterances. To start training, the KsponSpeech dataset must be prepared in advance. To download KsponSpeech, you need permission from [AI Hub](https://aihub.or.kr/).
+  
 #### Manifest File
   
-- Manifest file format:
+- Acoustic model manifest file format:
   
 ```
 LibriSpeech/test-other/8188/269288/8188-269288-0052.flac        ▁ANNIE ' S ▁MANNER ▁WAS ▁VERY ▁MYSTERIOUS       4039 20 5 531 17 84 2352
@@ -100,7 +102,7 @@ $ python ./openspeech_cli/hydra_train.py \
     dataset.dataset_download=True \
     dataset.dataset_path=$DATASET_PATH \
     dataset.manifest_file_path=$MANIFEST_FILE_PATH \  
-    vocab=libri_subword \
+    tokenizer=libri_subword \
     model=conformer_lstm \
     audio=fbank \
     lr_scheduler=warmup_reduce_lr_on_plateau \
@@ -119,7 +121,7 @@ $ python ./openspeech_cli/hydra_train.py \
     dataset.manifest_file_path=$MANIFEST_FILE_PATH \  
     dataset.test_dataset_path=$TEST_DATASET_PATH \
     dataset.test_manifest_dir=$TEST_MANIFEST_DIR \
-    vocab=kspon_character \
+    tokenizer=kspon_character \
     model=listen_attend_spell \
     audio=melspectrogram \
     lr_scheduler=warmup_reduce_lr_on_plateau \
@@ -137,7 +139,7 @@ $ python ./openspeech_cli/hydra_train.py \
     dataset.dataset_path=$DATASET_PATH \
     dataset.dataset_download=True \
     dataset.manifest_file_path=$MANIFEST_FILE_PATH \  
-    vocab=aishell_character \
+    tokenizer=aishell_character \
     model=quartznet15x5 \
     audio=mfcc \
     lr_scheduler=warmup_reduce_lr_on_plateau \
@@ -145,10 +147,63 @@ $ python ./openspeech_cli/hydra_train.py \
     criterion=ctc
 ```
   
+#### Evaluation examples
+  
+- Example1: Evaluation the `listen_attend_spell` model:
+  
+```
+$ python ./openspeech_cli/hydra_eval.py \
+    audio=melspectrogram \
+    eval.model_name=listen_attend_spell \
+    eval.dataset_path=$DATASET_PATH \
+    eval.checkpoint_path=$CHECKPOINT_PATH \
+    eval.manifest_file_path=$MANIFEST_FILE_PATH  
+```
+
+- Example2: Evaluation the `listen_attend_spell`, `conformer_lstm` models with ensemble:
+  
+```
+$ python ./openspeech_cli/hydra_eval.py \
+    audio=melspectrogram \
+    eval.model_names=(listen_attend_spell, conformer_lstm) \
+    eval.dataset_path=$DATASET_PATH \
+    eval.checkpoint_paths=($CHECKPOINT_PATH1, $CHECKPOINT_PATH2) \
+    eval.ensemble_weights=(0.3, 0.7) \
+    eval.ensemble_method=weighted \
+    eval.manifest_file_path=$MANIFEST_FILE_PATH  
+```
+
+#### Language model training example
+  
+Language model training requires only data to be prepared in the following format:  
+  
+```
+openspeech is a framework for making end-to-end speech recognizers.
+end to end automatic speech recognition is an emerging paradigm in the field of neural network-based speech recognition that offers multiple benefits.
+because of these advantages, many end-to-end speech recognition related open sources have emerged.
+...
+...
+```
+  
+Note that you need to use the same vocabulary as the acoustic model.
+  
+- Example: Train the `lstm_lm` model:
+```
+$ python ./openspeech_cli/hydra_lm_train.py \
+    dataset=lm \
+    dataset.dataset_path=../../../lm.txt \
+    tokenizer=kspon_character \
+    tokenizer.vocab_path=../../../labels.csv \
+    model=lstm_lm \
+    lr_scheduler=tri_stage \
+    trainer=gpu \
+    criterion=perplexity
+```
+  
 ### Installation
   
 This project recommends Python 3.7 or higher.  
-I recommend creating a new virtual environment for this project (using virtual env or conda).
+We recommend creating a new virtual environment for this project (using virtual env or conda).
   
 
 #### Prerequisites
@@ -163,8 +218,15 @@ I recommend creating a new virtual environment for this project (using virtual e
 * warp-rnnt: Refer to [warp-rnnt page](https://github.com/1ytic/warp-rnnt) to install the library.
 * ctcdecode: Refer to [ctcdecode page](https://github.com/parlance/ctcdecode) to install the library.
   
+#### Install from pypi
+  
+You can install OpenSpeech with pypi.
+```
+pip install openspeech-core
+```
+  
 #### Install from source
-Currently I only support installation from source code using setuptools. Checkout the source code and run the   
+Currently we only support installation from source code using setuptools. Checkout the source code and run the   
 following commands:  
 ```
 $ ./install.sh
@@ -196,7 +258,7 @@ $ pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--c
 ```  
 
 ### Troubleshoots and Contributing
-If you have any questions, bug reports, and feature requests, please [open an issue](https://github.com/sooftware/openspeech/issues) on Github.   
+If you have any questions, bug reports, and feature requests, please [open an issue](https://github.com/sooftware/OpenSpeech/issues) on Github.   
   
 We appreciate any kind of feedback or contribution.  Feel free to proceed with small issues like bug fixes, documentation improvement.  For major contributions and new features, please discuss with the collaborators in corresponding issues.
   
@@ -204,19 +266,19 @@ We appreciate any kind of feedback or contribution.  Feel free to proceed with s
 We follow [PEP-8](https://www.python.org/dev/peps/pep-0008/) for code style. Especially the style of docstrings is important to generate documentation. 
   
 #### License
-This project is licensed under the MIT LICENSE - see the [LICENSE.md](https://github.com/sooftware/openspeech/blob/master/LICENSE) file for details
+This project is licensed under the MIT LICENSE - see the [LICENSE.md](https://github.com/sooftware/OpenSpeech/blob/master/LICENSE) file for details
   
 ### Citation
   
 If you use the system for academic work, please cite:
   
 ```
-@GITHUB{2021-openspeech,
+@GITHUB{2021-OpenSpeech,
   author       = {Kim, Soohwan and Ha, Sangchun and Cho, Soyoung},
   author email = {sh951011@gmail.com, seomk9896@naver.com, soyoung.cho@kaist.ac.kr}
-  title        = {Openspeech: Open-Source Toolkit for End-to-End Speech Recognition},
-  howpublished = {\url{https://github.com/sooftware/openspeech}},
-  docs         = {\url{https://sooftware.github.io/openspeech}},
+  title        = {OpenSpeech: Open-Source Toolkit for End-to-End Speech Recognition},
+  howpublished = {\url{https://github.com/sooftware/OpenSpeech}},
+  docs         = {\url{https://sooftware.github.io/OpenSpeech}},
   year         = {2021}
 }
 ```

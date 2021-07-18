@@ -31,8 +31,8 @@ from openspeech.data.sampler import BucketingSampler
 from openspeech.data.text.data_loader import TextDataLoader
 from openspeech.data.text.dataset import TextDataset
 from openspeech.datasets import register_data_module
-from openspeech.vocabs import VOCAB_REGISTRY
-from openspeech.vocabs.vocab import Vocabulary
+from openspeech.tokenizers import TOKENIZER_REGISTRY
+from openspeech.tokenizers.tokenizer import Tokenizer
 
 
 @register_data_module('lm')
@@ -46,13 +46,13 @@ class LightningLanguageModelDataModule(pl.LightningDataModule):
     def prepare_data(self):
         if not os.path.exists(self.configs.dataset.dataset_path):
             raise FileNotFoundError
-        return VOCAB_REGISTRY[self.configs.vocab.unit](self.configs)
+        return TOKENIZER_REGISTRY[self.configs.tokenizer.unit](self.configs)
 
-    def setup(self, stage: Optional[str] = None, vocab: Vocabulary = None):
+    def setup(self, stage: Optional[str] = None, tokenizer: Tokenizer = None):
         num_total_transcripts = 0
         transcripts = list()
 
-        with open(self.configs.dataset.dataset_path, encoding=self.configs.vocab.encoding) as f:
+        with open(self.configs.dataset.dataset_path, encoding=self.configs.tokenizer.encoding) as f:
             for line in f.readlines():
                 transcripts.append(line)
                 num_total_transcripts += 1
@@ -75,7 +75,7 @@ class LightningLanguageModelDataModule(pl.LightningDataModule):
         for stage in transcripts.keys():
             self.dataset[stage] = TextDataset(
                 transcripts=transcripts[stage],
-                vocab=vocab,
+                tokenizer=tokenizer,
             )
 
     def train_dataloader(self) -> TextDataLoader:

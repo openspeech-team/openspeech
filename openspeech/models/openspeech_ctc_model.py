@@ -26,7 +26,7 @@ from typing import Dict
 from omegaconf import DictConfig
 
 from openspeech.models import OpenspeechModel
-from openspeech.vocabs.vocab import Vocabulary
+from openspeech.tokenizers.tokenizer import Tokenizer
 
 
 class OpenspeechCTCModel(OpenspeechModel):
@@ -35,18 +35,17 @@ class OpenspeechCTCModel(OpenspeechModel):
 
     Args:
         configs (DictConfig): configuration set.
-        vocab (Vocabulary): the class of vocabulary
+        tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
 
     Inputs:
-        inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded
-            `FloatTensor` of size ``(batch, seq_length, dimension)``.
+        inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
         input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
 
     Returns:
-        * y_hats (torch.FloatTensor): Result of model predictions.
+        ouputs (dict): Result of model predictions that contains `y_hats`, `logits`, `output_lengths`
     """
-    def __init__(self, configs: DictConfig, vocab: Vocabulary,) -> None:
-        super(OpenspeechCTCModel, self).__init__(configs, vocab)
+    def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
+        super(OpenspeechCTCModel, self).__init__(configs, tokenizer)
         self.encoder = None
         self.decoder = None
 
@@ -54,8 +53,8 @@ class OpenspeechCTCModel(OpenspeechModel):
         """ Setting beam search decoder """
         from openspeech.search import BeamSearchCTC
         self.decoder = BeamSearchCTC(
-            labels=self.vocab.labels,
-            blank_id=self.vocab.blank_id,
+            labels=self.tokenizer.labels,
+            blank_id=self.tokenizer.blank_id,
             beam_size=beam_size,
         )
 
@@ -96,12 +95,11 @@ class OpenspeechCTCModel(OpenspeechModel):
         Forward propagate a `inputs` and `targets` pair for inference.
 
         Args:
-            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded
-                `FloatTensor` of size ``(batch, seq_length, dimension)``.
+            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
             input_lengths (torch.IntTensor): The length of input tensor. ``(batch)``
 
         Returns:
-            * dict (dict): Result of model predictions that contains `y_hats`, `logits`, `output_lengths`
+            ouputs (dict): Result of model predictions that contains `y_hats`, `logits`, `output_lengths`
         """
         outputs = self.encoder(inputs, input_lengths)
 

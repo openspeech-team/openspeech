@@ -26,12 +26,12 @@ from omegaconf import DictConfig
 
 from .. import register_criterion
 from ..ctc.configuration import CTCLossConfigs
-from ...vocabs.vocab import Vocabulary
+from ...tokenizers.tokenizer import Tokenizer
 
 
 @register_criterion("ctc", dataclass=CTCLossConfigs)
 class CTCLoss(nn.Module):
-    r"""\
+    r"""
     The Connectionist Temporal Classification loss.
 
     Calculates loss between a continuous (unsegmented) time series and a target sequence. CTCLoss sums over the
@@ -39,14 +39,9 @@ class CTCLoss(nn.Module):
     with respect to each input node. The alignment of input to target is assumed to be "many-to-one", which
     limits the length of the target sequence such that it must be :math:`\leq` the input length.
 
-    Configurations:
-        criterion_name (str): name of criterion
-        reduction (str): reduction method of criterion
-        zero_infibity (bool): whether to zero infinite losses and the associated gradients.
-
     Args:
         configs (DictConfig): hydra configuration set
-        vocab (Vocabulary): the set of unique words used in the text corpus
+        tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
 
     Inputs: log_probs, targets, input_lengths, target_lengths
         - Log_probs: Tensor of size :math:`(T, N, C)`,
@@ -130,11 +125,11 @@ class CTCLoss(nn.Module):
     def __init__(
             self,
             configs: DictConfig,
-            vocab: Vocabulary,
+            tokenizer: Tokenizer,
     ) -> None:
         super(CTCLoss, self).__init__()
         self.ctc_loss = nn.CTCLoss(
-            blank=vocab.blank_id,
+            blank=tokenizer.blank_id,
             reduction=configs.criterion.reduction,
             zero_infinity=configs.criterion.zero_infinity,
         )

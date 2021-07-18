@@ -28,7 +28,7 @@ from torch import Tensor
 from .. import register_criterion
 from ..joint_ctc_cross_entropy.configuration import JointCTCCrossEntropyLossConfigs
 from ..label_smoothed_cross_entropy.label_smoothed_cross_entropy import LabelSmoothedCrossEntropyLoss
-from ...vocabs.vocab import Vocabulary
+from ...tokenizers.tokenizer import Tokenizer
 
 
 @register_criterion("joint_ctc_cross_entropy", dataclass=JointCTCCrossEntropyLossConfigs)
@@ -37,35 +37,27 @@ class JointCTCCrossEntropyLoss(nn.Module):
     Privides Joint CTC-CrossEntropy Loss function. The logit from the encoder applies CTC Loss, and the logit
     from the decoder applies Cross Entropy. This loss makes the encoder more robust.
 
-    Configurations:
-        criterion_name (str): name of criterion
-        reduction (str): reduction method of criterion
-        ctc_weight (float): weight of ctc loss for training
-        cross_entropy_weight (float): weight of cross entropy loss for training
-        smoothing (float): ratio of smoothing loss (confidence = 1.0 - smoothing)
-        zero_infinity (bool): whether to zero infinite losses and the associated gradients.
-
     Args:
         configs (DictConfig): hydra configuration set
         num_classes (int): the number of classfication
-        vocab (Vocabulary): the set of unique words used in the text corpus
+        tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
 
     Inputs: encoder_logits, logits, output_lengths, targets, target_lengths
-        encoder_logits (torch.FloatTensor): probability distribution value from encoder and it has a logarithm shape.
+        - encoder_logits (torch.FloatTensor): probability distribution value from encoder and it has a logarithm shape.
             The `FloatTensor` of size ``(input_length, batch, num_classes)``
-        logits (torch.FloatTensor): probability distribution value from model and it has a logarithm shape
+        - logits (torch.FloatTensor): probability distribution value from model and it has a logarithm shape.
             The `FloatTensor` of size ``(batch, seq_length, num_classes)``
-        output_lengths (torch.LongTensor): length of model's outputs
+        - output_lengths (torch.LongTensor): length of model's outputs.
             The `LongTensor` of size ``(batch)``
-        targets (torch.LongTensor): ground-truth encoded to integers which directly point a word in label
+        - targets (torch.LongTensor): ground-truth encoded to integers which directly point a word in label.
             The `LongTensor` of size ``(batch, target_length)``
-        target_lengths (torch.LongTensor): length of targets
+        - target_lengths (torch.LongTensor): length of targets.
             The `LongTensor` of size ``(batch)``
 
     Returns: loss, ctc_loss, cross_entropy_loss
-        * loss (float): loss for training
-        *ctc_loss (float): ctc loss for training
-        *cross_entropy_loss (float): cross entropy loss for training
+        - loss (float): loss for training
+        - ctc_loss (float): ctc loss for training
+        - cross_entropy_loss (float): cross entropy loss for training
 
     Reference:
         Suyoun Kim et al.: Joint CTC-Attention based End-to-End Speech Recognition using Multi-task Learning:
@@ -76,17 +68,17 @@ class JointCTCCrossEntropyLoss(nn.Module):
             self,
             configs: DictConfig,
             num_classes: int,
-            vocab: Vocabulary,
+            tokenizer: Tokenizer,
     ) -> None:
         super(JointCTCCrossEntropyLoss, self).__init__()
         self.num_classes = num_classes
         self.dim = -1
-        self.ignore_index = vocab.pad_id
+        self.ignore_index = tokenizer.pad_id
         self.reduction = configs.criterion.reduction.lower()
         self.ctc_weight = configs.criterion.ctc_weight
         self.cross_entropy_weight = configs.criterion.cross_entropy_weight
         self.ctc_loss = nn.CTCLoss(
-            blank=vocab.blank_id,
+            blank=tokenizer.blank_id,
             reduction=self.reduction,
             zero_infinity=configs.criterion.zero_infinity,
         )
@@ -94,7 +86,7 @@ class JointCTCCrossEntropyLoss(nn.Module):
             self.cross_entropy_loss = LabelSmoothedCrossEntropyLoss(
                 configs=configs,
                 num_classes=num_classes,
-                vocab=vocab,
+                tokenizer=tokenizer,
             )
         else:
             self.cross_entropy_loss = nn.CrossEntropyLoss(reduction=self.reduction, ignore_index=self.ignore_index)

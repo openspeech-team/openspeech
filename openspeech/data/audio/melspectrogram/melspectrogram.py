@@ -33,14 +33,6 @@ class MelSpectrogramFeatureTransform(object):
     r"""
     Create MelSpectrogram for a raw audio signal. This is a composition of Spectrogram and MelScale.
 
-    Configurations:
-        name (str): name of feature transform. (default: melspectrogram)
-        sample_rate (int): sampling rate of audio (default: 16000)
-        frame_length (float): frame length for spectrogram (default: 20.0)
-        frame_shift (float): length of hop between STFT (default: 10.0)
-        del_silence (bool): flag indication whether to apply delete silence or not (default: False)
-        num_mels (int): the number of mfc coefficients to retain. (default: 80)
-
     Args:
         configs (DictConfig): configuraion set
 

@@ -26,7 +26,7 @@ from omegaconf import DictConfig
 
 from .. import register_criterion
 from ..cross_entropy.configuration import CrossEntropyLossConfigs
-from ...vocabs.vocab import Vocabulary
+from ...tokenizers.tokenizer import Tokenizer
 
 
 @register_criterion("cross_entropy", dataclass=CrossEntropyLossConfigs)
@@ -77,18 +77,14 @@ class CrossEntropyLoss(nn.Module):
     where :math:`K` is the number of dimensions, and a target of appropriate shape
     (see below). In the case of images, it computes NLL loss per-pixel.
 
-    Configurations:
-        criterion_name (str): name of criterion
-        reduction (str): reduction method of criterion
-
     Args:
         configs (DictConfig): hydra configuration set
-        vocab (Vocabulary): the set of unique words used in the text corpus
+        tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
 
     Inputs: logits, targets
-        - **logits** (torch.FloatTensor): probability distribution value from model and it has a logarithm shape.
+        - logits (torch.FloatTensor): probability distribution value from model and it has a logarithm shape.
             The `FloatTensor` of size ``(batch, seq_length, num_classes)``
-        - **targets** (torch.LongTensor): ground-truth encoded to integers which directly point a word in label
+        - targets (torch.LongTensor): ground-truth encoded to integers which directly point a word in label.
             The `LongTensor` of size ``(batch, target_length)``
 
     Returns: loss
@@ -106,12 +102,12 @@ class CrossEntropyLoss(nn.Module):
     def __init__(
             self,
             configs: DictConfig,
-            vocab: Vocabulary,
+            tokenizer: Tokenizer,
     ) -> None:
         super(CrossEntropyLoss, self).__init__()
         self.cross_entropy_loss = nn.CrossEntropyLoss(
             reduction=configs.criterion.reduction,
-            ignore_index=vocab.pad_id,
+            ignore_index=tokenizer.pad_id,
         )
 
     def forward(self, logits: Tensor, targets: Tensor) -> Tensor:

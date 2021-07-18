@@ -31,7 +31,7 @@ from typing import Tuple, Dict
 from openspeech.models import OpenspeechModel
 from openspeech.modules import Linear
 from openspeech.utils import get_class_name
-from openspeech.vocabs.vocab import Vocabulary
+from openspeech.tokenizers.tokenizer import Tokenizer
 
 
 class OpenspeechTransducerModel(OpenspeechModel):
@@ -40,19 +40,18 @@ class OpenspeechTransducerModel(OpenspeechModel):
 
     Args:
         configs (DictConfig): configuration set.
-        vocab (Vocabulary): the class of vocabulary
+        tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
 
     Inputs:
-        - **inputs** (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be
-            a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
+        - **inputs** (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
         - **input_lengths** (torch.LongTensor): The length of input tensor. ``(batch)``
 
     Returns:
-        - **y_hats** (torch.FloatTensor): Result of model predictions.
+        dict (dict): Result of model predictions that contains `predictions`, `logits`, `encoder_outputs`, `encoder_output_lengths`
     """
 
-    def __init__(self, configs: DictConfig, vocab: Vocabulary, ) -> None:
-        super(OpenspeechTransducerModel, self).__init__(configs, vocab)
+    def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
+        super(OpenspeechTransducerModel, self).__init__(configs, tokenizer)
         self.encoder = None
         self.decoder = None
 
@@ -143,13 +142,11 @@ class OpenspeechTransducerModel(OpenspeechModel):
         Joint `encoder_outputs` and `decoder_outputs`.
 
         Args:
-            encoder_outputs (torch.FloatTensor): A output sequence of encoders. `FloatTensor` of size
-                ``(batch, seq_length, dimension)``
-            decoder_outputs (torch.FloatTensor): A output sequence of decoders. `FloatTensor` of size
-                ``(batch, seq_length, dimension)``
+            encoder_outputs (torch.FloatTensor): A output sequence of encoders. `FloatTensor` of size ``(batch, seq_length, dimension)``
+            decoder_outputs (torch.FloatTensor): A output sequence of decoders. `FloatTensor` of size ``(batch, seq_length, dimension)``
 
         Returns:
-            * outputs (torch.FloatTensor): outputs of joint `encoder_outputs` and `decoder_outputs`..
+            outputs (torch.FloatTensor): outputs of joint `encoder_outputs` and `decoder_outputs`..
         """
         if encoder_outputs.dim() == 3 and decoder_outputs.dim() == 3:
             encoder_outputs, decoder_outputs = self._expand_for_joint(encoder_outputs, decoder_outputs)
@@ -166,12 +163,11 @@ class OpenspeechTransducerModel(OpenspeechModel):
         Decode `encoder_outputs`.
 
         Args:
-            encoder_output (torch.FloatTensor): A output sequence of encoders. `FloatTensor` of size
-                ``(seq_length, dimension)``
+            encoder_output (torch.FloatTensor): A output sequence of encoders. `FloatTensor` of size ``(seq_length, dimension)``
             max_length (int): max decoding time step
 
         Returns:
-            * logits (torch.FloatTensor): Log probability of model predictions.
+            logits (torch.FloatTensor): Log probability of model predictions.
         """
         pred_tokens = list()
         decoder_input = encoder_output.new_zeros(1, 1).fill_(self.decoder.sos_id).long()
@@ -199,12 +195,11 @@ class OpenspeechTransducerModel(OpenspeechModel):
         Decode `encoder_outputs`.
 
         Args:
-            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded
-                `FloatTensor` of size ``(batch, seq_length, dimension)``.
+            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
             input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
 
         Returns:
-            * dict (dict): Result of model predictions that contains `predictions`, `logits`,
+            dict (dict): Result of model predictions that contains `predictions`, `logits`,
                 `encoder_outputs`, `encoder_output_lengths`
         """
         outputs = list()

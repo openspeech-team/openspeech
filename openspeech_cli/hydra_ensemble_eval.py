@@ -56,7 +56,7 @@ def hydra_main(configs: DictConfig) -> None:
     if configs.eval.beam_size > 1:
         warnings.warn("Currently, Ensemble + beam search is not supports.")
 
-    vocab = models[0].vocab
+    tokenizer = models[0].tokenizer
 
     if configs.eval.ensemble_method == "vanilla":
         model = EnsembleSearch(models)
@@ -70,8 +70,8 @@ def hydra_main(configs: DictConfig) -> None:
         dataset_path=configs.eval.dataset_path,
         audio_paths=audio_paths,
         transcripts=transcripts,
-        sos_id=vocab.sos_id,
-        eos_id=vocab.eos_id,
+        sos_id=tokenizer.sos_id,
+        eos_id=tokenizer.eos_id,
     )
     sampler = BucketingSampler(
         data_source=dataset,
@@ -83,8 +83,8 @@ def hydra_main(configs: DictConfig) -> None:
         batch_sampler=sampler,
     )
 
-    wer_metric = WordErrorRate(vocab)
-    cer_metric = CharacterErrorRate(vocab)
+    wer_metric = WordErrorRate(tokenizer)
+    cer_metric = CharacterErrorRate(tokenizer)
 
     for i, (batch) in enumerate(data_loader):
         inputs, targets, input_lengths, target_lengths = batch

@@ -21,16 +21,13 @@
 # SOFTWARE.
 
 from omegaconf import DictConfig
-from torch import Tensor
-from typing import Dict
-from collections import OrderedDict
 
 from openspeech.models import register_model
 from openspeech.models import OpenspeechTransducerModel
 from openspeech.decoders import RNNTransducerDecoder
 from openspeech.encoders import RNNTransducerEncoder
 from openspeech.models.rnn_transducer.configurations import RNNTransducerConfigs
-from openspeech.vocabs.vocab import Vocabulary
+from openspeech.tokenizers.tokenizer import Tokenizer
 
 
 @register_model('rnn_transducer', dataclass=RNNTransducerConfigs)
@@ -44,19 +41,18 @@ class RNNTransducerModel(OpenspeechTransducerModel):
 
     Args:
         configs (DictConfig): configuration set.
-        vocab (Vocabulary): the class of vocabulary
+        tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
 
     Inputs:
-        - **inputs** (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be
-            a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
+        - **inputs** (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.
         - **input_lengths** (torch.LongTensor): The length of input tensor. ``(batch)``
 
     Returns:
-        * outputs (dict): Result of model predictions.
+        outputs (dict): Result of model predictions.
     """
 
-    def __init__(self, configs: DictConfig, vocab: Vocabulary, ) -> None:
-        super(RNNTransducerModel, self).__init__(configs, vocab)
+    def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
+        super(RNNTransducerModel, self).__init__(configs, tokenizer)
 
     def build_model(self):
         self.encoder = RNNTransducerEncoder(
@@ -73,60 +69,7 @@ class RNNTransducerModel(OpenspeechTransducerModel):
             output_dim=self.configs.model.output_dim,
             num_layers=self.configs.model.num_decoder_layers,
             rnn_type=self.configs.model.rnn_type,
-            sos_id=self.vocab.sos_id,
-            eos_id=self.vocab.eos_id,
+            sos_id=self.tokenizer.sos_id,
+            eos_id=self.tokenizer.eos_id,
             dropout_p=self.configs.model.decoder_dropout_p,
         )
-
-    def forward(self, inputs: Tensor, input_lengths: Tensor) -> Dict[str, Tensor]:
-        r"""
-        Forward propagate a `inputs` and `targets` pair for inference.
-
-        Inputs:
-            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded
-                `FloatTensor` of size ``(batch, seq_length, dimension)``.
-            input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
-
-        Returns:
-            * outputs (dict): Result of model predictions.
-        """
-        return super(RNNTransducerModel, self).forward(inputs, input_lengths)
-
-    def training_step(self, batch: tuple, batch_idx: int) -> OrderedDict:
-        r"""
-        Forward propagate a `inputs` and `targets` pair for training.
-
-        Inputs:
-            batch (tuple): A train batch contains `inputs`, `targets`, `input_lengths`, `target_lengths`
-            batch_idx (int): The index of batch
-
-        Returns:
-            loss (torch.Tensor): loss for training
-        """
-        return super(RNNTransducerModel, self).training_step(batch, batch_idx)
-
-    def validation_step(self, batch: tuple, batch_idx: int) -> OrderedDict:
-        r"""
-        Forward propagate a `inputs` and `targets` pair for validation.
-
-        Inputs:
-            batch (tuple): A train batch contains `inputs`, `targets`, `input_lengths`, `target_lengths`
-            batch_idx (int): The index of batch
-
-        Returns:
-            loss (torch.Tensor): loss for training
-        """
-        return super(RNNTransducerModel, self).validation_step(batch, batch_idx)
-
-    def test_step(self, batch: tuple, batch_idx: int) -> OrderedDict:
-        r"""
-        Forward propagate a `inputs` and `targets` pair for test.
-
-        Inputs:
-            batch (tuple): A train batch contains `inputs`, `targets`, `input_lengths`, `target_lengths`
-            batch_idx (int): The index of batch
-
-        Returns:
-            loss (torch.Tensor): loss for training
-        """
-        return super(RNNTransducerModel, self).test_step(batch, batch_idx)

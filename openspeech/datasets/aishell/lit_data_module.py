@@ -33,8 +33,8 @@ from openspeech.data.audio.dataset import SpeechToTextDataset
 from openspeech.datasets import register_data_module
 from openspeech.data.sampler import BucketingSampler
 from openspeech.data.audio.data_loader import AudioDataLoader
-from openspeech.vocabs.vocab import Vocabulary
-from openspeech.vocabs import VOCAB_REGISTRY
+from openspeech.tokenizers.tokenizer import Tokenizer
+from openspeech.tokenizers import TOKENIZER_REGISTRY
 from openspeech.datasets.aishell.preprocess import (
     generate_character_labels,
     generate_character_script,
@@ -44,7 +44,10 @@ from openspeech.datasets.aishell.preprocess import (
 @register_data_module('aishell')
 class LightningAIShellDataModule(pl.LightningDataModule):
     r"""
-    Lightning data module for AIShell-1.
+    Lightning data module for AIShell-1. The corpus includes training set, development set and test sets.
+    Training set contains 120,098 utterances from 340 speakers; development set contains 14,326 utterance from
+    the 40 speakers; Test set contains 7,176 utterances from 20 speakers. For each speaker, around 360 utterances
+    (about 26 minutes of speech) are released.
 
     Args:
         configs (DictConfig): configuration set.
@@ -78,12 +81,12 @@ class LightningAIShellDataModule(pl.LightningDataModule):
     def _generate_manifest_files(self, manifest_file_path: str) -> None:
         generate_character_labels(
             dataset_path=self.configs.dataset.dataset_path,
-            vocab_path=self.configs.vocab.vocab_path,
+            vocab_path=self.configs.tokenizer.vocab_path,
         )
         generate_character_script(
             dataset_path=self.configs.dataset.dataset_path,
             manifest_file_path=manifest_file_path,
-            vocab_path=self.configs.vocab.vocab_path,
+            vocab_path=self.configs.tokenizer.vocab_path,
         )
 
     def _parse_manifest_file(self, manifest_file_path: str) -> Tuple[list, list]:
@@ -106,7 +109,7 @@ class LightningAIShellDataModule(pl.LightningDataModule):
         Prepare AI-Shell manifest file. If there is not exist manifest file, generate manifest file.
 
         Returns:
-            vocab (Vocabulary): vocab class of KsponSpeech.
+            tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
         """
         if self.configs.dataset.dataset_download:
             self._download_dataset()
@@ -117,15 +120,15 @@ class LightningAIShellDataModule(pl.LightningDataModule):
             if not os.path.exists(self.configs.dataset.dataset_path):
                 raise ValueError("Dataset path is not valid.")
             self._generate_manifest_files(self.configs.dataset.manifest_file_path)
-        return VOCAB_REGISTRY[self.configs.vocab.unit](self.configs)
+        return TOKENIZER_REGISTRY[self.configs.tokenizer.unit](self.configs)
 
-    def setup(self, stage: Optional[str] = None, vocab: Vocabulary = None):
+    def setup(self, stage: Optional[str] = None, tokenizer: Tokenizer = None):
         r"""
         Split `train` and `valid` dataset for training.
 
         Args:
             stage (str): stage of training. `train` or `valid`
-            vocab (Vocabulary): vocab class of KsponSpeech.
+            tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
 
         Returns:
             None
@@ -150,8 +153,8 @@ class LightningAIShellDataModule(pl.LightningDataModule):
                 dataset_path=self.configs.dataset.dataset_path,
                 audio_paths=audio_paths[stage],
                 transcripts=transcripts[stage],
-                sos_id=vocab.sos_id,
-                eos_id=vocab.eos_id,
+                sos_id=tokenizer.sos_id,
+                eos_id=tokenizer.eos_id,
                 apply_spec_augment=self.configs.audio.apply_spec_augment if stage == 'train' else False,
                 del_silence=self.configs.audio.del_silence if stage == 'train' else False,
             )

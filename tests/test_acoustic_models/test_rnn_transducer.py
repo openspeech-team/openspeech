@@ -45,6 +45,21 @@ class TestRNNTransducer(unittest.TestCase):
             optimizer.step()
             assert type(loss.item()) == float
 
+    def test_beam_search(self):
+        configs = build_dummy_configs(
+            model_configs=RNNTransducerConfigs(),
+            criterion_configs=TransducerLossConfigs(),
+        )
+
+        vocab = KsponSpeechCharacterTokenizer(configs)
+        model = RNNTransducerModel(configs, vocab)
+        model.build_model()
+        model.set_beam_decode(beam_size=3)
+
+        for i in range(3):
+            prediction = model(DUMMY_INPUTS, DUMMY_INPUT_LENGTHS)["predictions"]
+            assert isinstance(prediction, torch.Tensor)
+
     def test_training_step(self):
         configs = build_dummy_configs(
             model_configs=RNNTransducerConfigs(),

@@ -69,6 +69,7 @@ class RNNTransducerModel(OpenspeechTransducerModel):
             output_dim=self.configs.model.output_dim,
             num_layers=self.configs.model.num_decoder_layers,
             rnn_type=self.configs.model.rnn_type,
+            pad_id=self.tokenizer.pad_id,
             sos_id=self.tokenizer.sos_id,
             eos_id=self.tokenizer.eos_id,
             dropout_p=self.configs.model.decoder_dropout_p,

@@ -72,12 +72,14 @@ class RNNTransducerDecoder(OpenspeechDecoder):
             output_dim: int,
             num_layers: int,
             rnn_type: str = 'lstm',
+            pad_id: int = 0,
             sos_id: int = 1,
             eos_id: int = 2,
             dropout_p: float = 0.2,
     ):
         super(RNNTransducerDecoder, self).__init__()
         self.hidden_state_dim = hidden_state_dim
+        self.pad_id = pad_id,
         self.sos_id = sos_id
         self.eos_id = eos_id
         self.embedding = nn.Embedding(num_classes, hidden_state_dim)
@@ -115,9 +117,11 @@ class RNNTransducerDecoder(OpenspeechDecoder):
             * hidden_states (torch.FloatTensor): A hidden state of decoders. `FloatTensor` of size
                 ``(batch, seq_length, dimension)``
         """
-        batch_size = inputs.size(0)
+        batch_size, input_lengths = inputs.size(0), inputs.size(1)
 
-        inputs = inputs[inputs != self.eos_id].view(batch_size, -1)
+        if input_lengths != 1:
+            inputs = inputs[inputs != self.eos_id].view(batch_size, -1)
+
         embedded = self.embedding(inputs)
 
         if hidden_states is not None:

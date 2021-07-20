@@ -32,6 +32,7 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -92,11 +93,11 @@
 </ul>
 <p class="caption"><span class="caption-text">OPENSPEECH MODELS</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Model.html">Openspeech Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20CTC%20Model.html">Openspeech CTC Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Encoder%20Decoder%20Model.html">Openspeech Encoder Decoder Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Transducer%20Model.html">Openspeech Transducer Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Language%20Model.html">Openspeech Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech Model.html">Openspeech Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech CTC Model.html">Openspeech CTC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech Encoder Decoder Model.html">Openspeech Encoder Decoder Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech Transducer Model.html">Openspeech Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech Language Model.html">Openspeech Language Model</a></li>
 </ul>
 <p class="caption"><span class="caption-text">MODEL ARCHITECTURES</span></p>
 <ul>
@@ -104,13 +105,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../architectures/ContextNet.html">ContextNet</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../architectures/DeepSpeech2.html">DeepSpeech2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../architectures/Jasper.html">Jasper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../architectures/Listen%20Attend%20Spell.html">Listen Attend Spell Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../architectures/LSTM%20LM.html">LSTM Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Listen Attend Spell.html">Listen Attend Spell Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/LSTM LM.html">LSTM Language Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../architectures/QuartzNet.html">QuartzNet Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../architectures/RNN%20Transducer.html">RNN Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/RNN Transducer.html">RNN Transducer Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer.html">Transformer Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer%20LM.html">Transformer Language Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer%20Transducer.html">Transformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer LM.html">Transformer Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer Transducer.html">Transformer Transducer Model</a></li>
 </ul>
 <p class="caption"><span class="caption-text">CORPUS</span></p>
 <ul class="current">
@@ -124,10 +125,10 @@
 <p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../modules/Criterion.html">Criterion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/Data%20Augment.html">Data Augment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/Feature%20Transform.html">Feature Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Data Augment.html">Data Augment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Feature Transform.html">Feature Transform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/Datasets.html">Datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/Data%20Loaders.html">Data Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Data Loaders.html">Data Loaders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/Decoders.html">Decoders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/Encoders.html">Encoders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/Modules.html">Modules</a></li>
@@ -208,7 +209,7 @@
 <h2>LibriSpeech<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-openspeech.datasets.librispeech.lit_data_module"></span><dl class="py class">
 <dt id="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">openspeech.datasets.librispeech.lit_data_module.</span></code><code class="sig-name descname"><span class="pre">LightningLibriSpeechDataModule</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/datasets/librispeech/lit_data_module.html#LightningLibriSpeechDataModule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.datasets.librispeech.lit_data_module.</code><code class="sig-name descname">LightningLibriSpeechDataModule</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/datasets/librispeech/lit_data_module.html#LightningLibriSpeechDataModule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>PyTorch Lightning Data Module for LibriSpeech Dataset. LibriSpeech is a corpus of approximately 1000 hours of read
 English speech with sampling rate of 16 kHz, prepared by Vassil Panayotov with the assistance of Daniel Povey.
 The data is derived from read audiobooks from the LibriVox project, and has been carefully segmented and aligned.</p>
@@ -219,7 +220,7 @@ The data is derived from read audiobooks from the LibriVox project, and has been
 </dl>
 <dl class="py method">
 <dt id="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.prepare_data">
-<code class="sig-name descname"><span class="pre">prepare_data</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="../modules/Tokenizers.html#openspeech.tokenizers.tokenizer.Tokenizer" title="openspeech.tokenizers.tokenizer.Tokenizer"><span class="pre">openspeech.tokenizers.tokenizer.Tokenizer</span></a><a class="reference internal" href="../_modules/openspeech/datasets/librispeech/lit_data_module.html#LightningLibriSpeechDataModule.prepare_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.prepare_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">prepare_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="../modules/Tokenizers.html#openspeech.tokenizers.tokenizer.Tokenizer" title="openspeech.tokenizers.tokenizer.Tokenizer">openspeech.tokenizers.tokenizer.Tokenizer</a><a class="reference internal" href="../_modules/openspeech/datasets/librispeech/lit_data_module.html#LightningLibriSpeechDataModule.prepare_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.prepare_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prepare librispeech data</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -233,13 +234,13 @@ The data is derived from read audiobooks from the LibriVox project, and has been
 
 <dl class="py method">
 <dt id="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.setup">
-<code class="sig-name descname"><span class="pre">setup</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stage</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../modules/Tokenizers.html#openspeech.tokenizers.tokenizer.Tokenizer" title="openspeech.tokenizers.tokenizer.Tokenizer"><span class="pre">openspeech.tokenizers.tokenizer.Tokenizer</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><a class="reference internal" href="../_modules/openspeech/datasets/librispeech/lit_data_module.html#LightningLibriSpeechDataModule.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.setup" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">setup</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stage</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tokenizer</span><span class="p">:</span> <span class="n"><a class="reference internal" href="../modules/Tokenizers.html#openspeech.tokenizers.tokenizer.Tokenizer" title="openspeech.tokenizers.tokenizer.Tokenizer">openspeech.tokenizers.tokenizer.Tokenizer</a></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)">None</a><a class="reference internal" href="../_modules/openspeech/datasets/librispeech/lit_data_module.html#LightningLibriSpeechDataModule.setup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.setup" title="Permalink to this definition">¶</a></dt>
 <dd><p>Split dataset into train, valid, and test.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.test_dataloader">
-<code class="sig-name descname"><span class="pre">test_dataloader</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">torch.utils.data.dataloader.DataLoader</span><a class="reference internal" href="../_modules/openspeech/datasets/librispeech/lit_data_module.html#LightningLibriSpeechDataModule.test_dataloader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.test_dataloader" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">test_dataloader</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; torch.utils.data.dataloader.DataLoader<a class="reference internal" href="../_modules/openspeech/datasets/librispeech/lit_data_module.html#LightningLibriSpeechDataModule.test_dataloader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.test_dataloader" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implement one or multiple PyTorch DataLoaders for testing.</p>
 <p>The dataloader you return will not be called every epoch unless you set
 <a href="#id2"><span class="problematic" id="id3">:paramref:`~pytorch_lightning.trainer.Trainer.reload_dataloaders_every_epoch`</span></a> to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
@@ -307,11 +308,11 @@ will have an argument <code class="docutils literal notranslate"><span class="pr
 
 <dl class="py method">
 <dt id="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.train_dataloader">
-<code class="sig-name descname"><span class="pre">train_dataloader</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">torch.utils.data.dataloader.DataLoader</span><a class="reference internal" href="../_modules/openspeech/datasets/librispeech/lit_data_module.html#LightningLibriSpeechDataModule.train_dataloader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.train_dataloader" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">train_dataloader</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; torch.utils.data.dataloader.DataLoader<a class="reference internal" href="../_modules/openspeech/datasets/librispeech/lit_data_module.html#LightningLibriSpeechDataModule.train_dataloader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.train_dataloader" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implement one or more PyTorch DataLoaders for training.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Either a single PyTorch <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (1.10.0a0+git590290b ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a> or a collection of these
+<dd class="field-odd"><p>Either a single PyTorch <a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.DataLoader" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoader</span></code></a> or a collection of these
 (list, dict, nested lists and dicts). In the case of multiple dataloaders, please see
 this <span class="xref std std-ref">page</span></p>
 </dd>
@@ -387,7 +388,7 @@ There is no need to set it yourself.</p>
 
 <dl class="py method">
 <dt id="openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.val_dataloader">
-<code class="sig-name descname"><span class="pre">val_dataloader</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">torch.utils.data.dataloader.DataLoader</span><a class="reference internal" href="../_modules/openspeech/datasets/librispeech/lit_data_module.html#LightningLibriSpeechDataModule.val_dataloader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.val_dataloader" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">val_dataloader</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; torch.utils.data.dataloader.DataLoader<a class="reference internal" href="../_modules/openspeech/datasets/librispeech/lit_data_module.html#LightningLibriSpeechDataModule.val_dataloader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.datasets.librispeech.lit_data_module.LightningLibriSpeechDataModule.val_dataloader" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implement one or multiple PyTorch DataLoaders for validation.</p>
 <p>The dataloader you return will not be called every epoch unless you set
 <a href="#id6"><span class="problematic" id="id7">:paramref:`~pytorch_lightning.trainer.Trainer.reload_dataloaders_every_epoch`</span></a> to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>

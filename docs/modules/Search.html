@@ -32,6 +32,7 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -92,11 +93,11 @@
 </ul>
 <p class="caption"><span class="caption-text">OPENSPEECH MODELS</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Model.html">Openspeech Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20CTC%20Model.html">Openspeech CTC Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Encoder%20Decoder%20Model.html">Openspeech Encoder Decoder Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Transducer%20Model.html">Openspeech Transducer Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Language%20Model.html">Openspeech Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech Model.html">Openspeech Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech CTC Model.html">Openspeech CTC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech Encoder Decoder Model.html">Openspeech Encoder Decoder Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech Transducer Model.html">Openspeech Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech Language Model.html">Openspeech Language Model</a></li>
 </ul>
 <p class="caption"><span class="caption-text">MODEL ARCHITECTURES</span></p>
 <ul>
@@ -104,13 +105,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../architectures/ContextNet.html">ContextNet</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../architectures/DeepSpeech2.html">DeepSpeech2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../architectures/Jasper.html">Jasper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../architectures/Listen%20Attend%20Spell.html">Listen Attend Spell Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../architectures/LSTM%20LM.html">LSTM Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Listen Attend Spell.html">Listen Attend Spell Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/LSTM LM.html">LSTM Language Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../architectures/QuartzNet.html">QuartzNet Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../architectures/RNN%20Transducer.html">RNN Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/RNN Transducer.html">RNN Transducer Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer.html">Transformer Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer%20LM.html">Transformer Language Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer%20Transducer.html">Transformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer LM.html">Transformer Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer Transducer.html">Transformer Transducer Model</a></li>
 </ul>
 <p class="caption"><span class="caption-text">CORPUS</span></p>
 <ul>
@@ -121,10 +122,10 @@
 <p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="Criterion.html">Criterion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Data%20Augment.html">Data Augment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Feature%20Transform.html">Feature Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data Augment.html">Data Augment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature Transform.html">Feature Transform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Datasets.html">Datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Data%20Loaders.html">Data Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data Loaders.html">Data Loaders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Decoders.html">Decoders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Encoders.html">Encoders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Modules.html">Modules</a></li>
@@ -212,27 +213,13 @@
 <span id="base"></span><h2>base<a class="headerlink" href="#module-openspeech.search.beam_search_base" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="openspeech.search.beam_search_base.OpenspeechBeamSearchBase">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">openspeech.search.beam_search_base.</span></code><code class="sig-name descname"><span class="pre">OpenspeechBeamSearchBase</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">decoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beam_size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/beam_search_base.html#OpenspeechBeamSearchBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.search.beam_search_base.OpenspeechBeamSearchBase" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.search.beam_search_base.</code><code class="sig-name descname">OpenspeechBeamSearchBase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">decoder</span></em>, <em class="sig-param"><span class="n">beam_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/beam_search_base.html#OpenspeechBeamSearchBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.search.beam_search_base.OpenspeechBeamSearchBase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Openspeech’s beam-search base class. Implement the methods required for beamsearch.
 You have to implement <cite>forward</cite> method.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Do not use this class directly, use one of the sub classes.</p>
 </div>
-<dl class="py method">
-<dt id="openspeech.search.beam_search_base.OpenspeechBeamSearchBase.forward">
-<code class="sig-name descname"><span class="pre">forward</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/beam_search_base.html#OpenspeechBeamSearchBase.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.search.beam_search_base.OpenspeechBeamSearchBase.forward" title="Permalink to this definition">¶</a></dt>
-<dd><p>Defines the computation performed at every call.</p>
-<p>Should be overridden by all subclasses.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Although the recipe for forward pass needs to be defined within
-this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
-instead of this since the former takes care of running the
-registered hooks while the latter silently ignores them.</p>
-</div>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -240,7 +227,7 @@ registered hooks while the latter silently ignores them.</p>
 <span id="beam-search-ctc"></span><h2>Beam Search CTC<a class="headerlink" href="#module-openspeech.search.beam_search_ctc" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="openspeech.search.beam_search_ctc.BeamSearchCTC">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">openspeech.search.beam_search_ctc.</span></code><code class="sig-name descname"><span class="pre">BeamSearchCTC</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">lm_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff_top_n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">40</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff_prob</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><span class="pre">float</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beam_size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_processes</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blank_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/beam_search_ctc.html#BeamSearchCTC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.search.beam_search_ctc.BeamSearchCTC" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.search.beam_search_ctc.</code><code class="sig-name descname">BeamSearchCTC</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">labels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></span></em>, <em class="sig-param"><span class="n">lm_path</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">alpha</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">beta</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">cutoff_top_n</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">40</span></em>, <em class="sig-param"><span class="n">cutoff_prob</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">beam_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">3</span></em>, <em class="sig-param"><span class="n">num_processes</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">4</span></em>, <em class="sig-param"><span class="n">blank_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/beam_search_ctc.html#BeamSearchCTC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.search.beam_search_ctc.BeamSearchCTC" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decodes probability output using ctcdecode package.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -278,7 +265,7 @@ in the vocab will be used in beam search.</p></li>
 </dl>
 <dl class="py method">
 <dt id="openspeech.search.beam_search_ctc.BeamSearchCTC.forward">
-<code class="sig-name descname"><span class="pre">forward</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sizes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/beam_search_ctc.html#BeamSearchCTC.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.search.beam_search_ctc.BeamSearchCTC.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">logits</span></em>, <em class="sig-param"><span class="n">sizes</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/beam_search_ctc.html#BeamSearchCTC.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.search.beam_search_ctc.BeamSearchCTC.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decodes probability output using ctcdecode package.</p>
 <dl class="simple">
 <dt>Inputs: logits, sizes</dt><dd><p>logits: Tensor of character probabilities, where probs[c,t] is the probability of character c at time t
@@ -302,7 +289,7 @@ sizes: Size of each sequence in the mini-batch</p>
 <span id="beam-search-lstm"></span><h2>Beam Search LSTM<a class="headerlink" href="#module-openspeech.search.beam_search_lstm" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="openspeech.search.beam_search_lstm.BeamSearchLSTM">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">openspeech.search.beam_search_lstm.</span></code><code class="sig-name descname"><span class="pre">BeamSearchLSTM</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">decoder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="Decoders.html#openspeech.decoders.lstm_attention_decoder.LSTMAttentionDecoder" title="openspeech.decoders.lstm_attention_decoder.LSTMAttentionDecoder"><span class="pre">openspeech.decoders.lstm_attention_decoder.LSTMAttentionDecoder</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">beam_size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/beam_search_lstm.html#BeamSearchLSTM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.search.beam_search_lstm.BeamSearchLSTM" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.search.beam_search_lstm.</code><code class="sig-name descname">BeamSearchLSTM</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">decoder</span><span class="p">:</span> <span class="n"><a class="reference internal" href="Decoders.html#openspeech.decoders.lstm_attention_decoder.LSTMAttentionDecoder" title="openspeech.decoders.lstm_attention_decoder.LSTMAttentionDecoder">openspeech.decoders.lstm_attention_decoder.LSTMAttentionDecoder</a></span></em>, <em class="sig-param"><span class="n">beam_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/beam_search_lstm.html#BeamSearchLSTM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.search.beam_search_lstm.BeamSearchLSTM" title="Permalink to this definition">¶</a></dt>
 <dd><p>LSTM Beam Search Decoder</p>
 <dl class="simple">
 <dt>Args: decoder, beam_size, batch_size</dt><dd><p>decoder (DecoderLSTM): base decoder of lstm model.
@@ -327,7 +314,7 @@ teacher_forcing_ratio (float): Ratio of teacher forcing.</p>
 </dl>
 <dl class="py method">
 <dt id="openspeech.search.beam_search_lstm.BeamSearchLSTM.forward">
-<code class="sig-name descname"><span class="pre">forward</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoder_outputs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git590290b ))"><span class="pre">torch.Tensor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoder_output_lengths</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git590290b ))"><span class="pre">torch.Tensor</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git590290b ))"><span class="pre">torch.Tensor</span></a><a class="reference internal" href="../_modules/openspeech/search/beam_search_lstm.html#BeamSearchLSTM.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.search.beam_search_lstm.BeamSearchLSTM.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">encoder_outputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">encoder_output_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))">torch.Tensor</a><a class="reference internal" href="../_modules/openspeech/search/beam_search_lstm.html#BeamSearchLSTM.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.search.beam_search_lstm.BeamSearchLSTM.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Beam search decoding.</p>
 <dl class="simple">
 <dt>Inputs: encoder_outputs</dt><dd><p>encoder_outputs (torch.FloatTensor): A output sequence of encoders. <cite>FloatTensor</cite> of size <code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">seq_length,</span> <span class="pre">dimension)</span></code></p>
@@ -353,7 +340,7 @@ teacher_forcing_ratio (float): Ratio of teacher forcing.</p>
 <span id="beam-search-transformer"></span><h2>Beam Search Transformer<a class="headerlink" href="#module-openspeech.search.beam_search_transformer" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="openspeech.search.beam_search_transformer.BeamSearchTransformer">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">openspeech.search.beam_search_transformer.</span></code><code class="sig-name descname"><span class="pre">BeamSearchTransformer</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">decoder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="Decoders.html#openspeech.decoders.transformer_decoder.TransformerDecoder" title="openspeech.decoders.transformer_decoder.TransformerDecoder"><span class="pre">openspeech.decoders.transformer_decoder.TransformerDecoder</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">beam_size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/beam_search_transformer.html#BeamSearchTransformer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.search.beam_search_transformer.BeamSearchTransformer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.search.beam_search_transformer.</code><code class="sig-name descname">BeamSearchTransformer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">decoder</span><span class="p">:</span> <span class="n"><a class="reference internal" href="Decoders.html#openspeech.decoders.transformer_decoder.TransformerDecoder" title="openspeech.decoders.transformer_decoder.TransformerDecoder">openspeech.decoders.transformer_decoder.TransformerDecoder</a></span></em>, <em class="sig-param"><span class="n">beam_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/beam_search_transformer.html#BeamSearchTransformer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.search.beam_search_transformer.BeamSearchTransformer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transformer Beam Search Decoder</p>
 <dl class="simple">
 <dt>Args: decoder, beam_size, batch_size</dt><dd><p>decoder (DecoderLSTM): base decoder of lstm model.
@@ -376,20 +363,6 @@ teacher_forcing_ratio (float): Ratio of teacher forcing.</p>
 </p>
 </dd>
 </dl>
-<dl class="py method">
-<dt id="openspeech.search.beam_search_transformer.BeamSearchTransformer.forward">
-<code class="sig-name descname"><span class="pre">forward</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoder_outputs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.FloatTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoder_output_lengths</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.FloatTensor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/beam_search_transformer.html#BeamSearchTransformer.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.search.beam_search_transformer.BeamSearchTransformer.forward" title="Permalink to this definition">¶</a></dt>
-<dd><p>Defines the computation performed at every call.</p>
-<p>Should be overridden by all subclasses.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Although the recipe for forward pass needs to be defined within
-this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
-instead of this since the former takes care of running the
-registered hooks while the latter silently ignores them.</p>
-</div>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -397,7 +370,7 @@ registered hooks while the latter silently ignores them.</p>
 <span id="ensemble-search"></span><h2>Ensemble Search<a class="headerlink" href="#module-openspeech.search.ensemble_search" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="openspeech.search.ensemble_search.EnsembleSearch">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">openspeech.search.ensemble_search.</span></code><code class="sig-name descname"><span class="pre">EnsembleSearch</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">models</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><span class="pre">tuple</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/ensemble_search.html#EnsembleSearch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.search.ensemble_search.EnsembleSearch" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.search.ensemble_search.</code><code class="sig-name descname">EnsembleSearch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">models</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a><span class="p">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/ensemble_search.html#EnsembleSearch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.search.ensemble_search.EnsembleSearch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class for ensemble search.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -426,25 +399,11 @@ registered hooks while the latter silently ignores them.</p>
 </p>
 </dd>
 </dl>
-<dl class="py method">
-<dt id="openspeech.search.ensemble_search.EnsembleSearch.forward">
-<code class="sig-name descname"><span class="pre">forward</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.FloatTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_lengths</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.LongTensor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/ensemble_search.html#EnsembleSearch.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.search.ensemble_search.EnsembleSearch.forward" title="Permalink to this definition">¶</a></dt>
-<dd><p>Defines the computation performed at every call.</p>
-<p>Should be overridden by all subclasses.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Although the recipe for forward pass needs to be defined within
-this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
-instead of this since the former takes care of running the
-registered hooks while the latter silently ignores them.</p>
-</div>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
 <dt id="openspeech.search.ensemble_search.WeightedEnsembleSearch">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">openspeech.search.ensemble_search.</span></code><code class="sig-name descname"><span class="pre">WeightedEnsembleSearch</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">models</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><span class="pre">tuple</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><span class="pre">tuple</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/ensemble_search.html#WeightedEnsembleSearch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.search.ensemble_search.WeightedEnsembleSearch" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.search.ensemble_search.</code><code class="sig-name descname">WeightedEnsembleSearch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">models</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">weights</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a><span class="p">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/ensemble_search.html#WeightedEnsembleSearch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.search.ensemble_search.WeightedEnsembleSearch" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -475,20 +434,6 @@ registered hooks while the latter silently ignores them.</p>
 </p>
 </dd>
 </dl>
-<dl class="py method">
-<dt id="openspeech.search.ensemble_search.WeightedEnsembleSearch.forward">
-<code class="sig-name descname"><span class="pre">forward</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.FloatTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_lengths</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.LongTensor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/ensemble_search.html#WeightedEnsembleSearch.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.search.ensemble_search.WeightedEnsembleSearch.forward" title="Permalink to this definition">¶</a></dt>
-<dd><p>Defines the computation performed at every call.</p>
-<p>Should be overridden by all subclasses.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Although the recipe for forward pass needs to be defined within
-this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
-instead of this since the former takes care of running the
-registered hooks while the latter silently ignores them.</p>
-</div>
-</dd></dl>
-
 </dd></dl>
 
 </div>

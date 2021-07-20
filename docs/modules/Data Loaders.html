@@ -32,6 +32,7 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -92,11 +93,11 @@
 </ul>
 <p class="caption"><span class="caption-text">OPENSPEECH MODELS</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Model.html">Openspeech Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20CTC%20Model.html">Openspeech CTC Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Encoder%20Decoder%20Model.html">Openspeech Encoder Decoder Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Transducer%20Model.html">Openspeech Transducer Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech%20Language%20Model.html">Openspeech Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech Model.html">Openspeech Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech CTC Model.html">Openspeech CTC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech Encoder Decoder Model.html">Openspeech Encoder Decoder Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech Transducer Model.html">Openspeech Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models/Openspeech Language Model.html">Openspeech Language Model</a></li>
 </ul>
 <p class="caption"><span class="caption-text">MODEL ARCHITECTURES</span></p>
 <ul>
@@ -104,13 +105,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../architectures/ContextNet.html">ContextNet</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../architectures/DeepSpeech2.html">DeepSpeech2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../architectures/Jasper.html">Jasper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../architectures/Listen%20Attend%20Spell.html">Listen Attend Spell Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../architectures/LSTM%20LM.html">LSTM Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Listen Attend Spell.html">Listen Attend Spell Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/LSTM LM.html">LSTM Language Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../architectures/QuartzNet.html">QuartzNet Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../architectures/RNN%20Transducer.html">RNN Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/RNN Transducer.html">RNN Transducer Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer.html">Transformer Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer%20LM.html">Transformer Language Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer%20Transducer.html">Transformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer LM.html">Transformer Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architectures/Transformer Transducer.html">Transformer Transducer Model</a></li>
 </ul>
 <p class="caption"><span class="caption-text">CORPUS</span></p>
 <ul>
@@ -121,8 +122,8 @@
 <p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="Criterion.html">Criterion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Data%20Augment.html">Data Augment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Feature%20Transform.html">Feature Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data Augment.html">Data Augment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature Transform.html">Feature Transform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Datasets.html">Datasets</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Data Loaders</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-openspeech.data.audio.data_loader">Speech To Text Data Loader</a></li>
@@ -210,12 +211,12 @@
 <span id="speech-to-text-data-loader"></span><h2>Speech To Text Data Loader<a class="headerlink" href="#module-openspeech.data.audio.data_loader" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="openspeech.data.audio.data_loader.AudioDataLoader">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">openspeech.data.audio.data_loader.</span></code><code class="sig-name descname"><span class="pre">AudioDataLoader</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.utils.data.dataset.Dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_workers</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_sampler</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.utils.data.sampler.Sampler</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/data/audio/data_loader.html#AudioDataLoader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.data.audio.data_loader.AudioDataLoader" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.data.audio.data_loader.</code><code class="sig-name descname">AudioDataLoader</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span><span class="p">:</span> <span class="n">torch.utils.data.dataset.Dataset</span></em>, <em class="sig-param"><span class="n">num_workers</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">batch_sampler</span><span class="p">:</span> <span class="n">torch.utils.data.sampler.Sampler</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/data/audio/data_loader.html#AudioDataLoader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.data.audio.data_loader.AudioDataLoader" title="Permalink to this definition">¶</a></dt>
 <dd><p>Audio Data Loader</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>dataset</strong> (<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (1.10.0a0+git590290b ))"><em>torch.utils.data.Dataset</em></a>) – dataset from which to load the data.</p></li>
+<li><p><strong>dataset</strong> (<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))"><em>torch.utils.data.Dataset</em></a>) – dataset from which to load the data.</p></li>
 <li><p><strong>num_workers</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – how many subprocesses to use for data loading.</p></li>
 <li><p><strong>batch_sampler</strong> (<em>torch.utils.data.sampler.Sampler</em>) – defines the strategy to draw samples from the dataset.</p></li>
 </ul>
@@ -225,7 +226,7 @@
 
 <dl class="py function">
 <dt id="openspeech.data.audio.data_loader.load_dataset">
-<code class="sig-prename descclassname"><span class="pre">openspeech.data.audio.data_loader.</span></code><code class="sig-name descname"><span class="pre">load_dataset</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manifest_file_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a><span class="p"><span class="pre">]</span></span><a class="reference internal" href="../_modules/openspeech/data/audio/data_loader.html#load_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.data.audio.data_loader.load_dataset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">openspeech.data.audio.data_loader.</code><code class="sig-name descname">load_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">manifest_file_path</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a><span class="p">]</span><a class="reference internal" href="../_modules/openspeech/data/audio/data_loader.html#load_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.data.audio.data_loader.load_dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Provides dictionary of filename and labels.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -245,12 +246,12 @@
 <span id="text-data-loader"></span><h2>Text Data Loader<a class="headerlink" href="#module-openspeech.data.text.data_loader" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="openspeech.data.text.data_loader.TextDataLoader">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">openspeech.data.text.data_loader.</span></code><code class="sig-name descname"><span class="pre">TextDataLoader</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.utils.data.dataset.Dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_workers</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_sampler</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.utils.data.sampler.Sampler</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/data/text/data_loader.html#TextDataLoader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.data.text.data_loader.TextDataLoader" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.data.text.data_loader.</code><code class="sig-name descname">TextDataLoader</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span><span class="p">:</span> <span class="n">torch.utils.data.dataset.Dataset</span></em>, <em class="sig-param"><span class="n">num_workers</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em>, <em class="sig-param"><span class="n">batch_sampler</span><span class="p">:</span> <span class="n">torch.utils.data.sampler.Sampler</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/data/text/data_loader.html#TextDataLoader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.data.text.data_loader.TextDataLoader" title="Permalink to this definition">¶</a></dt>
 <dd><p>Text Data Loader</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>dataset</strong> (<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (1.10.0a0+git590290b ))"><em>torch.utils.data.Dataset</em></a>) – dataset from which to load the data.</p></li>
+<li><p><strong>dataset</strong> (<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))"><em>torch.utils.data.Dataset</em></a>) – dataset from which to load the data.</p></li>
 <li><p><strong>num_workers</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – how many subprocesses to use for data loading.</p></li>
 <li><p><strong>batch_sampler</strong> (<em>torch.utils.data.sampler.Sampler</em>) – defines the strategy to draw samples from the dataset.</p></li>
 </ul>
@@ -263,12 +264,12 @@
 <span id="sampler"></span><h2>Sampler<a class="headerlink" href="#module-openspeech.data.sampler" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="openspeech.data.sampler.BucketingSampler">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">openspeech.data.sampler.</span></code><code class="sig-name descname"><span class="pre">BucketingSampler</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">32</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop_last</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/data/sampler.html#BucketingSampler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openspeech.data.sampler.BucketingSampler" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.data.sampler.</code><code class="sig-name descname">BucketingSampler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_source</span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">32</span></em>, <em class="sig-param"><span class="n">drop_last</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/data/sampler.html#BucketingSampler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.data.sampler.BucketingSampler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Samples batches assuming they are in order of size to batch similarly sized samples together.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data_source</strong> (<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (1.10.0a0+git590290b ))"><em>torch.utils.data.Dataset</em></a>) – dataset to sample from</p></li>
+<li><p><strong>data_source</strong> (<a class="reference external" href="https://pytorch.org/docs/master/data.html#torch.utils.data.Dataset" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))"><em>torch.utils.data.Dataset</em></a>) – dataset to sample from</p></li>
 <li><p><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – size of batch</p></li>
 <li><p><strong>drop_last</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – flat indication whether to drop last batch or not</p></li>
 </ul>

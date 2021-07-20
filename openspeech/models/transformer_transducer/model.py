@@ -29,6 +29,7 @@ from collections import OrderedDict
 from openspeech.models import register_model, OpenspeechTransducerModel
 from openspeech.decoders import TransformerTransducerDecoder
 from openspeech.encoders import TransformerTransducerEncoder
+from openspeech.search import BeamSearchTransformerTransducer
 from openspeech.models.transformer_transducer.configurations import TransformerTransducerConfigs
 from openspeech.tokenizers.tokenizer import Tokenizer
 
@@ -79,7 +80,18 @@ class TransformerTransducerModel(OpenspeechTransducerModel):
             eos_id=self.tokenizer.eos_id,
         )
 
-    def decode(self, encoder_outputs: Tensor, max_length: int) -> Tensor:
+    def set_beam_decode(self, beam_size: int = 3, expand_beam: float = 2.3, state_beam: float = 4.6):
+        """ Setting beam search decode """
+        self.decode = BeamSearchTransformerTransducer(
+            joint=self.joint,
+            decoder=self.decoder,
+            beam_size=beam_size,
+            expand_beam=expand_beam,
+            state_beam=state_beam,
+            blank_id=self.tokenizer.blank_id,
+        )
+
+    def greedy_decode(self, encoder_outputs: Tensor, max_length: int) -> Tensor:
         r"""
         Decode `encoder_outputs`.
 
@@ -157,7 +169,6 @@ class TransformerTransducerModel(OpenspeechTransducerModel):
         max_length = encoder_outputs.size(1)
 
         predictions = self.decode(encoder_outputs, max_length)
-
         return self.collect_outputs(
             'valid',
             logits=None,
@@ -184,7 +195,6 @@ class TransformerTransducerModel(OpenspeechTransducerModel):
         max_length = encoder_outputs.size(1)
 
         predictions = self.decode(encoder_outputs, max_length)
-
         return self.collect_outputs(
             'valid',
             logits=None,

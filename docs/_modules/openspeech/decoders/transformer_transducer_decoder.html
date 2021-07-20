@@ -32,6 +32,7 @@
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -90,11 +91,11 @@
 </ul>
 <p class="caption"><span class="caption-text">OPENSPEECH MODELS</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../models/Openspeech%20Model.html">Openspeech Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../models/Openspeech%20CTC%20Model.html">Openspeech CTC Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../models/Openspeech%20Encoder%20Decoder%20Model.html">Openspeech Encoder Decoder Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../models/Openspeech%20Transducer%20Model.html">Openspeech Transducer Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../models/Openspeech%20Language%20Model.html">Openspeech Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../models/Openspeech Model.html">Openspeech Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../models/Openspeech CTC Model.html">Openspeech CTC Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../models/Openspeech Encoder Decoder Model.html">Openspeech Encoder Decoder Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../models/Openspeech Transducer Model.html">Openspeech Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../models/Openspeech Language Model.html">Openspeech Language Model</a></li>
 </ul>
 <p class="caption"><span class="caption-text">MODEL ARCHITECTURES</span></p>
 <ul>
@@ -102,13 +103,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../architectures/ContextNet.html">ContextNet</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../architectures/DeepSpeech2.html">DeepSpeech2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../architectures/Jasper.html">Jasper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../architectures/Listen%20Attend%20Spell.html">Listen Attend Spell Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../architectures/LSTM%20LM.html">LSTM Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architectures/Listen Attend Spell.html">Listen Attend Spell Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architectures/LSTM LM.html">LSTM Language Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../architectures/QuartzNet.html">QuartzNet Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../architectures/RNN%20Transducer.html">RNN Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architectures/RNN Transducer.html">RNN Transducer Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../architectures/Transformer.html">Transformer Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../architectures/Transformer%20LM.html">Transformer Language Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../architectures/Transformer%20Transducer.html">Transformer Transducer Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architectures/Transformer LM.html">Transformer Language Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architectures/Transformer Transducer.html">Transformer Transducer Model</a></li>
 </ul>
 <p class="caption"><span class="caption-text">CORPUS</span></p>
 <ul>
@@ -119,10 +120,10 @@
 <p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/Criterion.html">Criterion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules/Data%20Augment.html">Data Augment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules/Feature%20Transform.html">Feature Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/Data Augment.html">Data Augment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/Feature Transform.html">Feature Transform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/Datasets.html">Datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules/Data%20Loaders.html">Data Loaders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/Data Loaders.html">Data Loaders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/Decoders.html">Decoders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/Encoders.html">Encoders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/Modules.html">Modules</a></li>
@@ -296,7 +297,6 @@
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">inputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
             <span class="n">input_lengths</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
-            <span class="n">hidden_states</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Forward propagate a `inputs` for label encoder.</span>
@@ -308,39 +308,52 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            * outputs (Tensor): ``(batch, seq_length, dimension)``</span>
-<span class="sd">            * input_lengths (Tensor):  ``(batch)``</span>
+<span class="sd">            * output_lengths (Tensor):  ``(batch)``</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">self_attn_mask</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">batch</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-        <span class="n">inputs</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="n">inputs</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eos_id</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="o">.</span><span class="n">size</span><span class="p">())</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># validate, evaluation</span>
             <span class="n">inputs</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">target_lens</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">target_lengths</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-            <span class="n">embedding_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span>
-            <span class="n">positional_encoding_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">positional_encoding</span><span class="p">(</span><span class="n">target_lens</span><span class="p">)</span>
-            <span class="n">inputs</span> <span class="o">=</span> <span class="n">embedding_output</span> <span class="o">+</span> <span class="n">positional_encoding_output</span>
+            <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_step</span><span class="p">(</span>
+                <span class="n">decoder_inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+                <span class="n">decoder_input_lengths</span><span class="o">=</span><span class="n">input_lengths</span><span class="p">,</span>
+                <span class="n">positional_encoding_length</span><span class="o">=</span><span class="n">target_lengths</span><span class="p">,</span>
+            <span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>  <span class="c1"># train</span>
             <span class="n">inputs</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="n">inputs</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eos_id</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">target_lengths</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-            <span class="n">embedding_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span>
-            <span class="n">positional_encoding_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">positional_encoding</span><span class="p">(</span><span class="n">target_lengths</span><span class="p">)</span>
-            <span class="n">inputs</span> <span class="o">=</span> <span class="n">embedding_output</span> <span class="o">+</span> <span class="n">positional_encoding_output</span>
+            <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_step</span><span class="p">(</span>
+                <span class="n">decoder_inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+                <span class="n">decoder_input_lengths</span><span class="o">=</span><span class="n">input_lengths</span><span class="p">,</span>
+                <span class="n">positional_encoding_length</span><span class="o">=</span><span class="n">target_lengths</span><span class="p">,</span>
+            <span class="p">)</span>
 
-            <span class="n">dec_self_attn_pad_mask</span> <span class="o">=</span> <span class="n">get_attn_pad_mask</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">input_lengths</span><span class="p">,</span> <span class="n">inputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-            <span class="n">dec_self_attn_subsequent_mask</span> <span class="o">=</span> <span class="n">get_attn_subsequent_mask</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
-            <span class="n">self_attn_mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">gt</span><span class="p">((</span><span class="n">dec_self_attn_pad_mask</span> <span class="o">+</span> <span class="n">dec_self_attn_subsequent_mask</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">outputs</span><span class="p">,</span> <span class="n">input_lengths</span></div>
+
+    <span class="k">def</span> <span class="nf">forward_step</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">decoder_inputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+            <span class="n">decoder_input_lengths</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+            <span class="n">positional_encoding_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+        <span class="n">dec_self_attn_pad_mask</span> <span class="o">=</span> <span class="n">get_attn_pad_mask</span><span class="p">(</span><span class="n">decoder_inputs</span><span class="p">,</span> <span class="n">decoder_input_lengths</span><span class="p">,</span> <span class="n">decoder_inputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">dec_self_attn_subsequent_mask</span> <span class="o">=</span> <span class="n">get_attn_subsequent_mask</span><span class="p">(</span><span class="n">decoder_inputs</span><span class="p">)</span>
+        <span class="n">self_attn_mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">gt</span><span class="p">((</span><span class="n">dec_self_attn_pad_mask</span> <span class="o">+</span> <span class="n">dec_self_attn_subsequent_mask</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">embedding_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">decoder_inputs</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span>
+        <span class="n">positional_encoding_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">positional_encoding</span><span class="p">(</span><span class="n">positional_encoding_length</span><span class="p">)</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="n">embedding_output</span> <span class="o">+</span> <span class="n">positional_encoding_output</span>
 
         <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_dropout</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">encoder_layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoder_layers</span><span class="p">:</span>
-            <span class="n">outputs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">encoder_layer</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">self_attn_mask</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">decoder_layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">decoder_layers</span><span class="p">:</span>
+            <span class="n">outputs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">decoder_layer</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">self_attn_mask</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">outputs</span><span class="p">,</span> <span class="n">input_lengths</span></div></div>
+        <span class="k">return</span> <span class="n">outputs</span></div>
 </pre></div>
 
            </div>

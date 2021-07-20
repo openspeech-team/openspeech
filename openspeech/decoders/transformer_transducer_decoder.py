@@ -98,7 +98,6 @@ class TransformerTransducerDecoder(OpenspeechDecoder):
             self,
             inputs: torch.Tensor,
             input_lengths: torch.Tensor,
-            hidden_states: torch.Tensor = None,
     ) -> Tuple[torch.Tensor, torch.Tensor]:
         r"""
         Forward propagate a `inputs` for label encoder.
@@ -110,36 +109,49 @@ class TransformerTransducerDecoder(OpenspeechDecoder):
 
         Returns:
             * outputs (Tensor): ``(batch, seq_length, dimension)``
-            * input_lengths (Tensor):  ``(batch)``
+            * output_lengths (Tensor):  ``(batch)``
         """
-        self_attn_mask = None
         batch = inputs.size(0)
-
-        inputs = inputs[inputs != self.eos_id].view(batch, -1)
 
         if len(inputs.size()) == 1:  # validate, evaluation
             inputs = inputs.unsqueeze(1)
-            target_lens = inputs.size(1)
+            target_lengths = inputs.size(1)
 
-            embedding_output = self.embedding(inputs) * self.scale
-            positional_encoding_output = self.positional_encoding(target_lens)
-            inputs = embedding_output + positional_encoding_output
+            outputs = self.forward_step(
+                decoder_inputs=inputs,
+                decoder_input_lengths=input_lengths,
+                positional_encoding_length=target_lengths,
+            )
 
         else:  # train
             inputs = inputs[inputs != self.eos_id].view(batch, -1)
             target_lengths = inputs.size(1)
 
-            embedding_output = self.embedding(inputs) * self.scale
-            positional_encoding_output = self.positional_encoding(target_lengths)
-            inputs = embedding_output + positional_encoding_output
+            outputs = self.forward_step(
+                decoder_inputs=inputs,
+                decoder_input_lengths=input_lengths,
+                positional_encoding_length=target_lengths,
+            )
 
-            dec_self_attn_pad_mask = get_attn_pad_mask(inputs, input_lengths, inputs.size(1))
-            dec_self_attn_subsequent_mask = get_attn_subsequent_mask(inputs)
-            self_attn_mask = torch.gt((dec_self_attn_pad_mask + dec_self_attn_subsequent_mask), 0)
+        return outputs, input_lengths
+
+    def forward_step(
+            self,
+            decoder_inputs: torch.Tensor,
+            decoder_input_lengths: torch.Tensor,
+            positional_encoding_length: int = 1,
+    ) -> torch.Tensor:
+        dec_self_attn_pad_mask = get_attn_pad_mask(decoder_inputs, decoder_input_lengths, decoder_inputs.size(1))
+        dec_self_attn_subsequent_mask = get_attn_subsequent_mask(decoder_inputs)
+        self_attn_mask = torch.gt((dec_self_attn_pad_mask + dec_self_attn_subsequent_mask), 0)
+
+        embedding_output = self.embedding(decoder_inputs) * self.scale
+        positional_encoding_output = self.positional_encoding(positional_encoding_length)
+        inputs = embedding_output + positional_encoding_output
 
         outputs = self.input_dropout(inputs)
 
-        for encoder_layer in self.encoder_layers:
-            outputs, _ = encoder_layer(outputs, self_attn_mask)
+        for decoder_layer in self.decoder_layers:
+            outputs, _ = decoder_layer(outputs, self_attn_mask)
 
-        return outputs, input_lengths
+        return outputs

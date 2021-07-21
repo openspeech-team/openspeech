@@ -88,53 +88,27 @@ class OpenspeechTransducerModel(OpenspeechModel):
             input_lengths: torch.IntTensor,
             targets: torch.IntTensor,
             target_lengths: torch.IntTensor,
-            predictions: torch.Tensor = None,
     ) -> OrderedDict:
-        if predictions is None:
-            predictions = logits.max(-1)[1]
-            loss = self.criterion(
-                logits=logits,
-                targets=targets[:, 1:].contiguous().int(),
-                input_lengths=input_lengths.int(),
-                target_lengths=target_lengths.int(),
-            )
+        predictions = logits.max(-1)[1]
 
-            wer = self.wer_metric(targets[:, 1:], predictions)
-            cer = self.cer_metric(targets[:, 1:], predictions)
+        loss = self.criterion(
+            logits=logits,
+            targets=targets[:, 1:].contiguous().int(),
+            input_lengths=input_lengths.int(),
+            target_lengths=target_lengths.int(),
+        )
 
-            self.info({
-                f"{stage}_loss": loss,
-                f"{stage}_wer": wer,
-                f"{stage}_cer": cer,
-                "learning_rate": self.get_lr(),
-            })
+        self.info({
+            f"{stage}_loss": loss,
+            "learning_rate": self.get_lr(),
+        })
 
-            return OrderedDict({
-                "loss": loss,
-                "wer": wer,
-                "cer": cer,
-                "predictions": predictions,
-                "targets": targets,
-                "logits": logits,
-            })
-
-        else:
-            wer = self.wer_metric(targets[:, 1:], predictions)
-            cer = self.cer_metric(targets[:, 1:], predictions)
-
-            self.info({
-                f"{stage}_wer": wer,
-                f"{stage}_cer": cer,
-            })
-
-            return OrderedDict({
-                "loss": None,
-                "wer": wer,
-                "cer": cer,
-                "predictions": predictions,
-                "targets": targets,
-                "logits": logits,
-            })
+        return OrderedDict({
+            "loss": loss,
+            "predictions": predictions,
+            "targets": targets,
+            "logits": logits,
+        })
 
     def _expand_for_joint(self, encoder_outputs: Tensor, decoder_outputs: Tensor) -> Tuple[Tensor, Tensor]:
         input_length = encoder_outputs.size(1)
@@ -278,16 +252,15 @@ class OpenspeechTransducerModel(OpenspeechModel):
         else:
             encoder_outputs, output_lengths = self.encoder(inputs, input_lengths)
 
-        max_length = encoder_outputs.size(1)
+        decoder_outputs, _ = self.decoder(targets, target_lengths)
+        logits = self.joint(encoder_outputs, decoder_outputs)
 
-        predictions = self.decode(encoder_outputs, max_length)
         return self.collect_outputs(
             'val',
-            logits=None,
+            logits=logits,
             input_lengths=output_lengths,
             targets=targets,
             target_lengths=target_lengths,
-            predictions=predictions,
         )
 
     def test_step(self, batch: tuple, batch_idx: int) -> OrderedDict:
@@ -308,14 +281,13 @@ class OpenspeechTransducerModel(OpenspeechModel):
         else:
             encoder_outputs, output_lengths = self.encoder(inputs, input_lengths)
 
-        max_length = encoder_outputs.size(1)
+        decoder_outputs, _ = self.decoder(targets, target_lengths)
+        logits = self.joint(encoder_outputs, decoder_outputs)
 
-        predictions = self.decode(encoder_outputs, max_length)
         return self.collect_outputs(
             'test',
-            logits=None,
+            logits=logits,
             input_lengths=output_lengths,
             targets=targets,
             target_lengths=target_lengths,
-            predictions=predictions,
         )

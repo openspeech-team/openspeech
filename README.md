@@ -30,6 +30,14 @@ Various features are available in the above two libraries, including Multi-GPU a
   
 <img src="https://raw.githubusercontent.com/openspeech-team/openspeech/55e50cb9b3cc3e7a6dfddcd33e6e698cca3dae3b/docs/img/logo.png" height=20>  We appreciate any kind of feedback or contribution. Feel free to proceed with small issues like bug fixes, documentation improvement. For major contributions and new features, please discuss with the collaborators in corresponding issues.  
   
+## What's New
+  
+- Jul 2021 [openspeech 0.3.0 released](https://github.com/openspeech-team/openspeech/releases/tag/v0.3.0)
+- Jul 2021 [Added transducer beam search logic](https://openspeech-team.github.io/openspeech/modules/Search.html)
+- Jun 2021 [Added ContextNet](https://openspeech-team.github.io/openspeech/architectures/ContextNet.html)
+- Jun 2021 [Added language model training pipeline](https://openspeech-team.github.io/openspeech/models/Openspeech%20Language%20Model.html)
+- Jun 2021 [openspeech 0.1.0](https://github.com/openspeech-team/openspeech/tree/v0.1)
+  
 ## Contents
   
 - [**What is OpenSpeech?**](https://github.com/openspeech-team/OpenSpeech#what-is-openspeech)

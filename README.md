@@ -146,7 +146,7 @@ KsponSpeech is a large-scale spontaneous speech corpus of Korean. This corpus co
 |KsponSpeech|grapheme|[[Link]](https://drive.google.com/file/d/1BSDHnByD33vfkBVTwT9AlU_rYc02dBtG/view?usp=sharing)|[[Link]](https://drive.google.com/file/d/1HnupfQwiziXaRIhquUTKo9cUfDwkpuMo/view?usp=sharing)|-|   
   
 KsponSpeech needs permission from [AI Hub](https://aihub.or.kr/).   
-Please send e-mail including the approved screenshot to sh951011@gmail.com.
+Please send e-mail including the approved screenshot to openspeech-team@gmail.com.
   
 ### Manifest File
   

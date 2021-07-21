@@ -117,11 +117,6 @@ class RNNTransducerDecoder(OpenspeechDecoder):
             * hidden_states (torch.FloatTensor): A hidden state of decoders. `FloatTensor` of size
                 ``(batch, seq_length, dimension)``
         """
-        batch_size, input_lengths = inputs.size(0), inputs.size(1)
-
-        if input_lengths != 1:
-            inputs = inputs[inputs != self.eos_id].view(batch_size, -1)
-
         embedded = self.embedding(inputs)
 
         if hidden_states is not None:

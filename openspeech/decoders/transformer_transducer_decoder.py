@@ -85,7 +85,7 @@ class TransformerTransducerDecoder(OpenspeechDecoder):
         self.pad_id = pad_id
         self.sos_id = sos_id
         self.eos_id = eos_id
-        self.encoder_layers = nn.ModuleList([
+        self.decoder_layers = nn.ModuleList([
             TransformerTransducerEncoderLayer(
                 model_dim,
                 d_ff,
@@ -124,7 +124,6 @@ class TransformerTransducerDecoder(OpenspeechDecoder):
             )
 
         else:  # train
-            inputs = inputs[inputs != self.eos_id].view(batch, -1)
             target_lengths = inputs.size(1)
 
             outputs = self.forward_step(

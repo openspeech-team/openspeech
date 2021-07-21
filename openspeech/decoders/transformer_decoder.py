@@ -75,10 +75,10 @@ class TransformerDecoderLayer(nn.Module):
     ) -> None:
         super(TransformerDecoderLayer, self).__init__()
         self.self_attention_prenorm = nn.LayerNorm(d_model)
-        self.encoder_attention_prenorm = nn.LayerNorm(d_model)
+        self.decoder_attention_prenorm = nn.LayerNorm(d_model)
         self.feed_forward_prenorm = nn.LayerNorm(d_model)
         self.self_attention = MultiHeadAttention(d_model, num_heads)
-        self.encoder_attention = MultiHeadAttention(d_model, num_heads)
+        self.decoder_attention = MultiHeadAttention(d_model, num_heads)
         self.feed_forward = PositionwiseFeedForward(d_model, d_ff, dropout_p)
 
     def forward(
@@ -108,8 +108,8 @@ class TransformerDecoderLayer(nn.Module):
         outputs += residual
 
         residual = outputs
-        outputs = self.encoder_attention_prenorm(outputs)
-        outputs, encoder_attn = self.encoder_attention(outputs, encoder_outputs, encoder_outputs, encoder_attn_mask)
+        outputs = self.decoder_attention_prenorm(outputs)
+        outputs, encoder_attn = self.decoder_attention(outputs, encoder_outputs, encoder_outputs, encoder_attn_mask)
         outputs += residual
 
         residual = outputs

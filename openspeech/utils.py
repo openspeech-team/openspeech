@@ -29,6 +29,8 @@ from typing import Tuple, Union, Iterable
 from omegaconf import DictConfig, OmegaConf
 from pytorch_lightning.callbacks import LearningRateMonitor
 
+from .callbacks import CheckpointEveryNSteps
+
 PYTORCH_IMPORT_ERROR = """
 Openspeech requires the PyTorch library but it was not found in your environment. Checkout the instructions on the
 installation page: https://pytorch.org/get-started/locally/ and follow the ones that match your environment.
@@ -228,7 +230,10 @@ def get_pl_trainer(
                              logger=logger,
                              auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
                              max_epochs=configs.trainer.max_epochs,
-                             callbacks=[LearningRateMonitor(logging_interval='step')])
+                             callbacks=[
+                                 LearningRateMonitor(logging_interval='step'),
+                                 CheckpointEveryNSteps(configs.save_checkpoint_n_steps)
+                             ])
     elif configs.trainer.name == "gpu":
         trainer = pl.Trainer(accelerator=configs.trainer.accelerator,
                              gpus=num_devices,
@@ -239,7 +244,10 @@ def get_pl_trainer(
                              logger=logger,
                              auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
                              max_epochs=configs.trainer.max_epochs,
-                             callbacks=[LearningRateMonitor(logging_interval='step')])
+                             callbacks=[
+                                 LearningRateMonitor(logging_interval='step'),
+                                 CheckpointEveryNSteps(configs.save_checkpoint_n_steps)
+                             ])
     elif configs.trainer.name == "tpu":
         trainer = pl.Trainer(accelerator=configs.trainer.accelerator,
                              tpu_cores=configs.trainer.tpu_cores,
@@ -250,7 +258,10 @@ def get_pl_trainer(
                              logger=logger,
                              auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
                              max_epochs=configs.trainer.max_epochs,
-                             callbacks=[LearningRateMonitor(logging_interval='step')])
+                             callbacks=[
+                                 LearningRateMonitor(logging_interval='step'),
+                                 CheckpointEveryNSteps(configs.save_checkpoint_n_steps)
+                             ])
     elif configs.trainer.name == "gpu-fp16":
         trainer = pl.Trainer(precision=configs.trainer.precision,
                              accelerator=configs.trainer.accelerator,
@@ -275,7 +286,10 @@ def get_pl_trainer(
                              logger=logger,
                              auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
                              max_epochs=configs.trainer.max_epochs,
-                             callbacks=[LearningRateMonitor(logging_interval='step')])
+                             callbacks=[
+                                 LearningRateMonitor(logging_interval='step'),
+                                 CheckpointEveryNSteps(configs.save_checkpoint_n_steps)
+                             ])
     elif configs.trainer.name == "cpu-fp64":
         trainer = pl.Trainer(precision=configs.trainer.precision,
                              accelerator=configs.trainer.accelerator,
@@ -286,7 +300,10 @@ def get_pl_trainer(
                              logger=logger,
                              auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
                              max_epochs=configs.trainer.max_epochs,
-                             callbacks=[LearningRateMonitor(logging_interval='step')])
+                             callbacks=[
+                                 LearningRateMonitor(logging_interval='step'),
+                                 CheckpointEveryNSteps(configs.save_checkpoint_n_steps)
+                             ])
     else:
         raise ValueError(f"Unsupported trainer: {configs.trainer.name}")
 

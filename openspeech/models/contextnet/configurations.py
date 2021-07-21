@@ -195,7 +195,7 @@ class ContextNetTransducerConfigs(OpenspeechDataclass):
     num_channels: int = field(
         default=256, metadata={"help": "The number of channels in the convolution filter"}
     )
-    hidden_dim: int = field(
+    decoder_hidden_state_dim: int = field(
         default=2048, metadata={"help": "The number of features in the decoder hidden state"}
     )
     encoder_dim: int = field(
@@ -204,7 +204,7 @@ class ContextNetTransducerConfigs(OpenspeechDataclass):
     decoder_output_dim: int = field(
         default=640, metadata={"help": "Dimension of decoder output vector"}
     )
-    dropout: float = field(
+    decoder_dropout_p: float = field(
         default=0.1, metadata={"help": "Dropout probability of decoder"}
     )
     rnn_type: str = field(

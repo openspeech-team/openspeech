@@ -202,6 +202,9 @@ class BaseTrainerConfigs(OpenspeechDataclass):
     max_epochs: int = field(
         default=20, metadata={"help": "Stop training once this number of epochs is reached."}
     )
+    save_checkpoint_n_steps: int = field(
+        default=10000, metadata={"help": "Save a checkpoint every N steps."}
+    )
     auto_scale_batch_size: str = field(
         default="binsearch", metadata={"help": "If set to True, will initially run a batch size finder trying to find "
                                                "the largest batch size that fits into memory."}

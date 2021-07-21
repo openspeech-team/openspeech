@@ -36,7 +36,7 @@ Various features are available in the above two libraries, including Multi-GPU a
 - Jul 2021 [Added transducer beam search logic](https://openspeech-team.github.io/openspeech/modules/Search.html)
 - Jun 2021 [Added ContextNet](https://openspeech-team.github.io/openspeech/architectures/ContextNet.html)
 - Jun 2021 [Added language model training pipeline](https://openspeech-team.github.io/openspeech/models/Openspeech%20Language%20Model.html)
-- Jun 2021 [openspeech 0.1.0](https://github.com/openspeech-team/openspeech/tree/v0.1)
+- Jun 2021 [openspeech 0.1.0 released](https://github.com/openspeech-team/openspeech/tree/v0.1)
   
 ## Contents
   

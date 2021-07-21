@@ -274,7 +274,10 @@ def get_pl_trainer(
                              logger=logger,
                              auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
                              max_epochs=configs.trainer.max_epochs,
-                             callbacks=[LearningRateMonitor(logging_interval='step')])
+                             callbacks=[
+                                 LearningRateMonitor(logging_interval='step'),
+                                 CheckpointEveryNSteps(configs.save_checkpoint_n_steps)
+                             ])
     elif configs.trainer.name == "tpu-fp16":
         trainer = pl.Trainer(precision=configs.trainer.precision,
                              accelerator=configs.trainer.accelerator,

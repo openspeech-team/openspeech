@@ -119,6 +119,7 @@
 </ul>
 <p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/Callback.html">Callback</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/Criterion.html">Criterion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/Data Augment.html">Data Augment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/Feature Transform.html">Feature Transform</a></li>
@@ -284,7 +285,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">pad_id</span> <span class="o">=</span> <span class="n">pad_id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sos_id</span> <span class="o">=</span> <span class="n">sos_id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">eos_id</span> <span class="o">=</span> <span class="n">eos_id</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">encoder_layers</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">([</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decoder_layers</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">([</span>
             <span class="n">TransformerTransducerEncoderLayer</span><span class="p">(</span>
                 <span class="n">model_dim</span><span class="p">,</span>
                 <span class="n">d_ff</span><span class="p">,</span>
@@ -323,7 +324,6 @@
             <span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>  <span class="c1"># train</span>
-            <span class="n">inputs</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="n">inputs</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eos_id</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">target_lengths</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
             <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_step</span><span class="p">(</span>

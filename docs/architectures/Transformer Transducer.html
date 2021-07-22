@@ -125,6 +125,7 @@
 </ul>
 <p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Callback.html">Callback</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/Criterion.html">Criterion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/Data Augment.html">Data Augment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/Feature Transform.html">Feature Transform</a></li>
@@ -237,28 +238,8 @@ input_lengths (torch.LongTensor): The length of input tensor. <code class="docut
 </dd>
 </dl>
 <dl class="py method">
-<dt id="openspeech.models.transformer_transducer.model.TransformerTransducerModel.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">input_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))">torch.Tensor</a><span class="p">]</span><a class="reference internal" href="../_modules/openspeech/models/transformer_transducer/model.html#TransformerTransducerModel.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.transformer_transducer.model.TransformerTransducerModel.forward" title="Permalink to this definition">¶</a></dt>
-<dd><p>Decode <cite>encoder_outputs</cite>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>inputs</strong> (<em>torch.FloatTensor</em>) – A input sequence passed to encoders. Typically for inputs this will be a padded <cite>FloatTensor</cite> of size <code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">seq_length,</span> <span class="pre">dimension)</span></code>.</p></li>
-<li><p><strong>input_lengths</strong> (<em>torch.LongTensor</em>) – The length of input tensor. <code class="docutils literal notranslate"><span class="pre">(batch)</span></code></p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result of model predictions.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>outputs (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a>)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt id="openspeech.models.transformer_transducer.model.TransformerTransducerModel.greedy_decode">
-<code class="sig-name descname">greedy_decode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">encoder_outputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">max_length</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))">torch.Tensor</a><a class="reference internal" href="../_modules/openspeech/models/transformer_transducer/model.html#TransformerTransducerModel.greedy_decode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.transformer_transducer.model.TransformerTransducerModel.greedy_decode" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">greedy_decode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">encoder_outputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git2bfbfd8 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">max_length</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git2bfbfd8 ))">torch.Tensor</a><a class="reference internal" href="../_modules/openspeech/models/transformer_transducer/model.html#TransformerTransducerModel.greedy_decode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.transformer_transducer.model.TransformerTransducerModel.greedy_decode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decode <cite>encoder_outputs</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -280,63 +261,6 @@ input_lengths (torch.LongTensor): The length of input tensor. <code class="docut
 <dt id="openspeech.models.transformer_transducer.model.TransformerTransducerModel.set_beam_decode">
 <code class="sig-name descname">set_beam_decode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">beam_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">3</span></em>, <em class="sig-param"><span class="n">expand_beam</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">2.3</span></em>, <em class="sig-param"><span class="n">state_beam</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">4.6</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/models/transformer_transducer/model.html#TransformerTransducerModel.set_beam_decode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.transformer_transducer.model.TransformerTransducerModel.set_beam_decode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Setting beam search decode</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="openspeech.models.transformer_transducer.model.TransformerTransducerModel.test_step">
-<code class="sig-name descname">test_step</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">batch</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a></span></em>, <em class="sig-param"><span class="n">batch_idx</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.OrderedDict" title="(in Python v3.9)">collections.OrderedDict</a><a class="reference internal" href="../_modules/openspeech/models/transformer_transducer/model.html#TransformerTransducerModel.test_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.transformer_transducer.model.TransformerTransducerModel.test_step" title="Permalink to this definition">¶</a></dt>
-<dd><p>Forward propagate a <cite>inputs</cite> and <cite>targets</cite> pair for test.</p>
-<dl class="simple">
-<dt>Inputs:</dt><dd><p>batch (tuple): A train batch contains <cite>inputs</cite>, <cite>targets</cite>, <cite>input_lengths</cite>, <cite>target_lengths</cite>
-batch_idx (int): The index of batch</p>
-</dd>
-</dl>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>loss for training</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))">torch.Tensor</a>)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="openspeech.models.transformer_transducer.model.TransformerTransducerModel.training_step">
-<code class="sig-name descname">training_step</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">batch</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a></span></em>, <em class="sig-param"><span class="n">batch_idx</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.OrderedDict" title="(in Python v3.9)">collections.OrderedDict</a><a class="reference internal" href="../_modules/openspeech/models/transformer_transducer/model.html#TransformerTransducerModel.training_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.transformer_transducer.model.TransformerTransducerModel.training_step" title="Permalink to this definition">¶</a></dt>
-<dd><p>Forward propagate a <cite>inputs</cite> and <cite>targets</cite> pair for training.</p>
-<dl class="simple">
-<dt>Inputs:</dt><dd><p>batch (tuple): A train batch contains <cite>inputs</cite>, <cite>targets</cite>, <cite>input_lengths</cite>, <cite>target_lengths</cite>
-batch_idx (int): The index of batch</p>
-</dd>
-</dl>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>loss for training</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))">torch.Tensor</a>)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="openspeech.models.transformer_transducer.model.TransformerTransducerModel.validation_step">
-<code class="sig-name descname">validation_step</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">batch</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a></span></em>, <em class="sig-param"><span class="n">batch_idx</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.OrderedDict" title="(in Python v3.9)">collections.OrderedDict</a><a class="reference internal" href="../_modules/openspeech/models/transformer_transducer/model.html#TransformerTransducerModel.validation_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.transformer_transducer.model.TransformerTransducerModel.validation_step" title="Permalink to this definition">¶</a></dt>
-<dd><p>Forward propagate a <cite>inputs</cite> and <cite>targets</cite> pair for validation.</p>
-<dl class="simple">
-<dt>Inputs:</dt><dd><p>batch (tuple): A train batch contains <cite>inputs</cite>, <cite>targets</cite>, <cite>input_lengths</cite>, <cite>target_lengths</cite>
-batch_idx (int): The index of batch</p>
-</dd>
-</dl>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>loss for training</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))">torch.Tensor</a>)</p>
-</dd>
-</dl>
 </dd></dl>
 
 </dd></dl>

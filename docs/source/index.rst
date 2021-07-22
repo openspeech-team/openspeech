@@ -52,6 +52,7 @@ Welcome to Openspeech's documentation!
    :maxdepth: 1
    :caption: LIBRARY REFERENCE
 
+   modules/Callback
    modules/Criterion
    modules/Data Augment
    modules/Feature Transform

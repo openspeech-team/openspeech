@@ -124,6 +124,7 @@
 </ul>
 <p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/Callback.html">Callback</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/Criterion.html">Criterion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/Data Augment.html">Data Augment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/Feature Transform.html">Feature Transform</a></li>
@@ -269,7 +270,7 @@ input_lengths (torch.LongTensor): The length of input tensor. <code class="docut
 
 <dl class="py method">
 <dt id="openspeech.models.openspeech_model.OpenspeechModel.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n">torch.FloatTensor</span></em>, <em class="sig-param"><span class="n">input_lengths</span><span class="p">:</span> <span class="n">torch.LongTensor</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))">torch.Tensor</a><span class="p">]</span><a class="reference internal" href="../_modules/openspeech/models/openspeech_model.html#OpenspeechModel.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.openspeech_model.OpenspeechModel.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n">torch.FloatTensor</span></em>, <em class="sig-param"><span class="n">input_lengths</span><span class="p">:</span> <span class="n">torch.LongTensor</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">, </span><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git2bfbfd8 ))">torch.Tensor</a><span class="p">]</span><a class="reference internal" href="../_modules/openspeech/models/openspeech_model.html#OpenspeechModel.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.models.openspeech_model.OpenspeechModel.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Forward propagate a <cite>inputs</cite> and <cite>targets</cite> pair for inference.</p>
 <dl class="simple">
 <dt>Inputs:</dt><dd><p>inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded <cite>FloatTensor</cite> of size <code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">seq_length,</span> <span class="pre">dimension)</span></code>.
@@ -311,7 +312,7 @@ batch_idx (int): The index of batch</p>
 <dd class="field-odd"><p>loss for training</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))">torch.Tensor</a>)</p>
+<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git2bfbfd8 ))">torch.Tensor</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -330,7 +331,7 @@ batch_idx (int): The index of batch</p>
 <dd class="field-odd"><p>loss for training</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))">torch.Tensor</a>)</p>
+<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git2bfbfd8 ))">torch.Tensor</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -349,7 +350,7 @@ batch_idx (int): The index of batch</p>
 <dd class="field-odd"><p>loss for training</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))">torch.Tensor</a>)</p>
+<dd class="field-even"><p>loss (<a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git2bfbfd8 ))">torch.Tensor</a>)</p>
 </dd>
 </dl>
 </dd></dl>

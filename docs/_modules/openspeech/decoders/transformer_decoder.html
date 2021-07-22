@@ -119,6 +119,7 @@
 </ul>
 <p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/Callback.html">Callback</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/Criterion.html">Criterion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/Data Augment.html">Data Augment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/Feature Transform.html">Feature Transform</a></li>
@@ -274,10 +275,10 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">TransformerDecoderLayer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">self_attention_prenorm</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">d_model</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">encoder_attention_prenorm</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">d_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decoder_attention_prenorm</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">d_model</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">feed_forward_prenorm</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">d_model</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">self_attention</span> <span class="o">=</span> <span class="n">MultiHeadAttention</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">num_heads</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">encoder_attention</span> <span class="o">=</span> <span class="n">MultiHeadAttention</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">num_heads</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decoder_attention</span> <span class="o">=</span> <span class="n">MultiHeadAttention</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">num_heads</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">feed_forward</span> <span class="o">=</span> <span class="n">PositionwiseFeedForward</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_ff</span><span class="p">,</span> <span class="n">dropout_p</span><span class="p">)</span>
 
 <div class="viewcode-block" id="TransformerDecoderLayer.forward"><a class="viewcode-back" href="../../../modules/Decoders.html#openspeech.decoders.transformer_decoder.TransformerDecoderLayer.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span>
@@ -307,8 +308,8 @@
         <span class="n">outputs</span> <span class="o">+=</span> <span class="n">residual</span>
 
         <span class="n">residual</span> <span class="o">=</span> <span class="n">outputs</span>
-        <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoder_attention_prenorm</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span>
-        <span class="n">outputs</span><span class="p">,</span> <span class="n">encoder_attn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoder_attention</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">encoder_outputs</span><span class="p">,</span> <span class="n">encoder_outputs</span><span class="p">,</span> <span class="n">encoder_attn_mask</span><span class="p">)</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decoder_attention_prenorm</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span>
+        <span class="n">outputs</span><span class="p">,</span> <span class="n">encoder_attn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decoder_attention</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">encoder_outputs</span><span class="p">,</span> <span class="n">encoder_outputs</span><span class="p">,</span> <span class="n">encoder_attn_mask</span><span class="p">)</span>
         <span class="n">outputs</span> <span class="o">+=</span> <span class="n">residual</span>
 
         <span class="n">residual</span> <span class="o">=</span> <span class="n">outputs</span>

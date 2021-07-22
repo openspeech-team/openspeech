@@ -119,6 +119,7 @@
 </ul>
 <p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/Callback.html">Callback</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/Criterion.html">Criterion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/Data Augment.html">Data Augment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/Feature Transform.html">Feature Transform</a></li>
@@ -287,53 +288,27 @@
             <span class="n">input_lengths</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">IntTensor</span><span class="p">,</span>
             <span class="n">targets</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">IntTensor</span><span class="p">,</span>
             <span class="n">target_lengths</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">IntTensor</span><span class="p">,</span>
-            <span class="n">predictions</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OrderedDict</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">predictions</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">predictions</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-            <span class="n">loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span><span class="p">(</span>
-                <span class="n">logits</span><span class="o">=</span><span class="n">logits</span><span class="p">,</span>
-                <span class="n">targets</span><span class="o">=</span><span class="n">targets</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">contiguous</span><span class="p">()</span><span class="o">.</span><span class="n">int</span><span class="p">(),</span>
-                <span class="n">input_lengths</span><span class="o">=</span><span class="n">input_lengths</span><span class="o">.</span><span class="n">int</span><span class="p">(),</span>
-                <span class="n">target_lengths</span><span class="o">=</span><span class="n">target_lengths</span><span class="o">.</span><span class="n">int</span><span class="p">(),</span>
-            <span class="p">)</span>
+        <span class="n">predictions</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 
-            <span class="n">wer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wer_metric</span><span class="p">(</span><span class="n">targets</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:],</span> <span class="n">predictions</span><span class="p">)</span>
-            <span class="n">cer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cer_metric</span><span class="p">(</span><span class="n">targets</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:],</span> <span class="n">predictions</span><span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span><span class="p">(</span>
+            <span class="n">logits</span><span class="o">=</span><span class="n">logits</span><span class="p">,</span>
+            <span class="n">targets</span><span class="o">=</span><span class="n">targets</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">contiguous</span><span class="p">()</span><span class="o">.</span><span class="n">int</span><span class="p">(),</span>
+            <span class="n">input_lengths</span><span class="o">=</span><span class="n">input_lengths</span><span class="o">.</span><span class="n">int</span><span class="p">(),</span>
+            <span class="n">target_lengths</span><span class="o">=</span><span class="n">target_lengths</span><span class="o">.</span><span class="n">int</span><span class="p">(),</span>
+        <span class="p">)</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">({</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stage</span><span class="si">}</span><span class="s2">_loss&quot;</span><span class="p">:</span> <span class="n">loss</span><span class="p">,</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stage</span><span class="si">}</span><span class="s2">_wer&quot;</span><span class="p">:</span> <span class="n">wer</span><span class="p">,</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stage</span><span class="si">}</span><span class="s2">_cer&quot;</span><span class="p">:</span> <span class="n">cer</span><span class="p">,</span>
-                <span class="s2">&quot;learning_rate&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lr</span><span class="p">(),</span>
-            <span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">({</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stage</span><span class="si">}</span><span class="s2">_loss&quot;</span><span class="p">:</span> <span class="n">loss</span><span class="p">,</span>
+            <span class="s2">&quot;learning_rate&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lr</span><span class="p">(),</span>
+        <span class="p">})</span>
 
-            <span class="k">return</span> <span class="n">OrderedDict</span><span class="p">({</span>
-                <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="n">loss</span><span class="p">,</span>
-                <span class="s2">&quot;wer&quot;</span><span class="p">:</span> <span class="n">wer</span><span class="p">,</span>
-                <span class="s2">&quot;cer&quot;</span><span class="p">:</span> <span class="n">cer</span><span class="p">,</span>
-                <span class="s2">&quot;predictions&quot;</span><span class="p">:</span> <span class="n">predictions</span><span class="p">,</span>
-                <span class="s2">&quot;targets&quot;</span><span class="p">:</span> <span class="n">targets</span><span class="p">,</span>
-                <span class="s2">&quot;logits&quot;</span><span class="p">:</span> <span class="n">logits</span><span class="p">,</span>
-            <span class="p">})</span>
-
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">wer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wer_metric</span><span class="p">(</span><span class="n">targets</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:],</span> <span class="n">predictions</span><span class="p">)</span>
-            <span class="n">cer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cer_metric</span><span class="p">(</span><span class="n">targets</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:],</span> <span class="n">predictions</span><span class="p">)</span>
-
-            <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">({</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stage</span><span class="si">}</span><span class="s2">_wer&quot;</span><span class="p">:</span> <span class="n">wer</span><span class="p">,</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stage</span><span class="si">}</span><span class="s2">_cer&quot;</span><span class="p">:</span> <span class="n">cer</span><span class="p">,</span>
-            <span class="p">})</span>
-
-            <span class="k">return</span> <span class="n">OrderedDict</span><span class="p">({</span>
-                <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                <span class="s2">&quot;wer&quot;</span><span class="p">:</span> <span class="n">wer</span><span class="p">,</span>
-                <span class="s2">&quot;cer&quot;</span><span class="p">:</span> <span class="n">cer</span><span class="p">,</span>
-                <span class="s2">&quot;predictions&quot;</span><span class="p">:</span> <span class="n">predictions</span><span class="p">,</span>
-                <span class="s2">&quot;targets&quot;</span><span class="p">:</span> <span class="n">targets</span><span class="p">,</span>
-                <span class="s2">&quot;logits&quot;</span><span class="p">:</span> <span class="n">logits</span><span class="p">,</span>
-            <span class="p">})</span>
+        <span class="k">return</span> <span class="n">OrderedDict</span><span class="p">({</span>
+            <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="n">loss</span><span class="p">,</span>
+            <span class="s2">&quot;predictions&quot;</span><span class="p">:</span> <span class="n">predictions</span><span class="p">,</span>
+            <span class="s2">&quot;targets&quot;</span><span class="p">:</span> <span class="n">targets</span><span class="p">,</span>
+            <span class="s2">&quot;logits&quot;</span><span class="p">:</span> <span class="n">logits</span><span class="p">,</span>
+        <span class="p">})</span>
 
     <span class="k">def</span> <span class="nf">_expand_for_joint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encoder_outputs</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">decoder_outputs</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">]:</span>
         <span class="n">input_length</span> <span class="o">=</span> <span class="n">encoder_outputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -477,16 +452,15 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">encoder_outputs</span><span class="p">,</span> <span class="n">output_lengths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">input_lengths</span><span class="p">)</span>
 
-        <span class="n">max_length</span> <span class="o">=</span> <span class="n">encoder_outputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">decoder_outputs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decoder</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span> <span class="n">target_lengths</span><span class="p">)</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint</span><span class="p">(</span><span class="n">encoder_outputs</span><span class="p">,</span> <span class="n">decoder_outputs</span><span class="p">)</span>
 
-        <span class="n">predictions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoder_outputs</span><span class="p">,</span> <span class="n">max_length</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">collect_outputs</span><span class="p">(</span>
             <span class="s1">&#39;val&#39;</span><span class="p">,</span>
-            <span class="n">logits</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">logits</span><span class="o">=</span><span class="n">logits</span><span class="p">,</span>
             <span class="n">input_lengths</span><span class="o">=</span><span class="n">output_lengths</span><span class="p">,</span>
             <span class="n">targets</span><span class="o">=</span><span class="n">targets</span><span class="p">,</span>
             <span class="n">target_lengths</span><span class="o">=</span><span class="n">target_lengths</span><span class="p">,</span>
-            <span class="n">predictions</span><span class="o">=</span><span class="n">predictions</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="OpenspeechTransducerModel.test_step"><a class="viewcode-back" href="../../../models/Openspeech Transducer Model.html#openspeech.models.openspeech_transducer_model.OpenspeechTransducerModel.test_step">[docs]</a>    <span class="k">def</span> <span class="nf">test_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OrderedDict</span><span class="p">:</span>
@@ -507,16 +481,15 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">encoder_outputs</span><span class="p">,</span> <span class="n">output_lengths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">input_lengths</span><span class="p">)</span>
 
-        <span class="n">max_length</span> <span class="o">=</span> <span class="n">encoder_outputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">decoder_outputs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decoder</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span> <span class="n">target_lengths</span><span class="p">)</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint</span><span class="p">(</span><span class="n">encoder_outputs</span><span class="p">,</span> <span class="n">decoder_outputs</span><span class="p">)</span>
 
-        <span class="n">predictions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoder_outputs</span><span class="p">,</span> <span class="n">max_length</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">collect_outputs</span><span class="p">(</span>
             <span class="s1">&#39;test&#39;</span><span class="p">,</span>
-            <span class="n">logits</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">logits</span><span class="o">=</span><span class="n">logits</span><span class="p">,</span>
             <span class="n">input_lengths</span><span class="o">=</span><span class="n">output_lengths</span><span class="p">,</span>
             <span class="n">targets</span><span class="o">=</span><span class="n">targets</span><span class="p">,</span>
             <span class="n">target_lengths</span><span class="o">=</span><span class="n">target_lengths</span><span class="p">,</span>
-            <span class="n">predictions</span><span class="o">=</span><span class="n">predictions</span><span class="p">,</span>
         <span class="p">)</span></div></div>
 </pre></div>
 

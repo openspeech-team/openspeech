@@ -119,6 +119,7 @@
 </ul>
 <p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/Callback.html">Callback</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/Criterion.html">Criterion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/Data Augment.html">Data Augment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/Feature Transform.html">Feature Transform</a></li>
@@ -251,9 +252,13 @@
 </li>
       <li><a href="modules/Search.html#openspeech.search.beam_search_lstm.BeamSearchLSTM">BeamSearchLSTM (class in openspeech.search.beam_search_lstm)</a>
 </li>
+      <li><a href="modules/Search.html#openspeech.search.beam_search_rnn_transducer.BeamSearchRNNTransducer">BeamSearchRNNTransducer (class in openspeech.search.beam_search_rnn_transducer)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/Search.html#openspeech.search.beam_search_transformer.BeamSearchTransformer">BeamSearchTransformer (class in openspeech.search.beam_search_transformer)</a>
+</li>
+      <li><a href="modules/Search.html#openspeech.search.beam_search_transformer_transducer.BeamSearchTransformerTransducer">BeamSearchTransformerTransducer (class in openspeech.search.beam_search_transformer_transducer)</a>
 </li>
       <li><a href="modules/Modules.html#openspeech.modules.batchnorm_relu_rnn.BNReluRNN">BNReluRNN (class in openspeech.modules.batchnorm_relu_rnn)</a>
 </li>
@@ -266,6 +271,8 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/Metric.html#openspeech.metrics.CharacterErrorRate">CharacterErrorRate (class in openspeech.metrics)</a>
+</li>
+      <li><a href="modules/Callback.html#openspeech.callbacks.CheckpointEveryNSteps">CheckpointEveryNSteps (class in openspeech.callbacks)</a>
 </li>
       <li><a href="models/Openspeech Model.html#openspeech.models.openspeech_model.OpenspeechModel.configure_criterion">configure_criterion() (openspeech.models.openspeech_model.OpenspeechModel method)</a>
 </li>
@@ -295,10 +302,10 @@
 </li>
       <li><a href="architectures/ContextNet.html#openspeech.models.contextnet.configurations.ContextNetLSTMConfigs">ContextNetLSTMConfigs (class in openspeech.models.contextnet.configurations)</a>
 </li>
-      <li><a href="architectures/ContextNet.html#openspeech.models.contextnet.model.ContextNetLSTMModel">ContextNetLSTMModel (class in openspeech.models.contextnet.model)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="architectures/ContextNet.html#openspeech.models.contextnet.model.ContextNetLSTMModel">ContextNetLSTMModel (class in openspeech.models.contextnet.model)</a>
+</li>
       <li><a href="architectures/ContextNet.html#openspeech.models.contextnet.model.ContextNetModel">ContextNetModel (class in openspeech.models.contextnet.model)</a>
 </li>
       <li><a href="architectures/ContextNet.html#openspeech.models.contextnet.configurations.ContextNetTransducerConfigs">ContextNetTransducerConfigs (class in openspeech.models.contextnet.configurations)</a>
@@ -448,8 +455,6 @@
 </li>
         <li><a href="models/Openspeech Transducer Model.html#openspeech.models.openspeech_transducer_model.OpenspeechTransducerModel.forward">(openspeech.models.openspeech_transducer_model.OpenspeechTransducerModel method)</a>
 </li>
-        <li><a href="architectures/Transformer Transducer.html#openspeech.models.transformer_transducer.model.TransformerTransducerModel.forward">(openspeech.models.transformer_transducer.model.TransformerTransducerModel method)</a>
-</li>
         <li><a href="modules/Modules.html#openspeech.modules.conformer_attention_module.MultiHeadedSelfAttentionModule.forward">(openspeech.modules.conformer_attention_module.MultiHeadedSelfAttentionModule method)</a>
 </li>
         <li><a href="modules/Modules.html#openspeech.modules.conformer_convolution_module.ConformerConvModule.forward">(openspeech.modules.conformer_convolution_module.ConformerConvModule method)</a>
@@ -477,6 +482,10 @@
         <li><a href="modules/Search.html#openspeech.search.beam_search_ctc.BeamSearchCTC.forward">(openspeech.search.beam_search_ctc.BeamSearchCTC method)</a>
 </li>
         <li><a href="modules/Search.html#openspeech.search.beam_search_lstm.BeamSearchLSTM.forward">(openspeech.search.beam_search_lstm.BeamSearchLSTM method)</a>
+</li>
+        <li><a href="modules/Search.html#openspeech.search.beam_search_rnn_transducer.BeamSearchRNNTransducer.forward">(openspeech.search.beam_search_rnn_transducer.BeamSearchRNNTransducer method)</a>
+</li>
+        <li><a href="modules/Search.html#openspeech.search.beam_search_transformer_transducer.BeamSearchTransformerTransducer.forward">(openspeech.search.beam_search_transformer_transducer.BeamSearchTransformerTransducer method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -663,6 +672,8 @@
     module
 
       <ul>
+        <li><a href="modules/Callback.html#module-openspeech.callbacks">openspeech.callbacks</a>
+</li>
         <li><a href="modules/Criterion.html#module-openspeech.criterion.cross_entropy.configuration">openspeech.criterion.cross_entropy.configuration</a>
 </li>
         <li><a href="modules/Criterion.html#module-openspeech.criterion.cross_entropy.cross_entropy">openspeech.criterion.cross_entropy.cross_entropy</a>
@@ -901,7 +912,11 @@
 </li>
         <li><a href="modules/Search.html#module-openspeech.search.beam_search_lstm">openspeech.search.beam_search_lstm</a>
 </li>
+        <li><a href="modules/Search.html#module-openspeech.search.beam_search_rnn_transducer">openspeech.search.beam_search_rnn_transducer</a>
+</li>
         <li><a href="modules/Search.html#module-openspeech.search.beam_search_transformer">openspeech.search.beam_search_transformer</a>
+</li>
+        <li><a href="modules/Search.html#module-openspeech.search.beam_search_transformer_transducer">openspeech.search.beam_search_transformer_transducer</a>
 </li>
         <li><a href="modules/Search.html#module-openspeech.search.ensemble_search">openspeech.search.ensemble_search</a>
 </li>
@@ -940,6 +955,15 @@
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/Callback.html#openspeech.callbacks.CheckpointEveryNSteps.on_batch_end">on_batch_end() (openspeech.callbacks.CheckpointEveryNSteps method)</a>
+</li>
+      <li>
+    openspeech.callbacks
+
+      <ul>
+        <li><a href="modules/Callback.html#module-openspeech.callbacks">module</a>
+</li>
+      </ul></li>
       <li>
     openspeech.criterion.cross_entropy.configuration
 
@@ -1402,8 +1426,6 @@
         <li><a href="architectures/QuartzNet.html#module-openspeech.models.quartznet.configurations">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     openspeech.models.quartznet.model
 
@@ -1411,6 +1433,8 @@
         <li><a href="architectures/QuartzNet.html#module-openspeech.models.quartznet.model">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     openspeech.models.rnn_transducer.configurations
 
@@ -1776,10 +1800,24 @@
 </li>
       </ul></li>
       <li>
+    openspeech.search.beam_search_rnn_transducer
+
+      <ul>
+        <li><a href="modules/Search.html#module-openspeech.search.beam_search_rnn_transducer">module</a>
+</li>
+      </ul></li>
+      <li>
     openspeech.search.beam_search_transformer
 
       <ul>
         <li><a href="modules/Search.html#module-openspeech.search.beam_search_transformer">module</a>
+</li>
+      </ul></li>
+      <li>
+    openspeech.search.beam_search_transformer_transducer
+
+      <ul>
+        <li><a href="modules/Search.html#module-openspeech.search.beam_search_transformer_transducer">module</a>
 </li>
       </ul></li>
       <li>
@@ -2023,8 +2061,6 @@
 </li>
         <li><a href="architectures/Transformer.html#openspeech.models.transformer.model.TransformerWithCTCModel.test_step">(openspeech.models.transformer.model.TransformerWithCTCModel method)</a>
 </li>
-        <li><a href="architectures/Transformer Transducer.html#openspeech.models.transformer_transducer.model.TransformerTransducerModel.test_step">(openspeech.models.transformer_transducer.model.TransformerTransducerModel method)</a>
-</li>
       </ul></li>
       <li><a href="modules/Data Loaders.html#openspeech.data.text.data_loader.TextDataLoader">TextDataLoader (class in openspeech.data.text.data_loader)</a>
 </li>
@@ -2062,8 +2098,6 @@
         <li><a href="models/Openspeech Transducer Model.html#openspeech.models.openspeech_transducer_model.OpenspeechTransducerModel.training_step">(openspeech.models.openspeech_transducer_model.OpenspeechTransducerModel method)</a>
 </li>
         <li><a href="architectures/Transformer.html#openspeech.models.transformer.model.TransformerWithCTCModel.training_step">(openspeech.models.transformer.model.TransformerWithCTCModel method)</a>
-</li>
-        <li><a href="architectures/Transformer Transducer.html#openspeech.models.transformer_transducer.model.TransformerTransducerModel.training_step">(openspeech.models.transformer_transducer.model.TransformerTransducerModel method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -2162,8 +2196,6 @@
         <li><a href="models/Openspeech Transducer Model.html#openspeech.models.openspeech_transducer_model.OpenspeechTransducerModel.validation_step">(openspeech.models.openspeech_transducer_model.OpenspeechTransducerModel method)</a>
 </li>
         <li><a href="architectures/Transformer.html#openspeech.models.transformer.model.TransformerWithCTCModel.validation_step">(openspeech.models.transformer.model.TransformerWithCTCModel method)</a>
-</li>
-        <li><a href="architectures/Transformer Transducer.html#openspeech.models.transformer_transducer.model.TransformerTransducerModel.validation_step">(openspeech.models.transformer_transducer.model.TransformerTransducerModel method)</a>
 </li>
       </ul></li>
   </ul></td>

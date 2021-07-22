@@ -119,6 +119,7 @@
 </ul>
 <p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/Callback.html">Callback</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/Criterion.html">Criterion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/Data Augment.html">Data Augment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/Feature Transform.html">Feature Transform</a></li>
@@ -316,11 +317,6 @@
 <span class="sd">            * hidden_states (torch.FloatTensor): A hidden state of decoders. `FloatTensor` of size</span>
 <span class="sd">                ``(batch, seq_length, dimension)``</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">batch_size</span><span class="p">,</span> <span class="n">input_lengths</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">inputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">input_lengths</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">inputs</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="n">inputs</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eos_id</span><span class="p">]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-
         <span class="n">embedded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">hidden_states</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>

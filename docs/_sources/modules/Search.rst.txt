@@ -26,6 +26,18 @@ Beam Search Transformer
 .. automodule:: openspeech.search.beam_search_transformer
     :members:
 
+Beam Search RNN Transducer
+--------------------------------------------
+
+.. automodule:: openspeech.search.beam_search_rnn_transducer
+    :members:
+
+Beam Search Transformer Transducer
+--------------------------------------------
+
+.. automodule:: openspeech.search.beam_search_transformer_transducer
+    :members:
+
 Ensemble Search
 --------------------------------------------
 

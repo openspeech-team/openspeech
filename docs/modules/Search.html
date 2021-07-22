@@ -121,6 +121,7 @@
 </ul>
 <p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Callback.html">Callback</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Criterion.html">Criterion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Data Augment.html">Data Augment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Feature Transform.html">Feature Transform</a></li>
@@ -135,6 +136,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-openspeech.search.beam_search_ctc">Beam Search CTC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-openspeech.search.beam_search_lstm">Beam Search LSTM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-openspeech.search.beam_search_transformer">Beam Search Transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.search.beam_search_rnn_transducer">Beam Search RNN Transducer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-openspeech.search.beam_search_transformer_transducer">Beam Search Transformer Transducer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-openspeech.search.ensemble_search">Ensemble Search</a></li>
 </ul>
 </li>
@@ -314,7 +317,7 @@ teacher_forcing_ratio (float): Ratio of teacher forcing.</p>
 </dl>
 <dl class="py method">
 <dt id="openspeech.search.beam_search_lstm.BeamSearchLSTM.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">encoder_outputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">encoder_output_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git10d38a8 ))">torch.Tensor</a><a class="reference internal" href="../_modules/openspeech/search/beam_search_lstm.html#BeamSearchLSTM.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.search.beam_search_lstm.BeamSearchLSTM.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">encoder_outputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git2bfbfd8 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">encoder_output_lengths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git2bfbfd8 ))">torch.Tensor</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git2bfbfd8 ))">torch.Tensor</a><a class="reference internal" href="../_modules/openspeech/search/beam_search_lstm.html#BeamSearchLSTM.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.search.beam_search_lstm.BeamSearchLSTM.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Beam search decoding.</p>
 <dl class="simple">
 <dt>Inputs: encoder_outputs</dt><dd><p>encoder_outputs (torch.FloatTensor): A output sequence of encoders. <cite>FloatTensor</cite> of size <code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">seq_length,</span> <span class="pre">dimension)</span></code></p>
@@ -363,6 +366,127 @@ teacher_forcing_ratio (float): Ratio of teacher forcing.</p>
 </p>
 </dd>
 </dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.search.beam_search_rnn_transducer">
+<span id="beam-search-rnn-transducer"></span><h2>Beam Search RNN Transducer<a class="headerlink" href="#module-openspeech.search.beam_search_rnn_transducer" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.search.beam_search_rnn_transducer.BeamSearchRNNTransducer">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.search.beam_search_rnn_transducer.</code><code class="sig-name descname">BeamSearchRNNTransducer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">joint</span></em>, <em class="sig-param"><span class="n">decoder</span><span class="p">:</span> <span class="n"><a class="reference internal" href="Decoders.html#openspeech.decoders.rnn_transducer_decoder.RNNTransducerDecoder" title="openspeech.decoders.rnn_transducer_decoder.RNNTransducerDecoder">openspeech.decoders.rnn_transducer_decoder.RNNTransducerDecoder</a></span></em>, <em class="sig-param"><span class="n">beam_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">3</span></em>, <em class="sig-param"><span class="n">expand_beam</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">2.3</span></em>, <em class="sig-param"><span class="n">state_beam</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">4.6</span></em>, <em class="sig-param"><span class="n">blank_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/beam_search_rnn_transducer.html#BeamSearchRNNTransducer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.search.beam_search_rnn_transducer.BeamSearchRNNTransducer" title="Permalink to this definition">¶</a></dt>
+<dd><p>RNN Transducer Beam Search
+Reference: RNN-T FOR LATENCY CONTROLLED ASR WITH IMPROVED BEAM SEARCH (<a class="reference external" href="https://arxiv.org/pdf/1911.01629.pdf">https://arxiv.org/pdf/1911.01629.pdf</a>)</p>
+<dl>
+<dt>Args: joint, decoder, beam_size, expand_beam, state_beam, blank_id</dt><dd><p>joint: joint <cite>encoder_outputs</cite> and <cite>decoder_outputs</cite>
+decoder (TransformerTransducerDecoder): base decoder of transformer transducer model.
+beam_size (int): size of beam.
+expand_beam (int): The threshold coefficient to limit the number of expanded hypotheses.
+state_beam (int): The threshold coefficient to decide if hyps in A (process_hyps)
+is likely to compete with hyps in B (ongoing_beams)
+blank_id (int): blank id</p>
+</dd>
+<dt>Inputs: encoder_output, max_length</dt><dd><dl class="simple">
+<dt>encoder_output (torch.FloatTensor): A output sequence of encoders. <cite>FloatTensor</cite> of size</dt><dd><p><code class="docutils literal notranslate"><span class="pre">(seq_length,</span> <span class="pre">dimension)</span></code></p>
+</dd>
+</dl>
+<p>max_length (int): max decoding time step</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>model predictions.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>predictions (torch.LongTensor)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="openspeech.search.beam_search_rnn_transducer.BeamSearchRNNTransducer.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">encoder_outputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git2bfbfd8 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">max_length</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/beam_search_rnn_transducer.html#BeamSearchRNNTransducer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.search.beam_search_rnn_transducer.BeamSearchRNNTransducer.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Beam search decoding.</p>
+<dl class="simple">
+<dt>Inputs: encoder_output, max_length</dt><dd><p>encoder_outputs (torch.FloatTensor): A output sequence of encoders. <cite>FloatTensor</cite> of size
+<code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">seq_length,</span> <span class="pre">dimension)</span></code>
+max_length (int): max decoding time step</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>model predictions.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>predictions (torch.LongTensor)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-openspeech.search.beam_search_transformer_transducer">
+<span id="beam-search-transformer-transducer"></span><h2>Beam Search Transformer Transducer<a class="headerlink" href="#module-openspeech.search.beam_search_transformer_transducer" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="openspeech.search.beam_search_transformer_transducer.BeamSearchTransformerTransducer">
+<em class="property">class </em><code class="sig-prename descclassname">openspeech.search.beam_search_transformer_transducer.</code><code class="sig-name descname">BeamSearchTransformerTransducer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">joint</span></em>, <em class="sig-param"><span class="n">decoder</span><span class="p">:</span> <span class="n"><a class="reference internal" href="Decoders.html#openspeech.decoders.transformer_transducer_decoder.TransformerTransducerDecoder" title="openspeech.decoders.transformer_transducer_decoder.TransformerTransducerDecoder">openspeech.decoders.transformer_transducer_decoder.TransformerTransducerDecoder</a></span></em>, <em class="sig-param"><span class="n">beam_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">3</span></em>, <em class="sig-param"><span class="n">expand_beam</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">2.3</span></em>, <em class="sig-param"><span class="n">state_beam</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">4.6</span></em>, <em class="sig-param"><span class="n">blank_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/beam_search_transformer_transducer.html#BeamSearchTransformerTransducer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.search.beam_search_transformer_transducer.BeamSearchTransformerTransducer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transformer Transducer Beam Search
+Reference: RNN-T FOR LATENCY CONTROLLED ASR WITH IMPROVED BEAM SEARCH (<a class="reference external" href="https://arxiv.org/pdf/1911.01629.pdf">https://arxiv.org/pdf/1911.01629.pdf</a>)</p>
+<dl>
+<dt>Args: joint, decoder, beam_size, expand_beam, state_beam, blank_id</dt><dd><p>joint: joint <cite>encoder_outputs</cite> and <cite>decoder_outputs</cite>
+decoder (TransformerTransducerDecoder): base decoder of transformer transducer model.
+beam_size (int): size of beam.
+expand_beam (int): The threshold coefficient to limit the number
+of expanded hypotheses that are added in A (process_hyp).
+state_beam (int): The threshold coefficient in log space to decide if hyps in A (process_hyps)
+is likely to compete with hyps in B (ongoing_beams)
+blank_id (int): blank id</p>
+</dd>
+<dt>Inputs: encoder_outputs, max_length</dt><dd><dl class="simple">
+<dt>encoder_outputs (torch.FloatTensor): A output sequence of encoders. <cite>FloatTensor</cite> of size</dt><dd><p><code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">seq_length,</span> <span class="pre">dimension)</span></code></p>
+</dd>
+</dl>
+<p>max_length (int): max decoding time step</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>model predictions.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>predictions (torch.LongTensor)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="openspeech.search.beam_search_transformer_transducer.BeamSearchTransformerTransducer.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">encoder_outputs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pytorch.org/docs/master/tensors.html#torch.Tensor" title="(in PyTorch vmaster (1.10.0a0+git2bfbfd8 ))">torch.Tensor</a></span></em>, <em class="sig-param"><span class="n">max_length</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openspeech/search/beam_search_transformer_transducer.html#BeamSearchTransformerTransducer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#openspeech.search.beam_search_transformer_transducer.BeamSearchTransformerTransducer.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Beam search decoding.</p>
+<dl class="simple">
+<dt>Inputs: encoder_outputs, max_length</dt><dd><p>encoder_outputs (torch.FloatTensor): A output sequence of encoders. <cite>FloatTensor</cite> of size
+<code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">seq_length,</span> <span class="pre">dimension)</span></code>
+max_length (int): max decoding time step</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>model predictions.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>predictions (torch.LongTensor)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </div>

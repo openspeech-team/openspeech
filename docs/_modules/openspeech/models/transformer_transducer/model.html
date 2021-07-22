@@ -119,6 +119,7 @@
 </ul>
 <p class="caption"><span class="caption-text">LIBRARY REFERENCE</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/Callback.html">Callback</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../modules/Criterion.html">Criterion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../modules/Data Augment.html">Data Augment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../modules/Feature Transform.html">Feature Transform</a></li>
@@ -316,92 +317,7 @@
 
         <span class="n">pred_tokens</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">pred_tokens</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">pred_tokens</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="TransformerTransducerModel.forward"><a class="viewcode-back" href="../../../../architectures/Transformer Transducer.html#openspeech.models.transformer_transducer.model.TransformerTransducerModel.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">input_lengths</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">]:</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Decode `encoder_outputs`.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            inputs (torch.FloatTensor): A input sequence passed to encoders. Typically for inputs this will be a padded `FloatTensor` of size ``(batch, seq_length, dimension)``.</span>
-<span class="sd">            input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            outputs (dict): Result of model predictions.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">encoder_outputs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">input_lengths</span><span class="p">)</span>
-        <span class="n">max_length</span> <span class="o">=</span> <span class="n">encoder_outputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-        <span class="n">predictions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoder_outputs</span><span class="p">,</span> <span class="n">max_length</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;predictions&quot;</span><span class="p">:</span> <span class="n">predictions</span><span class="p">,</span>
-            <span class="s2">&quot;encoder_outputs&quot;</span><span class="p">:</span> <span class="n">encoder_outputs</span><span class="p">,</span>
-        <span class="p">}</span></div>
-
-<div class="viewcode-block" id="TransformerTransducerModel.training_step"><a class="viewcode-back" href="../../../../architectures/Transformer Transducer.html#openspeech.models.transformer_transducer.model.TransformerTransducerModel.training_step">[docs]</a>    <span class="k">def</span> <span class="nf">training_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OrderedDict</span><span class="p">:</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Forward propagate a `inputs` and `targets` pair for training.</span>
-
-<span class="sd">        Inputs:</span>
-<span class="sd">            batch (tuple): A train batch contains `inputs`, `targets`, `input_lengths`, `target_lengths`</span>
-<span class="sd">            batch_idx (int): The index of batch</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            loss (torch.Tensor): loss for training</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">TransformerTransducerModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">training_step</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="TransformerTransducerModel.validation_step"><a class="viewcode-back" href="../../../../architectures/Transformer Transducer.html#openspeech.models.transformer_transducer.model.TransformerTransducerModel.validation_step">[docs]</a>    <span class="k">def</span> <span class="nf">validation_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OrderedDict</span><span class="p">:</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Forward propagate a `inputs` and `targets` pair for validation.</span>
-
-<span class="sd">        Inputs:</span>
-<span class="sd">            batch (tuple): A train batch contains `inputs`, `targets`, `input_lengths`, `target_lengths`</span>
-<span class="sd">            batch_idx (int): The index of batch</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            loss (torch.Tensor): loss for training</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">input_lengths</span><span class="p">,</span> <span class="n">target_lengths</span> <span class="o">=</span> <span class="n">batch</span>
-
-        <span class="n">encoder_outputs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">input_lengths</span><span class="p">)</span>
-        <span class="n">max_length</span> <span class="o">=</span> <span class="n">encoder_outputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-        <span class="n">predictions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoder_outputs</span><span class="p">,</span> <span class="n">max_length</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">collect_outputs</span><span class="p">(</span>
-            <span class="s1">&#39;valid&#39;</span><span class="p">,</span>
-            <span class="n">logits</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">input_lengths</span><span class="o">=</span><span class="n">input_lengths</span><span class="p">,</span>
-            <span class="n">targets</span><span class="o">=</span><span class="n">targets</span><span class="p">,</span>
-            <span class="n">target_lengths</span><span class="o">=</span><span class="n">target_lengths</span><span class="p">,</span>
-            <span class="n">predictions</span><span class="o">=</span><span class="n">predictions</span><span class="p">,</span>
-        <span class="p">)</span></div>
-
-<div class="viewcode-block" id="TransformerTransducerModel.test_step"><a class="viewcode-back" href="../../../../architectures/Transformer Transducer.html#openspeech.models.transformer_transducer.model.TransformerTransducerModel.test_step">[docs]</a>    <span class="k">def</span> <span class="nf">test_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OrderedDict</span><span class="p">:</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Forward propagate a `inputs` and `targets` pair for test.</span>
-
-<span class="sd">        Inputs:</span>
-<span class="sd">            batch (tuple): A train batch contains `inputs`, `targets`, `input_lengths`, `target_lengths`</span>
-<span class="sd">            batch_idx (int): The index of batch</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            loss (torch.Tensor): loss for training</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">input_lengths</span><span class="p">,</span> <span class="n">target_lengths</span> <span class="o">=</span> <span class="n">batch</span>
-
-        <span class="n">encoder_outputs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">input_lengths</span><span class="p">)</span>
-        <span class="n">max_length</span> <span class="o">=</span> <span class="n">encoder_outputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-        <span class="n">predictions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoder_outputs</span><span class="p">,</span> <span class="n">max_length</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">collect_outputs</span><span class="p">(</span>
-            <span class="s1">&#39;valid&#39;</span><span class="p">,</span>
-            <span class="n">logits</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">input_lengths</span><span class="o">=</span><span class="n">input_lengths</span><span class="p">,</span>
-            <span class="n">targets</span><span class="o">=</span><span class="n">targets</span><span class="p">,</span>
-            <span class="n">target_lengths</span><span class="o">=</span><span class="n">target_lengths</span><span class="p">,</span>
-            <span class="n">predictions</span><span class="o">=</span><span class="n">predictions</span><span class="p">,</span>
-        <span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">pred_tokens</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

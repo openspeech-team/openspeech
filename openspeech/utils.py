@@ -232,7 +232,7 @@ def get_pl_trainer(
                              max_epochs=configs.trainer.max_epochs,
                              callbacks=[
                                  LearningRateMonitor(logging_interval='step'),
-                                 CheckpointEveryNSteps(configs.save_checkpoint_n_steps)
+                                 CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps)
                              ])
     elif configs.trainer.name == "gpu":
         trainer = pl.Trainer(accelerator=configs.trainer.accelerator,
@@ -246,7 +246,7 @@ def get_pl_trainer(
                              max_epochs=configs.trainer.max_epochs,
                              callbacks=[
                                  LearningRateMonitor(logging_interval='step'),
-                                 CheckpointEveryNSteps(configs.save_checkpoint_n_steps)
+                                 CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps)
                              ])
     elif configs.trainer.name == "tpu":
         trainer = pl.Trainer(accelerator=configs.trainer.accelerator,
@@ -260,7 +260,7 @@ def get_pl_trainer(
                              max_epochs=configs.trainer.max_epochs,
                              callbacks=[
                                  LearningRateMonitor(logging_interval='step'),
-                                 CheckpointEveryNSteps(configs.save_checkpoint_n_steps)
+                                 CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps)
                              ])
     elif configs.trainer.name == "gpu-fp16":
         trainer = pl.Trainer(precision=configs.trainer.precision,
@@ -276,7 +276,7 @@ def get_pl_trainer(
                              max_epochs=configs.trainer.max_epochs,
                              callbacks=[
                                  LearningRateMonitor(logging_interval='step'),
-                                 CheckpointEveryNSteps(configs.save_checkpoint_n_steps)
+                                 CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps)
                              ])
     elif configs.trainer.name == "tpu-fp16":
         trainer = pl.Trainer(precision=configs.trainer.precision,
@@ -291,7 +291,7 @@ def get_pl_trainer(
                              max_epochs=configs.trainer.max_epochs,
                              callbacks=[
                                  LearningRateMonitor(logging_interval='step'),
-                                 CheckpointEveryNSteps(configs.save_checkpoint_n_steps)
+                                 CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps)
                              ])
     elif configs.trainer.name == "cpu-fp64":
         trainer = pl.Trainer(precision=configs.trainer.precision,
@@ -305,7 +305,7 @@ def get_pl_trainer(
                              max_epochs=configs.trainer.max_epochs,
                              callbacks=[
                                  LearningRateMonitor(logging_interval='step'),
-                                 CheckpointEveryNSteps(configs.save_checkpoint_n_steps)
+                                 CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps)
                              ])
     else:
         raise ValueError(f"Unsupported trainer: {configs.trainer.name}")

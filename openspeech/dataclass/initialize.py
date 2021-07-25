@@ -66,7 +66,7 @@ def hydra_lm_train_init() -> None:
         "model": MODEL_DATACLASS_REGISTRY,
         "criterion": CRITERION_DATACLASS_REGISTRY,
         "lr_scheduler": SCHEDULER_DATACLASS_REGISTRY,
-        "vocab": TOKENIZER_DATACLASS_REGISTRY,
+        "tokenizer": TOKENIZER_DATACLASS_REGISTRY,
     }
 
     cs = ConfigStore.instance()

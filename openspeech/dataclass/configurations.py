@@ -212,6 +212,63 @@ class BaseTrainerConfigs(OpenspeechDataclass):
 
 
 @dataclass
+class CPUResumeTrainerConfigs(BaseTrainerConfigs):
+    name: str = field(
+        default="cpu-resume", metadata={"help": "Trainer name"}
+    )
+    checkpoint_path: str = field(
+        default=MISSING, metadata={"help": "Path of model checkpoint."}
+    )
+    device: str = field(
+        default="cpu", metadata={"help": "Training device."}
+    )
+    use_cuda: bool = field(
+        default=False, metadata={"help": "If set True, will train with GPU"}
+    )
+
+
+@dataclass
+class GPUResumeTrainerConfigs(BaseTrainerConfigs):
+    name: str = field(
+        default="gpu-resume", metadata={"help": "Trainer name"}
+    )
+    checkpoint_path: str = field(
+        default=MISSING, metadata={"help": "Path of model checkpoint."}
+    )
+    device: str = field(
+        default="gpu", metadata={"help": "Training device."}
+    )
+    use_cuda: bool = field(
+        default=True, metadata={"help": "If set True, will train with GPU"}
+    )
+    auto_select_gpus: bool = field(
+        default=True, metadata={"help": "If enabled and gpus is an integer, pick available gpus automatically."}
+    )
+
+
+@dataclass
+class TPUResumeTrainerConfigs(BaseTrainerConfigs):
+    name: str = field(
+        default="tpu-resume", metadata={"help": "Trainer name"}
+    )
+    checkpoint_path: str = field(
+        default=MISSING, metadata={"help": "Path of model checkpoint."}
+    )
+    device: str = field(
+        default="tpu", metadata={"help": "Training device."}
+    )
+    use_cuda: bool = field(
+        default=False, metadata={"help": "If set True, will train with GPU"}
+    )
+    use_tpu: bool = field(
+        default=True, metadata={"help": "If set True, will train with GPU"}
+    )
+    tpu_cores: int = field(
+        default=8, metadata={"help": "Number of TPU cores"}
+    )
+
+
+@dataclass
 class CPUTrainerConfigs(BaseTrainerConfigs):
     name: str = field(
         default="cpu", metadata={"help": "Trainer name"}

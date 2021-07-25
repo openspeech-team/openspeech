@@ -34,6 +34,9 @@ from .configurations import (
     Fp64CPUTrainerConfigs,
     EvaluationConfigs,
     EnsembleEvaluationConfigs,
+    CPUResumeTrainerConfigs,
+    GPUResumeTrainerConfigs,
+    TPUResumeTrainerConfigs,
 )
 
 OPENSPEECH_TRAIN_CONFIGS = [
@@ -71,6 +74,9 @@ TRAINER_DATACLASS_REGISTRY = {
     "gpu-fp16": Fp16GPUTrainerConfigs,
     "tpu-fp16": Fp16TPUTrainerConfigs,
     "cpu-fp64": Fp64CPUTrainerConfigs,
+    "cpu-resume": CPUResumeTrainerConfigs,
+    "gpu-resume": GPUResumeTrainerConfigs,
+    "tpu-resume": TPUResumeTrainerConfigs,
 }
 AUGMENT_DATACLASS_REGISTRY = {
     "default": AugmentConfigs,

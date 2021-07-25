@@ -307,6 +307,49 @@ def get_pl_trainer(
                                  LearningRateMonitor(logging_interval='step'),
                                  CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps)
                              ])
+    elif configs.trainer.name == "cpu-resume":
+        trainer = pl.Trainer(accelerator=configs.trainer.accelerator,
+                             accumulate_grad_batches=configs.trainer.accumulate_grad_batches,
+                             check_val_every_n_epoch=configs.trainer.check_val_every_n_epoch,
+                             gradient_clip_val=configs.trainer.gradient_clip_val,
+                             logger=logger,
+                             auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
+                             max_epochs=configs.trainer.max_epochs,
+                             resume_from_checkpoint=configs.trainer.checkpoint_path,
+                             callbacks=[
+                                 LearningRateMonitor(logging_interval='step'),
+                                 CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps)
+                             ])
+    elif configs.trainer.name == "gpu-resume":
+        trainer = pl.Trainer(accelerator=configs.trainer.accelerator,
+                             gpus=num_devices,
+                             accumulate_grad_batches=configs.trainer.accumulate_grad_batches,
+                             auto_select_gpus=configs.trainer.auto_select_gpus,
+                             check_val_every_n_epoch=configs.trainer.check_val_every_n_epoch,
+                             gradient_clip_val=configs.trainer.gradient_clip_val,
+                             logger=logger,
+                             auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
+                             max_epochs=configs.trainer.max_epochs,
+                             resume_from_checkpoint=configs.trainer.checkpoint_path,
+                             callbacks=[
+                                 LearningRateMonitor(logging_interval='step'),
+                                 CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps)
+                             ])
+    elif configs.trainer.name == "tpu-resume":
+        trainer = pl.Trainer(accelerator=configs.trainer.accelerator,
+                             tpu_cores=configs.trainer.tpu_cores,
+                             accumulate_grad_batches=configs.trainer.accumulate_grad_batches,
+                             auto_select_gpus=configs.trainer.auto_select_gpus,
+                             check_val_every_n_epoch=configs.trainer.check_val_every_n_epoch,
+                             gradient_clip_val=configs.trainer.gradient_clip_val,
+                             logger=logger,
+                             auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
+                             max_epochs=configs.trainer.max_epochs,
+                             resume_from_checkpoint=configs.trainer.checkpoint_path,
+                             callbacks=[
+                                 LearningRateMonitor(logging_interval='step'),
+                                 CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps)
+                             ])
     else:
         raise ValueError(f"Unsupported trainer: {configs.trainer.name}")
 

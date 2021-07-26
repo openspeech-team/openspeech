@@ -193,9 +193,9 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
 
     def test_dataloader(self) -> AudioDataLoader:
         r""" Return data loader for training. """
-        train_sampler = BucketingSampler(self.dataset['test'], batch_size=self.configs.trainer.batch_size)
+        test_sampler = BucketingSampler(self.dataset['test'], batch_size=self.configs.trainer.batch_size)
         return AudioDataLoader(
             dataset=self.dataset['test'],
             num_workers=self.configs.trainer.num_workers,
-            batch_sampler=train_sampler,
+            batch_sampler=test_sampler,
         )

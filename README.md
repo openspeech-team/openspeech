@@ -188,7 +188,7 @@ $ python ./openspeech_cli/hydra_train.py \
     audio=fbank \
     lr_scheduler=warmup_reduce_lr_on_plateau \
     trainer=gpu \
-    criterion=joint_ctc_cross_entropy
+    criterion=cross_entropy
 ```
   
 You can simply train with KsponSpeech dataset like below:
@@ -207,7 +207,7 @@ $ python ./openspeech_cli/hydra_train.py \
     audio=melspectrogram \
     lr_scheduler=warmup_reduce_lr_on_plateau \
     trainer=tpu \
-    criterion=joint_ctc_cross_entropy
+    criterion=cross_entropy
 ```
    
 You can simply train with AISHELL-1 dataset like below:

@@ -62,8 +62,8 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
         self.configs = configs
         self.dataset = dict()
         self.logger = logging.getLogger(__name__)
-        self.encoding = 'utf-8' if self.configs.tokenizer.unit == 'kspon_subword' else 'cp949'
-
+        self.encoding = 'cp949' if self.configs.tokenizer.unit == 'kspon_grapheme' else 'utf-8'
+        
     def _generate_manifest_files(self, manifest_file_path: str) -> None:
         r"""
         Generate KsponSpeech manifest file.

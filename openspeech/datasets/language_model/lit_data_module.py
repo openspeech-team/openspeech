@@ -46,7 +46,6 @@ class LightningLanguageModelDataModule(pl.LightningDataModule):
     def prepare_data(self):
         if not os.path.exists(self.configs.dataset.dataset_path):
             raise FileNotFoundError
-        return TOKENIZER_REGISTRY[self.configs.tokenizer.unit](self.configs)
 
     def setup(self, stage: Optional[str] = None, tokenizer: Tokenizer = None):
         num_total_transcripts = 0

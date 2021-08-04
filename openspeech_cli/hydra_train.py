@@ -27,6 +27,7 @@ import pytorch_lightning as pl
 from omegaconf import DictConfig, OmegaConf
 from pytorch_lightning.utilities import rank_zero_info
 
+from openspeech.tokenizers import TOKENIZER_REGISTRY
 from openspeech.datasets import DATA_MODULE_REGISTRY
 from openspeech.dataclass.initialize import hydra_train_init
 from openspeech.models import MODEL_REGISTRY
@@ -41,7 +42,9 @@ def hydra_main(configs: DictConfig) -> None:
     logger, num_devices = parse_configs(configs)
 
     data_module = DATA_MODULE_REGISTRY[configs.dataset.dataset](configs)
-    tokenizer = data_module.prepare_data()
+    data_module.prepare_data()
+    tokenizer = TOKENIZER_REGISTRY[configs.tokenizer.unit](configs)
+
     data_module.setup(tokenizer=tokenizer)
 
     model = MODEL_REGISTRY[configs.model.model_name](configs=configs, tokenizer=tokenizer)

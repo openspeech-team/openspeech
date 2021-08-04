@@ -129,7 +129,6 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
             if not os.path.exists(self.configs.dataset.dataset_path):
                 raise FileNotFoundError
             self._generate_manifest_files(self.configs.dataset.manifest_file_path)
-        return TOKENIZER_REGISTRY[self.configs.tokenizer.unit](self.configs)
 
     def setup(self, stage: Optional[str] = None, tokenizer: Tokenizer = None):
         r"""

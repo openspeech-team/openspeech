@@ -160,8 +160,6 @@ class LightningLibriSpeechDataModule(pl.LightningDataModule):
                     vocab_path=self.configs.tokenizer.vocab_path,
                 )
 
-        return TOKENIZER_REGISTRY[self.configs.tokenizer.unit](self.configs)
-
     def setup(self, stage: Optional[str] = None, tokenizer: Tokenizer = None) -> None:
         r""" Split dataset into train, valid, and test. """
         valid_end_idx = self.LIBRISPEECH_TRAIN_NUM + self.LIBRISPEECH_VALID_NUM

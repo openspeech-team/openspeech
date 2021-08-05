@@ -48,6 +48,6 @@ class CheckpointEveryNSteps(pl.Callback):
             if self.use_modelcheckpoint_filename:
                 filename = trainer.checkpoint_callback.filename
             else:
-                filename = f"{epoch=}_{global_step=}.ckpt"
+                filename = f"{epoch}_{global_step}.ckpt"
             ckpt_path = os.path.join(trainer.checkpoint_callback.dirpath, filename)
             trainer.save_checkpoint(ckpt_path)

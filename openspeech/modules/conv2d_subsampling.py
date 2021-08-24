@@ -66,7 +66,6 @@ class Conv2dSubsampling(Conv2dExtractor):
         )
 
     def forward(self, inputs: torch.Tensor, input_lengths: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
-        outputs, input_lengths = super().forward(inputs, input_lengths)
-        output_lengths = input_lengths >> 2
-        output_lengths -= 1
+        outputs, output_lengths = super().forward(inputs, input_lengths)
+
         return outputs, output_lengths

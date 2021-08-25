@@ -76,9 +76,15 @@ class OpenspeechEncoderDecoderModel(OpenspeechModel):
                 targets=targets[:, 1:],
                 target_lengths=target_lengths,
             )
+            self.info({
+                f"{stage}_loss": loss,
+                f"{stage}_cross_entropy_loss": cross_entropy_loss,
+                f"{stage}_ctc_loss": ctc_loss,
+            })
         elif get_class_name(self.criterion) == "LabelSmoothedCrossEntropyLoss" \
                 or get_class_name(self.criterion) == "CrossEntropyLoss":
             loss = self.criterion(logits, targets[:, 1:])
+            self.info({f"{stage}_loss": loss})
         else:
             raise ValueError(f"Unsupported criterion: {self.criterion}")
 
@@ -88,9 +94,6 @@ class OpenspeechEncoderDecoderModel(OpenspeechModel):
         cer = self.cer_metric(targets[:, 1:], predictions)
 
         self.info({
-            f"{stage}_loss": loss,
-            f"{stage}_cross_entropy_loss": cross_entropy_loss,
-            f"{stage}_ctc_loss": ctc_loss,
             f"{stage}_wer": wer,
             f"{stage}_cer": cer,
         })

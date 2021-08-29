@@ -27,7 +27,7 @@ import random
 from omegaconf import DictConfig
 from typing import Optional
 
-from openspeech.data.sampler import BucketingSampler
+from openspeech.data.sampler import RandomSampler
 from openspeech.data.text.data_loader import TextDataLoader
 from openspeech.data.text.dataset import TextDataset
 from openspeech.datasets import register_data_module
@@ -78,7 +78,7 @@ class LightningLanguageModelDataModule(pl.LightningDataModule):
             )
 
     def train_dataloader(self) -> TextDataLoader:
-        train_sampler = BucketingSampler(self.dataset['train'], batch_size=self.configs.trainer.batch_size)
+        train_sampler = RandomSampler(self.dataset['train'], batch_size=self.configs.trainer.batch_size)
         return TextDataLoader(
             dataset=self.dataset['train'],
             num_workers=self.configs.trainer.num_workers,
@@ -87,7 +87,7 @@ class LightningLanguageModelDataModule(pl.LightningDataModule):
 
     def val_dataloader(self) -> TextDataLoader:
         r""" Return data loader for validation. """
-        valid_sampler = BucketingSampler(self.dataset['valid'], batch_size=self.configs.trainer.batch_size)
+        valid_sampler = RandomSampler(self.dataset['valid'], batch_size=self.configs.trainer.batch_size)
         return TextDataLoader(
             dataset=self.dataset['valid'],
             num_workers=self.configs.trainer.num_workers,
@@ -96,7 +96,7 @@ class LightningLanguageModelDataModule(pl.LightningDataModule):
 
     def test_dataloader(self) -> TextDataLoader:
         r""" Return data loader for training. """
-        train_sampler = BucketingSampler(self.dataset['test'], batch_size=self.configs.trainer.batch_size)
+        train_sampler = RandomSampler(self.dataset['test'], batch_size=self.configs.trainer.batch_size)
         return TextDataLoader(
             dataset=self.dataset['test'],
             num_workers=self.configs.trainer.num_workers,

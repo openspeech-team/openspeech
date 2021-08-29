@@ -209,6 +209,10 @@ class BaseTrainerConfigs(OpenspeechDataclass):
         default="binsearch", metadata={"help": "If set to True, will initially run a batch size finder trying to find "
                                                "the largest batch size that fits into memory."}
     )
+    sampler: str = field(
+        default="smart", metadata={"help": "smart: batching with similar sequence length."
+                                           "else: random batch"}
+    )
 
 
 @dataclass

@@ -25,16 +25,15 @@ import logging
 import pytorch_lightning as pl
 from typing import Optional
 from omegaconf import DictConfig
-from openspeech.data.audio.dataset import SpeechToTextDataset
 
+from openspeech.data.audio.dataset import SpeechToTextDataset
 from openspeech.datasets import register_data_module
-from openspeech.data.sampler import BucketingSampler
+from openspeech.data.sampler import RandomSampler, SmartBatchingSampler
 from openspeech.data.audio.data_loader import AudioDataLoader
 from openspeech.datasets.ksponspeech.preprocess.preprocess import preprocess, preprocess_test_data
 from openspeech.datasets.ksponspeech.preprocess.character import generate_character_script, generate_character_labels
 from openspeech.datasets.ksponspeech.preprocess.grapheme import sentence_to_grapheme
 from openspeech.datasets.ksponspeech.preprocess.subword import train_sentencepiece, sentence_to_subwords
-from openspeech.tokenizers import TOKENIZER_REGISTRY
 from openspeech.tokenizers.tokenizer import Tokenizer
 
 
@@ -49,6 +48,8 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
 
     Attributes:
         KSPONSPEECH_TRAIN_NUM (int): the number of KsponSpeech's train data.
+        KSPONSPEECH_VALID_NUM (int): the number of KsponSpeech's validation data.
+        KSPONSPEECH_TEST_NUM (int): the number of KsponSpeech's test data.
 
     Args:
         configs (DictConfig): configuration set.
@@ -173,8 +174,8 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
             )
 
     def train_dataloader(self) -> AudioDataLoader:
-        r""" Return data loader for training. """
-        train_sampler = BucketingSampler(self.dataset['train'], batch_size=self.configs.trainer.batch_size)
+        sampler = SmartBatchingSampler if self.configs.trainer.sampler == 'smart' else RandomSampler
+        train_sampler = sampler(data_source=self.dataset['train'], batch_size=self.configs.trainer.batch_size)
         return AudioDataLoader(
             dataset=self.dataset['train'],
             num_workers=self.configs.trainer.num_workers,
@@ -182,8 +183,8 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
         )
 
     def val_dataloader(self) -> AudioDataLoader:
-        r""" Return data loader for validation. """
-        valid_sampler = BucketingSampler(self.dataset['valid'], batch_size=self.configs.trainer.batch_size)
+        sampler = SmartBatchingSampler if self.configs.trainer.sampler == 'smart' else RandomSampler
+        valid_sampler = sampler(self.dataset['valid'], batch_size=self.configs.trainer.batch_size)
         return AudioDataLoader(
             dataset=self.dataset['valid'],
             num_workers=self.configs.trainer.num_workers,
@@ -191,8 +192,8 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
         )
 
     def test_dataloader(self) -> AudioDataLoader:
-        r""" Return data loader for training. """
-        test_sampler = BucketingSampler(self.dataset['test'], batch_size=self.configs.trainer.batch_size)
+        sampler = SmartBatchingSampler if self.configs.trainer.sampler == 'smart' else RandomSampler
+        test_sampler = sampler(self.dataset['test'], batch_size=self.configs.trainer.batch_size)
         return AudioDataLoader(
             dataset=self.dataset['test'],
             num_workers=self.configs.trainer.num_workers,

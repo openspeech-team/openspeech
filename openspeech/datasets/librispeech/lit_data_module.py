@@ -28,13 +28,11 @@ import shutil
 import pytorch_lightning as pl
 from typing import Tuple, Optional
 from omegaconf import DictConfig
-from openspeech.data.audio.dataset import SpeechToTextDataset
-from torch.utils.data import DataLoader
 
+from openspeech.data.audio.dataset import SpeechToTextDataset
 from openspeech.datasets import register_data_module
-from openspeech.tokenizers import TOKENIZER_REGISTRY
 from openspeech.tokenizers.tokenizer import Tokenizer
-from openspeech.data.sampler import BucketingSampler
+from openspeech.data.sampler import RandomSampler, SmartBatchingSampler
 from openspeech.data.audio.data_loader import AudioDataLoader
 
 
@@ -188,24 +186,27 @@ class LightningLibriSpeechDataModule(pl.LightningDataModule):
                 del_silence=self.configs.audio.del_silence if stage == 'train' else False,
             )
 
-    def train_dataloader(self) -> DataLoader:
-        train_sampler = BucketingSampler(self.dataset['train'], batch_size=self.configs.trainer.batch_size)
+    def train_dataloader(self) -> AudioDataLoader:
+        sampler = SmartBatchingSampler if self.configs.trainer.sampler == 'smart' else RandomSampler
+        train_sampler = sampler(data_source=self.dataset['train'], batch_size=self.configs.trainer.batch_size)
         return AudioDataLoader(
             dataset=self.dataset['train'],
             num_workers=self.configs.trainer.num_workers,
             batch_sampler=train_sampler,
         )
 
-    def val_dataloader(self) -> DataLoader:
-        valid_sampler = BucketingSampler(self.dataset['valid'], batch_size=self.configs.trainer.batch_size)
+    def val_dataloader(self) -> AudioDataLoader:
+        sampler = SmartBatchingSampler if self.configs.trainer.sampler == 'smart' else RandomSampler
+        valid_sampler = sampler(self.dataset['valid'], batch_size=self.configs.trainer.batch_size)
         return AudioDataLoader(
             dataset=self.dataset['valid'],
             num_workers=self.configs.trainer.num_workers,
             batch_sampler=valid_sampler,
         )
 
-    def test_dataloader(self) -> DataLoader:
-        test_sampler = BucketingSampler(self.dataset['test'], batch_size=self.configs.trainer.batch_size)
+    def test_dataloader(self) -> AudioDataLoader:
+        sampler = SmartBatchingSampler if self.configs.trainer.sampler == 'smart' else RandomSampler
+        test_sampler = sampler(self.dataset['test'], batch_size=self.configs.trainer.batch_size)
         return AudioDataLoader(
             dataset=self.dataset['test'],
             num_workers=self.configs.trainer.num_workers,

@@ -82,7 +82,7 @@ class SmartBatchingSampler(Sampler):
 
     def __iter__(self):
         for ids in self.bins:
-            np.random.shuffle(ids)
+            np.random.shuffle(list(ids))
             yield ids
 
     def _get_audio_length(self, audio_path):

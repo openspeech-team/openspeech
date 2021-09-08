@@ -133,5 +133,6 @@ def generate_character_script(dataset_path: str, manifest_file_path: str, vocab_
             for idx, audio_path in enumerate(audio_paths):
                 audio_paths[idx] = audio_path.replace(f"{dataset_path}/", '')
 
-            for (audio_path, transcript, label) in zip(audio_paths, transcripts, labels):
+            #for (audio_path, transcript, label) in zip(audio_paths, transcripts, labels):
+            for (audio_path, transcript, label) in zip(keys, transcripts, labels):
                 f.write(f"{audio_path}\t{transcript}\t{label}\n")

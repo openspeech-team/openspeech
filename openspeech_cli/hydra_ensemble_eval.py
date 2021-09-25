@@ -29,7 +29,7 @@ from pytorch_lightning.utilities import rank_zero_info
 
 from openspeech.metrics import WordErrorRate, CharacterErrorRate
 from openspeech.data.audio.dataset import SpeechToTextDataset
-from openspeech.data.sampler import BucketingSampler
+from openspeech.data.sampler import RandomSampler
 from openspeech.data.audio.data_loader import load_dataset, AudioDataLoader
 from openspeech.dataclass.initialize import hydra_eval_init
 from openspeech.models import MODEL_REGISTRY
@@ -73,10 +73,7 @@ def hydra_main(configs: DictConfig) -> None:
         sos_id=tokenizer.sos_id,
         eos_id=tokenizer.eos_id,
     )
-    sampler = BucketingSampler(
-        data_source=dataset,
-        batch_size=configs.eval.batch_size
-    )
+    sampler = RandomSampler(data_source=dataset, batch_size=configs.eval.batch_size)
     data_loader = AudioDataLoader(
         dataset=dataset,
         num_workers=configs.eval.num_workers,

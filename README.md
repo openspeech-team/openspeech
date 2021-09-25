@@ -254,7 +254,26 @@ $ python ./openspeech_cli/hydra_eval.py \
     eval.ensemble_method=weighted \
     eval.manifest_file_path=$MANIFEST_FILE_PATH  
 ```
-
+  
+#### KsponSpeech Directory Structure
+    
+- `dataset.dataset_path`
+```
+$BASE_PATH/KsponSpeech
+├── KsponSpeech_01
+├── KsponSpeech_02
+├── KsponSpeech_03
+├── KsponSpeech_04
+└── KsponSpeech_05  
+```  
+  
+- `dataset.test_dataset_path`  
+```
+$BASE_PATH/KsponSpeech_eval  
+├── eval_clean
+└── eval_other  
+```
+   
 ### Language model training example
   
 Language model training requires only data to be prepared in the following format:  

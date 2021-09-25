@@ -30,6 +30,8 @@ from omegaconf import DictConfig, OmegaConf
 from pytorch_lightning.callbacks import LearningRateMonitor
 
 from .callbacks import CheckpointEveryNSteps
+from .models import OpenspeechModel
+from .modules import Linear
 
 PYTORCH_IMPORT_ERROR = """
 Openspeech requires the PyTorch library but it was not found in your environment. Checkout the instructions on the
@@ -106,6 +108,7 @@ DUMMY_LM_TARGETS = torch.LongTensor([
     [3, 3, 3, 3, 3, 2, 1, 2, 0],
     [3, 3, 3, 3, 3, 2, 2, 0, 1],
 ])
+
 
 def is_pytorch_available():
     return importlib.util.find_spec("torch") is not None

@@ -257,7 +257,7 @@ $ python ./openspeech_cli/hydra_eval.py \
   
 #### KsponSpeech Directory Structure
     
-- `dataset.dataset_path`
+- `dataset.dataset_path`: `$BASE_PATH/KsponSpeech`
 ```
 $BASE_PATH/KsponSpeech
 ├── KsponSpeech_01
@@ -267,7 +267,7 @@ $BASE_PATH/KsponSpeech
 └── KsponSpeech_05  
 ```  
   
-- `dataset.test_dataset_path`  
+- `dataset.test_dataset_path`: `$BASE_PATH/KsponSpeech_eval/eval_clean` or `$BASE_PATH/KsponSpeech_eval/eval_other`    
 ```
 $BASE_PATH/KsponSpeech_eval  
 ├── eval_clean

@@ -62,7 +62,6 @@ class OpenspeechLanguageModel(OpenspeechModel):
 
         self.info({
             f"{stage}_perplexity": perplexity,
-            "learning_rate": self.get_lr(),
         })
 
         return OrderedDict({

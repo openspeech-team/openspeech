@@ -205,11 +205,3 @@ class OpenspeechModel(pl.LightningModule):
                 configs=self.configs,
                 tokenizer=self.tokenizer,
             )
-
-    def get_lr(self):
-        for g in self.optimizer.param_groups:
-            return g['lr']
-
-    def set_lr(self, lr):
-        for g in self.optimizer.param_groups:
-            g['lr'] = lr

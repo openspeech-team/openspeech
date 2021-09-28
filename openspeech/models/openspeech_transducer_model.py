@@ -100,7 +100,6 @@ class OpenspeechTransducerModel(OpenspeechModel):
 
         self.info({
             f"{stage}_loss": loss,
-            "learning_rate": self.get_lr(),
         })
 
         return OrderedDict({

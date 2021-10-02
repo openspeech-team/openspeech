@@ -270,6 +270,6 @@ class TransformerDecoder(OpenspeechDecoder):
                 step_output = self.fc(outputs).log_softmax(dim=-1)
 
                 logits.append(step_output[:, -1, :])
-                input_var = logits[-1].topk(1)[1]
+                input_var[di] = step_output.topk(1)[1].squeeze()
 
         return torch.stack(logits, dim=1)

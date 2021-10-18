@@ -376,7 +376,7 @@ If you use the system for academic work, please cite:
 ```
 @GITHUB{2021-OpenSpeech,
   author       = {Kim, Soohwan and Ha, Sangchun and Cho, Soyoung},
-  author email = {sh951011@gmail.com, seomk9896@naver.com, soyoung.cho@kaist.ac.kr}
+  author email = {sh951011@gmail.com, seomk9896@gmail.com, soyoung.cho@kaist.ac.kr}
   title        = {OpenSpeech: Open-Source Toolkit for End-to-End Speech Recognition},
   howpublished = {\url{https://github.com/openspeech-team/openspeech}},
   docs         = {\url{https://openspeech-team.github.io/openspeech}},

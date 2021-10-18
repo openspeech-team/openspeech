@@ -51,7 +51,7 @@ Various features are available in the above two libraries, including Multi-GPU a
    
 - [**Get Started**](https://github.com/openspeech-team/OpenSpeech#get-started)
   
-- [**OpenSpeech's Hydra Configuration**](https://openspeech-team.github.io/OpenSpeech/notes/hydra_configs.html)
+- [**OpenSpeech's Hydra Configuration**](https://openspeech-team.github.io/openspeech/notes/hydra_configs.html)
   
 - [**Installation**](https://github.com/openspeech-team/OpenSpeech#installation)
   

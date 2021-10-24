@@ -30,8 +30,7 @@ from omegaconf import DictConfig, OmegaConf
 from pytorch_lightning.callbacks import LearningRateMonitor
 
 from .callbacks import CheckpointEveryNSteps
-from .models import OpenspeechModel
-from .modules import Linear
+
 
 PYTORCH_IMPORT_ERROR = """
 Openspeech requires the PyTorch library but it was not found in your environment. Checkout the instructions on the

@@ -94,8 +94,8 @@ Because of these advantages, many end-to-end speech recognition related open sou
   
 ## Why shouldn't I use OpenSpeech?
   
-- This library provides code for training ASR models, but does not provide APIs by pre-trained models.  
-- This library does not provides pre-trained models.
+- This framework provides code for training ASR models, but does not provide APIs by pre-trained models.  
+- This framework does not provides pre-trained models.
   
 ## Model architectures  
   

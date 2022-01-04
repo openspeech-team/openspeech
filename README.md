@@ -142,20 +142,7 @@ Aishell is an open-source Chinese Mandarin speech corpus published by Beijing Sh
   
 KsponSpeech is a large-scale spontaneous speech corpus of Korean. This corpus contains 969 hours of general open-domain dialog utterances, spoken by about 2,000 native Korean speakers in a clean environment. All data were constructed by recording the dialogue of two people freely conversing on a variety of topics and manually transcribing the utterances. To start training, the KsponSpeech dataset must be prepared in advance. To download KsponSpeech, you need permission from [AI Hub](https://aihub.or.kr/).
   
-### Pre-processed Manifest Files
-  
-   
-|Dataset    |Unit                   |Manifest   |Vocab|SP-Model|   
-|-----------|--------------|:---------:|:----:|:--------:|   
-|LibriSpeech|character|[[Link]](https://drive.google.com/file/d/1ZTjkTN8hCwVqiygq8LSIyv_V3D1P3njH/view?usp=sharing)|[[Link]](https://drive.google.com/file/d/1qsSgb3z_qCXYglB7JlPjG3JjLqOWCCIv/view?usp=sharing)|-|      
-|LibriSpeech|subword|[[Link]](https://drive.google.com/file/d/1IY4Qm1uxbKOcdagNyji5zoXDaSV2KevR/view?usp=sharing)|[[Link]](https://drive.google.com/file/d/16551boLSMTUAeidyDQ8bOSbJoQslDaRj/view?usp=sharing)|[[Link]](https://drive.google.com/file/d/1nqfGJ2uBQJEvjnY-GJ7GgZNZxH_AonoY/view?usp=sharing)|   
-|AISHELL-1|character|[[Link]](https://drive.google.com/file/d/1qUEu-txKjB8QVSauWEA8tOPysYT990B7/view?usp=sharing)|[[Link]](https://drive.google.com/file/d/1pnZ8cpWm7HLkemeRLXIznlqzKL4Uyf03/view?usp=sharing)|-|  
-|KsponSpeech|character|[[Link]](https://drive.google.com/file/d/1JkimBCPi68wko-8wiKW0MQv1yE8rrNAP/view?usp=sharing)|[[Link]](https://drive.google.com/file/d/1hDvFTo4czh29sdSKTuqTlHAe37tOyofy/view?usp=sharing)|-|  
-|KsponSpeech|subword|[[Link]](https://drive.google.com/file/d/1S9umHLLGlKF-bk1OU_WNGMftl93ZhiQW/view?usp=sharing)|[[Link]](https://drive.google.com/file/d/1YmhxXjT8n65Ag8kLkWf3luwsenvx_xm6/view?usp=sharing)|[[Link]](https://drive.google.com/file/d/1YI_2TdAajiRVasOUcsUuNwQ1CJ9LPkkc/view?usp=sharing)|  
-|KsponSpeech|grapheme|[[Link]](https://drive.google.com/file/d/1BSDHnByD33vfkBVTwT9AlU_rYc02dBtG/view?usp=sharing)|[[Link]](https://drive.google.com/file/d/1HnupfQwiziXaRIhquUTKo9cUfDwkpuMo/view?usp=sharing)|-|   
-  
-KsponSpeech needs permission from [AI Hub](https://aihub.or.kr/).   
-Please send e-mail including the approved screenshot to openspeech.team@gmail.com.
+
   
 ### Manifest File
   

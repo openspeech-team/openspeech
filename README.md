@@ -261,6 +261,13 @@ $BASE_PATH/KsponSpeech_eval
 └── eval_other  
 ```
    
+- `dataset.test_manifest_dir`: $BASE_PATH/KsponSpeech_scripts/eval_clean.trn or $BASE_PATH/KsponSpeech_scripts/eval_other.trn    
+```
+$BASE_PATH/KsponSpeech_scripts  
+├── eval_clean.trn
+└── eval_other.trn  
+```
+  
 ### Language model training example
   
 Language model training requires only data to be prepared in the following format:  

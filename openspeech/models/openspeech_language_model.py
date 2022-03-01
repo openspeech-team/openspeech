@@ -48,9 +48,6 @@ class OpenspeechLanguageModel(OpenspeechModel):
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(OpenspeechLanguageModel, self).__init__(configs, tokenizer)
 
-    def build_model(self):
-        raise NotImplementedError
-
     def collect_outputs(
             self,
             stage: str,

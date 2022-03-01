@@ -52,7 +52,6 @@ class DeepSpeech2Model(OpenspeechCTCModel):
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(DeepSpeech2Model, self).__init__(configs, tokenizer)
 
-    def build_model(self):
         self.encoder = DeepSpeech2(
             input_dim=self.configs.audio.num_mels,
             num_classes=self.num_classes,

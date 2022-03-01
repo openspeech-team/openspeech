@@ -50,7 +50,6 @@ class Jasper5x3Model(OpenspeechCTCModel):
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(Jasper5x3Model, self).__init__(configs, tokenizer)
 
-    def build_model(self):
         self.encoder = Jasper(
             configs=self.configs,
             input_dim=self.configs.audio.num_mels,

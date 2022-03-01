@@ -54,7 +54,6 @@ class QuartzNet5x5Model(OpenspeechCTCModel):
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(QuartzNet5x5Model, self).__init__(configs, tokenizer)
 
-    def build_model(self):
         self.encoder = QuartzNet(
             configs=self.configs,
             input_dim=self.configs.audio.num_mels,

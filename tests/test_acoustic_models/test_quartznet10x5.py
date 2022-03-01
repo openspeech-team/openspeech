@@ -17,7 +17,6 @@ class TestQuartzNet10x5(unittest.TestCase):
 
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = QuartzNet10x5Model(configs, vocab)
-        model.build_model()
 
         criterion = nn.CTCLoss(blank=3, reduction='mean', zero_infinity=True)
         optimizer = torch.optim.Adam(model.parameters(), lr=1e-04)
@@ -40,7 +39,6 @@ class TestQuartzNet10x5(unittest.TestCase):
 
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = QuartzNet10x5Model(configs, vocab)
-        model.build_model()
 
         for i in range(3):
             outputs = model.training_step(
@@ -53,7 +51,6 @@ class TestQuartzNet10x5(unittest.TestCase):
 
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = QuartzNet10x5Model(configs, vocab)
-        model.build_model()
 
         for i in range(3):
             outputs = model.validation_step(
@@ -66,7 +63,6 @@ class TestQuartzNet10x5(unittest.TestCase):
 
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = QuartzNet10x5Model(configs, vocab)
-        model.build_model()
 
         for i in range(3):
             outputs = model.test_step(

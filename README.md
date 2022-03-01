@@ -223,10 +223,12 @@ $ python ./openspeech_cli/hydra_train.py \
 ```
 $ python ./openspeech_cli/hydra_eval.py \
     audio=melspectrogram \
-    eval.model_name=listen_attend_spell \
     eval.dataset_path=$DATASET_PATH \
     eval.checkpoint_path=$CHECKPOINT_PATH \
-    eval.manifest_file_path=$MANIFEST_FILE_PATH  
+    eval.manifest_file_path=$MANIFEST_FILE_PATH \
+    model=listen_attend_spell \
+    tokenizer=kspon_character \
+    tokenizer.vocab_path=$VOCAB_FILE_PATH \
 ```
 
 - Example2: Evaluation the `listen_attend_spell`, `conformer_lstm` models with ensemble:

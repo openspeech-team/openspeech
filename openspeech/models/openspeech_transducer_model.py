@@ -70,7 +70,7 @@ class OpenspeechTransducerModel(OpenspeechModel):
             Linear(in_features=in_features, out_features=self.num_classes),
         )
 
-    def set_beam_decode(self, beam_size: int = 3, expand_beam: float = 2.3, state_beam: float = 4.6):
+    def set_beam_decoder(self, beam_size: int = 3, expand_beam: float = 2.3, state_beam: float = 4.6):
         """ Setting beam search decode """
         self.decode = BeamSearchRNNTransducer(
             joint=self.joint,

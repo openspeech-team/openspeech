@@ -3,3 +3,5 @@
 defaults:
   - audio: null
   - eval: default
+  - model: null
+  - tokenizer: null

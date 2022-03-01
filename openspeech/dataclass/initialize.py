@@ -81,10 +81,14 @@ def hydra_lm_train_init() -> None:
 def hydra_eval_init() -> None:
     from openspeech.data import AUDIO_FEATURE_TRANSFORM_DATACLASS_REGISTRY
     from openspeech.dataclass import EVAL_DATACLASS_REGISTRY
+    from openspeech.tokenizers import TOKENIZER_DATACLASS_REGISTRY
+    from openspeech.models import MODEL_DATACLASS_REGISTRY
 
     registries = {
         "audio": AUDIO_FEATURE_TRANSFORM_DATACLASS_REGISTRY,
         "eval": EVAL_DATACLASS_REGISTRY,
+        "model": MODEL_DATACLASS_REGISTRY,
+        "tokenizer": TOKENIZER_DATACLASS_REGISTRY,
     }
 
     cs = ConfigStore.instance()

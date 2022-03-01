@@ -25,7 +25,6 @@ class TestTransformerTransducer(unittest.TestCase):
 
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = TransformerTransducerModel(configs, vocab)
-        model.build_model()
 
         optimizer = torch.optim.Adam(model.parameters(), lr=1e-04)
 
@@ -53,7 +52,6 @@ class TestTransformerTransducer(unittest.TestCase):
 
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = TransformerTransducerModel(configs, vocab)
-        model.build_model()
         model.set_beam_decode(beam_size=3)
 
         for i in range(3):
@@ -68,7 +66,6 @@ class TestTransformerTransducer(unittest.TestCase):
 
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = TransformerTransducerModel(configs, vocab)
-        model.build_model()
 
         for i in range(3):
             outputs = model.training_step(
@@ -84,7 +81,6 @@ class TestTransformerTransducer(unittest.TestCase):
 
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = TransformerTransducerModel(configs, vocab)
-        model.build_model()
 
         for i in range(3):
             outputs = model.validation_step(
@@ -100,7 +96,6 @@ class TestTransformerTransducer(unittest.TestCase):
 
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = TransformerTransducerModel(configs, vocab)
-        model.build_model()
 
         for i in range(3):
             outputs = model.test_step(

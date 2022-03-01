@@ -17,7 +17,6 @@ class TestConformer(unittest.TestCase):
 
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = ConformerModel(configs, vocab)
-        model.build_model()
 
         criterion = nn.CTCLoss(blank=3, reduction='mean', zero_infinity=True)
         optimizer = torch.optim.Adam(model.parameters(), lr=1e-04)
@@ -40,7 +39,6 @@ class TestConformer(unittest.TestCase):
 
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = ConformerModel(configs, vocab)
-        model.build_model()
 
         for i in range(5):
             outputs = model.training_step(
@@ -53,7 +51,6 @@ class TestConformer(unittest.TestCase):
 
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = ConformerModel(configs, vocab)
-        model.build_model()
 
         for i in range(5):
             outputs = model.validation_step(
@@ -66,7 +63,6 @@ class TestConformer(unittest.TestCase):
 
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = ConformerModel(configs, vocab)
-        model.build_model()
 
         for i in range(5):
             outputs = model.test_step(

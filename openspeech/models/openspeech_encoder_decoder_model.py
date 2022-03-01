@@ -52,7 +52,6 @@ class OpenspeechEncoderDecoderModel(OpenspeechModel):
         self.teacher_forcing_ratio = configs.model.teacher_forcing_ratio
         self.encoder = None
         self.decoder = None
-        self.criterion = self.configure_criterion(self.configs.criterion.criterion_name)
 
     def set_beam_decoder(self, beam_size: int = 3):
         raise NotImplementedError

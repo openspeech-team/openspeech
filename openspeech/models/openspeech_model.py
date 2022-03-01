@@ -57,16 +57,14 @@ class OpenspeechModel(pl.LightningModule):
         super(OpenspeechModel, self).__init__()
         self.configs = configs
         self.num_classes = len(tokenizer)
-        self.gradient_clip_val = configs.trainer.gradient_clip_val
         self.tokenizer = tokenizer
         self.current_val_loss = 100.0
         self.wer_metric = WordErrorRate(tokenizer)
         self.cer_metric = CharacterErrorRate(tokenizer)
-        self.tokenizer = tokenizer
-        self.criterion = self.configure_criterion(configs.criterion.criterion_name)
-
-    def build_model(self):
-        raise NotImplementedError
+        if hasattr(configs, "trainer"):
+            self.gradient_clip_val = configs.trainer.gradient_clip_val
+        if hasattr(configs, "criterion"):
+            self.criterion = self.configure_criterion(configs.criterion.criterion_name)
 
     def set_beam_decoder(self, beam_size: int = 3):
         raise NotImplementedError

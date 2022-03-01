@@ -59,7 +59,6 @@ class ConformerModel(OpenspeechCTCModel):
         super(ConformerModel, self).__init__(configs, tokenizer)
         self.fc = Linear(self.configs.model.encoder_dim, self.num_classes, bias=False)
 
-    def build_model(self):
         self.encoder = ConformerEncoder(
             num_classes=self.num_classes,
             input_dim=self.configs.audio.num_mels,
@@ -178,7 +177,6 @@ class ConformerLSTMModel(OpenspeechEncoderDecoderModel):
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(ConformerLSTMModel, self).__init__(configs, tokenizer)
 
-    def build_model(self):
         self.encoder = ConformerEncoder(
             num_classes=self.num_classes,
             input_dim=self.configs.audio.num_mels,
@@ -239,7 +237,6 @@ class ConformerTransducerModel(OpenspeechTransducerModel):
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(ConformerTransducerModel, self).__init__(configs, tokenizer)
 
-    def build_model(self):
         self.encoder = ConformerEncoder(
             num_classes=self.num_classes,
             input_dim=self.configs.audio.num_mels,
@@ -289,7 +286,6 @@ class JointCTCConformerLSTMModel(OpenspeechEncoderDecoderModel):
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(JointCTCConformerLSTMModel, self).__init__(configs, tokenizer)
 
-    def build_model(self):
         self.encoder = ConformerEncoder(
             num_classes=self.num_classes,
             input_dim=self.configs.audio.num_mels,

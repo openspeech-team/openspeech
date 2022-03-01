@@ -54,7 +54,6 @@ class RNNTransducerModel(OpenspeechTransducerModel):
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(RNNTransducerModel, self).__init__(configs, tokenizer)
 
-    def build_model(self):
         self.encoder = RNNTransducerEncoder(
             input_dim=self.configs.audio.num_mels,
             hidden_state_dim=self.configs.model.encoder_hidden_state_dim,

@@ -19,11 +19,9 @@ class TestLSTMLanguageModel(unittest.TestCase):
         )
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = LSTMLanguageModel(configs, vocab)
-        model.build_model()
 
         criterion = Perplexity(configs, vocab)
         optimizer = torch.optim.Adam(model.parameters(), lr=1e-04)
-        ptimizer = torch.optim.Adam(model.parameters(), lr=1e-04)
 
         for i in range(3):
             outputs = model(DUMMY_LM_INPUTS)
@@ -53,7 +51,6 @@ class TestLSTMLanguageModel(unittest.TestCase):
         )
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = LSTMLanguageModel(configs, vocab)
-        model.build_model()
 
         for i in range(5):
             outputs = model.training_step(batch=(DUMMY_LM_INPUTS, DUMMY_LM_TARGETS), batch_idx=i)
@@ -66,7 +63,6 @@ class TestLSTMLanguageModel(unittest.TestCase):
         )
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = LSTMLanguageModel(configs, vocab)
-        model.build_model()
 
         for i in range(5):
             outputs = model.validation_step(batch=(DUMMY_LM_INPUTS, DUMMY_LM_TARGETS), batch_idx=i)

@@ -57,7 +57,6 @@ class TransformerTransducerModel(OpenspeechTransducerModel):
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(TransformerTransducerModel, self).__init__(configs, tokenizer)
 
-    def build_model(self):
         self.encoder = TransformerTransducerEncoder(
             input_size=self.configs.audio.num_mels,
             model_dim=self.configs.model.encoder_dim,

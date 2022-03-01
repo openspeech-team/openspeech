@@ -19,7 +19,6 @@ class TestTransformerLanguageModel(unittest.TestCase):
         )
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = TransformerLanguageModel(configs, vocab)
-        model.build_model()
         model.configure_optimizers()
 
         criterion = Perplexity(configs, vocab)
@@ -53,7 +52,6 @@ class TestTransformerLanguageModel(unittest.TestCase):
         )
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = TransformerLanguageModel(configs, vocab)
-        model.build_model()
         model.configure_optimizers()
 
         for i in range(5):
@@ -69,7 +67,6 @@ class TestTransformerLanguageModel(unittest.TestCase):
         )
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = TransformerLanguageModel(configs, vocab)
-        model.build_model()
         model.configure_optimizers()
 
         for i in range(5):

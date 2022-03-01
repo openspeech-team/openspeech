@@ -64,7 +64,6 @@ class ContextNetModel(OpenspeechCTCModel):
         alpha = supported_models[self.configs.model.model_size]
         self.fc = Linear(int(self.configs.model.encoder_dim * alpha), self.num_classes, bias=False)
 
-    def build_model(self):
         self.encoder = ContextNetEncoder(
             num_classes=self.num_classes,
             model_size=self.configs.model.model_size,
@@ -177,7 +176,6 @@ class ContextNetLSTMModel(OpenspeechEncoderDecoderModel):
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer, ) -> None:
         super(ContextNetLSTMModel, self).__init__(configs, tokenizer)
 
-    def build_model(self):
         self.encoder = ContextNetEncoder(
             num_classes=self.num_classes,
             model_size=self.configs.model.model_size,
@@ -232,7 +230,6 @@ class ContextNetTransducerModel(OpenspeechTransducerModel):
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer, ) -> None:
         super(ContextNetTransducerModel, self).__init__(configs, tokenizer)
 
-    def build_model(self):
         self.encoder = ContextNetEncoder(
             num_classes=self.num_classes,
             model_size=self.configs.model.model_size,

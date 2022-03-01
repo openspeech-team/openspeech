@@ -56,7 +56,6 @@ class ListenAttendSpellModel(OpenspeechEncoderDecoderModel):
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(ListenAttendSpellModel, self).__init__(configs, tokenizer)
 
-    def build_model(self):
         self.encoder = LSTMEncoder(
             input_dim=self.configs.audio.num_mels,
             num_layers=self.configs.model.num_encoder_layers,
@@ -114,7 +113,6 @@ class ListenAttendSpellWithLocationAwareModel(OpenspeechEncoderDecoderModel):
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(ListenAttendSpellWithLocationAwareModel, self).__init__(configs, tokenizer)
 
-    def build_model(self):
         self.encoder = LSTMEncoder(
             input_dim=self.configs.audio.num_mels,
             num_layers=self.configs.model.num_encoder_layers,
@@ -172,7 +170,6 @@ class ListenAttendSpellWithMultiHeadModel(OpenspeechEncoderDecoderModel):
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(ListenAttendSpellWithMultiHeadModel, self).__init__(configs, tokenizer)
 
-    def build_model(self):
         self.encoder = LSTMEncoder(
             input_dim=self.configs.audio.num_mels,
             num_layers=self.configs.model.num_encoder_layers,
@@ -230,7 +227,6 @@ class JointCTCListenAttendSpellModel(OpenspeechEncoderDecoderModel):
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(JointCTCListenAttendSpellModel, self).__init__(configs, tokenizer)
 
-    def build_model(self):
         self.encoder = LSTMEncoder(
             input_dim=self.configs.audio.num_mels,
             num_layers=self.configs.model.num_encoder_layers,
@@ -288,7 +284,6 @@ class DeepCNNWithJointCTCListenAttendSpellModel(OpenspeechEncoderDecoderModel):
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(DeepCNNWithJointCTCListenAttendSpellModel, self).__init__(configs, tokenizer)
 
-    def build_model(self):
         self.encoder = ConvolutionalLSTMEncoder(
             input_dim=self.configs.audio.num_mels,
             num_layers=self.configs.model.num_encoder_layers,

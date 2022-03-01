@@ -44,7 +44,6 @@ def hydra_main(configs: DictConfig) -> None:
     data_module.setup(tokenizer=tokenizer)
 
     model = MODEL_REGISTRY[configs.model.model_name](configs=configs, tokenizer=tokenizer)
-    model.build_model()
 
     trainer = get_pl_trainer(configs, num_devices, logger)
     trainer.fit(model, data_module)

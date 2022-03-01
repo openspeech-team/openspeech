@@ -24,6 +24,8 @@ import os
 import hydra
 import warnings
 import logging
+import torch
+from tqdm import tqdm
 from omegaconf import DictConfig, OmegaConf
 from openspeech.metrics import WordErrorRate, CharacterErrorRate
 from pytorch_lightning.utilities import rank_zero_info
@@ -33,6 +35,8 @@ from openspeech.data.sampler import RandomSampler
 from openspeech.data.audio.data_loader import load_dataset, AudioDataLoader
 from openspeech.dataclass.initialize import hydra_eval_init
 from openspeech.models import MODEL_REGISTRY
+from openspeech.tokenizers import TOKENIZER_REGISTRY
+
 
 logger = logging.getLogger(__name__)
 
@@ -42,14 +46,18 @@ def hydra_main(configs: DictConfig) -> None:
     rank_zero_info(OmegaConf.to_yaml(configs))
     wer, cer = 1.0, 1.0
 
-    audio_paths, transcripts = load_dataset(configs.eval.manifest_file_path)
+    use_cuda = configs.eval.use_cuda and torch.cuda.is_available()
+    device = torch.device('cuda' if use_cuda else 'cpu')
 
-    model = MODEL_REGISTRY[configs.eval.model_name].load_from_checkpoint(configs.eval.checkpoint_path)
+    audio_paths, transcripts = load_dataset(configs.eval.manifest_file_path)
+    tokenizer = TOKENIZER_REGISTRY[configs.tokenizer.unit](configs)
+
+    model = MODEL_REGISTRY[configs.model.model_name]
+    model = model.load_from_checkpoint(configs.eval.checkpoint_path, configs=configs, tokenizer=tokenizer)
+    model.to(device)
 
     if configs.eval.beam_size > 1:
         model.set_beam_decoder(beam_size=configs.eval.beam_size)
-
-    tokenizer = model.tokenizer
 
     dataset = SpeechToTextDataset(
         configs=configs,
@@ -69,13 +77,14 @@ def hydra_main(configs: DictConfig) -> None:
     wer_metric = WordErrorRate(tokenizer)
     cer_metric = CharacterErrorRate(tokenizer)
 
-    for i, (batch) in enumerate(data_loader):
-        inputs, targets, input_lengths, target_lengths = batch
+    for i, (batch) in enumerate(tqdm(data_loader)):
+        with torch.no_grad():
+            inputs, targets, input_lengths, target_lengths = batch
 
-        outputs = model(inputs, input_lengths)
+            outputs = model(inputs.to(device), input_lengths.to(device))
 
-        wer = wer_metric(targets, outputs["predictions"])
-        cer = cer_metric(targets, outputs["predictions"])
+        wer = wer_metric(targets[:, 1:], outputs["predictions"])
+        cer = cer_metric(targets[:, 1:], outputs["predictions"])
 
     logger.info(f"Word Error Rate: {wer}, Character Error Rate: {cer}")
 

@@ -57,7 +57,6 @@ class TransformerModel(OpenspeechEncoderDecoderModel):
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(TransformerModel, self).__init__(configs, tokenizer)
 
-    def build_model(self):
         self.encoder = TransformerEncoder(
             input_dim=self.configs.audio.num_mels,
             d_model=self.configs.model.d_model,
@@ -111,7 +110,6 @@ class JointCTCTransformerModel(OpenspeechEncoderDecoderModel):
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(JointCTCTransformerModel, self).__init__(configs, tokenizer)
 
-    def build_model(self):
         self.encoder = ConvolutionalTransformerEncoder(
             input_dim=self.configs.audio.num_mels,
             extractor=self.configs.extractor,
@@ -166,7 +164,6 @@ class TransformerWithCTCModel(OpenspeechCTCModel):
         super(TransformerWithCTCModel, self).__init__(configs, tokenizer)
         self.fc = Linear(self.configs.model.d_model, self.num_classes, bias=False)
 
-    def build_model(self):
         self.encoder = TransformerEncoder(
             input_dim=self.configs.audio.num_mels,
             d_model=self.configs.model.d_model,
@@ -266,7 +263,6 @@ class VGGTransformerModel(OpenspeechEncoderDecoderModel):
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(VGGTransformerModel, self).__init__(configs, tokenizer)
 
-    def build_model(self):
         self.encoder = ConvolutionalTransformerEncoder(
             input_dim=self.configs.audio.num_mels,
             extractor=self.configs.extractor,

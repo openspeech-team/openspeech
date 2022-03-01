@@ -48,7 +48,6 @@ class TransformerLanguageModel(OpenspeechModel):
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(TransformerLanguageModel, self).__init__(configs, tokenizer)
 
-    def build_model(self):
         self.lm = TransformerForLanguageModel(
             num_classes=self.num_classes,
             max_length=self.configs.model.max_length,

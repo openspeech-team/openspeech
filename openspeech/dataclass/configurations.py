@@ -210,7 +210,7 @@ class BaseTrainerConfigs(OpenspeechDataclass):
                                                "the largest batch size that fits into memory."}
     )
     sampler: str = field(
-        default="smart", metadata={"help": "smart: batching with similar sequence length."
+        default="else", metadata={"help": "smart: batching with similar sequence length."
                                            "else: random batch"}
     )
 
@@ -393,8 +393,8 @@ class TokenizerConfigs(OpenspeechDataclass):
 
 @dataclass
 class EvaluationConfigs(OpenspeechDataclass):
-    model_name: str = field(
-        default=MISSING, metadata={"help": "Model name."}
+    use_cuda: bool = field(
+        default=True, metadata={"help": "If set True, will evaluate with GPU"}
     )
     dataset_path: str = field(
         default=MISSING, metadata={"help": "Path of dataset."}
@@ -418,8 +418,8 @@ class EvaluationConfigs(OpenspeechDataclass):
 
 @dataclass
 class EnsembleEvaluationConfigs(OpenspeechDataclass):
-    model_names: str = field(
-        default=MISSING, metadata={"help": "List of model name."}
+    use_cuda: bool = field(
+        default=True, metadata={"help": "If set True, will evaluate with GPU"}
     )
     dataset_paths: str = field(
         default=MISSING, metadata={"help": "Path of dataset."}

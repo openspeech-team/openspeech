@@ -16,7 +16,6 @@ class TestJointCTCListenAttendSpell(unittest.TestCase):
 
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = JointCTCListenAttendSpellModel(configs, vocab)
-        model.build_model()
 
         criterion = JointCTCCrossEntropyLoss(configs, num_classes=len(vocab), vocab=vocab)
         optimizer = torch.optim.Adam(model.parameters(), lr=1e-04)
@@ -45,7 +44,6 @@ class TestJointCTCListenAttendSpell(unittest.TestCase):
 
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = JointCTCListenAttendSpellModel(configs, vocab)
-        model.build_model()
         model.set_beam_decoder(beam_size=3)
 
         for i in range(3):
@@ -60,7 +58,6 @@ class TestJointCTCListenAttendSpell(unittest.TestCase):
 
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = JointCTCListenAttendSpellModel(configs, vocab)
-        model.build_model()
 
         for i in range(3):
             outputs = model.training_step(
@@ -76,7 +73,6 @@ class TestJointCTCListenAttendSpell(unittest.TestCase):
 
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = JointCTCListenAttendSpellModel(configs, vocab)
-        model.build_model()
 
         for i in range(3):
             outputs = model.validation_step(
@@ -92,7 +88,6 @@ class TestJointCTCListenAttendSpell(unittest.TestCase):
 
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = JointCTCListenAttendSpellModel(configs, vocab)
-        model.build_model()
 
         for i in range(3):
             outputs = model.test_step(

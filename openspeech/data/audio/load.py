@@ -47,11 +47,11 @@ def load_audio(audio_path: str, sample_rate: int, del_silence: bool = False) -> 
             return signal
 
     except ValueError:
-        logger.debug('ValueError in {0}'.format(audio_path))
+        logger.warning('ValueError in {0}'.format(audio_path))
         return None
     except RuntimeError:
-        logger.debug('RuntimeError in {0}'.format(audio_path))
+        logger.warning('RuntimeError in {0}'.format(audio_path))
         return None
     except IOError:
-        logger.debug('IOError in {0}'.format(audio_path))
+        logger.warning('IOError in {0}'.format(audio_path))
         return None

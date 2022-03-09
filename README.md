@@ -256,14 +256,14 @@ $BASE_PATH/KsponSpeech
 └── KsponSpeech_05  
 ```  
   
-- `dataset.test_dataset_path`: $BASE_PATH/KsponSpeech_eval/eval_clean or $BASE_PATH/KsponSpeech_eval/eval_other    
+- `dataset.test_dataset_path`: $BASE_PATH/KsponSpeech_eval   
 ```
 $BASE_PATH/KsponSpeech_eval  
 ├── eval_clean
 └── eval_other  
 ```
    
-- `dataset.test_manifest_dir`: $BASE_PATH/KsponSpeech_scripts/eval_clean.trn or $BASE_PATH/KsponSpeech_scripts/eval_other.trn    
+- `dataset.test_manifest_dir`: $BASE_PATH/KsponSpeech_scripts  
 ```
 $BASE_PATH/KsponSpeech_scripts  
 ├── eval_clean.trn

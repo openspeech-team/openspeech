@@ -8,6 +8,8 @@ KsponSpeech is a large-scale spontaneous speech corpus of Korean. This corpus co
   
 Aishell is an open-source Chinese Mandarin speech corpus published by Beijing Shell Shell Technology Co.,Ltd. 400 people from different accent areas in China are invited to participate in the recording, which is conducted in a quiet indoor environment using high fidelity microphone and downsampled to 16kHz.
   
+  
+<!--
 ### Pre-processed Manifest Files
   
    
@@ -21,3 +23,6 @@ Aishell is an open-source Chinese Mandarin speech corpus published by Beijing Sh
 |KsponSpeech|grapheme|[[Link]](https://drive.google.com/file/d/16GIuJ6oApBg2lDYjv0GejthNRcZNQKPn/view?usp=sharing)|[[Link]](https://drive.google.com/file/d/11cGb0lKDVtjtZzyHHDKU6YKaY3LrnIhS/view?usp=sharing)|-|   
   
 KsponSpeech needs permission from [AI Hub](https://aihub.or.kr/). Please send e-mail including the approved screenshot to sh951011@gmail.com.
+
+
+-->

@@ -35,11 +35,8 @@ logger = logging.getLogger(__name__)
 def _generate_character_labels(labels_dest):
     logger.info('create_char_labels started..')
 
-    tokens = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    tokens = list(tokens)
-
     special_tokens = ['<pad>', '<sos>', '<eos>', '<blank>']
-    tokens.extend(special_tokens)
+    tokens = special_tokens + list(' ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 
     # sort together Using zip
     label = {

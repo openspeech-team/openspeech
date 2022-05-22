@@ -123,7 +123,7 @@ class LightningLibriSpeechDataModule(pl.LightningDataModule):
                     os.path.join(self.configs.dataset.dataset_path, train_dir, subfolder),
                 )
 
-    def prepare_data(self) -> Tokenizer:
+    def prepare_data(self) -> None:
         """
         Prepare librispeech data
 
@@ -158,7 +158,7 @@ class LightningLibriSpeechDataModule(pl.LightningDataModule):
                     vocab_path=self.configs.tokenizer.vocab_path,
                 )
 
-    def setup(self, stage: Optional[str] = None, tokenizer: Tokenizer = None) -> None:
+    def setup(self, stage: Optional[str] = None) -> None:
         r""" Split dataset into train, valid, and test. """
         valid_end_idx = self.LIBRISPEECH_TRAIN_NUM + self.LIBRISPEECH_VALID_NUM
         audio_paths, transcripts = self._parse_manifest_file(self.configs.dataset.manifest_file_path)
@@ -180,8 +180,6 @@ class LightningLibriSpeechDataModule(pl.LightningDataModule):
                 dataset_path=self.configs.dataset.dataset_path,
                 audio_paths=audio_paths[stage],
                 transcripts=transcripts[stage],
-                sos_id=tokenizer.sos_id,
-                eos_id=tokenizer.eos_id,
                 apply_spec_augment=self.configs.audio.apply_spec_augment if stage == 'train' else False,
                 del_silence=self.configs.audio.del_silence if stage == 'train' else False,
             )

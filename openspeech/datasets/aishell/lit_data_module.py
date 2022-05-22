@@ -102,7 +102,7 @@ class LightningAIShellDataModule(pl.LightningDataModule):
 
         return audio_paths, transcripts
 
-    def prepare_data(self):
+    def prepare_data(self) -> None:
         r"""
         Prepare AI-Shell manifest file. If there is not exist manifest file, generate manifest file.
 
@@ -119,7 +119,7 @@ class LightningAIShellDataModule(pl.LightningDataModule):
                 raise ValueError("Dataset path is not valid.")
             self._generate_manifest_files(self.configs.dataset.manifest_file_path)
 
-    def setup(self, stage: Optional[str] = None, tokenizer: Tokenizer = None):
+    def setup(self, stage: Optional[str] = None) -> None:
         r"""
         Split `train` and `valid` dataset for training.
 
@@ -150,8 +150,6 @@ class LightningAIShellDataModule(pl.LightningDataModule):
                 dataset_path=self.configs.dataset.dataset_path,
                 audio_paths=audio_paths[stage],
                 transcripts=transcripts[stage],
-                sos_id=tokenizer.sos_id,
-                eos_id=tokenizer.eos_id,
                 apply_spec_augment=self.configs.audio.apply_spec_augment if stage == 'train' else False,
                 del_silence=self.configs.audio.del_silence if stage == 'train' else False,
             )

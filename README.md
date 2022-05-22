@@ -32,6 +32,7 @@ Various features are available in the above two libraries, including Multi-GPU a
   
 ## What's New
   
+- May 2022 [openspeech 0.4.0 released](https://github.com/openspeech-team/openspeech/releases/tag/v0.4.0)
 - Aug 2021 [Added Smart Batching](https://github.com/openspeech-team/openspeech/pull/83)
 - Jul 2021 [openspeech 0.3.0 released](https://github.com/openspeech-team/openspeech/releases/tag/v0.3.0)
 - Jul 2021 [Added transducer beam search logic](https://openspeech-team.github.io/openspeech/modules/Search.html)

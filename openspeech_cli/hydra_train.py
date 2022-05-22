@@ -22,7 +22,6 @@
 
 import os
 import hydra
-import wandb
 import pytorch_lightning as pl
 from omegaconf import DictConfig, OmegaConf
 from pytorch_lightning.utilities import rank_zero_info
@@ -45,13 +44,13 @@ def hydra_main(configs: DictConfig) -> None:
     data_module.prepare_data()
     tokenizer = TOKENIZER_REGISTRY[configs.tokenizer.unit](configs)
 
-    data_module.setup(tokenizer=tokenizer)
+    data_module.setup()
 
     model = MODEL_REGISTRY[configs.model.model_name](configs=configs, tokenizer=tokenizer)
 
     trainer = get_pl_trainer(configs, num_devices, logger)
     trainer.fit(model, data_module)
-    trainer.test()
+    trainer.test(model, data_module)
 
 
 if __name__ == '__main__':

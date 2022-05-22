@@ -25,12 +25,12 @@ from setuptools import setup, find_packages
 
 setup(
     name='openspeech-core',
-    version='0.3.0',
+    version='0.4.0',
     description='Open-Source Toolkit for End-to-End Automatic Speech Recognition',
     author='Kim, Soohwan and Ha, Sangchun and Cho, Soyoung',
-    author_email='sh951011@gmail.com, seomk9896@naver.com, soyoung.cho@kaist.ac.kr',
-    url='https://github.com/sooftware/openspeech',
-    download_url='https://github.com/sooftware/openspeech/releases/tag/v0.1.zip',
+    author_email='sh951011@gmail.com, seomk9896@gmail.com, soyoung.cho@kaist.ac.kr',
+    url='https://github.com/openspeech-team/openspeech',
+    download_url='https://github.com/openspeech-team/openspeech/releases/tag/v0.4.zip',
     install_requires=[
         'torch>=1.6.0',
         'python-Levenshtein',

@@ -17,7 +17,7 @@ from openspeech.utils import (
 logger = logging.getLogger(__name__)
 
 
-class TestConformer(unittest.TestCase):
+class TestSqueezeformer(unittest.TestCase):
     def test_forward(self):
         configs = build_dummy_configs(model_configs=SqueezeformerConfigs(), criterion_configs=CTCLossConfigs())
 

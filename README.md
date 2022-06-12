@@ -12,7 +12,7 @@
   
 <p align="center">
   <a href="https://github.com/openspeech-team/OpenSpeech/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-informational">
-  <a href="https://pypi.org/project/openspeech-core/"><img src="https://img.shields.io/badge/pypi-v0.3.0-informational">
+  <a href="https://pypi.org/project/openspeech-core/"><img src="https://img.shields.io/badge/pypi-v0.4.0-informational">
   <img src="https://img.shields.io/badge/build-passing-33CF57?&logo=GitHub">
   <a href="https://openspeech-team.github.io/openspeech/"><img src="https://img.shields.io/badge/docs-passing-33CF57?&logo=GitHub"></a>
 </p>
@@ -32,6 +32,7 @@ Various features are available in the above two libraries, including Multi-GPU a
   
 ## What's New
   
+- May 2022 [openspeech 0.4.0 released](https://github.com/openspeech-team/openspeech/releases/tag/v0.4.0)
 - Aug 2021 [Added Smart Batching](https://github.com/openspeech-team/openspeech/pull/83)
 - Jul 2021 [openspeech 0.3.0 released](https://github.com/openspeech-team/openspeech/releases/tag/v0.3.0)
 - Jul 2021 [Added transducer beam search logic](https://openspeech-team.github.io/openspeech/modules/Search.html)
@@ -113,18 +114,17 @@ English and Mandarin](https://arxiv.org/abs/1512.02595.pdf), by Dario Amodei, Ri
 8. [**Speech-Transformer**](https://openspeech-team.github.io/openspeech/architectures/Transformer.html) (from University of Chinese Academy of Sciences and Institute of Automation and Chinese Academy of Sciences) released with paper [Speech-Transformer: A No-Recurrence Sequence-to-Sequence Model for Speech Recognition](https://ieeexplore.ieee.org/document/8462506), by Linhao Dong; Shuang Xu; Bo Xu.
 9. [**VGG-Transformer**](https://openspeech-team.github.io/openspeech/architectures/Transformer.html) (from Facebook AI Research) released with paper [Transformers with convolutional context for ASR](https://arxiv.org/abs/1904.11660), by Abdelrahman Mohamed, Dmytro Okhonko, Luke Zettlemoyer.  
 10. [**Transformer with CTC**](https://openspeech-team.github.io/openspeech/architectures/Transformer.html) (from NTT Communication Science Laboratories, Waseda University, Center for Language and Speech Processing, Johns Hopkins University) released with paper [Improving Transformer-based End-to-End Speech Recognition with Connectionist Temporal Classification and Language Model Integration](https://www.isca-speech.org/archive/Interspeech_2019/pdfs/1938.pdf), by Shigeki Karita, Nelson Enrique Yalta Soplin, Shinji Watanabe, Marc Delcroix, Atsunori Ogawa, Tomohiro Nakatani.
-11. [**Joint CTC-Attention based Transformer**](https://openspeech-team.github.io/openspeech/architectures/Transformer.html)(from NTT Corporation) released with paper [Self-Distillation for Improving CTC-Transformer-based ASR Systems](https://www.isca-speech.org/archive/Interspeech_2020/pdfs/1223.pdf), by Takafumi Moriya, Tsubasa Ochiai, Shigeki Karita, Hiroshi Sato, Tomohiro Tanaka, Takanori Ashihara, Ryo Masumura, Yusuke Shinohara, Marc Delcroix.
+11. [**Joint CTC-Attention based Transformer**](https://openspeech-team.github.io/openspeech/architectures/Transformer.html) (from NTT Corporation) released with paper [Self-Distillation for Improving CTC-Transformer-based ASR Systems](https://www.isca-speech.org/archive/Interspeech_2020/pdfs/1223.pdf), by Takafumi Moriya, Tsubasa Ochiai, Shigeki Karita, Hiroshi Sato, Tomohiro Tanaka, Takanori Ashihara, Ryo Masumura, Yusuke Shinohara, Marc Delcroix.
 12. [**Transformer Language Model**](https://openspeech-team.github.io/openspeech/architectures/Transformer%20LM.html) (from Amazon Web Services) released with paper [Language Models with Transformers](https://arxiv.org/abs/1904.09408), by Chenguang Wang, Mu Li, Alexander J. Smola.
 12. [**Jasper**](https://openspeech-team.github.io/openspeech/modules/Encoders.html#module-openspeech.encoders.jasper) (from NVIDIA and New York University) released with paper [Jasper: An End-to-End Convolutional Neural Acoustic Model](https://arxiv.org/pdf/1904.03288.pdf), by Jason Li, Vitaly Lavrukhin, Boris Ginsburg, Ryan Leary, Oleksii Kuchaiev, Jonathan M. Cohen, Huyen Nguyen, Ravi Teja Gadde.   
 13. [**QuartzNet**](https://openspeech-team.github.io/openspeech/modules/Encoders.html#module-openspeech.encoders.quartznet) (from NVIDIA and Univ. of Illinois and Univ. of Saint Petersburg) released with paper [QuartzNet: Deep Automatic Speech Recognition with 1D Time-Channel Separable Convolutions](https://arxiv.org/abs/1910.10261.pdf), by Samuel Kriman, Stanislav Beliaev, Boris Ginsburg, Jocelyn Huang, Oleksii Kuchaiev, Vitaly Lavrukhin, Ryan Leary, Jason Li, Yang Zhang.  
-14. [**Transformer Transducer**](https://openspeech-team.github.io/openspeech/architectures/Transformer%20Transducer.html) (from Facebook AI) released with paper [Transformer-Transducer:
-End-to-End Speech Recognition with Self-Attention](https://arxiv.org/abs/1910.12977.pdf), by Ching-Feng Yeh, Jay Mahadeokar, Kaustubh Kalgaonkar, Yongqiang Wang, Duc Le, Mahaveer Jain, Kjell Schubert, Christian Fuegen, Michael L. Seltzer.  
+14. [**Transformer Transducer**](https://openspeech-team.github.io/openspeech/architectures/Transformer%20Transducer.html) (from Facebook AI) released with paper [Transformer-Transducer: End-to-End Speech Recognition with Self-Attention](https://arxiv.org/abs/1910.12977.pdf), by Ching-Feng Yeh, Jay Mahadeokar, Kaustubh Kalgaonkar, Yongqiang Wang, Duc Le, Mahaveer Jain, Kjell Schubert, Christian Fuegen, Michael L. Seltzer.  
 15. [**Conformer**](https://openspeech-team.github.io/openspeech/architectures/Conformer.html) (from Google) released with paper [Conformer: Convolution-augmented Transformer for Speech Recognition](https://arxiv.org/abs/2005.08100), by Anmol Gulati, James Qin, Chung-Cheng Chiu, Niki Parmar, Yu Zhang, Jiahui Yu, Wei Han, Shibo Wang, Zhengdong Zhang, Yonghui Wu, Ruoming Pang.  
 16. [**Conformer with CTC**](https://openspeech-team.github.io/openspeech/architectures/Conformer.html) (from Northwestern Polytechnical University and University of Bordeaux and Johns Hopkins University and Human Dataware Lab and Kyoto University and NTT Corporation and Shanghai Jiao Tong University and  Chinese Academy of Sciences) released with paper [Recent Developments on ESPNET Toolkit Boosted by Conformer](https://arxiv.org/abs/2010.13956.pdf), by Pengcheng Guo, Florian Boyer, Xuankai Chang, Tomoki Hayashi, Yosuke Higuchi, Hirofumi Inaguma, Naoyuki Kamo, Chenda Li, Daniel Garcia-Romero, Jiatong Shi, Jing Shi, Shinji Watanabe, Kun Wei, Wangyou Zhang, Yuekai Zhang.
 17. [**Conformer with LSTM Decoder**](https://openspeech-team.github.io/openspeech/architectures/Conformer.html) (from IBM Research AI) released with paper [On the limit of English conversational speech recognition](https://arxiv.org/abs/2105.00982.pdf), by Zoltán Tüske, George Saon, Brian Kingsbury.
-18. [**ContextNet**](https://openspeech-team.github.io/openspeech/architectures/ContextNet.html) (from Google) released with paper [ContextNet: Improving Convolutional Neural Networks for Automatic Speech Recognition with Global Context](https://arxiv.org/abs/2005.03191), by Wei Han, Zhengdong Zhang, Yu Zhang, Jiahui Yu, Chung-Cheng Chiu, James Qin, Anmol Gulati, Ruoming Pang, Yonghui Wu.  
-21. [**Squeezeformer**](https://github.com/openspeech-team/openspeech/blob/main/openspeech/models/squeezeformer/model.py) (from University of Berkeley) released with paper [Squeezeformer: An Efficient Transformer for Automatic Speech Recognition](https://arxiv.org/abs/2206.00888), by Sehoon Kim, Amir Gholami, Albert Shaw, Nicholas Lee, Karttikeya Mangalam, Jitendra Malik, Michael W. Mahoney, Kurt Keutzer.
-  
+18. [**ContextNet**](https://openspeech-team.github.io/openspeech/architectures/ContextNet.html) (from Google) released with paper [ContextNet: Improving Convolutional Neural Networks for Automatic Speech Recognition with Global Context](https://arxiv.org/abs/2005.03191), by Wei Han, Zhengdong Zhang, Yu Zhang, Jiahui Yu, Chung-Cheng Chiu, James Qin, Anmol Gulati, Ruoming Pang, Yonghui Wu.
+19. [**Squeezeformer**](https://github.com/openspeech-team/openspeech/blob/main/openspeech/models/squeezeformer/model.py) (from University of Berkeley) released with paper [Squeezeformer: An Efficient Transformer for Automatic Speech Recognition](https://arxiv.org/abs/2206.00888), by Sehoon Kim, Amir Gholami, Albert Shaw, Nicholas Lee, Karttikeya Mangalam, Jitendra Malik, Michael W. Mahoney, Kurt Keutzer.  
+
 
 ## Get Started
   
@@ -224,10 +224,12 @@ $ python ./openspeech_cli/hydra_train.py \
 ```
 $ python ./openspeech_cli/hydra_eval.py \
     audio=melspectrogram \
-    eval.model_name=listen_attend_spell \
     eval.dataset_path=$DATASET_PATH \
     eval.checkpoint_path=$CHECKPOINT_PATH \
-    eval.manifest_file_path=$MANIFEST_FILE_PATH  
+    eval.manifest_file_path=$MANIFEST_FILE_PATH \
+    model=listen_attend_spell \
+    tokenizer=kspon_character \
+    tokenizer.vocab_path=$VOCAB_FILE_PATH \
 ```
 
 - Example2: Evaluation the `listen_attend_spell`, `conformer_lstm` models with ensemble:
@@ -255,14 +257,14 @@ $BASE_PATH/KsponSpeech
 └── KsponSpeech_05  
 ```  
   
-- `dataset.test_dataset_path`: $BASE_PATH/KsponSpeech_eval/eval_clean or $BASE_PATH/KsponSpeech_eval/eval_other    
+- `dataset.test_dataset_path`: $BASE_PATH/KsponSpeech_eval   
 ```
 $BASE_PATH/KsponSpeech_eval  
 ├── eval_clean
 └── eval_other  
 ```
    
-- `dataset.test_manifest_dir`: $BASE_PATH/KsponSpeech_scripts/eval_clean.trn or $BASE_PATH/KsponSpeech_scripts/eval_other.trn    
+- `dataset.test_manifest_dir`: $BASE_PATH/KsponSpeech_scripts  
 ```
 $BASE_PATH/KsponSpeech_scripts  
 ├── eval_clean.trn

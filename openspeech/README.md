@@ -113,6 +113,7 @@
 │   ├── openspeech_encoder.py
 │   ├── quartznet.py
 │   ├── rnn_transducer_encoder.py
+│   ├── squeezeformer_encoder.py
 │   ├── transformer_encoder.py
 │   └── transformer_transducer_encoder.py
 ├── lm
@@ -169,6 +170,10 @@
 │   │   ├── __init__.py
 │   │   ├── configurations.py
 │   │   └── model.py
+│   ├── squeezeformer
+│   │   ├── __init__.py
+│   │   ├── configurations.py
+│   │   └── model.py
 │   └── transformer_transducer
 │       ├── __init__.py
 │       ├── configurations.py
@@ -190,6 +195,7 @@
 │   ├── conv_group_shuffle.py
 │   ├── deepspeech2_extractor.py
 │   ├── depthwise_conv1d.py
+│   ├── depthwise_conv2d.py
 │   ├── dot_product_attention.py
 │   ├── glu.py
 │   ├── jasper_block.py
@@ -206,6 +212,9 @@
 │   ├── quartznet_subblock.py
 │   ├── relative_multi_head_attention.py
 │   ├── residual_connection_module.py
+│   ├── squeezeformer_attention_module.py
+│   ├── squeezeformer_block.py
+│   ├── squeezeformer_module.py
 │   ├── swish.py
 │   ├── time_channel_separable_conv1d.py
 │   ├── transformer_embedding.py

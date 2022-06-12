@@ -12,7 +12,7 @@
   
 <p align="center">
   <a href="https://github.com/openspeech-team/OpenSpeech/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-informational">
-  <a href="https://pypi.org/project/openspeech-core/"><img src="https://img.shields.io/badge/pypi-v0.4.0-informational">
+  <a href="https://pypi.org/project/openspeech-core/"><img src="https://img.shields.io/badge/pypi-v0.3.0-informational">
   <img src="https://img.shields.io/badge/build-passing-33CF57?&logo=GitHub">
   <a href="https://openspeech-team.github.io/openspeech/"><img src="https://img.shields.io/badge/docs-passing-33CF57?&logo=GitHub"></a>
 </p>
@@ -32,7 +32,6 @@ Various features are available in the above two libraries, including Multi-GPU a
   
 ## What's New
   
-- May 2022 [openspeech 0.4.0 released](https://github.com/openspeech-team/openspeech/releases/tag/v0.4.0)
 - Aug 2021 [Added Smart Batching](https://github.com/openspeech-team/openspeech/pull/83)
 - Jul 2021 [openspeech 0.3.0 released](https://github.com/openspeech-team/openspeech/releases/tag/v0.3.0)
 - Jul 2021 [Added transducer beam search logic](https://openspeech-team.github.io/openspeech/modules/Search.html)
@@ -123,7 +122,8 @@ End-to-End Speech Recognition with Self-Attention](https://arxiv.org/abs/1910.12
 15. [**Conformer**](https://openspeech-team.github.io/openspeech/architectures/Conformer.html) (from Google) released with paper [Conformer: Convolution-augmented Transformer for Speech Recognition](https://arxiv.org/abs/2005.08100), by Anmol Gulati, James Qin, Chung-Cheng Chiu, Niki Parmar, Yu Zhang, Jiahui Yu, Wei Han, Shibo Wang, Zhengdong Zhang, Yonghui Wu, Ruoming Pang.  
 16. [**Conformer with CTC**](https://openspeech-team.github.io/openspeech/architectures/Conformer.html) (from Northwestern Polytechnical University and University of Bordeaux and Johns Hopkins University and Human Dataware Lab and Kyoto University and NTT Corporation and Shanghai Jiao Tong University and  Chinese Academy of Sciences) released with paper [Recent Developments on ESPNET Toolkit Boosted by Conformer](https://arxiv.org/abs/2010.13956.pdf), by Pengcheng Guo, Florian Boyer, Xuankai Chang, Tomoki Hayashi, Yosuke Higuchi, Hirofumi Inaguma, Naoyuki Kamo, Chenda Li, Daniel Garcia-Romero, Jiatong Shi, Jing Shi, Shinji Watanabe, Kun Wei, Wangyou Zhang, Yuekai Zhang.
 17. [**Conformer with LSTM Decoder**](https://openspeech-team.github.io/openspeech/architectures/Conformer.html) (from IBM Research AI) released with paper [On the limit of English conversational speech recognition](https://arxiv.org/abs/2105.00982.pdf), by Zoltán Tüske, George Saon, Brian Kingsbury.
-18. [**ContextNet**](https://openspeech-team.github.io/openspeech/architectures/ContextNet.html) (from Google) released with paper [ContextNet: Improving Convolutional Neural Networks for Automatic Speech Recognition with Global Context](https://arxiv.org/abs/2005.03191), by Wei Han, Zhengdong Zhang, Yu Zhang, Jiahui Yu, Chung-Cheng Chiu, James Qin, Anmol Gulati, Ruoming Pang, Yonghui Wu.
+18. [**ContextNet**](https://openspeech-team.github.io/openspeech/architectures/ContextNet.html) (from Google) released with paper [ContextNet: Improving Convolutional Neural Networks for Automatic Speech Recognition with Global Context](https://arxiv.org/abs/2005.03191), by Wei Han, Zhengdong Zhang, Yu Zhang, Jiahui Yu, Chung-Cheng Chiu, James Qin, Anmol Gulati, Ruoming Pang, Yonghui Wu.  
+21. [**Squeezeformer**](https://github.com/openspeech-team/openspeech/blob/main/openspeech/models/squeezeformer/model.py) (from University of Berkeley) released with paper [Squeezeformer: An Efficient Transformer for Automatic Speech Recognition](https://arxiv.org/abs/2206.00888), by Sehoon Kim, Amir Gholami, Albert Shaw, Nicholas Lee, Karttikeya Mangalam, Jitendra Malik, Michael W. Mahoney, Kurt Keutzer.
   
 
 ## Get Started
@@ -224,12 +224,10 @@ $ python ./openspeech_cli/hydra_train.py \
 ```
 $ python ./openspeech_cli/hydra_eval.py \
     audio=melspectrogram \
+    eval.model_name=listen_attend_spell \
     eval.dataset_path=$DATASET_PATH \
     eval.checkpoint_path=$CHECKPOINT_PATH \
-    eval.manifest_file_path=$MANIFEST_FILE_PATH \
-    model=listen_attend_spell \
-    tokenizer=kspon_character \
-    tokenizer.vocab_path=$VOCAB_FILE_PATH \
+    eval.manifest_file_path=$MANIFEST_FILE_PATH  
 ```
 
 - Example2: Evaluation the `listen_attend_spell`, `conformer_lstm` models with ensemble:
@@ -257,14 +255,14 @@ $BASE_PATH/KsponSpeech
 └── KsponSpeech_05  
 ```  
   
-- `dataset.test_dataset_path`: $BASE_PATH/KsponSpeech_eval   
+- `dataset.test_dataset_path`: $BASE_PATH/KsponSpeech_eval/eval_clean or $BASE_PATH/KsponSpeech_eval/eval_other    
 ```
 $BASE_PATH/KsponSpeech_eval  
 ├── eval_clean
 └── eval_other  
 ```
    
-- `dataset.test_manifest_dir`: $BASE_PATH/KsponSpeech_scripts  
+- `dataset.test_manifest_dir`: $BASE_PATH/KsponSpeech_scripts/eval_clean.trn or $BASE_PATH/KsponSpeech_scripts/eval_other.trn    
 ```
 $BASE_PATH/KsponSpeech_scripts  
 ├── eval_clean.trn

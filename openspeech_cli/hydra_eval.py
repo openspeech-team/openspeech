@@ -45,6 +45,7 @@ logger = logging.getLogger(__name__)
 def hydra_main(configs: DictConfig) -> None:
     rank_zero_info(OmegaConf.to_yaml(configs))
     wer, cer = 1.0, 1.0
+    results = list()
 
     use_cuda = configs.eval.use_cuda and torch.cuda.is_available()
     device = torch.device('cuda' if use_cuda else 'cpu')
@@ -77,6 +78,7 @@ def hydra_main(configs: DictConfig) -> None:
     wer_metric = WordErrorRate(tokenizer)
     cer_metric = CharacterErrorRate(tokenizer)
 
+    logger.info("Start evaluation ...")
     for i, (batch) in enumerate(tqdm(data_loader)):
         with torch.no_grad():
             inputs, targets, input_lengths, target_lengths = batch
@@ -86,7 +88,14 @@ def hydra_main(configs: DictConfig) -> None:
         wer = wer_metric(targets[:, 1:], outputs["predictions"])
         cer = cer_metric(targets[:, 1:], outputs["predictions"])
 
+        for target, predicion in zip(tokenizer.decode(targets[:, 1:]), tokenizer.decode(outputs['predictions'])):
+            results.append(f"{target}\n{predicion}\n\n")
+
     logger.info(f"Word Error Rate: {wer}, Character Error Rate: {cer}")
+
+    with open(configs.eval.result_path, "wt", encoding="utf-8") as f:
+        for result in results:
+            f.write(result)
 
 
 if __name__ == '__main__':

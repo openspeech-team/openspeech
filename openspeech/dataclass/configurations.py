@@ -405,6 +405,9 @@ class EvaluationConfigs(OpenspeechDataclass):
     manifest_file_path: str = field(
         default=MISSING, metadata={"help": "Path of evaluation manifest file."}
     )
+	result_path: str = field(
+		default=MISSING, metadata={"help": "Path of evaluation result file."}
+	)
     num_workers: int = field(
         default=4, metadata={"help": "Number of worker."}
     )

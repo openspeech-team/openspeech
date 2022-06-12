@@ -20,14 +20,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from .openspeech_encoder import OpenspeechEncoder
-from .conformer_encoder import ConformerEncoder
-from .contextnet_encoder import ContextNetEncoder
-from .convolutional_lstm_encoder import ConvolutionalLSTMEncoder
-from .convolutional_transformer_encoder import ConvolutionalTransformerEncoder
-from .lstm_encoder import LSTMEncoder
-from .rnn_transducer_encoder import RNNTransducerEncoder
-from .squeezeformer_encoder import SqueezeformerEncoder
-from .transformer_encoder import TransformerEncoder
-from .transformer_transducer_encoder import TransformerTransducerEncoder
-from .jasper import Jasper
+from .configurations import (
+    SqueezeformerConfigs,
+    SqueezeformerLSTMConfigs,
+    SqueezeformerTransducerConfigs,
+    JointCTCSqueezeformerLSTMConfigs,
+)
+from .model import (
+    SqueezeformerTransducerModel,
+    SqueezeformerLSTMModel,
+    SqueezeformerModel,
+    JointCTCSqueezeformerLSTMModel
+)

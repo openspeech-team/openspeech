@@ -93,7 +93,6 @@ from .conformer import (
     ConformerTransducerModel,
     JointCTCConformerLSTMModel,
 )
-
 from .contextnet import (
     ContextNetTransducerConfigs,
     ContextNetLSTMConfigs,
@@ -122,7 +121,7 @@ from .listen_attend_spell import (
     ListenAttendSpellWithMultiHeadModel,
     ListenAttendSpellWithLocationAwareModel,
     JointCTCListenAttendSpellModel,
-    DeepCNNWithJointCTCListenAttendSpellModel
+    DeepCNNWithJointCTCListenAttendSpellModel,
 )
 from .quartznet import (
     QuartzNet5x5Configs,
@@ -132,10 +131,19 @@ from .quartznet import (
     QuartzNet15x5Model,
     QuartzNet10x5Model,
 )
-
 from .rnn_transducer import (
-    RNNTransducerModel,
+	RNNTransducerModel,
     RNNTransducerConfigs,
+)
+from .squeezeformer import (
+    SqueezeformerConfigs,
+    SqueezeformerLSTMConfigs,
+    SqueezeformerTransducerConfigs,
+    JointCTCSqueezeformerLSTMConfigs,
+    SqueezeformerTransducerModel,
+    SqueezeformerLSTMModel,
+    SqueezeformerModel,
+    JointCTCSqueezeformerLSTMModel,
 )
 from .transformer import (
     TransformerConfigs,
@@ -206,6 +214,14 @@ __all__ = [
     "QuartzNet10x5Model",
     "RNNTransducerConfigs",
     "RNNTransducerModel",
+    "SqueezeformerConfigs",
+    "SqueezeformerLSTMConfigs",
+    "SqueezeformerTransducerConfigs",
+    "JointCTCSqueezeformerLSTMConfigs",
+    "SqueezeformerTransducerModel",
+    "SqueezeformerLSTMModel",
+    "SqueezeformerModel",
+    "JointCTCSqueezeformerLSTMModel",
     "TransformerModel",
     "TransformerConfigs",
     "TransformerWithCTCConfigs",

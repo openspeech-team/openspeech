@@ -132,7 +132,7 @@ from .quartznet import (
     QuartzNet10x5Model,
 )
 from .rnn_transducer import (
-	RNNTransducerModel,
+    RNNTransducerModel,
     RNNTransducerConfigs,
 )
 from .squeezeformer import (

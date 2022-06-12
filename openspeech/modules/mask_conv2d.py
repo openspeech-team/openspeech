@@ -25,6 +25,8 @@ import torch.nn as nn
 from torch import Tensor
 from typing import Tuple
 
+from openspeech.modules.depthwise_conv2d import DepthwiseConv2d
+
 
 class MaskConv2d(nn.Module):
     r"""
@@ -91,7 +93,10 @@ class MaskConv2d(nn.Module):
             numerator = seq_lengths + 2 * module.padding[1] - module.dilation[1] * (module.kernel_size[1] - 1) - 1
             seq_lengths = numerator.float() / float(module.stride[1])
             seq_lengths = seq_lengths.int() + 1
-
+        elif isinstance(module, DepthwiseConv2d):
+            numerator = seq_lengths + 2 * module.conv.padding[1] - module.conv.dilation[1] * (module.conv.kernel_size[1] - 1) - 1
+            seq_lengths = numerator.float() / float(module.conv.stride[1])
+            seq_lengths = seq_lengths.int() + 1
         elif isinstance(module, nn.MaxPool2d):
             seq_lengths >>= 1
 

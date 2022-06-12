@@ -29,8 +29,9 @@ from .conformer_block import ConformerBlock
 from .conformer_convolution_module import ConformerConvModule
 from .conformer_feed_forward_module import FeedForwardModule
 from .conv2d_extractor import Conv2dExtractor
-from .conv2d_subsampling import Conv2dSubsampling
+from .conv2d_subsampling import Conv2dSubsampling, DepthwiseConv2dSubsampling
 from .deepspeech2_extractor import DeepSpeech2Extractor
+from .depthwise_conv2d import DepthwiseConv2d
 from .vgg_extractor import VGGExtractor
 from .conv_base import BaseConv1d
 from .conv_group_shuffle import ConvGroupShuffle
@@ -52,6 +53,8 @@ from .relative_multi_head_attention import RelativeMultiHeadAttention
 from .residual_connection_module import ResidualConnectionModule
 from .dot_product_attention import DotProductAttention
 from .swish import Swish
+from .squeezeformer_module import TimeReductionLayer, SqueezeformerConvModule, recover_resolution
+from .squeezeformer_block import SqueezeformerBlock
 from .time_channel_separable_conv1d import TimeChannelSeparableConv1d
 from .transformer_embedding import TransformerEmbedding
 
@@ -61,25 +64,28 @@ __all__ = [
     "AddNorm",
     "BNReluRNN",
     "MultiHeadAttention",
+    "MultiHeadedSelfAttentionModule",
     "ConformerBlock",
     "ConformerConvModule",
     "FeedForwardModule",
     "Conv2dExtractor",
     "Conv2dSubsampling",
+    "DepthwiseConv2dSubsampling",
     "DeepSpeech2Extractor",
     "VGGExtractor",
     "BaseConv1d",
     "ConvGroupShuffle",
     "DepthwiseConv1d",
+    "DepthwiseConv2d",
     "GLU",
     "JasperSubBlock",
     "JasperBlock",
     "LocationAwareAttention",
     "get_attn_pad_mask",
     "get_attn_subsequent_mask",
+    "recover_resolution",
     "MaskConv1d",
     "MaskConv2d",
-    "MultiHeadAttention",
     "PointwiseConv1d",
     "PositionalEncoding",
     "PositionwiseFeedForward",
@@ -89,7 +95,10 @@ __all__ = [
     "ResidualConnectionModule",
     "DotProductAttention",
     "Swish",
+    "SqueezeformerConvModule",
+    "SqueezeformerBlock",
     "TimeChannelSeparableConv1d",
+    "TimeReductionLayer",
     "TransformerEmbedding",
     "Linear",
     "View",

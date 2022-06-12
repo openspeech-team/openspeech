@@ -24,7 +24,8 @@ import torch
 import torch.nn as nn
 from typing import Tuple
 
-from openspeech.modules import Conv2dExtractor
+from openspeech.modules.conv2d_extractor import Conv2dExtractor
+from openspeech.modules.depthwise_conv2d import DepthwiseConv2d
 
 
 class Conv2dSubsampling(Conv2dExtractor):
@@ -61,6 +62,50 @@ class Conv2dSubsampling(Conv2dExtractor):
                 nn.Conv2d(in_channels, out_channels, kernel_size=3, stride=2),
                 self.activation,
                 nn.Conv2d(out_channels, out_channels, kernel_size=3, stride=2),
+                self.activation,
+            )
+        )
+
+    def forward(self, inputs: torch.Tensor, input_lengths: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+        outputs, output_lengths = super().forward(inputs, input_lengths)
+
+        return outputs, output_lengths
+
+
+class DepthwiseConv2dSubsampling(Conv2dExtractor):
+    r"""
+    Depthwise Convolutional 2D subsampling (to 1/4 length)
+
+    Args:
+        input_dim (int): Dimension of input vector
+        in_channels (int): Number of channels in the input vector
+        out_channels (int): Number of channels produced by the convolution
+        activation (str): Activation function
+
+    Inputs: inputs
+        - **inputs** (batch, time, dim): Tensor containing sequence of inputs
+        - **input_lengths** (batch): list of sequence input lengths
+
+    Returns: outputs, output_lengths
+        - **outputs** (batch, time, dim): Tensor produced by the convolution
+        - **output_lengths** (batch): list of sequence output lengths
+    """
+    def __init__(
+            self,
+            input_dim: int,
+            in_channels: int,
+            out_channels: int,
+            activation: str = 'relu',
+    ) -> None:
+        super(DepthwiseConv2dSubsampling, self).__init__(input_dim, activation)
+        self.in_channels = in_channels
+        self.out_channels = out_channels
+        from openspeech.modules import MaskConv2d
+        self.conv = MaskConv2d(
+            nn.Sequential(
+                nn.Conv2d(in_channels, out_channels, kernel_size=3, stride=2),
+                self.activation,
+                DepthwiseConv2d(out_channels, out_channels, kernel_size=3, stride=2),
                 self.activation,
             )
         )

@@ -167,7 +167,7 @@ You can simply train with LibriSpeech dataset like below:
 - Example1: Train the `conformer-lstm` model with `filter-bank` features on GPU.
   
 ```
-$ python ./openspeech_cli/hydra_train.py \
+$ python3 ./openspeech_cli/hydra_train.py \
     dataset=librispeech \
     dataset.dataset_download=True \
     dataset.dataset_path=$DATASET_PATH \
@@ -185,7 +185,7 @@ You can simply train with KsponSpeech dataset like below:
 - Example2: Train the `listen-attend-spell` model with `mel-spectrogram` features On TPU:
   
 ```
-$ python ./openspeech_cli/hydra_train.py \
+$ python3 ./openspeech_cli/hydra_train.py \
     dataset=ksponspeech \
     dataset.dataset_path=$DATASET_PATH \
     dataset.manifest_file_path=$MANIFEST_FILE_PATH \  
@@ -204,7 +204,7 @@ You can simply train with AISHELL-1 dataset like below:
 - Example3: Train the `quartznet` model with `mfcc` features On GPU with FP16:
   
 ```
-$ python ./openspeech_cli/hydra_train.py \
+$ python3 ./openspeech_cli/hydra_train.py \
     dataset=aishell \
     dataset.dataset_path=$DATASET_PATH \
     dataset.dataset_download=True \
@@ -222,7 +222,7 @@ $ python ./openspeech_cli/hydra_train.py \
 - Example1: Evaluation the `listen_attend_spell` model:
   
 ```
-$ python ./openspeech_cli/hydra_eval.py \
+$ python3 ./openspeech_cli/hydra_eval.py \
     audio=melspectrogram \
     eval.dataset_path=$DATASET_PATH \
     eval.checkpoint_path=$CHECKPOINT_PATH \
@@ -235,7 +235,7 @@ $ python ./openspeech_cli/hydra_eval.py \
 - Example2: Evaluation the `listen_attend_spell`, `conformer_lstm` models with ensemble:
   
 ```
-$ python ./openspeech_cli/hydra_eval.py \
+$ python3 ./openspeech_cli/hydra_eval.py \
     audio=melspectrogram \
     eval.model_names=(listen_attend_spell, conformer_lstm) \
     eval.dataset_path=$DATASET_PATH \
@@ -287,7 +287,7 @@ Note that you need to use the same vocabulary as the acoustic model.
   
 - Example: Train the `lstm_lm` model:
 ```
-$ python ./openspeech_cli/hydra_lm_train.py \
+$ python3 ./openspeech_cli/hydra_lm_train.py \
     dataset=lm \
     dataset.dataset_path=../../../lm.txt \
     tokenizer=kspon_character \

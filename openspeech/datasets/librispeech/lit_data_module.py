@@ -90,7 +90,7 @@ class LightningLibriSpeechDataModule(pl.LightningDataModule):
             - test-other
         """
         base_url = "http://www.openslr.org/resources/12"
-        train_dir = "train-960"
+        train_dir = "LibriSpeech/train-960"
 
         if not os.path.exists(self.configs.dataset.dataset_path):
             os.mkdir(self.configs.dataset.dataset_path)
@@ -108,14 +108,14 @@ class LightningLibriSpeechDataModule(pl.LightningDataModule):
             os.remove(f"{self.configs.dataset.dataset_path}/{part}.tar.gz")
 
         self.logger.info("Merge all train packs into one")
-
+        
         if not os.path.exists(self.configs.dataset.dataset_path):
             os.mkdir(self.configs.dataset.dataset_path)
         if not os.path.exists(os.path.join(self.configs.dataset.dataset_path, train_dir)):
             os.mkdir(os.path.join(self.configs.dataset.dataset_path, train_dir))
 
         for part in self.LIBRISPEECH_PARTS[-3:]:    # train
-            path = os.path.join(self.configs.dataset.dataset_path, part)
+            path = os.path.join(self.configs.dataset.dataset_path, "LibriSpeech", part)
             subfolders = os.listdir(path)
             for subfolder in subfolders:
                 shutil.move(
@@ -177,7 +177,7 @@ class LightningLibriSpeechDataModule(pl.LightningDataModule):
         for stage in audio_paths.keys():
             self.dataset[stage] = SpeechToTextDataset(
                 configs=self.configs,
-                dataset_path=self.configs.dataset.dataset_path,
+                dataset_path=os.path.join(self.configs.dataset.dataset_path, "LibriSpeech"),
                 audio_paths=audio_paths[stage],
                 transcripts=transcripts[stage],
                 apply_spec_augment=self.configs.audio.apply_spec_augment if stage == 'train' else False,

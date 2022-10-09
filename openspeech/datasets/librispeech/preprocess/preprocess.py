@@ -33,6 +33,7 @@ LIBRI_SPEECH_DATASETS = [
 
 def collect_transcripts(dataset_path):
     """ Collect librispeech transcripts """
+    dataset_path = os.path.join(dataset_path, "LibriSpeech")
     transcripts_collection = list()
 
     for dataset in LIBRI_SPEECH_DATASETS:

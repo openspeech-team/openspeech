@@ -213,7 +213,11 @@ def parse_configs(configs: DictConfig) -> Tuple[Union[TensorBoardLogger, bool], 
     if configs.trainer.logger == "tensorboard":
         logger = TensorBoardLogger("logs/")
     elif configs.trainer.logger == "wandb":
-        logger = WandbLogger(project=f"{configs.model.model_name}-{configs.dataset.dataset}", job_type="train")
+        logger = WandbLogger(
+            project=f"{configs.model.model_name}-{configs.dataset.dataset}",
+            name=f"{configs.model.model_name}-{configs.dataset.dataset}",
+            job_type="train",
+        )
     else:
         logger = True
 

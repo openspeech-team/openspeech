@@ -1,17 +1,18 @@
-import unittest
-import torch
 import logging
+import unittest
 
-from openspeech.tokenizers.ksponspeech.character import KsponSpeechCharacterTokenizer
+import torch
+
 from openspeech.criterion.transducer.transducer import TransducerLossConfigs
-from openspeech.models import SqueezeformerTransducerModel, SqueezeformerTransducerConfigs
+from openspeech.models import SqueezeformerTransducerConfigs, SqueezeformerTransducerModel
+from openspeech.tokenizers.ksponspeech.character import KsponSpeechCharacterTokenizer
 from openspeech.utils import (
-    DUMMY_INPUTS,
     DUMMY_INPUT_LENGTHS,
-    DUMMY_TARGETS,
+    DUMMY_INPUTS,
     DUMMY_TARGET_LENGTHS,
-    build_dummy_configs,
+    DUMMY_TARGETS,
     WARPRNNT_IMPORT_ERROR,
+    build_dummy_configs,
 )
 
 try:
@@ -110,5 +111,5 @@ class TestSqueezeformerTransducer(unittest.TestCase):
             assert type(outputs["loss"].item()) == float
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -23,9 +23,9 @@
 import numpy as np
 from omegaconf import DictConfig
 
+from ....utils import LIBROSA_IMPORT_ERROR
 from ... import register_audio_feature_transform
 from ...audio.mfcc.configuration import MFCCConfigs
-from ....utils import LIBROSA_IMPORT_ERROR
 
 
 @register_audio_feature_transform("mfcc", dataclass=MFCCConfigs)
@@ -47,6 +47,7 @@ class MFCCFeatureTransform(object):
     Returns:
         Tensor: A mfcc feature. The shape is ``(seq_length, num_mels)``
     """
+
     def __init__(self, configs: DictConfig) -> None:
         super(MFCCFeatureTransform, self).__init__()
         try:

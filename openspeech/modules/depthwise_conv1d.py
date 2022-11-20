@@ -20,9 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Optional
+
 import torch.nn as nn
 from torch import Tensor
-from typing import Optional
 
 from openspeech.modules.conv_base import BaseConv1d
 
@@ -46,14 +47,15 @@ class DepthwiseConv1d(BaseConv1d):
     Returns: outputs
         - **outputs** (batch, out_channels, time): Tensor produces by depthwise 1-D convolution.
     """
+
     def __init__(
-            self,
-            in_channels: int,
-            out_channels: int,
-            kernel_size: int,
-            stride: int = 1,
-            padding: int = 0,
-            bias: bool = False,
+        self,
+        in_channels: int,
+        out_channels: int,
+        kernel_size: int,
+        stride: int = 1,
+        padding: int = 0,
+        bias: bool = False,
     ) -> None:
         super(DepthwiseConv1d, self).__init__()
         assert out_channels % in_channels == 0, "out_channels should be constant multiple of in_channels"

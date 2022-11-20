@@ -21,12 +21,12 @@
 # SOFTWARE.
 
 import torch.nn as nn
-from torch import Tensor
 from omegaconf import DictConfig
+from torch import Tensor
 
+from ...tokenizers.tokenizer import Tokenizer
 from .. import register_criterion
 from ..cross_entropy.configuration import CrossEntropyLossConfigs
-from ...tokenizers.tokenizer import Tokenizer
 
 
 @register_criterion("cross_entropy", dataclass=CrossEntropyLossConfigs)
@@ -99,10 +99,11 @@ class CrossEntropyLoss(nn.Module):
         >>> outputs = loss(inputs, targets)
         >>> outputs.backward()
     """
+
     def __init__(
-            self,
-            configs: DictConfig,
-            tokenizer: Tokenizer,
+        self,
+        configs: DictConfig,
+        tokenizer: Tokenizer,
     ) -> None:
         super(CrossEntropyLoss, self).__init__()
         self.cross_entropy_loss = nn.CrossEntropyLoss(

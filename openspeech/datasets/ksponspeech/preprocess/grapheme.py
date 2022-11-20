@@ -20,8 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import pandas as pd
 import unicodedata
+
+import pandas as pd
 
 
 def load_label(filepath):
@@ -43,7 +44,7 @@ def sentence_to_target(transcript, grpm2id):
     target = str()
 
     for grpm in transcript:
-        target += (str(grpm2id[grpm]) + ' ')
+        target += str(grpm2id[grpm]) + " "
 
     return target[:-1]
 
@@ -52,18 +53,18 @@ def sentence_to_grapheme(audio_paths, transcripts, manifest_file_path: str, voca
     grapheme_transcripts = list()
 
     for transcript in transcripts:
-        grapheme_transcripts.append(" ".join(unicodedata.normalize('NFKD', transcript).replace(' ', '|')).upper())
+        grapheme_transcripts.append(" ".join(unicodedata.normalize("NFKD", transcript).replace(" ", "|")).upper())
 
     generate_grapheme_labels(grapheme_transcripts, vocab_path)
 
-    print('create_script started..')
+    print("create_script started..")
     grpm2id, id2grpm = load_label(vocab_path)
 
     with open(manifest_file_path, "w") as f:
         for audio_path, transcript, grapheme_transcript in zip(audio_paths, transcripts, grapheme_transcripts):
-            audio_path = audio_path.replace('txt', 'pcm')
+            audio_path = audio_path.replace("txt", "pcm")
             grpm_id_transcript = sentence_to_target(grapheme_transcript.split(), grpm2id)
-            f.write(f'{audio_path}\t{transcript}\t{grpm_id_transcript}\n')
+            f.write(f"{audio_path}\t{transcript}\t{grpm_id_transcript}\n")
 
 
 def generate_grapheme_labels(grapheme_transcripts, vocab_path: str):
@@ -80,16 +81,12 @@ def generate_grapheme_labels(grapheme_transcripts, vocab_path: str):
                 vocab_freq[vocab_list.index(grapheme)] += 1
 
     vocab_freq, vocab_list = zip(*sorted(zip(vocab_freq, vocab_list), reverse=True))
-    vocab_dict = {
-        'id': [0, 1, 2, 3],
-        'grpm': ['<pad>', '<sos>', '<eos>', '<blank>'],
-        'freq': [0, 0, 0, 0]
-    }
+    vocab_dict = {"id": [0, 1, 2, 3], "grpm": ["<pad>", "<sos>", "<eos>", "<blank>"], "freq": [0, 0, 0, 0]}
 
     for idx, (grpm, freq) in enumerate(zip(vocab_list, vocab_freq)):
-        vocab_dict['id'].append(idx + 3)
-        vocab_dict['grpm'].append(grpm)
-        vocab_dict['freq'].append(freq)
+        vocab_dict["id"].append(idx + 3)
+        vocab_dict["grpm"].append(grpm)
+        vocab_dict["freq"].append(freq)
 
     label_df = pd.DataFrame(vocab_dict)
     label_df.to_csv(vocab_path, encoding="utf-8", index=False)

@@ -20,8 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import sentencepiece as spm
 from dataclasses import dataclass, field
+
+import sentencepiece as spm
 from omegaconf import DictConfig
 
 from openspeech.dataclass.configurations import TokenizerConfigs
@@ -31,21 +32,11 @@ from openspeech.tokenizers.tokenizer import Tokenizer
 
 @dataclass
 class KsponSpeechSubwordTokenizerConfigs(TokenizerConfigs):
-    unit: str = field(
-        default="kspon_subword", metadata={"help": "Unit of vocabulary."}
-    )
-    sp_model_path: str = field(
-        default="sp.model", metadata={"help": "Path of sentencepiece model."}
-    )
-    sos_token: str = field(
-        default="<s>", metadata={"help": "Start of sentence token"}
-    )
-    eos_token: str = field(
-        default="</s>", metadata={"help": "End of sentence token"}
-    )
-    vocab_size: int = field(
-        default=3200, metadata={"help": "Size of vocabulary."}
-    )
+    unit: str = field(default="kspon_subword", metadata={"help": "Unit of vocabulary."})
+    sp_model_path: str = field(default="sp.model", metadata={"help": "Path of sentencepiece model."})
+    sos_token: str = field(default="<s>", metadata={"help": "Start of sentence token"})
+    eos_token: str = field(default="</s>", metadata={"help": "End of sentence token"})
+    vocab_size: int = field(default=3200, metadata={"help": "Size of vocabulary."})
 
 
 @register_tokenizer("kspon_subword", dataclass=KsponSpeechSubwordTokenizerConfigs)
@@ -56,6 +47,7 @@ class KsponSpeechSubwordTokenizer(Tokenizer):
     Args:
         configs (DictConfig): configuration set.
     """
+
     def __init__(self, configs: DictConfig):
         super(KsponSpeechSubwordTokenizer, self).__init__()
         self.sp = spm.SentencePieceProcessor()
@@ -84,13 +76,13 @@ class KsponSpeechSubwordTokenizer(Tokenizer):
             - **sentence** (str or list): symbol of labels
         """
         if len(labels.shape) == 1:
-            return self.sp.DecodeIds([int(l) for l in labels])
+            return self.sp.DecodeIds([int(_) for _ in labels])
 
         sentences = list()
         for batch in labels:
             sentence = str()
             for label in batch:
-                sentence = self.sp.DecodeIds([int(l) for l in label])
+                sentence = self.sp.DecodeIds([int(_) for _ in label])
             sentences.append(sentence)
         return sentences
 
@@ -98,4 +90,3 @@ class KsponSpeechSubwordTokenizer(Tokenizer):
         text = " ".join(self.sp.EncodeAsPieces(sentence))
         label = " ".join([str(self.sp.PieceToId(token)) for token in text])
         return label
-

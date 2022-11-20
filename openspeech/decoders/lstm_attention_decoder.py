@@ -21,18 +21,19 @@
 # SOFTWARE.
 
 import random
+from typing import Any, Optional, Tuple
+
 import torch
 import torch.nn as nn
-from typing import Optional, Tuple, Any
 
 from openspeech.decoders import OpenspeechDecoder
 from openspeech.modules import (
-    Linear,
-    View,
-    LocationAwareAttention,
-    MultiHeadAttention,
     AdditiveAttention,
     DotProductAttention,
+    Linear,
+    LocationAwareAttention,
+    MultiHeadAttention,
+    View,
 )
 
 
@@ -66,24 +67,24 @@ class LSTMAttentionDecoder(OpenspeechDecoder):
         * logits (torch.FloatTensor) : log probabilities of model's prediction
     """
     supported_rnns = {
-        'lstm': nn.LSTM,
-        'gru': nn.GRU,
-        'rnn': nn.RNN,
+        "lstm": nn.LSTM,
+        "gru": nn.GRU,
+        "rnn": nn.RNN,
     }
 
     def __init__(
-            self,
-            num_classes: int,
-            max_length: int = 150,
-            hidden_state_dim: int = 1024,
-            pad_id: int = 0,
-            sos_id: int = 1,
-            eos_id: int = 2,
-            attn_mechanism: str = 'multi-head',
-            num_heads: int = 4,
-            num_layers: int = 2,
-            rnn_type: str = 'lstm',
-            dropout_p: float = 0.3,
+        self,
+        num_classes: int,
+        max_length: int = 150,
+        hidden_state_dim: int = 1024,
+        pad_id: int = 0,
+        sos_id: int = 1,
+        eos_id: int = 2,
+        attn_mechanism: str = "multi-head",
+        num_heads: int = 4,
+        num_layers: int = 2,
+        rnn_type: str = "lstm",
+        dropout_p: float = 0.3,
     ) -> None:
         super(LSTMAttentionDecoder, self).__init__()
         self.hidden_state_dim = hidden_state_dim
@@ -108,15 +109,15 @@ class LSTMAttentionDecoder(OpenspeechDecoder):
             bidirectional=False,
         )
 
-        if self.attn_mechanism == 'loc':
+        if self.attn_mechanism == "loc":
             self.attention = LocationAwareAttention(hidden_state_dim, attn_dim=hidden_state_dim, smoothing=False)
-        elif self.attn_mechanism == 'multi-head':
+        elif self.attn_mechanism == "multi-head":
             self.attention = MultiHeadAttention(hidden_state_dim, num_heads=num_heads)
-        elif self.attn_mechanism == 'additive':
+        elif self.attn_mechanism == "additive":
             self.attention = AdditiveAttention(hidden_state_dim)
-        elif self.attn_mechanism == 'dot':
+        elif self.attn_mechanism == "dot":
             self.attention = DotProductAttention(dim=hidden_state_dim)
-        elif self.attn_mechanism == 'scaled-dot':
+        elif self.attn_mechanism == "scaled-dot":
             self.attention = DotProductAttention(dim=hidden_state_dim, scale=True)
         else:
             raise ValueError("Unsupported attention: %s".format(attn_mechanism))
@@ -129,11 +130,11 @@ class LSTMAttentionDecoder(OpenspeechDecoder):
         )
 
     def forward_step(
-            self,
-            input_var: torch.Tensor,
-            hidden_states: Optional[torch.Tensor],
-            encoder_outputs: torch.Tensor,
-            attn: Optional[torch.Tensor] = None,
+        self,
+        input_var: torch.Tensor,
+        hidden_states: Optional[torch.Tensor],
+        encoder_outputs: torch.Tensor,
+        attn: Optional[torch.Tensor] = None,
     ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
         batch_size, output_lengths = input_var.size(0), input_var.size(1)
 
@@ -145,7 +146,7 @@ class LSTMAttentionDecoder(OpenspeechDecoder):
 
         outputs, hidden_states = self.rnn(embedded, hidden_states)
 
-        if self.attn_mechanism == 'loc':
+        if self.attn_mechanism == "loc":
             context, attn = self.attention(outputs, encoder_outputs, attn)
         else:
             context, attn = self.attention(outputs, encoder_outputs, encoder_outputs)
@@ -158,11 +159,11 @@ class LSTMAttentionDecoder(OpenspeechDecoder):
         return step_outputs, hidden_states, attn
 
     def forward(
-            self,
-            encoder_outputs: torch.Tensor,
-            targets: Optional[torch.Tensor] = None,
-            encoder_output_lengths: Optional[torch.Tensor] = None,
-            teacher_forcing_ratio: float = 1.0,
+        self,
+        encoder_outputs: torch.Tensor,
+        targets: Optional[torch.Tensor] = None,
+        encoder_output_lengths: Optional[torch.Tensor] = None,
+        teacher_forcing_ratio: float = 1.0,
     ) -> torch.Tensor:
         """
         Forward propagate a `encoder_outputs` for training.
@@ -186,7 +187,7 @@ class LSTMAttentionDecoder(OpenspeechDecoder):
         if use_teacher_forcing:
             targets = targets[targets != self.eos_id].view(batch_size, -1)
 
-            if self.attn_mechanism == 'loc' or self.attn_mechanism == 'additive':
+            if self.attn_mechanism == "loc" or self.attn_mechanism == "additive":
                 for di in range(targets.size(1)):
                     input_var = targets[:, di].unsqueeze(1)
                     step_outputs, hidden_states, attn = self.forward_step(
@@ -227,10 +228,10 @@ class LSTMAttentionDecoder(OpenspeechDecoder):
         return logits
 
     def validate_args(
-            self,
-            targets: Optional[Any] = None,
-            encoder_outputs: torch.Tensor = None,
-            teacher_forcing_ratio: float = 1.0,
+        self,
+        targets: Optional[Any] = None,
+        encoder_outputs: torch.Tensor = None,
+        teacher_forcing_ratio: float = 1.0,
     ) -> Tuple[torch.Tensor, int, int]:
         assert encoder_outputs is not None
         batch_size = encoder_outputs.size(0)

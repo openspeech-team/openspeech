@@ -14,7 +14,7 @@ assignees: ''
 - PyTorch version (GPU?):
 - Using GPU in script?:
 
-  
+
 ## Information
 
 Model I am using (ListenAttendSpell, Transformer, Conformer ...):

@@ -20,8 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import os
 import importlib
+import os
 
 AUDIO_FEATURE_TRANSFORM_REGISTRY = dict()
 AUDIO_FEATURE_TRANSFORM_DATACLASS_REGISTRY = dict()
@@ -62,7 +62,7 @@ def register_audio_feature_transform(name: str, dataclass=None):
 
 data_dir = os.path.dirname(__file__)
 for file in os.listdir(f"{data_dir}/audio"):
-    if os.path.isdir(f"{data_dir}/audio/{file}") and not file.startswith('__'):
+    if os.path.isdir(f"{data_dir}/audio/{file}") and not file.startswith("__"):
         path = f"{data_dir}/audio/{file}"
         for module_file in os.listdir(path):
             path = os.path.join(path, module_file)

@@ -20,10 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from omegaconf import DictConfig
-from torch.optim import Optimizer
 from dataclasses import dataclass, field
 from typing import Optional
+
+from omegaconf import DictConfig
+from torch.optim import Optimizer
 
 from openspeech.dataclass.configurations import LearningRateSchedulerConfigs
 from openspeech.optim.scheduler import register_scheduler
@@ -43,12 +44,8 @@ class WarmupReduceLROnPlateauConfigs(LearningRateSchedulerConfigs):
     lr_factor: float = field(
         default=0.3, metadata={"help": "Factor by which the learning rate will be reduced. new_lr = lr * factor."}
     )
-    peak_lr: float = field(
-        default=1e-04, metadata={"help": "Maximum learning rate."}
-    )
-    init_lr: float = field(
-        default=1e-10, metadata={"help": "Initial learning rate."}
-    )
+    peak_lr: float = field(default=1e-04, metadata={"help": "Maximum learning rate."})
+    init_lr: float = field(default=1e-10, metadata={"help": "Initial learning rate."})
     warmup_steps: int = field(
         default=4000, metadata={"help": "Warmup the learning rate linearly for the first N updates"}
     )
@@ -63,16 +60,20 @@ class WarmupReduceLROnPlateauScheduler(LearningRateScheduler):
         optimizer (Optimizer): wrapped optimizer.
         configs (DictConfig): configuration set.
     """
+
     def __init__(
-            self,
-            optimizer: Optimizer,
-            configs: DictConfig,
+        self,
+        optimizer: Optimizer,
+        configs: DictConfig,
     ) -> None:
         super(WarmupReduceLROnPlateauScheduler, self).__init__(optimizer, configs.lr_scheduler.lr)
         self.warmup_steps = configs.lr_scheduler.warmup_steps
         self.update_steps = 0
-        self.warmup_rate = (configs.lr_scheduler.peak_lr - configs.lr_scheduler.init_lr) / self.warmup_steps \
-            if self.warmup_steps != 0 else 0
+        self.warmup_rate = (
+            (configs.lr_scheduler.peak_lr - configs.lr_scheduler.init_lr) / self.warmup_steps
+            if self.warmup_steps != 0
+            else 0
+        )
         self.schedulers = [
             WarmupLRScheduler(
                 optimizer,

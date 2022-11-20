@@ -47,24 +47,19 @@ class SpectrogramConfigs(OpenspeechDataclass):
         apply_time_stretch_augment (bool): flag indication whether to apply time stretch augment or not (default: False)
         apply_joining_augment (bool): flag indication whether to apply audio joining augment or not (default: False)
     """
-    name: str = field(
-        default="spectrogram", metadata={"help": "Name of dataset."}
-    )
-    sample_rate: int = field(
-        default=16000, metadata={"help": "Sampling rate of audio"}
-    )
-    frame_length: float = field(
-        default=20.0, metadata={"help": "Frame length for spectrogram"}
-    )
-    frame_shift: float = field(
-        default=10.0, metadata={"help": "Length of hop between STFT"}
-    )
+    name: str = field(default="spectrogram", metadata={"help": "Name of dataset."})
+    sample_rate: int = field(default=16000, metadata={"help": "Sampling rate of audio"})
+    frame_length: float = field(default=20.0, metadata={"help": "Frame length for spectrogram"})
+    frame_shift: float = field(default=10.0, metadata={"help": "Length of hop between STFT"})
     del_silence: bool = field(
         default=False, metadata={"help": "Flag indication whether to apply delete silence or not"}
     )
     num_mels: int = field(
-        default=161, metadata={"help": "Spectrogram is independent of mel, but uses the 'num_mels' variable "
-                                       "to unify feature size variables "}
+        default=161,
+        metadata={
+            "help": "Spectrogram is independent of mel, but uses the 'num_mels' variable "
+            "to unify feature size variables "
+        },
     )
     apply_spec_augment: bool = field(
         default=True, metadata={"help": "Flag indication whether to apply spec augment or not"}

@@ -21,10 +21,11 @@
 # SOFTWARE.
 
 import math
+from typing import Tuple
+
 import torch
 import torch.nn as nn
 from torch import Tensor
-from typing import Tuple
 
 from openspeech.modules.swish import Swish
 from openspeech.utils import get_class_name
@@ -47,15 +48,15 @@ class Conv2dExtractor(nn.Module):
         - **output_lengths**: Tensor containing sequence lengths produced by the convolution
     """
     supported_activations = {
-        'hardtanh': nn.Hardtanh(0, 20, inplace=True),
-        'relu': nn.ReLU(inplace=True),
-        'elu': nn.ELU(inplace=True),
-        'leaky_relu': nn.LeakyReLU(inplace=True),
-        'gelu': nn.GELU(),
-        'swish': Swish(),
+        "hardtanh": nn.Hardtanh(0, 20, inplace=True),
+        "relu": nn.ReLU(inplace=True),
+        "elu": nn.ELU(inplace=True),
+        "leaky_relu": nn.LeakyReLU(inplace=True),
+        "gelu": nn.GELU(),
+        "swish": Swish(),
     }
 
-    def __init__(self, input_dim: int, activation: str = 'hardtanh') -> None:
+    def __init__(self, input_dim: int, activation: str = "hardtanh") -> None:
         super(Conv2dExtractor, self).__init__()
         self.input_dim = input_dim
         self.activation = Conv2dExtractor.supported_activations[activation]

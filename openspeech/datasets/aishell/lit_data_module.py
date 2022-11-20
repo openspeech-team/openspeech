@@ -20,26 +20,23 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import logging
 import os
 import tarfile
-import wget
-import pytorch_lightning as pl
-import logging
-from omegaconf import DictConfig
 from typing import Optional, Tuple
 
-from openspeech.data.audio.dataset import SpeechToTextDataset
-from openspeech.datasets import register_data_module
-from openspeech.data.sampler import RandomSampler, SmartBatchingSampler
+import pytorch_lightning as pl
+import wget
+from omegaconf import DictConfig
+
 from openspeech.data.audio.data_loader import AudioDataLoader
-from openspeech.tokenizers.tokenizer import Tokenizer
-from openspeech.datasets.aishell.preprocess import (
-    generate_character_labels,
-    generate_character_script,
-)
+from openspeech.data.audio.dataset import SpeechToTextDataset
+from openspeech.data.sampler import RandomSampler, SmartBatchingSampler
+from openspeech.datasets import register_data_module
+from openspeech.datasets.aishell.preprocess import generate_character_labels, generate_character_script
 
 
-@register_data_module('aishell')
+@register_data_module("aishell")
 class LightningAIShellDataModule(pl.LightningDataModule):
     r"""
     Lightning data module for AIShell-1. The corpus includes training set, development set and test sets.
@@ -61,7 +58,7 @@ class LightningAIShellDataModule(pl.LightningDataModule):
         self.logger = logging.getLogger(__name__)
 
     def _download_dataset(self) -> None:
-        r""" Download aishell dataset. """
+        r"""Download aishell dataset."""
         url = "https://www.openslr.org/resources/33/data_aishell.tgz"
 
         if not os.path.exists(self.configs.dataset.dataset_path):
@@ -88,14 +85,14 @@ class LightningAIShellDataModule(pl.LightningDataModule):
         )
 
     def _parse_manifest_file(self, manifest_file_path: str) -> Tuple[list, list]:
-        """ Parsing manifest file """
+        """Parsing manifest file"""
         audio_paths = list()
         transcripts = list()
 
         with open(manifest_file_path) as f:
             for idx, line in enumerate(f.readlines()):
-                audio_path, _, transcript = line.split('\t')
-                transcript = transcript.replace('\n', '')
+                audio_path, _, transcript = line.split("\t")
+                transcript = transcript.replace("\n", "")
 
                 audio_paths.append(audio_path)
                 transcripts.append(transcript)
@@ -113,8 +110,7 @@ class LightningAIShellDataModule(pl.LightningDataModule):
             self._download_dataset()
 
         if not os.path.exists(self.configs.dataset.manifest_file_path):
-            self.logger.info("Manifest file is not exists !!\n"
-                             "Generate manifest files..")
+            self.logger.info("Manifest file is not exists !!\n" "Generate manifest files..")
             if not os.path.exists(self.configs.dataset.dataset_path):
                 raise ValueError("Dataset path is not valid.")
             self._generate_manifest_files(self.configs.dataset.manifest_file_path)
@@ -134,13 +130,13 @@ class LightningAIShellDataModule(pl.LightningDataModule):
         audio_paths, transcripts = self._parse_manifest_file(self.configs.dataset.manifest_file_path)
 
         audio_paths = {
-            "train": audio_paths[:self.AISHELL_TRAIN_NUM],
-            "valid": audio_paths[self.AISHELL_TRAIN_NUM:valid_end_idx],
+            "train": audio_paths[: self.AISHELL_TRAIN_NUM],
+            "valid": audio_paths[self.AISHELL_TRAIN_NUM : valid_end_idx],
             "test": audio_paths[valid_end_idx:],
         }
         transcripts = {
-            "train": transcripts[:self.AISHELL_TRAIN_NUM],
-            "valid": transcripts[self.AISHELL_TRAIN_NUM:valid_end_idx],
+            "train": transcripts[: self.AISHELL_TRAIN_NUM],
+            "valid": transcripts[self.AISHELL_TRAIN_NUM : valid_end_idx],
             "test": transcripts[valid_end_idx:],
         }
 
@@ -150,33 +146,33 @@ class LightningAIShellDataModule(pl.LightningDataModule):
                 dataset_path=self.configs.dataset.dataset_path,
                 audio_paths=audio_paths[stage],
                 transcripts=transcripts[stage],
-                apply_spec_augment=self.configs.audio.apply_spec_augment if stage == 'train' else False,
-                del_silence=self.configs.audio.del_silence if stage == 'train' else False,
+                apply_spec_augment=self.configs.audio.apply_spec_augment if stage == "train" else False,
+                del_silence=self.configs.audio.del_silence if stage == "train" else False,
             )
 
     def train_dataloader(self) -> AudioDataLoader:
-        sampler = SmartBatchingSampler if self.configs.trainer.sampler == 'smart' else RandomSampler
-        train_sampler = sampler(data_source=self.dataset['train'], batch_size=self.configs.trainer.batch_size)
+        sampler = SmartBatchingSampler if self.configs.trainer.sampler == "smart" else RandomSampler
+        train_sampler = sampler(data_source=self.dataset["train"], batch_size=self.configs.trainer.batch_size)
         return AudioDataLoader(
-            dataset=self.dataset['train'],
+            dataset=self.dataset["train"],
             num_workers=self.configs.trainer.num_workers,
             batch_sampler=train_sampler,
         )
 
     def val_dataloader(self) -> AudioDataLoader:
-        sampler = SmartBatchingSampler if self.configs.trainer.sampler == 'smart' else RandomSampler
-        valid_sampler = sampler(self.dataset['valid'], batch_size=self.configs.trainer.batch_size)
+        sampler = SmartBatchingSampler if self.configs.trainer.sampler == "smart" else RandomSampler
+        valid_sampler = sampler(self.dataset["valid"], batch_size=self.configs.trainer.batch_size)
         return AudioDataLoader(
-            dataset=self.dataset['valid'],
+            dataset=self.dataset["valid"],
             num_workers=self.configs.trainer.num_workers,
             batch_sampler=valid_sampler,
         )
 
     def test_dataloader(self) -> AudioDataLoader:
-        sampler = SmartBatchingSampler if self.configs.trainer.sampler == 'smart' else RandomSampler
-        test_sampler = sampler(self.dataset['test'], batch_size=self.configs.trainer.batch_size)
+        sampler = SmartBatchingSampler if self.configs.trainer.sampler == "smart" else RandomSampler
+        test_sampler = sampler(self.dataset["test"], batch_size=self.configs.trainer.batch_size)
         return AudioDataLoader(
-            dataset=self.dataset['test'],
+            dataset=self.dataset["test"],
             num_workers=self.configs.trainer.num_workers,
             batch_sampler=test_sampler,
         )

@@ -21,6 +21,7 @@
 # SOFTWARE.
 
 import logging
+
 import pandas as pd
 
 logger = logging.getLogger()
@@ -46,7 +47,7 @@ def sentence_to_target(sentence, char2id):
 
     for ch in sentence:
         try:
-            target += (str(char2id[ch]) + ' ')
+            target += str(char2id[ch]) + " "
         except KeyError:
             continue
 
@@ -54,7 +55,7 @@ def sentence_to_target(sentence, char2id):
 
 
 def generate_character_labels(transcripts, labels_dest):
-    logger.info('create_char_labels started..')
+    logger.info("create_char_labels started..")
 
     label_list = list()
     label_freq = list()
@@ -69,27 +70,27 @@ def generate_character_labels(transcripts, labels_dest):
 
     # sort together Using zip
     label_freq, label_list = zip(*sorted(zip(label_freq, label_list), reverse=True))
-    label = {'id': [0, 1, 2, 3], 'char': ['<pad>', '<sos>', '<eos>', '<blank>'], 'freq': [0, 0, 0, 0]}
+    label = {"id": [0, 1, 2, 3], "char": ["<pad>", "<sos>", "<eos>", "<blank>"], "freq": [0, 0, 0, 0]}
 
     for idx, (ch, freq) in enumerate(zip(label_list, label_freq)):
-        label['id'].append(idx + 4)
-        label['char'].append(ch)
-        label['freq'].append(freq)
+        label["id"].append(idx + 4)
+        label["char"].append(ch)
+        label["freq"].append(freq)
 
-    label['id'] = label['id'][:2000]
-    label['char'] = label['char'][:2000]
-    label['freq'] = label['freq'][:2000]
+    label["id"] = label["id"][:2000]
+    label["char"] = label["char"][:2000]
+    label["freq"] = label["freq"][:2000]
 
     label_df = pd.DataFrame(label)
     label_df.to_csv(labels_dest, encoding="utf-8", index=False)
 
 
 def generate_character_script(audio_paths: list, transcripts: list, manifest_file_path: str, vocab_path: str):
-    logger.info('create_script started..')
+    logger.info("create_script started..")
     char2id, id2char = load_label(vocab_path)
 
     with open(manifest_file_path, "w") as f:
         for audio_path, transcript in zip(audio_paths, transcripts):
             char_id_transcript = sentence_to_target(transcript, char2id)
-            audio_path = audio_path.replace('txt', 'pcm')
-            f.write(f'{audio_path}\t{transcript}\t{char_id_transcript}\n')
+            audio_path = audio_path.replace("txt", "pcm")
+            f.write(f"{audio_path}\t{transcript}\t{char_id_transcript}\n")

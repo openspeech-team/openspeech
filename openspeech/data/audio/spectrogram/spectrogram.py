@@ -40,6 +40,7 @@ class SpectrogramFeatureTransform(object):
     Returns:
         Tensor: A spectrogram feature. The shape is ``(seq_length, num_mels)``
     """
+
     def __init__(self, configs: DictConfig) -> None:
         super(SpectrogramFeatureTransform, self).__init__()
         self.n_fft = int(round(configs.audio.sample_rate * 0.001 * configs.audio.frame_length))
@@ -57,9 +58,14 @@ class SpectrogramFeatureTransform(object):
             feature (np.ndarray): feature extract by sub-class
         """
         spectrogram = self.function(
-            Tensor(signal), self.n_fft, hop_length=self.hop_length,
-            win_length=self.n_fft, window=torch.hamming_window(self.n_fft),
-            center=False, normalized=False, onesided=True
+            Tensor(signal),
+            self.n_fft,
+            hop_length=self.hop_length,
+            win_length=self.n_fft,
+            window=torch.hamming_window(self.n_fft),
+            center=False,
+            normalized=False,
+            onesided=True,
         )
         spectrogram = (spectrogram[:, :, 0].pow(2) + spectrogram[:, :, 1].pow(2)).pow(0.5)
         spectrogram = np.log1p(spectrogram.numpy())

@@ -29,7 +29,7 @@ from openspeech.models.openspeech_language_model import OpenspeechLanguageModel
 from openspeech.tokenizers.tokenizer import Tokenizer
 
 
-@register_model('lstm_lm', dataclass=LSTMLanguageModelConfigs)
+@register_model("lstm_lm", dataclass=LSTMLanguageModelConfigs)
 class LSTMLanguageModel(OpenspeechLanguageModel):
     r"""
     LSTM language model.
@@ -46,6 +46,7 @@ class LSTMLanguageModel(OpenspeechLanguageModel):
     Returns:
         outputs (dict): Result of model predictions.
     """
+
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(LSTMLanguageModel, self).__init__(configs, tokenizer)
 

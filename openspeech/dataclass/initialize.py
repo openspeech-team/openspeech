@@ -24,14 +24,18 @@ from hydra.core.config_store import ConfigStore
 
 
 def hydra_train_init() -> None:
-    r""" initialize ConfigStore for hydra-train """
-    from openspeech.dataclass import OPENSPEECH_TRAIN_CONFIGS, DATASET_DATACLASS_REGISTRY, TRAINER_DATACLASS_REGISTRY
-    from openspeech.models import MODEL_DATACLASS_REGISTRY
+    r"""initialize ConfigStore for hydra-train"""
     from openspeech.criterion import CRITERION_DATACLASS_REGISTRY
     from openspeech.data import AUDIO_FEATURE_TRANSFORM_DATACLASS_REGISTRY
+    from openspeech.dataclass import (
+        AUGMENT_DATACLASS_REGISTRY,
+        DATASET_DATACLASS_REGISTRY,
+        OPENSPEECH_TRAIN_CONFIGS,
+        TRAINER_DATACLASS_REGISTRY,
+    )
+    from openspeech.models import MODEL_DATACLASS_REGISTRY
     from openspeech.optim.scheduler import SCHEDULER_DATACLASS_REGISTRY
     from openspeech.tokenizers import TOKENIZER_DATACLASS_REGISTRY
-    from openspeech.dataclass import AUGMENT_DATACLASS_REGISTRY
 
     registries = {
         "audio": AUDIO_FEATURE_TRANSFORM_DATACLASS_REGISTRY,
@@ -54,9 +58,9 @@ def hydra_train_init() -> None:
 
 
 def hydra_lm_train_init() -> None:
-    from openspeech.dataclass import OPENSPEECH_LM_TRAIN_CONFIGS, DATASET_DATACLASS_REGISTRY, TRAINER_DATACLASS_REGISTRY
-    from openspeech.models import MODEL_DATACLASS_REGISTRY
     from openspeech.criterion import CRITERION_DATACLASS_REGISTRY
+    from openspeech.dataclass import DATASET_DATACLASS_REGISTRY, OPENSPEECH_LM_TRAIN_CONFIGS, TRAINER_DATACLASS_REGISTRY
+    from openspeech.models import MODEL_DATACLASS_REGISTRY
     from openspeech.optim.scheduler import SCHEDULER_DATACLASS_REGISTRY
     from openspeech.tokenizers import TOKENIZER_DATACLASS_REGISTRY
 
@@ -81,8 +85,8 @@ def hydra_lm_train_init() -> None:
 def hydra_eval_init() -> None:
     from openspeech.data import AUDIO_FEATURE_TRANSFORM_DATACLASS_REGISTRY
     from openspeech.dataclass import EVAL_DATACLASS_REGISTRY
-    from openspeech.tokenizers import TOKENIZER_DATACLASS_REGISTRY
     from openspeech.models import MODEL_DATACLASS_REGISTRY
+    from openspeech.tokenizers import TOKENIZER_DATACLASS_REGISTRY
 
     registries = {
         "audio": AUDIO_FEATURE_TRANSFORM_DATACLASS_REGISTRY,

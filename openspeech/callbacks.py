@@ -19,6 +19,7 @@
 # LIABILITY, W
 
 import os
+
 import pytorch_lightning as pl
 
 
@@ -41,7 +42,7 @@ class CheckpointEveryNSteps(pl.Callback):
         self.use_modelcheckpoint_filename = use_modelcheckpoint_filename
 
     def on_batch_end(self, trainer: pl.Trainer, _):
-        """ Check if we should save a checkpoint after every train batch """
+        """Check if we should save a checkpoint after every train batch"""
         epoch = trainer.current_epoch
         global_step = trainer.global_step
         if global_step % self.save_step_frequency == 0:

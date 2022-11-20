@@ -38,6 +38,7 @@ class Optimizer(object):
         scheduler_period (int, optional): timestep with learning rate scheduler
         max_grad_norm (int, optional): value used for gradient norm clipping
     """
+
     def __init__(self, optim, scheduler=None, scheduler_period=None, max_grad_norm=0):
         self.optimizer = optim
         self.scheduler = scheduler
@@ -65,8 +66,9 @@ class Optimizer(object):
         self.count = 0
 
     def update(self, val_loss=None):
-        if isinstance(self.scheduler, ReduceLROnPlateauScheduler) \
-                or isinstance(self.scheduler, WarmupReduceLROnPlateauScheduler):
+        if isinstance(self.scheduler, ReduceLROnPlateauScheduler) or isinstance(
+            self.scheduler, WarmupReduceLROnPlateauScheduler
+        ):
             self.scheduler.step(val_loss)
         else:
             self.scheduler.step()
@@ -76,8 +78,8 @@ class Optimizer(object):
 
     def get_lr(self):
         for g in self.optimizer.param_groups:
-            return g['lr']
+            return g["lr"]
 
     def set_lr(self, lr):
         for g in self.optimizer.param_groups:
-            g['lr'] = lr
+            g["lr"] = lr

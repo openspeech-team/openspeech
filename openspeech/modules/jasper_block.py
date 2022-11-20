@@ -20,9 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Tuple
+
 import torch.nn as nn
 from torch import Tensor
-from typing import Tuple
 
 from openspeech.modules.jasper_subblock import JasperSubBlock
 
@@ -53,33 +54,37 @@ class JasperBlock(nn.Module):
         * output (torch.FloatTensor): tensor contains output sequence vector
         * output_lengths (torch.LongTensor): tensor contains output sequence lengths
     """
+
     def __init__(
-            self,
-            num_sub_blocks: int,
-            in_channels: int,
-            out_channels: int,
-            kernel_size: int,
-            stride: int = 1,
-            dilation: int = 1,
-            bias: bool = True,
-            dropout_p: float = 0.2,
-            activation: str = 'relu',
+        self,
+        num_sub_blocks: int,
+        in_channels: int,
+        out_channels: int,
+        kernel_size: int,
+        stride: int = 1,
+        dilation: int = 1,
+        bias: bool = True,
+        dropout_p: float = 0.2,
+        activation: str = "relu",
     ) -> None:
         super(JasperBlock, self).__init__()
         padding = self._get_same_padding(kernel_size, stride, dilation)
-        self.layers = nn.ModuleList([
-            JasperSubBlock(
-                in_channels=in_channels if i == 0 else out_channels,
-                out_channels=out_channels,
-                kernel_size=kernel_size,
-                stride=stride,
-                dilation=dilation,
-                padding=padding,
-                bias=bias,
-                dropout_p=dropout_p,
-                activation=activation,
-            ) for i in range(num_sub_blocks)
-        ])
+        self.layers = nn.ModuleList(
+            [
+                JasperSubBlock(
+                    in_channels=in_channels if i == 0 else out_channels,
+                    out_channels=out_channels,
+                    kernel_size=kernel_size,
+                    stride=stride,
+                    dilation=dilation,
+                    padding=padding,
+                    bias=bias,
+                    dropout_p=dropout_p,
+                    activation=activation,
+                )
+                for i in range(num_sub_blocks)
+            ]
+        )
 
     def _get_same_padding(self, kernel_size: int, stride: int, dilation: int):
         if stride > 1 and dilation > 1:

@@ -20,8 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import os
 import importlib
+import os
 
 CRITERION_REGISTRY = dict()
 CRITERION_DATACLASS_REGISTRY = dict()
@@ -62,7 +62,7 @@ def register_criterion(name: str, dataclass=None):
 
 criterion_dir = os.path.dirname(__file__)
 for file in os.listdir(criterion_dir):
-    if os.path.isdir(os.path.join(criterion_dir, file)) and not file.startswith('__'):
+    if os.path.isdir(os.path.join(criterion_dir, file)) and not file.startswith("__"):
         for subfile in os.listdir(os.path.join(criterion_dir, file)):
             path = os.path.join(criterion_dir, file, subfile)
             if subfile.endswith(".py"):
@@ -77,17 +77,16 @@ for file in os.listdir(criterion_dir):
 
 
 from .cross_entropy.configuration import CrossEntropyLossConfigs
-from .ctc.configuration import CTCLossConfigs
-from .joint_ctc_cross_entropy.configuration import JointCTCCrossEntropyLossConfigs
-from .label_smoothed_cross_entropy.configuration import LabelSmoothedCrossEntropyLossConfigs
-from .transducer.configuration import TransducerLossConfigs
-from .perplexity.perplexity import PerplexityLossConfigs
 from .cross_entropy.cross_entropy import CrossEntropyLoss
+from .ctc.configuration import CTCLossConfigs
 from .ctc.ctc import CTCLoss
+from .joint_ctc_cross_entropy.configuration import JointCTCCrossEntropyLossConfigs
 from .joint_ctc_cross_entropy.joint_ctc_cross_entropy import JointCTCCrossEntropyLoss
+from .label_smoothed_cross_entropy.configuration import LabelSmoothedCrossEntropyLossConfigs
 from .label_smoothed_cross_entropy.label_smoothed_cross_entropy import LabelSmoothedCrossEntropyLoss
+from .perplexity.perplexity import Perplexity, PerplexityLossConfigs
+from .transducer.configuration import TransducerLossConfigs
 from .transducer.transducer import TransducerLoss
-from .perplexity.perplexity import Perplexity
 
 __all__ = [
     "CrossEntropyLossConfigs",

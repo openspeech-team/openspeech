@@ -22,3 +22,8 @@
 
 from .configurations import TransformerTransducerConfigs
 from .model import TransformerTransducerModel
+
+__all__ = [
+    "TransformerTransducerConfigs",
+    "TransformerTransducerModel",
+]

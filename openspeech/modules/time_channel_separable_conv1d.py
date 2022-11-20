@@ -20,9 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Optional
+
 import torch.nn as nn
 from torch import Tensor
-from typing import Optional
 
 from openspeech.modules.conv_base import BaseConv1d
 
@@ -33,14 +34,15 @@ class TimeChannelSeparableConv1d(BaseConv1d):
     generally several times smaller than cout, most weights are
     concentrated in the pointwise convolution part.
     """
+
     def __init__(
-            self,
-            in_channels: int,
-            out_channels: int,
-            kernel_size: int = 1,
-            padding: int = 0,
-            groups: int = 1,
-            bias: bool = True,
+        self,
+        in_channels: int,
+        out_channels: int,
+        kernel_size: int = 1,
+        padding: int = 0,
+        groups: int = 1,
+        bias: bool = True,
     ):
         super(TimeChannelSeparableConv1d, self).__init__()
         self.conv = nn.Conv1d(

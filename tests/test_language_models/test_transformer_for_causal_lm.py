@@ -1,11 +1,12 @@
-import unittest
 import logging
+import unittest
+
 import torch
 
 from openspeech.criterion import Perplexity, PerplexityLossConfigs
 from openspeech.lm.transformer_lm import TransformerForLanguageModel
-from openspeech.utils import build_dummy_configs, DUMMY_LM_INPUTS, DUMMY_INPUT_LENGTHS, DUMMY_TARGETS
 from openspeech.tokenizers.ksponspeech.character import KsponSpeechCharacterTokenizer
+from openspeech.utils import DUMMY_INPUT_LENGTHS, DUMMY_LM_INPUTS, DUMMY_TARGETS, build_dummy_configs
 
 logger = logging.getLogger(__name__)
 
@@ -70,5 +71,5 @@ class TestTransformerForLanguageModel(unittest.TestCase):
             assert type(loss.item()) == float
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

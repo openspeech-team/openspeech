@@ -20,8 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import os
 import importlib
+import os
 
 DATA_MODULE_REGISTRY = dict()
 
@@ -52,7 +52,7 @@ def register_data_module(name: str):
 
 data_module_dir = os.path.dirname(__file__)
 for file in os.listdir(data_module_dir):
-    if os.path.isdir(os.path.join(data_module_dir, file)) and file != '__pycache__':
+    if os.path.isdir(os.path.join(data_module_dir, file)) and file != "__pycache__":
         for subfile in os.listdir(os.path.join(data_module_dir, file)):
             path = os.path.join(data_module_dir, file, subfile)
             if subfile.endswith(".py"):

@@ -20,12 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Optional, Tuple
+
 import torch
 import torch.nn as nn
-from typing import Tuple, Optional
 
 from openspeech.encoders import OpenspeechEncoder
-from openspeech.modules import Transpose, Linear
+from openspeech.modules import Linear, Transpose
 
 
 class ConvolutionalLSTMEncoder(OpenspeechEncoder):
@@ -54,23 +55,23 @@ class ConvolutionalLSTMEncoder(OpenspeechEncoder):
         - **output_lengths**: list of sequence lengths produced by Listener
     """
     supported_rnns = {
-        'lstm': nn.LSTM,
-        'gru': nn.GRU,
-        'rnn': nn.RNN,
+        "lstm": nn.LSTM,
+        "gru": nn.GRU,
+        "rnn": nn.RNN,
     }
 
     def __init__(
-            self,
-            input_dim: int,
-            num_classes: int = None,
-            hidden_state_dim: int = 512,
-            dropout_p: float = 0.3,
-            num_layers: int = 3,
-            bidirectional: bool = True,
-            rnn_type: str = 'lstm',
-            extractor: str = 'vgg',
-            conv_activation: str = 'hardtanh',
-            joint_ctc_attention: bool = False,
+        self,
+        input_dim: int,
+        num_classes: int = None,
+        hidden_state_dim: int = 512,
+        dropout_p: float = 0.3,
+        num_layers: int = 3,
+        bidirectional: bool = True,
+        rnn_type: str = "lstm",
+        extractor: str = "vgg",
+        conv_activation: str = "hardtanh",
+        joint_ctc_attention: bool = False,
     ) -> None:
         super(ConvolutionalLSTMEncoder, self).__init__()
         extractor = self.supported_extractors[extractor.lower()]
@@ -99,9 +100,9 @@ class ConvolutionalLSTMEncoder(OpenspeechEncoder):
             )
 
     def forward(
-            self,
-            inputs: torch.Tensor,
-            input_lengths: torch.Tensor,
+        self,
+        inputs: torch.Tensor,
+        input_lengths: torch.Tensor,
     ) -> Tuple[torch.Tensor, torch.Tensor, Optional[torch.Tensor]]:
         r"""
         Forward propagate a `inputs` for  encoders training.

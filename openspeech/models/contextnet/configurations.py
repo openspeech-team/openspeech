@@ -45,30 +45,14 @@ class ContextNetConfigs(OpenspeechDataclass):
         encoder_dim (int, optional): Dimension of encoder output vector (default: 640)
         optimizer (str): Optimizer for training. (default: adam)
     """
-    model_name: str = field(
-        default="contextnet", metadata={"help": "Model name"}
-    )
-    model_size: str = field(
-        default="medium", metadata={"help": "Model size"}
-    )
-    input_dim: int = field(
-        default=80, metadata={"help": "Dimension of input vector"}
-    )
-    num_encoder_layers: int = field(
-        default=5, metadata={"help": "The number of convolution layers"}
-    )
-    kernel_size: int = field(
-        default=5, metadata={"help": "Value of convolution kernel size"}
-    )
-    num_channels: int = field(
-        default=256, metadata={"help": "The number of channels in the convolution filter"}
-    )
-    encoder_dim: int = field(
-        default=640, metadata={"help": "Dimension of encoder output vector"}
-    )
-    optimizer: str = field(
-        default="adam", metadata={"help": "Optimizer for training"}
-    )
+    model_name: str = field(default="contextnet", metadata={"help": "Model name"})
+    model_size: str = field(default="medium", metadata={"help": "Model size"})
+    input_dim: int = field(default=80, metadata={"help": "Dimension of input vector"})
+    num_encoder_layers: int = field(default=5, metadata={"help": "The number of convolution layers"})
+    kernel_size: int = field(default=5, metadata={"help": "Value of convolution kernel size"})
+    num_channels: int = field(default=256, metadata={"help": "The number of channels in the convolution filter"})
+    encoder_dim: int = field(default=640, metadata={"help": "Dimension of encoder output vector"})
+    optimizer: str = field(default="adam", metadata={"help": "Optimizer for training"})
 
 
 @dataclass
@@ -99,54 +83,22 @@ class ContextNetLSTMConfigs(OpenspeechDataclass):
         decoder_attn_mechanism (str): The attention mechanism for decoder. (default: loc)
         optimizer (str): Optimizer for training. (default: adam)
     """
-    model_name: str = field(
-        default="contextnet_lstm", metadata={"help": "Model name"}
-    )
-    model_size: str = field(
-        default="medium", metadata={"help": "Model size"}
-    )
-    input_dim: int = field(
-        default=80, metadata={"help": "Dimension of input vector"}
-    )
-    num_encoder_layers: int = field(
-        default=5, metadata={"help": "The number of convolution layers"}
-    )
-    num_decoder_layers: int = field(
-        default=2, metadata={"help": "The number of decoder layers."}
-    )
-    kernel_size: int = field(
-        default=5, metadata={"help": "Value of convolution kernel size"}
-    )
-    num_channels: int = field(
-        default=256, metadata={"help": "The number of channels in the convolution filter"}
-    )
-    encoder_dim: int = field(
-        default=640, metadata={"help": "Dimension of encoder output vector"}
-    )
-    num_attention_heads: int = field(
-        default=8, metadata={"help": "The number of attention heads."}
-    )
-    attention_dropout_p: float = field(
-        default=0.1, metadata={"help": "The dropout probability of attention module."}
-    )
-    decoder_dropout_p: float = field(
-        default=0.1, metadata={"help": "The dropout probability of decoder."}
-    )
-    max_length: int = field(
-        default=128, metadata={"help": "Max decoding length."}
-    )
-    teacher_forcing_ratio: float = field(
-        default=1.0, metadata={"help": "The ratio of teacher forcing. "}
-    )
-    rnn_type: str = field(
-        default="lstm", metadata={"help": "Type of rnn cell (rnn, lstm, gru)"}
-    )
-    decoder_attn_mechanism: str = field(
-        default="loc", metadata={"help": "The attention mechanism for decoder."}
-    )
-    optimizer: str = field(
-        default="adam", metadata={"help": "Optimizer for training."}
-    )
+    model_name: str = field(default="contextnet_lstm", metadata={"help": "Model name"})
+    model_size: str = field(default="medium", metadata={"help": "Model size"})
+    input_dim: int = field(default=80, metadata={"help": "Dimension of input vector"})
+    num_encoder_layers: int = field(default=5, metadata={"help": "The number of convolution layers"})
+    num_decoder_layers: int = field(default=2, metadata={"help": "The number of decoder layers."})
+    kernel_size: int = field(default=5, metadata={"help": "Value of convolution kernel size"})
+    num_channels: int = field(default=256, metadata={"help": "The number of channels in the convolution filter"})
+    encoder_dim: int = field(default=640, metadata={"help": "Dimension of encoder output vector"})
+    num_attention_heads: int = field(default=8, metadata={"help": "The number of attention heads."})
+    attention_dropout_p: float = field(default=0.1, metadata={"help": "The dropout probability of attention module."})
+    decoder_dropout_p: float = field(default=0.1, metadata={"help": "The dropout probability of decoder."})
+    max_length: int = field(default=128, metadata={"help": "Max decoding length."})
+    teacher_forcing_ratio: float = field(default=1.0, metadata={"help": "The ratio of teacher forcing. "})
+    rnn_type: str = field(default="lstm", metadata={"help": "Type of rnn cell (rnn, lstm, gru)"})
+    decoder_attn_mechanism: str = field(default="loc", metadata={"help": "The attention mechanism for decoder."})
+    optimizer: str = field(default="adam", metadata={"help": "Optimizer for training."})
 
 
 @dataclass
@@ -174,42 +126,18 @@ class ContextNetTransducerConfigs(OpenspeechDataclass):
         rnn_type (str, optional): Type of rnn cell (rnn, lstm, gru) (default: lstm)
         optimizer (str): Optimizer for training. (default: adam)
     """
-    model_name: str = field(
-        default="contextnet_transducer", metadata={"help": "Model name"}
-    )
-    model_size: str = field(
-        default="medium", metadata={"help": "Model size"}
-    )
-    input_dim: int = field(
-        default=80, metadata={"help": "Dimension of input vector"}
-    )
-    num_encoder_layers: int = field(
-        default=5, metadata={"help": "The number of convolution layers"}
-    )
-    num_decoder_layers: int = field(
-        default=1, metadata={"help": "The number of rnn layers"}
-    )
-    kernel_size: int = field(
-        default=5, metadata={"help": "Value of convolution kernel size"}
-    )
-    num_channels: int = field(
-        default=256, metadata={"help": "The number of channels in the convolution filter"}
-    )
+    model_name: str = field(default="contextnet_transducer", metadata={"help": "Model name"})
+    model_size: str = field(default="medium", metadata={"help": "Model size"})
+    input_dim: int = field(default=80, metadata={"help": "Dimension of input vector"})
+    num_encoder_layers: int = field(default=5, metadata={"help": "The number of convolution layers"})
+    num_decoder_layers: int = field(default=1, metadata={"help": "The number of rnn layers"})
+    kernel_size: int = field(default=5, metadata={"help": "Value of convolution kernel size"})
+    num_channels: int = field(default=256, metadata={"help": "The number of channels in the convolution filter"})
     decoder_hidden_state_dim: int = field(
         default=2048, metadata={"help": "The number of features in the decoder hidden state"}
     )
-    encoder_dim: int = field(
-        default=640, metadata={"help": "Dimension of encoder output vector"}
-    )
-    decoder_output_dim: int = field(
-        default=640, metadata={"help": "Dimension of decoder output vector"}
-    )
-    decoder_dropout_p: float = field(
-        default=0.1, metadata={"help": "Dropout probability of decoder"}
-    )
-    rnn_type: str = field(
-        default='lstm', metadata={"help": "Type of rnn cell"}
-    )
-    optimizer: str = field(
-        default="adam", metadata={"help": "Optimizer for training"}
-    )
+    encoder_dim: int = field(default=640, metadata={"help": "Dimension of encoder output vector"})
+    decoder_output_dim: int = field(default=640, metadata={"help": "Dimension of decoder output vector"})
+    decoder_dropout_p: float = field(default=0.1, metadata={"help": "Dropout probability of decoder"})
+    rnn_type: str = field(default="lstm", metadata={"help": "Type of rnn cell"})
+    optimizer: str = field(default="adam", metadata={"help": "Optimizer for training"})

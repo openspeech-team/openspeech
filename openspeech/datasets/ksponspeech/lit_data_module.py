@@ -20,24 +20,25 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import os
 import logging
-import pytorch_lightning as pl
+import os
 from typing import Optional
+
+import pytorch_lightning as pl
 from omegaconf import DictConfig
 
-from openspeech.data.audio.dataset import SpeechToTextDataset
-from openspeech.datasets import register_data_module
-from openspeech.data.sampler import RandomSampler, SmartBatchingSampler
 from openspeech.data.audio.data_loader import AudioDataLoader
-from openspeech.datasets.ksponspeech.preprocess.preprocess import preprocess, preprocess_test_data
-from openspeech.datasets.ksponspeech.preprocess.character import generate_character_script, generate_character_labels
+from openspeech.data.audio.dataset import SpeechToTextDataset
+from openspeech.data.sampler import RandomSampler, SmartBatchingSampler
+from openspeech.datasets import register_data_module
+from openspeech.datasets.ksponspeech.preprocess.character import generate_character_labels, generate_character_script
 from openspeech.datasets.ksponspeech.preprocess.grapheme import sentence_to_grapheme
-from openspeech.datasets.ksponspeech.preprocess.subword import train_sentencepiece, sentence_to_subwords
+from openspeech.datasets.ksponspeech.preprocess.preprocess import preprocess, preprocess_test_data
+from openspeech.datasets.ksponspeech.preprocess.subword import sentence_to_subwords, train_sentencepiece
 from openspeech.tokenizers.tokenizer import Tokenizer
 
 
-@register_data_module('ksponspeech')
+@register_data_module("ksponspeech")
 class LightningKsponSpeechDataModule(pl.LightningDataModule):
     r"""
     Lightning data module for KsponSpeech. KsponSpeech corpus contains 969 h of general open-domain dialog utterances,
@@ -63,8 +64,8 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
         self.configs = configs
         self.dataset = dict()
         self.logger = logging.getLogger(__name__)
-        self.encoding = 'cp949' if self.configs.tokenizer.unit == 'kspon_grapheme' else 'utf-8'
-        
+        self.encoding = "cp949" if self.configs.tokenizer.unit == "kspon_grapheme" else "utf-8"
+
     def _generate_manifest_files(self, manifest_file_path: str) -> None:
         r"""
         Generate KsponSpeech manifest file.
@@ -80,17 +81,17 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
         audio_paths = train_valid_audio_paths + test_audio_paths
         transcripts = train_valid_transcripts + test_transcripts
 
-        if self.configs.tokenizer.unit == 'kspon_character':
+        if self.configs.tokenizer.unit == "kspon_character":
             generate_character_labels(transcripts, self.configs.tokenizer.vocab_path)
             generate_character_script(audio_paths, transcripts, manifest_file_path, self.configs.tokenizer.vocab_path)
 
-        elif self.configs.tokenizer.unit == 'kspon_subword':
+        elif self.configs.tokenizer.unit == "kspon_subword":
             train_sentencepiece(transcripts, self.configs.tokenizer.vocab_size, self.configs.tokenizer.blank_token)
             sentence_to_subwords(
                 audio_paths, transcripts, manifest_file_path, sp_model_path=self.configs.tokenizer.sp_model_path
             )
 
-        elif self.configs.tokenizer.unit == 'kspon_grapheme':
+        elif self.configs.tokenizer.unit == "kspon_grapheme":
             sentence_to_grapheme(audio_paths, transcripts, manifest_file_path, self.configs.tokenizer.vocab_path)
 
         else:
@@ -109,8 +110,8 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
 
         with open(self.configs.dataset.manifest_file_path, encoding=self.encoding) as f:
             for idx, line in enumerate(f.readlines()):
-                audio_path, korean_transcript, transcript = line.split('\t')
-                transcript = transcript.replace('\n', '')
+                audio_path, korean_transcript, transcript = line.split("\t")
+                transcript = transcript.replace("\n", "")
 
                 audio_paths.append(audio_path)
                 transcripts.append(transcript)
@@ -125,8 +126,7 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
             tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
         """
         if not os.path.exists(self.configs.dataset.manifest_file_path):
-            self.logger.info("Manifest file is not exists !!\n"
-                             "Generate manifest files..")
+            self.logger.info("Manifest file is not exists !!\n" "Generate manifest files..")
             if not os.path.exists(self.configs.dataset.dataset_path):
                 raise FileNotFoundError
             self._generate_manifest_files(self.configs.dataset.manifest_file_path)
@@ -146,18 +146,18 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
 
         audio_paths, transcripts = self._parse_manifest_file()
         audio_paths = {
-            "train": audio_paths[:self.KSPONSPEECH_TRAIN_NUM],
-            "valid": audio_paths[self.KSPONSPEECH_TRAIN_NUM:valid_end_idx],
+            "train": audio_paths[: self.KSPONSPEECH_TRAIN_NUM],
+            "valid": audio_paths[self.KSPONSPEECH_TRAIN_NUM : valid_end_idx],
             "test": audio_paths[valid_end_idx:],
         }
         transcripts = {
-            "train": transcripts[:self.KSPONSPEECH_TRAIN_NUM],
-            "valid": transcripts[self.KSPONSPEECH_TRAIN_NUM:valid_end_idx],
+            "train": transcripts[: self.KSPONSPEECH_TRAIN_NUM],
+            "valid": transcripts[self.KSPONSPEECH_TRAIN_NUM : valid_end_idx],
             "test": transcripts[valid_end_idx:],
         }
 
         for stage in audio_paths.keys():
-            if stage == 'test':
+            if stage == "test":
                 dataset_path = self.configs.dataset.test_dataset_path
             else:
                 dataset_path = self.configs.dataset.dataset_path
@@ -167,33 +167,33 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
                 dataset_path=dataset_path,
                 audio_paths=audio_paths[stage],
                 transcripts=transcripts[stage],
-                apply_spec_augment=self.configs.audio.apply_spec_augment if stage == 'train' else False,
-                del_silence=self.configs.audio.del_silence if stage == 'train' else False,
+                apply_spec_augment=self.configs.audio.apply_spec_augment if stage == "train" else False,
+                del_silence=self.configs.audio.del_silence if stage == "train" else False,
             )
 
     def train_dataloader(self) -> AudioDataLoader:
-        sampler = SmartBatchingSampler if self.configs.trainer.sampler == 'smart' else RandomSampler
-        train_sampler = sampler(data_source=self.dataset['train'], batch_size=self.configs.trainer.batch_size)
+        sampler = SmartBatchingSampler if self.configs.trainer.sampler == "smart" else RandomSampler
+        train_sampler = sampler(data_source=self.dataset["train"], batch_size=self.configs.trainer.batch_size)
         return AudioDataLoader(
-            dataset=self.dataset['train'],
+            dataset=self.dataset["train"],
             num_workers=self.configs.trainer.num_workers,
             batch_sampler=train_sampler,
         )
 
     def val_dataloader(self) -> AudioDataLoader:
-        sampler = SmartBatchingSampler if self.configs.trainer.sampler == 'smart' else RandomSampler
-        valid_sampler = sampler(self.dataset['valid'], batch_size=self.configs.trainer.batch_size)
+        sampler = SmartBatchingSampler if self.configs.trainer.sampler == "smart" else RandomSampler
+        valid_sampler = sampler(self.dataset["valid"], batch_size=self.configs.trainer.batch_size)
         return AudioDataLoader(
-            dataset=self.dataset['valid'],
+            dataset=self.dataset["valid"],
             num_workers=self.configs.trainer.num_workers,
             batch_sampler=valid_sampler,
         )
 
     def test_dataloader(self) -> AudioDataLoader:
-        sampler = SmartBatchingSampler if self.configs.trainer.sampler == 'smart' else RandomSampler
-        test_sampler = sampler(self.dataset['test'], batch_size=self.configs.trainer.batch_size)
+        sampler = SmartBatchingSampler if self.configs.trainer.sampler == "smart" else RandomSampler
+        test_sampler = sampler(self.dataset["test"], batch_size=self.configs.trainer.batch_size)
         return AudioDataLoader(
-            dataset=self.dataset['test'],
+            dataset=self.dataset["test"],
             num_workers=self.configs.trainer.num_workers,
             batch_sampler=test_sampler,
         )

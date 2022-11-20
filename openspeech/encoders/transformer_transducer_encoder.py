@@ -20,18 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Optional, Tuple
+
 import torch
 import torch.nn as nn
-from typing import Tuple, Optional
 from torch import Tensor
 
 from openspeech.encoders import OpenspeechEncoder
-from openspeech.modules import (
-    PositionalEncoding,
-    get_attn_pad_mask,
-    MultiHeadAttention,
-    PositionwiseFeedForward,
-)
+from openspeech.modules import MultiHeadAttention, PositionalEncoding, PositionwiseFeedForward, get_attn_pad_mask
 
 
 class TransformerTransducerEncoderLayer(nn.Module):
@@ -54,12 +50,13 @@ class TransformerTransducerEncoderLayer(nn.Module):
         * outputs (torch.FloatTensor): Tensor containing higher (audio, label) feature values
         * attn_distribution (torch.FloatTensor): Attention distribution in multi-head attention
     """
+
     def __init__(
-            self,
-            model_dim: int = 512,
-            d_ff: int = 2048,
-            num_heads: int = 8,
-            dropout: float = 0.1,
+        self,
+        model_dim: int = 512,
+        d_ff: int = 2048,
+        num_heads: int = 8,
+        dropout: float = 0.1,
     ) -> None:
         super(TransformerTransducerEncoderLayer, self).__init__()
         self.layer_norm = nn.LayerNorm(model_dim)
@@ -67,11 +64,7 @@ class TransformerTransducerEncoderLayer(nn.Module):
         self.encoder_dropout = nn.Dropout(p=dropout)
         self.feed_forward = PositionwiseFeedForward(model_dim, d_ff, dropout)
 
-    def forward(
-            self,
-            inputs: Tensor,
-            self_attn_mask: Optional[Tensor] = None
-    ) -> Tuple[Tensor, Tensor]:
+    def forward(self, inputs: Tensor, self_attn_mask: Optional[Tensor] = None) -> Tuple[Tensor, Tensor]:
         r"""
         Forward propagate a `inputs` for label encoder.
 
@@ -119,15 +112,16 @@ class TransformerTransducerEncoder(OpenspeechEncoder):
         Qian Zhang et al.: Transformer Transducer: A Streamable Speech Recognition Model with Transformer Encoders and RNN-T Loss
         https://arxiv.org/abs/2002.02562
     """
+
     def __init__(
-            self,
-            input_size: int = 80,
-            model_dim: int = 512,
-            d_ff: int = 2048,
-            num_layers: int = 18,
-            num_heads: int = 8,
-            dropout: float = 0.1,
-            max_positional_length: int = 5000,
+        self,
+        input_size: int = 80,
+        model_dim: int = 512,
+        d_ff: int = 2048,
+        num_layers: int = 18,
+        num_heads: int = 8,
+        dropout: float = 0.1,
+        max_positional_length: int = 5000,
     ) -> None:
         super(TransformerTransducerEncoder, self).__init__()
         self.input_size = input_size
@@ -138,19 +132,14 @@ class TransformerTransducerEncoder(OpenspeechEncoder):
         self.layer_norm = nn.LayerNorm(model_dim)
         self.positional_encoding = PositionalEncoding(model_dim, max_positional_length)
         self.input_fc = nn.Linear(input_size, model_dim)
-        self.encoder_layers = nn.ModuleList([
-            TransformerTransducerEncoderLayer(
-                model_dim,
-                d_ff,
-                num_heads,
-                dropout
-            ) for _ in range(num_layers)
-        ])
+        self.encoder_layers = nn.ModuleList(
+            [TransformerTransducerEncoderLayer(model_dim, d_ff, num_heads, dropout) for _ in range(num_layers)]
+        )
 
     def forward(
-            self,
-            inputs: torch.Tensor,
-            input_lengths: torch.Tensor,
+        self,
+        inputs: torch.Tensor,
+        input_lengths: torch.Tensor,
     ) -> Tuple[torch.Tensor, torch.Tensor]:
         r"""
         Forward propagate a `inputs` for audio encoder.

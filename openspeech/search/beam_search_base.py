@@ -32,6 +32,7 @@ class OpenspeechBeamSearchBase(nn.Module):
     Note:
         Do not use this class directly, use one of the sub classes.
     """
+
     def __init__(self, decoder, beam_size: int):
         super(OpenspeechBeamSearchBase, self).__init__()
         self.decoder = decoder
@@ -49,13 +50,13 @@ class OpenspeechBeamSearchBase(nn.Module):
         return tensor.repeat(*repeat_dims)
 
     def _get_successor(
-            self,
-            current_ps: torch.Tensor,
-            current_vs: torch.Tensor,
-            finished_ids: tuple,
-            num_successor: int,
-            eos_count: int,
-            k: int
+        self,
+        current_ps: torch.Tensor,
+        current_vs: torch.Tensor,
+        finished_ids: tuple,
+        num_successor: int,
+        eos_count: int,
+        k: int,
     ) -> int:
         finished_batch_idx, finished_idx = finished_ids
 
@@ -65,7 +66,7 @@ class OpenspeechBeamSearchBase(nn.Module):
         successor_p = current_ps[finished_batch_idx, successor_idx]
         successor_v = current_vs[finished_batch_idx, successor_idx]
 
-        prev_status_idx = (successor_idx // k)
+        prev_status_idx = successor_idx // k
         prev_status = self.ongoing_beams[finished_batch_idx, prev_status_idx]
         prev_status = prev_status.view(-1)[:-1]
 
@@ -125,8 +126,8 @@ class OpenspeechBeamSearchBase(nn.Module):
         matched = torch.zeros((batch_size, max_length), dtype=torch.long)
 
         for batch_idx, y_hat in enumerate(y_hats):
-            matched[batch_idx, :len(y_hat)] = y_hat
-            matched[batch_idx, len(y_hat):] = int(self.pad_id)
+            matched[batch_idx, : len(y_hat)] = y_hat
+            matched[batch_idx, len(y_hat) :] = int(self.pad_id)
 
         return matched
 

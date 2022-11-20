@@ -20,9 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Tuple
+
 import torch
 import torch.nn as nn
-from typing import Tuple
 
 from openspeech.encoders import OpenspeechEncoder
 from openspeech.modules import Linear
@@ -57,20 +58,20 @@ class RNNTransducerEncoder(OpenspeechEncoder):
         https://arxiv.org/abs/1211.3711.pdf
     """
     supported_rnns = {
-        'lstm': nn.LSTM,
-        'gru': nn.GRU,
-        'rnn': nn.RNN,
+        "lstm": nn.LSTM,
+        "gru": nn.GRU,
+        "rnn": nn.RNN,
     }
 
     def __init__(
-            self,
-            input_dim: int,
-            hidden_state_dim: int,
-            output_dim: int,
-            num_layers: int,
-            rnn_type: str = 'lstm',
-            dropout_p: float = 0.2,
-            bidirectional: bool = True,
+        self,
+        input_dim: int,
+        hidden_state_dim: int,
+        output_dim: int,
+        num_layers: int,
+        rnn_type: str = "lstm",
+        dropout_p: float = 0.2,
+        bidirectional: bool = True,
     ):
         super(RNNTransducerEncoder, self).__init__()
         self.hidden_state_dim = hidden_state_dim
@@ -87,9 +88,9 @@ class RNNTransducerEncoder(OpenspeechEncoder):
         self.fc = Linear(hidden_state_dim << 1 if bidirectional else hidden_state_dim, output_dim)
 
     def forward(
-            self,
-            inputs: torch.Tensor,
-            input_lengths: torch.Tensor,
+        self,
+        inputs: torch.Tensor,
+        input_lengths: torch.Tensor,
     ) -> Tuple[torch.Tensor, torch.Tensor]:
         r"""
         Forward propagate a `inputs` for  encoders training.

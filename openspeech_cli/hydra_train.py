@@ -21,16 +21,17 @@
 # SOFTWARE.
 
 import os
+
 import hydra
 import pytorch_lightning as pl
 from omegaconf import DictConfig, OmegaConf
 from pytorch_lightning.utilities import rank_zero_info
 
-from openspeech.tokenizers import TOKENIZER_REGISTRY
-from openspeech.datasets import DATA_MODULE_REGISTRY
 from openspeech.dataclass.initialize import hydra_train_init
+from openspeech.datasets import DATA_MODULE_REGISTRY
 from openspeech.models import MODEL_REGISTRY
-from openspeech.utils import parse_configs, get_pl_trainer
+from openspeech.tokenizers import TOKENIZER_REGISTRY
+from openspeech.utils import get_pl_trainer, parse_configs
 
 
 @hydra.main(config_path=os.path.join("..", "openspeech", "configs"), config_name="train")
@@ -53,6 +54,6 @@ def hydra_main(configs: DictConfig) -> None:
     trainer.test(model, data_module)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     hydra_train_init()
     hydra_main()

@@ -22,15 +22,14 @@
 
 from omegaconf import DictConfig
 
-from openspeech.models import register_model
-from openspeech.models import OpenspeechTransducerModel
 from openspeech.decoders import RNNTransducerDecoder
 from openspeech.encoders import RNNTransducerEncoder
+from openspeech.models import OpenspeechTransducerModel, register_model
 from openspeech.models.rnn_transducer.configurations import RNNTransducerConfigs
 from openspeech.tokenizers.tokenizer import Tokenizer
 
 
-@register_model('rnn_transducer', dataclass=RNNTransducerConfigs)
+@register_model("rnn_transducer", dataclass=RNNTransducerConfigs)
 class RNNTransducerModel(OpenspeechTransducerModel):
     r"""
     RNN-Transducer are a form of sequence-to-sequence models that do not employ attention mechanisms.

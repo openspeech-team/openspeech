@@ -52,51 +52,27 @@ class SqueezeformerConfigs(OpenspeechDataclass):
         half_step_residual (bool): Flag indication whether to use half step residual or not (default: False)
         optimizer (str): Optimizer for training. (default: adam)
     """
-    model_name: str = field(
-        default="squeezeformer", metadata={"help": "Model name"}
-    )
-    encoder_dim: int = field(
-        default=512, metadata={"help": "Dimension of encoder."}
-    )
-    num_encoder_layers: int = field(
-        default=16, metadata={"help": "The number of encoder layers."}
-    )
-    reduce_layer_index: int = field(
-        default=7, metadata={"help": "The layer index to reduce sequence length."}
-    )
-    recover_layer_index: int = field(
-        default=15, metadata={"help": " The layer index to recover sequence length."}
-    )
-    num_attention_heads: int = field(
-        default=8, metadata={"help": "The number of attention heads."}
-    )
+    model_name: str = field(default="squeezeformer", metadata={"help": "Model name"})
+    encoder_dim: int = field(default=512, metadata={"help": "Dimension of encoder."})
+    num_encoder_layers: int = field(default=16, metadata={"help": "The number of encoder layers."})
+    reduce_layer_index: int = field(default=7, metadata={"help": "The layer index to reduce sequence length."})
+    recover_layer_index: int = field(default=15, metadata={"help": " The layer index to recover sequence length."})
+    num_attention_heads: int = field(default=8, metadata={"help": "The number of attention heads."})
     feed_forward_expansion_factor: int = field(
         default=4, metadata={"help": "The expansion factor of feed forward module."}
     )
-    conv_expansion_factor: int = field(
-        default=2, metadata={"help": "The expansion factor of convolution module."}
-    )
-    input_dropout_p: float = field(
-        default=0.1, metadata={"help": "The dropout probability of inputs."}
-    )
+    conv_expansion_factor: int = field(default=2, metadata={"help": "The expansion factor of convolution module."})
+    input_dropout_p: float = field(default=0.1, metadata={"help": "The dropout probability of inputs."})
     feed_forward_dropout_p: float = field(
         default=0.1, metadata={"help": "The dropout probability of feed forward module."}
     )
-    attention_dropout_p: float = field(
-        default=0.1, metadata={"help": "The dropout probability of attention module."}
-    )
-    conv_dropout_p: float = field(
-        default=0.1, metadata={"help": "The dropout probability of convolution module."}
-    )
-    conv_kernel_size: int = field(
-        default=31, metadata={"help": "The kernel size of convolution."}
-    )
+    attention_dropout_p: float = field(default=0.1, metadata={"help": "The dropout probability of attention module."})
+    conv_dropout_p: float = field(default=0.1, metadata={"help": "The dropout probability of convolution module."})
+    conv_kernel_size: int = field(default=31, metadata={"help": "The kernel size of convolution."})
     half_step_residual: bool = field(
         default=False, metadata={"help": "Flag indication whether to use half step residual or not"}
     )
-    optimizer: str = field(
-        default="adam", metadata={"help": "Optimizer for training."}
-    )
+    optimizer: str = field(default="adam", metadata={"help": "Optimizer for training."})
 
 
 @dataclass
@@ -132,69 +108,33 @@ class SqueezeformerLSTMConfigs(OpenspeechDataclass):
         decoder_attn_mechanism (str): The attention mechanism for decoder. (default: loc)
         optimizer (str): Optimizer for training. (default: adam)
     """
-    model_name: str = field(
-        default="squeezeformer_lstm", metadata={"help": "Model name"}
-    )
-    encoder_dim: int = field(
-        default=512, metadata={"help": "Dimension of encoder."}
-    )
-    num_encoder_layers: int = field(
-        default=16, metadata={"help": "The number of encoder layers."}
-    )
-    reduce_layer_index: int = field(
-        default=7, metadata={"help": "The layer index to reduce sequence length."}
-    )
-    recover_layer_index: int = field(
-        default=15, metadata={"help": " The layer index to recover sequence length."}
-    )
-    num_attention_heads: int = field(
-        default=8, metadata={"help": "The number of attention heads."}
-    )
+    model_name: str = field(default="squeezeformer_lstm", metadata={"help": "Model name"})
+    encoder_dim: int = field(default=512, metadata={"help": "Dimension of encoder."})
+    num_encoder_layers: int = field(default=16, metadata={"help": "The number of encoder layers."})
+    reduce_layer_index: int = field(default=7, metadata={"help": "The layer index to reduce sequence length."})
+    recover_layer_index: int = field(default=15, metadata={"help": " The layer index to recover sequence length."})
+    num_attention_heads: int = field(default=8, metadata={"help": "The number of attention heads."})
     feed_forward_expansion_factor: int = field(
         default=4, metadata={"help": "The expansion factor of feed forward module."}
     )
-    conv_expansion_factor: int = field(
-        default=2, metadata={"help": "The expansion factor of convolution module."}
-    )
-    input_dropout_p: float = field(
-        default=0.1, metadata={"help": "The dropout probability of inputs."}
-    )
+    conv_expansion_factor: int = field(default=2, metadata={"help": "The expansion factor of convolution module."})
+    input_dropout_p: float = field(default=0.1, metadata={"help": "The dropout probability of inputs."})
     feed_forward_dropout_p: float = field(
         default=0.1, metadata={"help": "The dropout probability of feed forward module."}
     )
-    attention_dropout_p: float = field(
-        default=0.1, metadata={"help": "The dropout probability of attention module."}
-    )
-    conv_dropout_p: float = field(
-        default=0.1, metadata={"help": "The dropout probability of convolution module."}
-    )
-    conv_kernel_size: int = field(
-        default=31, metadata={"help": "The kernel size of convolution."}
-    )
+    attention_dropout_p: float = field(default=0.1, metadata={"help": "The dropout probability of attention module."})
+    conv_dropout_p: float = field(default=0.1, metadata={"help": "The dropout probability of convolution module."})
+    conv_kernel_size: int = field(default=31, metadata={"help": "The kernel size of convolution."})
     half_step_residual: bool = field(
         default=False, metadata={"help": "Flag indication whether to use half step residual or not"}
     )
-    num_decoder_layers: int = field(
-        default=2, metadata={"help": "The number of decoder layers."}
-    )
-    decoder_dropout_p: float = field(
-        default=0.1, metadata={"help": "The dropout probability of decoder."}
-    )
-    max_length: int = field(
-        default=128, metadata={"help": "Max decoding length."}
-    )
-    teacher_forcing_ratio: float = field(
-        default=1.0, metadata={"help": "The ratio of teacher forcing. "}
-    )
-    rnn_type: str = field(
-        default="lstm", metadata={"help": "Type of rnn cell (rnn, lstm, gru)"}
-    )
-    decoder_attn_mechanism: str = field(
-        default="loc", metadata={"help": "The attention mechanism for decoder."}
-    )
-    optimizer: str = field(
-        default="adam", metadata={"help": "Optimizer for training."}
-    )
+    num_decoder_layers: int = field(default=2, metadata={"help": "The number of decoder layers."})
+    decoder_dropout_p: float = field(default=0.1, metadata={"help": "The dropout probability of decoder."})
+    max_length: int = field(default=128, metadata={"help": "Max decoding length."})
+    teacher_forcing_ratio: float = field(default=1.0, metadata={"help": "The ratio of teacher forcing. "})
+    rnn_type: str = field(default="lstm", metadata={"help": "Type of rnn cell (rnn, lstm, gru)"})
+    decoder_attn_mechanism: str = field(default="loc", metadata={"help": "The attention mechanism for decoder."})
+    optimizer: str = field(default="adam", metadata={"help": "Optimizer for training."})
 
 
 @dataclass
@@ -231,72 +171,34 @@ class SqueezeformerTransducerConfigs(OpenspeechDataclass):
         decoder_output_dim (int): Output dimension of decoder. (default: 640)
         optimizer (str): Optimizer for training. (default: adam)
     """
-    model_name: str = field(
-        default="squeezeformer_transducer", metadata={"help": "Model name"}
-    )
-    encoder_dim: int = field(
-        default=512, metadata={"help": "Dimension of encoder."}
-    )
-    num_encoder_layers: int = field(
-        default=16, metadata={"help": "The number of encoder layers."}
-    )
-    reduce_layer_index: int = field(
-        default=7, metadata={"help": "The layer index to reduce sequence length."}
-    )
-    recover_layer_index: int = field(
-        default=15, metadata={"help": " The layer index to recover sequence length."}
-    )
-    num_attention_heads: int = field(
-        default=8, metadata={"help": "The number of attention heads."}
-    )
+    model_name: str = field(default="squeezeformer_transducer", metadata={"help": "Model name"})
+    encoder_dim: int = field(default=512, metadata={"help": "Dimension of encoder."})
+    num_encoder_layers: int = field(default=16, metadata={"help": "The number of encoder layers."})
+    reduce_layer_index: int = field(default=7, metadata={"help": "The layer index to reduce sequence length."})
+    recover_layer_index: int = field(default=15, metadata={"help": " The layer index to recover sequence length."})
+    num_attention_heads: int = field(default=8, metadata={"help": "The number of attention heads."})
     feed_forward_expansion_factor: int = field(
         default=4, metadata={"help": "The expansion factor of feed forward module."}
     )
-    conv_expansion_factor: int = field(
-        default=2, metadata={"help": "The expansion factor of convolution module."}
-    )
-    input_dropout_p: float = field(
-        default=0.1, metadata={"help": "The dropout probability of inputs."}
-    )
+    conv_expansion_factor: int = field(default=2, metadata={"help": "The expansion factor of convolution module."})
+    input_dropout_p: float = field(default=0.1, metadata={"help": "The dropout probability of inputs."})
     feed_forward_dropout_p: float = field(
         default=0.1, metadata={"help": "The dropout probability of feed forward module."}
     )
-    attention_dropout_p: float = field(
-        default=0.1, metadata={"help": "The dropout probability of attention module."}
-    )
-    conv_dropout_p: float = field(
-        default=0.1, metadata={"help": "The dropout probability of convolution module."}
-    )
-    conv_kernel_size: int = field(
-        default=31, metadata={"help": "The kernel size of convolution."}
-    )
+    attention_dropout_p: float = field(default=0.1, metadata={"help": "The dropout probability of attention module."})
+    conv_dropout_p: float = field(default=0.1, metadata={"help": "The dropout probability of convolution module."})
+    conv_kernel_size: int = field(default=31, metadata={"help": "The kernel size of convolution."})
     half_step_residual: bool = field(
         default=True, metadata={"help": "Flag indication whether to use half step residual or not"}
     )
-    num_decoder_layers: int = field(
-        default=1, metadata={"help": "The number of decoder layers."}
-    )
-    decoder_dropout_p: float = field(
-        default=0.1, metadata={"help": "The dropout probability of decoder."}
-    )
-    max_length: int = field(
-        default=128, metadata={"help": "Max decoding length."}
-    )
-    teacher_forcing_ratio: float = field(
-        default=1.0, metadata={"help": " The ratio of teacher forcing. "}
-    )
-    rnn_type: str = field(
-        default="lstm", metadata={"help": "Type of rnn cell (rnn, lstm, gru)"}
-    )
-    decoder_hidden_state_dim: int = field(
-        default=640, metadata={"help": "Hidden state dimension of decoder."}
-    )
-    decoder_output_dim: int = field(
-        default=640, metadata={"help": "Output dimension of decoder."}
-    )
-    optimizer: str = field(
-        default="adam", metadata={"help": "Optimizer for training."}
-    )
+    num_decoder_layers: int = field(default=1, metadata={"help": "The number of decoder layers."})
+    decoder_dropout_p: float = field(default=0.1, metadata={"help": "The dropout probability of decoder."})
+    max_length: int = field(default=128, metadata={"help": "Max decoding length."})
+    teacher_forcing_ratio: float = field(default=1.0, metadata={"help": " The ratio of teacher forcing. "})
+    rnn_type: str = field(default="lstm", metadata={"help": "Type of rnn cell (rnn, lstm, gru)"})
+    decoder_hidden_state_dim: int = field(default=640, metadata={"help": "Hidden state dimension of decoder."})
+    decoder_output_dim: int = field(default=640, metadata={"help": "Output dimension of decoder."})
+    optimizer: str = field(default="adam", metadata={"help": "Optimizer for training."})
 
 
 @dataclass
@@ -332,69 +234,31 @@ class JointCTCSqueezeformerLSTMConfigs(OpenspeechDataclass):
         decoder_attn_mechanism (str): The attention mechanism for decoder. (default: loc)
         optimizer (str): Optimizer for training. (default: adam)
     """
-    model_name: str = field(
-        default="joint_ctc_squeezeformer_lstm", metadata={"help": "Model name"}
-    )
-    encoder_dim: int = field(
-        default=512, metadata={"help": "Dimension of encoder."}
-    )
-    num_encoder_layers: int = field(
-        default=16, metadata={"help": "The number of encoder layers."}
-    )
-    reduce_layer_index: int = field(
-        default=7, metadata={"help": "The layer index to reduce sequence length."}
-    )
-    recover_layer_index: int = field(
-        default=15, metadata={"help": " The layer index to recover sequence length."}
-    )
-    num_attention_heads: int = field(
-        default=8, metadata={"help": "The number of attention heads."}
-    )
+    model_name: str = field(default="joint_ctc_squeezeformer_lstm", metadata={"help": "Model name"})
+    encoder_dim: int = field(default=512, metadata={"help": "Dimension of encoder."})
+    num_encoder_layers: int = field(default=16, metadata={"help": "The number of encoder layers."})
+    reduce_layer_index: int = field(default=7, metadata={"help": "The layer index to reduce sequence length."})
+    recover_layer_index: int = field(default=15, metadata={"help": " The layer index to recover sequence length."})
+    num_attention_heads: int = field(default=8, metadata={"help": "The number of attention heads."})
     feed_forward_expansion_factor: int = field(
         default=4, metadata={"help": "The expansion factor of feed forward module."}
     )
-    conv_expansion_factor: int = field(
-        default=2, metadata={"help": "The expansion factor of convolution module."}
-    )
-    input_dropout_p: float = field(
-        default=0.1, metadata={"help": "The dropout probability of inputs."}
-    )
+    conv_expansion_factor: int = field(default=2, metadata={"help": "The expansion factor of convolution module."})
+    input_dropout_p: float = field(default=0.1, metadata={"help": "The dropout probability of inputs."})
     feed_forward_dropout_p: float = field(
         default=0.1, metadata={"help": "The dropout probability of feed forward module."}
     )
-    attention_dropout_p: float = field(
-        default=0.1, metadata={"help": "The dropout probability of attention module."}
-    )
-    conv_dropout_p: float = field(
-        default=0.1, metadata={"help": "The dropout probability of convolution module."}
-    )
-    conv_kernel_size: int = field(
-        default=31, metadata={"help": "The kernel size of convolution."}
-    )
+    attention_dropout_p: float = field(default=0.1, metadata={"help": "The dropout probability of attention module."})
+    conv_dropout_p: float = field(default=0.1, metadata={"help": "The dropout probability of convolution module."})
+    conv_kernel_size: int = field(default=31, metadata={"help": "The kernel size of convolution."})
     half_step_residual: bool = field(
         default=True, metadata={"help": "Flag indication whether to use half step residual or not"}
     )
-    num_decoder_layers: int = field(
-        default=2, metadata={"help": "The number of decoder layers."}
-    )
-    decoder_dropout_p: float = field(
-        default=0.1, metadata={"help": "The dropout probability of decoder."}
-    )
-    num_decoder_attention_heads: int = field(
-        default=1, metadata={"help": "The number of decoder attention heads."}
-    )
-    max_length: int = field(
-        default=128, metadata={"help": "Max decoding length."}
-    )
-    teacher_forcing_ratio: float = field(
-        default=1.0, metadata={"help": " The ratio of teacher forcing. "}
-    )
-    rnn_type: str = field(
-        default="lstm", metadata={"help": "Type of rnn cell (rnn, lstm, gru)"}
-    )
-    decoder_attn_mechanism: str = field(
-        default="loc", metadata={"help": "The attention mechanism for decoder."}
-    )
-    optimizer: str = field(
-        default="adam", metadata={"help": "Optimizer for training."}
-    )
+    num_decoder_layers: int = field(default=2, metadata={"help": "The number of decoder layers."})
+    decoder_dropout_p: float = field(default=0.1, metadata={"help": "The dropout probability of decoder."})
+    num_decoder_attention_heads: int = field(default=1, metadata={"help": "The number of decoder attention heads."})
+    max_length: int = field(default=128, metadata={"help": "Max decoding length."})
+    teacher_forcing_ratio: float = field(default=1.0, metadata={"help": " The ratio of teacher forcing. "})
+    rnn_type: str = field(default="lstm", metadata={"help": "Type of rnn cell (rnn, lstm, gru)"})
+    decoder_attn_mechanism: str = field(default="loc", metadata={"help": "The attention mechanism for decoder."})
+    optimizer: str = field(default="adam", metadata={"help": "Optimizer for training."})

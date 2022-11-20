@@ -1,30 +1,22 @@
 import unittest
-import torch
+
 import matplotlib.pyplot as plt
+import torch
 from torch import optim
 
 from openspeech.optim.optimizer import Optimizer
-from openspeech.utils import build_dummy_configs
-from openspeech.optim.scheduler.warmup_scheduler import (
-    WarmupLRSchedulerConfigs,
-    WarmupLRScheduler,
-)
 from openspeech.optim.scheduler.reduce_lr_on_plateau_scheduler import (
-    ReduceLROnPlateauScheduler,
     ReduceLROnPlateauConfigs,
+    ReduceLROnPlateauScheduler,
 )
-from openspeech.optim.scheduler.transformer_lr_scheduler import (
-    TransformerLRScheduler,
-    TransformerLRSchedulerConfigs,
-)
-from openspeech.optim.scheduler.tri_stage_lr_scheduler import (
-    TriStageLRScheduler,
-    TriStageLRSchedulerConfigs,
-)
+from openspeech.optim.scheduler.transformer_lr_scheduler import TransformerLRScheduler, TransformerLRSchedulerConfigs
+from openspeech.optim.scheduler.tri_stage_lr_scheduler import TriStageLRScheduler, TriStageLRSchedulerConfigs
 from openspeech.optim.scheduler.warmup_reduce_lr_on_plateau_scheduler import (
     WarmupReduceLROnPlateauConfigs,
     WarmupReduceLROnPlateauScheduler,
 )
+from openspeech.optim.scheduler.warmup_scheduler import WarmupLRScheduler, WarmupLRSchedulerConfigs
+from openspeech.utils import build_dummy_configs
 
 
 class TestLRScheduler(unittest.TestCase):
@@ -50,13 +42,13 @@ class TestLRScheduler(unittest.TestCase):
             optimizer.step(model)
             lr_histories.append(optimizer.get_lr())
 
-        plt.title('WarmupLRScheduler')
-        plt.plot(lr_histories, label='lr', color='#FF6C38', linewidth=2)
+        plt.title("WarmupLRScheduler")
+        plt.plot(lr_histories, label="lr", color="#FF6C38", linewidth=2)
         plt.legend()
         plt.grid(True)
-        plt.xlabel('timestep', fontsize='large')
-        plt.ylabel('lr', fontsize='large')
-        plt.savefig('WarmupLRScheduler.png')
+        plt.xlabel("timestep", fontsize="large")
+        plt.ylabel("lr", fontsize="large")
+        plt.savefig("WarmupLRScheduler.png")
 
     def test_reduce_lr_on_plateau_scheduler(self):
         configs = build_dummy_configs(scheduler_configs=ReduceLROnPlateauConfigs())
@@ -80,13 +72,13 @@ class TestLRScheduler(unittest.TestCase):
             optimizer.step(model)
             lr_histories.append(optimizer.get_lr())
 
-        plt.title('ReduceLROnPlateauScheduler')
-        plt.plot(lr_histories, label='lr', color='#FF6C38', linewidth=2)
+        plt.title("ReduceLROnPlateauScheduler")
+        plt.plot(lr_histories, label="lr", color="#FF6C38", linewidth=2)
         plt.legend()
         plt.grid(True)
-        plt.xlabel('timestep', fontsize='large')
-        plt.ylabel('lr', fontsize='large')
-        plt.savefig('ReduceLROnPlateauScheduler.png')
+        plt.xlabel("timestep", fontsize="large")
+        plt.ylabel("lr", fontsize="large")
+        plt.savefig("ReduceLROnPlateauScheduler.png")
 
     def test_transformer_lr_scheduler(self):
         configs = build_dummy_configs(scheduler_configs=TransformerLRSchedulerConfigs())
@@ -110,13 +102,13 @@ class TestLRScheduler(unittest.TestCase):
             optimizer.step(model)
             lr_histories.append(optimizer.get_lr())
 
-        plt.title('TransformerLRScheduler')
-        plt.plot(lr_histories, label='lr', color='#FF6C38', linewidth=2)
+        plt.title("TransformerLRScheduler")
+        plt.plot(lr_histories, label="lr", color="#FF6C38", linewidth=2)
         plt.legend()
         plt.grid(True)
-        plt.xlabel('timestep', fontsize='large')
-        plt.ylabel('lr', fontsize='large')
-        plt.savefig('TransformerLRScheduler.png')
+        plt.xlabel("timestep", fontsize="large")
+        plt.ylabel("lr", fontsize="large")
+        plt.savefig("TransformerLRScheduler.png")
 
     def test_tri_stage_scheduler(self):
         configs = build_dummy_configs(scheduler_configs=TriStageLRSchedulerConfigs())
@@ -140,13 +132,13 @@ class TestLRScheduler(unittest.TestCase):
             optimizer.step(model)
             lr_histories.append(optimizer.get_lr())
 
-        plt.title('TransformerLRScheduler')
-        plt.plot(lr_histories, label='lr', color='#FF6C38', linewidth=2)
+        plt.title("TransformerLRScheduler")
+        plt.plot(lr_histories, label="lr", color="#FF6C38", linewidth=2)
         plt.legend()
         plt.grid(True)
-        plt.xlabel('timestep', fontsize='large')
-        plt.ylabel('lr', fontsize='large')
-        plt.savefig('TransformerLRScheduler.png')
+        plt.xlabel("timestep", fontsize="large")
+        plt.ylabel("lr", fontsize="large")
+        plt.savefig("TransformerLRScheduler.png")
 
     def test_warmup_reduce_lr_on_plateau_scheduler(self):
         configs = build_dummy_configs(scheduler_configs=WarmupReduceLROnPlateauConfigs())
@@ -170,14 +162,14 @@ class TestLRScheduler(unittest.TestCase):
             optimizer.step(model)
             lr_histories.append(optimizer.get_lr())
 
-        plt.title('TransformerLRScheduler')
-        plt.plot(lr_histories, label='lr', color='#FF6C38', linewidth=2)
+        plt.title("TransformerLRScheduler")
+        plt.plot(lr_histories, label="lr", color="#FF6C38", linewidth=2)
         plt.legend()
         plt.grid(True)
-        plt.xlabel('timestep', fontsize='large')
-        plt.ylabel('lr', fontsize='large')
-        plt.savefig('TransformerLRScheduler.png')
+        plt.xlabel("timestep", fontsize="large")
+        plt.ylabel("lr", fontsize="large")
+        plt.savefig("TransformerLRScheduler.png")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

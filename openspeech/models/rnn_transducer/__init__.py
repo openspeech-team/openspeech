@@ -22,3 +22,8 @@
 
 from .configurations import RNNTransducerConfigs
 from .model import RNNTransducerModel
+
+__all__ = [
+    "RNNTransducerConfigs",
+    "RNNTransducerModel",
+]

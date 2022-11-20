@@ -20,17 +20,18 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Optional, Tuple
+
 import torch
 import torch.nn as nn
-from typing import Optional, Tuple
 
 from openspeech.lm.openspeech_lm import OpenspeechLanguageModelBase
 from openspeech.modules import (
-    TransformerEmbedding,
-    PositionalEncoding,
     Linear,
-    PositionwiseFeedForward,
     MultiHeadAttention,
+    PositionalEncoding,
+    PositionwiseFeedForward,
+    TransformerEmbedding,
     get_attn_pad_mask,
     get_attn_subsequent_mask,
 )
@@ -38,11 +39,11 @@ from openspeech.modules import (
 
 class TransformerForLanguageModelLayer(nn.Module):
     def __init__(
-            self,
-            d_model: int = 768,
-            num_attention_heads: int = 8,
-            d_ff: int = 2048,
-            dropout_p: float = 0.3,
+        self,
+        d_model: int = 768,
+        num_attention_heads: int = 8,
+        d_ff: int = 2048,
+        dropout_p: float = 0.3,
     ) -> None:
         super(TransformerForLanguageModelLayer, self).__init__()
         self.attention_prenorm = nn.LayerNorm(d_model)
@@ -51,9 +52,9 @@ class TransformerForLanguageModelLayer(nn.Module):
         self.feed_forward = PositionwiseFeedForward(d_model=d_model, d_ff=d_ff, dropout_p=dropout_p)
 
     def forward(
-            self,
-            inputs: torch.Tensor,
-            mask: Optional[torch.Tensor] = None,
+        self,
+        inputs: torch.Tensor,
+        mask: Optional[torch.Tensor] = None,
     ) -> Tuple[torch.Tensor, torch.Tensor]:
         residual = inputs
         inputs = self.attention_prenorm(inputs)
@@ -93,18 +94,19 @@ class TransformerForLanguageModel(OpenspeechLanguageModelBase):
     Returns:
         * logits (torch.FloatTensor): Log probability of model predictions.
     """
+
     def __init__(
-            self,
-            num_classes: int,
-            max_length: int = 128,
-            d_model: int = 768,
-            num_attention_heads: int = 8,
-            d_ff: int = 1536,
-            pad_id: int = 0,
-            sos_id: int = 1,
-            eos_id: int = 2,
-            num_layers: int = 2,
-            dropout_p: float = 0.3,
+        self,
+        num_classes: int,
+        max_length: int = 128,
+        d_model: int = 768,
+        num_attention_heads: int = 8,
+        d_ff: int = 1536,
+        pad_id: int = 0,
+        sos_id: int = 1,
+        eos_id: int = 2,
+        num_layers: int = 2,
+        dropout_p: float = 0.3,
     ):
         super(TransformerForLanguageModel, self).__init__()
         self.d_model = d_model
@@ -117,14 +119,17 @@ class TransformerForLanguageModel(OpenspeechLanguageModelBase):
         self.embedding = TransformerEmbedding(num_classes, pad_id, d_model)
         self.positional_encoding = PositionalEncoding(d_model)
         self.input_dropout = nn.Dropout(p=dropout_p)
-        self.layers = nn.ModuleList([
-            TransformerForLanguageModelLayer(
-                d_model=d_model,
-                num_attention_heads=num_attention_heads,
-                d_ff=d_ff,
-                dropout_p=dropout_p,
-            ) for _ in range(num_layers)
-        ])
+        self.layers = nn.ModuleList(
+            [
+                TransformerForLanguageModelLayer(
+                    d_model=d_model,
+                    num_attention_heads=num_attention_heads,
+                    d_ff=d_ff,
+                    dropout_p=dropout_p,
+                )
+                for _ in range(num_layers)
+            ]
+        )
         self.fc = nn.Sequential(
             nn.LayerNorm(d_model),
             Linear(d_model, d_model, bias=False),
@@ -133,9 +138,7 @@ class TransformerForLanguageModel(OpenspeechLanguageModelBase):
         )
 
     def forward_step(self, inputs, input_lengths):
-        pad_mask = get_attn_pad_mask(
-            inputs, input_lengths, inputs.size(1)
-        )
+        pad_mask = get_attn_pad_mask(inputs, input_lengths, inputs.size(1))
         subsequent_mask = get_attn_subsequent_mask(inputs)
         mask = torch.gt((pad_mask + subsequent_mask), 0)
 

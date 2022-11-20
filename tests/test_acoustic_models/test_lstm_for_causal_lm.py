@@ -1,11 +1,12 @@
-import unittest
 import logging
+import unittest
+
 import torch
 
 from openspeech.criterion import Perplexity, PerplexityLossConfigs
 from openspeech.lm.lstm_lm import LSTMForLanguageModel
-from openspeech.utils import DUMMY_TARGETS, build_dummy_configs
 from openspeech.tokenizers.ksponspeech.character import KsponSpeechCharacterTokenizer
+from openspeech.utils import DUMMY_TARGETS, build_dummy_configs
 
 logger = logging.getLogger(__name__)
 
@@ -24,7 +25,7 @@ class TestLSTMForLanguageModel(unittest.TestCase):
             pad_id=0,
             sos_id=1,
             eos_id=2,
-            rnn_type='lstm',
+            rnn_type="lstm",
         )
 
         criterion = Perplexity(configs, vocab)
@@ -67,7 +68,7 @@ class TestLSTMForLanguageModel(unittest.TestCase):
             pad_id=0,
             sos_id=1,
             eos_id=2,
-            rnn_type='gru',
+            rnn_type="gru",
         )
 
         criterion = Perplexity(configs, vocab)
@@ -90,5 +91,5 @@ class TestLSTMForLanguageModel(unittest.TestCase):
             assert type(loss.item()) == float
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

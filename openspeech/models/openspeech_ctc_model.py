@@ -20,9 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import torch
 from collections import OrderedDict
 from typing import Dict
+
+import torch
 from omegaconf import DictConfig
 
 from openspeech.models import OpenspeechModel
@@ -44,14 +45,16 @@ class OpenspeechCTCModel(OpenspeechModel):
     Returns:
         ouputs (dict): Result of model predictions that contains `y_hats`, `logits`, `output_lengths`
     """
+
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(OpenspeechCTCModel, self).__init__(configs, tokenizer)
         self.encoder = None
         self.decoder = None
 
     def set_beam_decoder(self, beam_size: int = 3):
-        """ Setting beam search decoder """
+        """Setting beam search decoder"""
         from openspeech.search import BeamSearchCTC
+
         self.decoder = BeamSearchCTC(
             labels=self.tokenizer.labels,
             blank_id=self.tokenizer.blank_id,
@@ -59,12 +62,12 @@ class OpenspeechCTCModel(OpenspeechModel):
         )
 
     def collect_outputs(
-            self,
-            stage: str,
-            logits: torch.FloatTensor,
-            output_lengths: torch.IntTensor,
-            targets: torch.IntTensor,
-            target_lengths: torch.IntTensor,
+        self,
+        stage: str,
+        logits: torch.FloatTensor,
+        output_lengths: torch.IntTensor,
+        targets: torch.IntTensor,
+        target_lengths: torch.IntTensor,
     ) -> OrderedDict:
         loss = self.criterion(
             log_probs=logits.transpose(0, 1),
@@ -77,18 +80,22 @@ class OpenspeechCTCModel(OpenspeechModel):
         wer = self.wer_metric(targets[:, 1:], predictions)
         cer = self.cer_metric(targets[:, 1:], predictions)
 
-        self.info({
-            f"{stage}_wer": wer,
-            f"{stage}_cer": cer,
-            f"{stage}_loss": loss,
-            "learning_rate": self.get_lr(),
-        })
+        self.info(
+            {
+                f"{stage}_wer": wer,
+                f"{stage}_cer": cer,
+                f"{stage}_loss": loss,
+                "learning_rate": self.get_lr(),
+            }
+        )
 
-        return OrderedDict({
-            "loss": loss,
-            "wer": wer,
-            "cer": cer,
-        })
+        return OrderedDict(
+            {
+                "loss": loss,
+                "wer": wer,
+                "cer": cer,
+            }
+        )
 
     def forward(self, inputs: torch.FloatTensor, input_lengths: torch.IntTensor) -> Dict[str, torch.Tensor]:
         r"""
@@ -132,7 +139,7 @@ class OpenspeechCTCModel(OpenspeechModel):
         inputs, targets, input_lengths, target_lengths = batch
         logits, output_lengths = self.encoder(inputs, input_lengths)
         return self.collect_outputs(
-            stage='train',
+            stage="train",
             logits=logits,
             output_lengths=output_lengths,
             targets=targets,
@@ -153,7 +160,7 @@ class OpenspeechCTCModel(OpenspeechModel):
         inputs, targets, input_lengths, target_lengths = batch
         logits, output_lengths = self.encoder(inputs, input_lengths)
         return self.collect_outputs(
-            stage='val',
+            stage="val",
             logits=logits,
             output_lengths=output_lengths,
             targets=targets,
@@ -174,7 +181,7 @@ class OpenspeechCTCModel(OpenspeechModel):
         inputs, targets, input_lengths, target_lengths = batch
         logits, output_lengths = self.encoder(inputs, input_lengths)
         return self.collect_outputs(
-            stage='test',
+            stage="test",
             logits=logits,
             output_lengths=output_lengths,
             targets=targets,

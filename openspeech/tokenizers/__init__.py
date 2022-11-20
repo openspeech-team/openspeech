@@ -20,8 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import os
 import importlib
+import os
 
 TOKENIZER_REGISTRY = dict()
 TOKENIZER_DATACLASS_REGISTRY = dict()
@@ -61,7 +61,7 @@ def register_tokenizer(name: str, dataclass=None):
 
 tokenizer_dir = os.path.dirname(__file__)
 for file in os.listdir(tokenizer_dir):
-    if os.path.isdir(os.path.join(tokenizer_dir, file)) and file != '__pycache__':
+    if os.path.isdir(os.path.join(tokenizer_dir, file)) and file != "__pycache__":
         for subfile in os.listdir(os.path.join(tokenizer_dir, file)):
             path = os.path.join(tokenizer_dir, file, subfile)
             if subfile.endswith(".py"):

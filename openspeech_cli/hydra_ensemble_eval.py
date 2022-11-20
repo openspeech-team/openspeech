@@ -20,18 +20,19 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import os
-import hydra
-import warnings
 import logging
+import os
+import warnings
+
+import hydra
 from omegaconf import DictConfig, OmegaConf
 from pytorch_lightning.utilities import rank_zero_info
 
-from openspeech.metrics import WordErrorRate, CharacterErrorRate
+from openspeech.data.audio.data_loader import AudioDataLoader, load_dataset
 from openspeech.data.audio.dataset import SpeechToTextDataset
 from openspeech.data.sampler import RandomSampler
-from openspeech.data.audio.data_loader import load_dataset, AudioDataLoader
 from openspeech.dataclass.initialize import hydra_eval_init
+from openspeech.metrics import CharacterErrorRate, WordErrorRate
 from openspeech.models import MODEL_REGISTRY
 from openspeech.search.ensemble_search import EnsembleSearch, WeightedEnsembleSearch
 
@@ -94,8 +95,7 @@ def hydra_main(configs: DictConfig) -> None:
     logger.info(f"Word Error Rate: {wer}, Character Error Rate: {cer}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     warnings.filterwarnings("ignore")
     hydra_eval_init()
     hydra_main()
-

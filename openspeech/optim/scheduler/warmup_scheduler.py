@@ -20,9 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import torch
 from dataclasses import dataclass, field
 from typing import Optional
+
+import torch
 from omegaconf import DictConfig
 from torch.optim import Optimizer
 
@@ -33,21 +34,13 @@ from openspeech.optim.scheduler.lr_scheduler import LearningRateScheduler
 
 @dataclass
 class WarmupLRSchedulerConfigs(LearningRateSchedulerConfigs):
-    scheduler_name: str = field(
-        default="warmup", metadata={"help": "Name of learning rate scheduler."}
-    )
-    peak_lr: float = field(
-        default=1e-04, metadata={"help": "Maximum learning rate."}
-    )
-    init_lr: float = field(
-        default=1e-7, metadata={"help": "Initial learning rate."}
-    )
+    scheduler_name: str = field(default="warmup", metadata={"help": "Name of learning rate scheduler."})
+    peak_lr: float = field(default=1e-04, metadata={"help": "Maximum learning rate."})
+    init_lr: float = field(default=1e-7, metadata={"help": "Initial learning rate."})
     warmup_steps: int = field(
         default=4000, metadata={"help": "Warmup the learning rate linearly for the first N updates"}
     )
-    total_steps: int = field(
-        default=200000, metadata={"help": "Total training steps."}
-    )
+    total_steps: int = field(default=200000, metadata={"help": "Total training steps."})
 
 
 @register_scheduler("warmup", dataclass=WarmupLRSchedulerConfigs)
@@ -59,10 +52,11 @@ class WarmupLRScheduler(LearningRateScheduler):
         optimizer (Optimizer): wrapped optimizer.
         configs (DictConfig): configuration set.
     """
+
     def __init__(
-            self,
-            optimizer: Optimizer,
-            configs: DictConfig,
+        self,
+        optimizer: Optimizer,
+        configs: DictConfig,
     ) -> None:
         super(WarmupLRScheduler, self).__init__(optimizer, configs.lr_scheduler.init_lr)
         if configs.lr_scheduler.warmup_steps != 0:

@@ -20,12 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Tuple
+
 import torch
 import torch.nn as nn
-from typing import Tuple
 from omegaconf import DictConfig
 
-from openspeech.modules import QuartzNetBlock, JasperSubBlock
+from openspeech.modules import JasperSubBlock, QuartzNetBlock
 
 
 class QuartzNet(nn.Module):
@@ -54,6 +55,7 @@ class QuartzNet(nn.Module):
         Samuel Kriman et al.: QUARTZNET: DEEP AUTOMATIC SPEECH RECOGNITION WITH 1D TIME-CHANNEL SEPARABLE CONVOLUTIONS.
         https://arxiv.org/abs/1910.10261.pdf
     """
+
     def __init__(self, configs: DictConfig, input_dim: int, num_classes: int) -> None:
         super(QuartzNet, self).__init__()
         self.configs = configs
@@ -70,29 +72,35 @@ class QuartzNet(nn.Module):
             kernel_size=kernel_size[0],
             dilation=dilation[0],
             dropout_p=dropout_p[0],
-            activation='relu',
+            activation="relu",
             bias=False,
         )
-        self.layers = nn.ModuleList([
-            QuartzNetBlock(
-                num_sub_blocks=self.configs.model.num_sub_blocks,
-                in_channels=in_channels[i],
-                out_channels=out_channels[i],
-                kernel_size=kernel_size[i],
-                bias=False,
-            ) for i in range(1, self.configs.model.num_blocks + 1)
-        ])
-        self.postprocess_layers = nn.ModuleList([
-            JasperSubBlock(
-                in_channels=in_channels[i],
-                out_channels=num_classes if out_channels[i] is None else out_channels[i],
-                kernel_size=kernel_size[i],
-                dilation=dilation[i],
-                dropout_p=dropout_p[i],
-                activation='relu',
-                bias=True if i == 2 else False,
-            ) for i in range(self.configs.model.num_blocks + 1, self.configs.model.num_blocks + 4)
-        ])
+        self.layers = nn.ModuleList(
+            [
+                QuartzNetBlock(
+                    num_sub_blocks=self.configs.model.num_sub_blocks,
+                    in_channels=in_channels[i],
+                    out_channels=out_channels[i],
+                    kernel_size=kernel_size[i],
+                    bias=False,
+                )
+                for i in range(1, self.configs.model.num_blocks + 1)
+            ]
+        )
+        self.postprocess_layers = nn.ModuleList(
+            [
+                JasperSubBlock(
+                    in_channels=in_channels[i],
+                    out_channels=num_classes if out_channels[i] is None else out_channels[i],
+                    kernel_size=kernel_size[i],
+                    dilation=dilation[i],
+                    dropout_p=dropout_p[i],
+                    activation="relu",
+                    bias=True if i == 2 else False,
+                )
+                for i in range(self.configs.model.num_blocks + 1, self.configs.model.num_blocks + 4)
+            ]
+        )
 
     def forward(self, inputs: torch.Tensor, input_lengths: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
         r"""

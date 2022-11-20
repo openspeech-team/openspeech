@@ -20,9 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Tuple
+
 import torch
 import torch.nn as nn
-from typing import Tuple
 
 from openspeech.modules.conv2d_extractor import Conv2dExtractor
 from openspeech.modules.depthwise_conv2d import DepthwiseConv2d
@@ -46,17 +47,19 @@ class Conv2dSubsampling(Conv2dExtractor):
         - **outputs** (batch, time, dim): Tensor produced by the convolution
         - **output_lengths** (batch): list of sequence output lengths
     """
+
     def __init__(
-            self,
-            input_dim: int,
-            in_channels: int,
-            out_channels: int,
-            activation: str = 'relu',
+        self,
+        input_dim: int,
+        in_channels: int,
+        out_channels: int,
+        activation: str = "relu",
     ) -> None:
         super(Conv2dSubsampling, self).__init__(input_dim, activation)
         self.in_channels = in_channels
         self.out_channels = out_channels
         from openspeech.modules import MaskConv2d
+
         self.conv = MaskConv2d(
             nn.Sequential(
                 nn.Conv2d(in_channels, out_channels, kernel_size=3, stride=2),
@@ -90,17 +93,19 @@ class DepthwiseConv2dSubsampling(Conv2dExtractor):
         - **outputs** (batch, time, dim): Tensor produced by the convolution
         - **output_lengths** (batch): list of sequence output lengths
     """
+
     def __init__(
-            self,
-            input_dim: int,
-            in_channels: int,
-            out_channels: int,
-            activation: str = 'relu',
+        self,
+        input_dim: int,
+        in_channels: int,
+        out_channels: int,
+        activation: str = "relu",
     ) -> None:
         super(DepthwiseConv2dSubsampling, self).__init__(input_dim, activation)
         self.in_channels = in_channels
         self.out_channels = out_channels
         from openspeech.modules import MaskConv2d
+
         self.conv = MaskConv2d(
             nn.Sequential(
                 nn.Conv2d(in_channels, out_channels, kernel_size=3, stride=2),

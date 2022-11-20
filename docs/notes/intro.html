@@ -4,68 +4,68 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Introduction &mdash; Openspeech v0.3.0 documentation</title>
-  
 
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Introduction &mdash; Openspeech v0.3.0 documentation</title>
+
+
+
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
 
-  
-  
 
-  
-  
 
-  
 
-  
+
+
+
+
+
+
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  
-    
+
+
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
-    
+
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-    
+
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Openspeech’s Hydra configuration" href="hydra_configs.html" />
-    <link rel="prev" title="Welcome to Openspeech’s documentation!" href="../index.html" /> 
+    <link rel="prev" title="Welcome to Openspeech’s documentation!" href="../index.html" />
 </head>
 
 <body class="wy-body-for-nav">
 
-   
+
   <div class="wy-grid-for-nav">
-    
+
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
-          
+
+
             <a href="../index.html" class="icon icon-home"> Openspeech
-          
 
-          
+
+
           </a>
 
-          
-            
-            
-          
 
-          
+
+
+
+
+
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -74,17 +74,17 @@
   </form>
 </div>
 
-          
+
         </div>
 
-        
+
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+
+
+
+
+
+
               <p class="caption"><span class="caption-text">GETTING STARTED</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
@@ -162,29 +162,29 @@
 <li class="toctree-l1"><a class="reference internal" href="../modules/Metric.html">Metric</a></li>
 </ul>
 
-            
-          
+
+
         </div>
-        
+
       </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
-      
+
       <nav class="wy-nav-top" aria-label="top navigation">
-        
+
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Openspeech</a>
-        
+
       </nav>
 
 
       <div class="wy-nav-content">
-        
+
         <div class="rst-content">
-        
-          
+
+
 
 
 
@@ -205,28 +205,28 @@
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
-    
+
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
+
       <li>Introduction</li>
-    
-    
+
+
       <li class="wy-breadcrumbs-aside">
-        
-          
+
+
             <a href="../_sources/notes/intro.md.txt" rel="nofollow"> View page source</a>
-          
-        
+
+
       </li>
-    
+
   </ul>
 
-  
+
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
 <p>Openspeech provides reference implementations of various ASR modeling papers and three languages recipe to perform tasks on automatic speech recognition. Our aim is to make ASR technology easier to use for everyone.</p>
@@ -339,7 +339,7 @@ LibriSpeech/test-other/8188/269288/8188-269288-0057.flac        ▁OH ▁THIS �
     dataset=librispeech \
     dataset.dataset_download=True \
     dataset.dataset_path=$DATASET_PATH \
-    dataset.manifest_file_path=$MANIFEST_FILE_PATH \  
+    dataset.manifest_file_path=$MANIFEST_FILE_PATH \
     tokenizer=libri_subword \
     model=conformer_lstm \
     audio=fbank \
@@ -355,7 +355,7 @@ LibriSpeech/test-other/8188/269288/8188-269288-0057.flac        ▁OH ▁THIS �
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python ./openspeech_cli/hydra_train.py \
     dataset=ksponspeech \
     dataset.dataset_path=$DATASET_PATH \
-    dataset.manifest_file_path=$MANIFEST_FILE_PATH \  
+    dataset.manifest_file_path=$MANIFEST_FILE_PATH \
     dataset.test_dataset_path=$TEST_DATASET_PATH \
     dataset.test_manifest_dir=$TEST_MANIFEST_DIR \
     tokenizer=kspon_character \
@@ -374,7 +374,7 @@ LibriSpeech/test-other/8188/269288/8188-269288-0057.flac        ▁OH ▁THIS �
     dataset=aishell \
     dataset.dataset_path=$DATASET_PATH \
     dataset.dataset_download=True \
-    dataset.manifest_file_path=$MANIFEST_FILE_PATH \  
+    dataset.manifest_file_path=$MANIFEST_FILE_PATH \
     tokenizer=aishell_character \
     model=quartznet15x5 \
     audio=mfcc \
@@ -394,7 +394,7 @@ LibriSpeech/test-other/8188/269288/8188-269288-0057.flac        ▁OH ▁THIS �
     eval.model_name=listen_attend_spell \
     eval.dataset_path=$DATASET_PATH \
     eval.checkpoint_path=$CHECKPOINT_PATH \
-    eval.manifest_file_path=$MANIFEST_FILE_PATH  
+    eval.manifest_file_path=$MANIFEST_FILE_PATH
 </pre></div>
 </div>
 <ul class="simple">
@@ -407,7 +407,7 @@ LibriSpeech/test-other/8188/269288/8188-269288-0057.flac        ▁OH ▁THIS �
     eval.checkpoint_paths=($CHECKPOINT_PATH1, $CHECKPOINT_PATH2) \
     eval.ensemble_weights=(0.3, 0.7) \
     eval.ensemble_method=weighted \
-    eval.manifest_file_path=$MANIFEST_FILE_PATH  
+    eval.manifest_file_path=$MANIFEST_FILE_PATH
 </pre></div>
 </div>
 </div>
@@ -525,7 +525,7 @@ $ pip install -v --no-cache-dir --global-option=&quot;--cpp_ext&quot; --global-o
 
 
            </div>
-           
+
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
@@ -541,14 +541,14 @@ $ pip install -v --no-cache-dir --global-option=&quot;--cpp_ext&quot; --global-o
 
     </p>
   </div>
-    
-    
-    
+
+
+
     Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
 
 </footer>
         </div>
@@ -557,7 +557,7 @@ $ pip install -v --no-cache-dir --global-option=&quot;--cpp_ext&quot; --global-o
     </section>
 
   </div>
-  
+
 
   <script type="text/javascript">
       jQuery(function () {
@@ -565,10 +565,10 @@ $ pip install -v --no-cache-dir --global-option=&quot;--cpp_ext&quot; --global-o
       });
   </script>
 
-  
-  
-    
-   
+
+
+
+
 
 </body>
 </html>

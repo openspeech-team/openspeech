@@ -20,15 +20,16 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import torch.nn as nn
 from typing import Tuple
+
+import torch.nn as nn
 from omegaconf import DictConfig
 from torch import Tensor
 
+from ...tokenizers.tokenizer import Tokenizer
 from .. import register_criterion
 from ..joint_ctc_cross_entropy.configuration import JointCTCCrossEntropyLossConfigs
 from ..label_smoothed_cross_entropy.label_smoothed_cross_entropy import LabelSmoothedCrossEntropyLoss
-from ...tokenizers.tokenizer import Tokenizer
 
 
 @register_criterion("joint_ctc_cross_entropy", dataclass=JointCTCCrossEntropyLossConfigs)
@@ -63,12 +64,12 @@ class JointCTCCrossEntropyLoss(nn.Module):
         Suyoun Kim et al.: Joint CTC-Attention based End-to-End Speech Recognition using Multi-task Learning:
         https://arxiv.org/abs/1609.06773
     """
-    
+
     def __init__(
-            self,
-            configs: DictConfig,
-            num_classes: int,
-            tokenizer: Tokenizer,
+        self,
+        configs: DictConfig,
+        num_classes: int,
+        tokenizer: Tokenizer,
     ) -> None:
         super(JointCTCCrossEntropyLoss, self).__init__()
         self.num_classes = num_classes
@@ -92,12 +93,12 @@ class JointCTCCrossEntropyLoss(nn.Module):
             self.cross_entropy_loss = nn.CrossEntropyLoss(reduction=self.reduction, ignore_index=self.ignore_index)
 
     def forward(
-            self,
-            encoder_logits: Tensor,
-            logits: Tensor,
-            output_lengths: Tensor,
-            targets: Tensor,
-            target_lengths: Tensor,
+        self,
+        encoder_logits: Tensor,
+        logits: Tensor,
+        output_lengths: Tensor,
+        targets: Tensor,
+        target_lengths: Tensor,
     ) -> Tuple[Tensor, Tensor, Tensor]:
         max_target_length = targets.size(1)
         max_logits_length = logits.size(1)

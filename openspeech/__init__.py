@@ -21,13 +21,13 @@
 # SOFTWARE.
 
 import openspeech.criterion
-import openspeech.datasets
 import openspeech.data
 import openspeech.dataclass
-import openspeech.encoders
+import openspeech.datasets
 import openspeech.decoders
-import openspeech.models
-import openspeech.search
-import openspeech.optim
-import openspeech.tokenizers
+import openspeech.encoders
 import openspeech.metrics
+import openspeech.models
+import openspeech.optim
+import openspeech.search
+import openspeech.tokenizers

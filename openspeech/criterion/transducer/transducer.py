@@ -24,10 +24,10 @@ import torch
 import torch.nn as nn
 from omegaconf import DictConfig
 
+from ...tokenizers.tokenizer import Tokenizer
+from ...utils import WARPRNNT_IMPORT_ERROR
 from .. import register_criterion
 from ..transducer.configuration import TransducerLossConfigs
-from ...utils import WARPRNNT_IMPORT_ERROR
-from ...tokenizers.tokenizer import Tokenizer
 
 
 @register_criterion("transducer", dataclass=TransducerLossConfigs)
@@ -60,9 +60,9 @@ class TransducerLoss(nn.Module):
     """
 
     def __init__(
-            self,
-            configs: DictConfig,
-            tokenizer: Tokenizer,
+        self,
+        configs: DictConfig,
+        tokenizer: Tokenizer,
     ) -> None:
         super().__init__()
         try:
@@ -75,11 +75,11 @@ class TransducerLoss(nn.Module):
         self.gather = configs.criterion.gather
 
     def forward(
-            self,
-            logits: torch.FloatTensor,
-            targets: torch.IntTensor,
-            input_lengths: torch.IntTensor,
-            target_lengths: torch.IntTensor,
+        self,
+        logits: torch.FloatTensor,
+        targets: torch.IntTensor,
+        input_lengths: torch.IntTensor,
+        target_lengths: torch.IntTensor,
     ) -> torch.FloatTensor:
         return self.rnnt_loss(
             logits,

@@ -23,12 +23,12 @@
 from omegaconf import DictConfig
 
 from openspeech.lm.transformer_lm import TransformerForLanguageModel
-from openspeech.models import register_model, OpenspeechModel
+from openspeech.models import OpenspeechModel, register_model
 from openspeech.models.transformer_lm.configurations import TransformerLanguageModelConfigs
 from openspeech.tokenizers.tokenizer import Tokenizer
 
 
-@register_model('transformer_lm', dataclass=TransformerLanguageModelConfigs)
+@register_model("transformer_lm", dataclass=TransformerLanguageModelConfigs)
 class TransformerLanguageModel(OpenspeechModel):
     r"""
     Transformer language model.
@@ -45,6 +45,7 @@ class TransformerLanguageModel(OpenspeechModel):
     Returns:
         outputs (dict): Result of model predictions.
     """
+
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(TransformerLanguageModel, self).__init__(configs, tokenizer)
 

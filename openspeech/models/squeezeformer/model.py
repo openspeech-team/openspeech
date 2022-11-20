@@ -20,26 +20,31 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from collections import OrderedDict
+from typing import Dict
+
 from omegaconf import DictConfig
 from torch import Tensor
-from typing import Dict
-from collections import OrderedDict
 
 from openspeech.decoders import LSTMAttentionDecoder, RNNTransducerDecoder
-from openspeech.models import register_model, OpenspeechEncoderDecoderModel, OpenspeechTransducerModel
-from openspeech.models import OpenspeechCTCModel
 from openspeech.encoders import SqueezeformerEncoder
-from openspeech.modules.wrapper import Linear
-from openspeech.tokenizers.tokenizer import Tokenizer
+from openspeech.models import (
+    OpenspeechCTCModel,
+    OpenspeechEncoderDecoderModel,
+    OpenspeechTransducerModel,
+    register_model,
+)
 from openspeech.models.squeezeformer.configurations import (
+    JointCTCSqueezeformerLSTMConfigs,
     SqueezeformerConfigs,
     SqueezeformerLSTMConfigs,
     SqueezeformerTransducerConfigs,
-    JointCTCSqueezeformerLSTMConfigs,
 )
+from openspeech.modules.wrapper import Linear
+from openspeech.tokenizers.tokenizer import Tokenizer
 
 
-@register_model('squeezeformer', dataclass=SqueezeformerConfigs)
+@register_model("squeezeformer", dataclass=SqueezeformerConfigs)
 class SqueezeformerModel(OpenspeechCTCModel):
     r"""
     Squeezeformer Encoder Only Model.
@@ -58,6 +63,7 @@ class SqueezeformerModel(OpenspeechCTCModel):
     Returns:
         outputs (dict): Result of model predictions that contains `y_hats`, `logits`, `output_lengths`
     """
+
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(SqueezeformerModel, self).__init__(configs, tokenizer)
         self.fc = Linear(self.configs.model.encoder_dim, self.num_classes, bias=False)
@@ -109,7 +115,7 @@ class SqueezeformerModel(OpenspeechCTCModel):
         encoder_outputs, encoder_logits, output_lengths = self.encoder(inputs, input_lengths)
         logits = self.fc(encoder_outputs).log_softmax(dim=-1)
         return self.collect_outputs(
-            stage='train',
+            stage="train",
             logits=logits,
             output_lengths=output_lengths,
             targets=targets,
@@ -131,7 +137,7 @@ class SqueezeformerModel(OpenspeechCTCModel):
         encoder_outputs, encoder_logits, output_lengths = self.encoder(inputs, input_lengths)
         logits = self.fc(encoder_outputs).log_softmax(dim=-1)
         return self.collect_outputs(
-            stage='valid',
+            stage="valid",
             logits=logits,
             output_lengths=output_lengths,
             targets=targets,
@@ -153,7 +159,7 @@ class SqueezeformerModel(OpenspeechCTCModel):
         encoder_outputs, encoder_logits, output_lengths = self.encoder(inputs, input_lengths)
         logits = self.fc(encoder_outputs).log_softmax(dim=-1)
         return self.collect_outputs(
-            stage='test',
+            stage="test",
             logits=logits,
             output_lengths=output_lengths,
             targets=targets,
@@ -161,7 +167,7 @@ class SqueezeformerModel(OpenspeechCTCModel):
         )
 
 
-@register_model('squeezeformer_lstm', dataclass=SqueezeformerLSTMConfigs)
+@register_model("squeezeformer_lstm", dataclass=SqueezeformerLSTMConfigs)
 class SqueezeformerLSTMModel(OpenspeechEncoderDecoderModel):
     r"""
     Squeezeformer encoder + LSTM decoder.
@@ -215,15 +221,16 @@ class SqueezeformerLSTMModel(OpenspeechEncoderDecoderModel):
         )
 
     def set_beam_decoder(self, beam_size: int = 3):
-        """ Setting beam search decoder """
+        """Setting beam search decoder"""
         from openspeech.search import BeamSearchLSTM
+
         self.decoder = BeamSearchLSTM(
             decoder=self.decoder,
             beam_size=beam_size,
         )
 
 
-@register_model('squeezeformer_transducer', dataclass=SqueezeformerTransducerConfigs)
+@register_model("squeezeformer_transducer", dataclass=SqueezeformerTransducerConfigs)
 class SqueezeformerTransducerModel(OpenspeechTransducerModel):
     r"""
     Squeezeformer encoder + RNNT decoder.
@@ -274,7 +281,7 @@ class SqueezeformerTransducerModel(OpenspeechTransducerModel):
         )
 
 
-@register_model('joint_ctc_squeezeformer_lstm', dataclass=JointCTCSqueezeformerLSTMConfigs)
+@register_model("joint_ctc_squeezeformer_lstm", dataclass=JointCTCSqueezeformerLSTMConfigs)
 class JointCTCSqueezeformerLSTMModel(OpenspeechEncoderDecoderModel):
     r"""
     Squeezeformer encoder + LSTM decoder.
@@ -327,8 +334,9 @@ class JointCTCSqueezeformerLSTMModel(OpenspeechEncoderDecoderModel):
         )
 
     def set_beam_decoder(self, beam_size: int = 3):
-        """ Setting beam search decoder """
+        """Setting beam search decoder"""
         from openspeech.search import BeamSearchLSTM
+
         self.decoder = BeamSearchLSTM(
             decoder=self.decoder,
             beam_size=beam_size,

@@ -43,9 +43,5 @@ class LabelSmoothedCrossEntropyLossConfigs(OpenspeechDataclass):
     criterion_name: str = field(
         default="label_smoothed_cross_entropy", metadata={"help": "Criterion name for training."}
     )
-    reduction: str = field(
-        default="mean", metadata={"help": "Reduction method of criterion"}
-    )
-    smoothing: float = field(
-        default=0.1, metadata={"help": "Ratio of smoothing loss (confidence = 1.0 - smoothing)"}
-    )
+    reduction: str = field(default="mean", metadata={"help": "Reduction method of criterion"})
+    smoothing: float = field(default=0.1, metadata={"help": "Ratio of smoothing loss (confidence = 1.0 - smoothing)"})

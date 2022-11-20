@@ -20,18 +20,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Tuple
+
+import numpy as np
 import torch
 import torch.nn as nn
-import numpy as np
-from typing import Tuple
 
 from openspeech.decoders import OpenspeechDecoder
 from openspeech.encoders.transformer_transducer_encoder import TransformerTransducerEncoderLayer
-from openspeech.modules import (
-    PositionalEncoding,
-    get_attn_pad_mask,
-    get_attn_subsequent_mask,
-)
+from openspeech.modules import PositionalEncoding, get_attn_pad_mask, get_attn_subsequent_mask
 
 
 class TransformerTransducerDecoder(OpenspeechDecoder):
@@ -64,18 +61,19 @@ class TransformerTransducerDecoder(OpenspeechDecoder):
         Qian Zhang et al.: Transformer Transducer: A Streamable Speech Recognition Model with Transformer Encoders and RNN-T Loss
         https://arxiv.org/abs/2002.02562
     """
+
     def __init__(
-            self,
-            num_classes: int,
-            model_dim: int = 512,
-            d_ff: int = 2048,
-            num_layers: int = 2,
-            num_heads: int = 8,
-            dropout: float = 0.1,
-            max_positional_length: int = 5000,
-            pad_id: int = 0,
-            sos_id: int = 1,
-            eos_id: int = 2,
+        self,
+        num_classes: int,
+        model_dim: int = 512,
+        d_ff: int = 2048,
+        num_layers: int = 2,
+        num_heads: int = 8,
+        dropout: float = 0.1,
+        max_positional_length: int = 5000,
+        pad_id: int = 0,
+        sos_id: int = 1,
+        eos_id: int = 2,
     ) -> None:
         super(TransformerTransducerDecoder, self).__init__()
         self.embedding = nn.Embedding(num_classes, model_dim)
@@ -85,19 +83,14 @@ class TransformerTransducerDecoder(OpenspeechDecoder):
         self.pad_id = pad_id
         self.sos_id = sos_id
         self.eos_id = eos_id
-        self.decoder_layers = nn.ModuleList([
-            TransformerTransducerEncoderLayer(
-                model_dim,
-                d_ff,
-                num_heads,
-                dropout
-            ) for _ in range(num_layers)
-        ])
+        self.decoder_layers = nn.ModuleList(
+            [TransformerTransducerEncoderLayer(model_dim, d_ff, num_heads, dropout) for _ in range(num_layers)]
+        )
 
     def forward(
-            self,
-            inputs: torch.Tensor,
-            input_lengths: torch.Tensor,
+        self,
+        inputs: torch.Tensor,
+        input_lengths: torch.Tensor,
     ) -> Tuple[torch.Tensor, torch.Tensor]:
         r"""
         Forward propagate a `inputs` for label encoder.
@@ -135,10 +128,10 @@ class TransformerTransducerDecoder(OpenspeechDecoder):
         return outputs, input_lengths
 
     def forward_step(
-            self,
-            decoder_inputs: torch.Tensor,
-            decoder_input_lengths: torch.Tensor,
-            positional_encoding_length: int = 1,
+        self,
+        decoder_inputs: torch.Tensor,
+        decoder_input_lengths: torch.Tensor,
+        positional_encoding_length: int = 1,
     ) -> torch.Tensor:
         dec_self_attn_pad_mask = get_attn_pad_mask(decoder_inputs, decoder_input_lengths, decoder_inputs.size(1))
         dec_self_attn_subsequent_mask = get_attn_subsequent_mask(decoder_inputs)

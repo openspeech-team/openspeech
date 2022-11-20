@@ -1,20 +1,15 @@
-import unittest
-import torch
 import logging
+import unittest
 
+import torch
+
+from openspeech.criterion.label_smoothed_cross_entropy.label_smoothed_cross_entropy import (
+    LabelSmoothedCrossEntropyLoss,
+    LabelSmoothedCrossEntropyLossConfigs,
+)
 from openspeech.models import SqueezeformerLSTMConfigs, SqueezeformerLSTMModel
 from openspeech.tokenizers.ksponspeech.character import KsponSpeechCharacterTokenizer
-from openspeech.utils import (
-    DUMMY_INPUTS,
-    DUMMY_INPUT_LENGTHS,
-    DUMMY_TARGETS,
-    DUMMY_TARGET_LENGTHS,
-    build_dummy_configs,
-)
-from openspeech.criterion.label_smoothed_cross_entropy.label_smoothed_cross_entropy import (
-    LabelSmoothedCrossEntropyLossConfigs,
-    LabelSmoothedCrossEntropyLoss,
-)
+from openspeech.utils import DUMMY_INPUT_LENGTHS, DUMMY_INPUTS, DUMMY_TARGET_LENGTHS, DUMMY_TARGETS, build_dummy_configs
 
 logger = logging.getLogger(__name__)
 
@@ -100,5 +95,5 @@ class TestSqueezeformerLSTM(unittest.TestCase):
             assert type(outputs["loss"].item()) == float
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

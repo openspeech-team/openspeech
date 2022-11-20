@@ -44,18 +44,18 @@ class BNReluRNN(nn.Module):
         - **outputs**: Tensor produced by the BNReluRNN module
     """
     supported_rnns = {
-        'lstm': nn.LSTM,
-        'gru': nn.GRU,
-        'rnn': nn.RNN,
+        "lstm": nn.LSTM,
+        "gru": nn.GRU,
+        "rnn": nn.RNN,
     }
 
     def __init__(
-            self,
-            input_size: int,
-            hidden_state_dim: int = 512,
-            rnn_type: str = 'gru',
-            bidirectional: bool = True,
-            dropout_p: float = 0.1,
+        self,
+        input_size: int,
+        hidden_state_dim: int = 512,
+        rnn_type: str = "gru",
+        bidirectional: bool = True,
+        dropout_p: float = 0.1,
     ):
         super(BNReluRNN, self).__init__()
         self.hidden_state_dim = hidden_state_dim

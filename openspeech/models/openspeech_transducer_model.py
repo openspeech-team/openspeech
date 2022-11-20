@@ -20,19 +20,20 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import warnings
+from collections import OrderedDict
+from typing import Dict, Tuple
+
 import torch
 import torch.nn as nn
-import warnings
-from torch import Tensor
-from collections import OrderedDict
 from omegaconf import DictConfig
-from typing import Tuple, Dict
+from torch import Tensor
 
 from openspeech.models import OpenspeechModel
-from openspeech.search import BeamSearchRNNTransducer
 from openspeech.modules import Linear
-from openspeech.utils import get_class_name
+from openspeech.search import BeamSearchRNNTransducer
 from openspeech.tokenizers.tokenizer import Tokenizer
+from openspeech.utils import get_class_name
 
 
 class OpenspeechTransducerModel(OpenspeechModel):
@@ -71,7 +72,7 @@ class OpenspeechTransducerModel(OpenspeechModel):
         )
 
     def set_beam_decoder(self, beam_size: int = 3, expand_beam: float = 2.3, state_beam: float = 4.6):
-        """ Setting beam search decode """
+        """Setting beam search decode"""
         self.decode = BeamSearchRNNTransducer(
             joint=self.joint,
             decoder=self.decoder,
@@ -82,12 +83,12 @@ class OpenspeechTransducerModel(OpenspeechModel):
         )
 
     def collect_outputs(
-            self,
-            stage: str,
-            logits: torch.FloatTensor,
-            input_lengths: torch.IntTensor,
-            targets: torch.IntTensor,
-            target_lengths: torch.IntTensor,
+        self,
+        stage: str,
+        logits: torch.FloatTensor,
+        input_lengths: torch.IntTensor,
+        targets: torch.IntTensor,
+        target_lengths: torch.IntTensor,
     ) -> OrderedDict:
         predictions = logits.max(-1)[1]
 
@@ -98,17 +99,21 @@ class OpenspeechTransducerModel(OpenspeechModel):
             target_lengths=target_lengths.int(),
         )
 
-        self.info({
-            f"{stage}_loss": loss,
-            "learning_rate": self.get_lr(),
-        })
+        self.info(
+            {
+                f"{stage}_loss": loss,
+                "learning_rate": self.get_lr(),
+            }
+        )
 
-        return OrderedDict({
-            "loss": loss,
-            "predictions": predictions,
-            "targets": targets,
-            "logits": logits,
-        })
+        return OrderedDict(
+            {
+                "loss": loss,
+                "predictions": predictions,
+                "targets": targets,
+                "logits": logits,
+            }
+        )
 
     def _expand_for_joint(self, encoder_outputs: Tensor, decoder_outputs: Tensor) -> Tuple[Tensor, Tensor]:
         input_length = encoder_outputs.size(1)
@@ -172,9 +177,7 @@ class OpenspeechTransducerModel(OpenspeechModel):
                 if torch.cuda.is_available():
                     decoder_input = decoder_input.cuda()
 
-                decoder_output, hidden_state = self.decoder(
-                    decoder_input, hidden_states=hidden_state
-                )
+                decoder_output, hidden_state = self.decoder(decoder_input, hidden_states=hidden_state)
 
             outputs.append(torch.LongTensor(pred_tokens))
 
@@ -227,7 +230,7 @@ class OpenspeechTransducerModel(OpenspeechModel):
         logits = self.joint(encoder_outputs, decoder_outputs)
 
         return self.collect_outputs(
-            'train',
+            "train",
             logits=logits,
             input_lengths=output_lengths,
             targets=targets,
@@ -256,7 +259,7 @@ class OpenspeechTransducerModel(OpenspeechModel):
         logits = self.joint(encoder_outputs, decoder_outputs)
 
         return self.collect_outputs(
-            'val',
+            "val",
             logits=logits,
             input_lengths=output_lengths,
             targets=targets,
@@ -285,7 +288,7 @@ class OpenspeechTransducerModel(OpenspeechModel):
         logits = self.joint(encoder_outputs, decoder_outputs)
 
         return self.collect_outputs(
-            'test',
+            "test",
             logits=logits,
             input_lengths=output_lengths,
             targets=targets,

@@ -20,17 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Tuple
+
 import torch
 import torch.nn as nn
-from typing import Tuple
 
 from openspeech.encoders import OpenspeechEncoder
 from openspeech.encoders.transformer_encoder import TransformerEncoderLayer
-from openspeech.modules import (
-    Linear,
-    PositionalEncoding,
-    get_attn_pad_mask, Transpose,
-)
+from openspeech.modules import Linear, PositionalEncoding, Transpose, get_attn_pad_mask
 
 
 class ConvolutionalTransformerEncoder(OpenspeechEncoder):
@@ -64,17 +61,17 @@ class ConvolutionalTransformerEncoder(OpenspeechEncoder):
     """
 
     def __init__(
-            self,
-            num_classes: int,
-            input_dim: int,
-            extractor: str = 'vgg',
-            d_model: int = 512,
-            d_ff: int = 2048,
-            num_layers: int = 6,
-            num_heads: int = 8,
-            dropout_p: float = 0.3,
-            conv_activation: str = "relu",
-            joint_ctc_attention: bool = False,
+        self,
+        num_classes: int,
+        input_dim: int,
+        extractor: str = "vgg",
+        d_model: int = 512,
+        d_ff: int = 2048,
+        num_layers: int = 6,
+        num_heads: int = 8,
+        dropout_p: float = 0.3,
+        conv_activation: str = "relu",
+        joint_ctc_attention: bool = False,
     ) -> None:
         super(ConvolutionalTransformerEncoder, self).__init__()
         extractor = self.supported_extractors[extractor.lower()]
@@ -91,14 +88,17 @@ class ConvolutionalTransformerEncoder(OpenspeechEncoder):
         self.input_norm = nn.LayerNorm(d_model)
         self.input_dropout = nn.Dropout(p=dropout_p)
         self.positional_encoding = PositionalEncoding(d_model)
-        self.layers = nn.ModuleList([
-            TransformerEncoderLayer(
-                d_model=d_model,
-                num_heads=num_heads,
-                d_ff=d_ff,
-                dropout_p=dropout_p,
-            ) for _ in range(num_layers)
-        ])
+        self.layers = nn.ModuleList(
+            [
+                TransformerEncoderLayer(
+                    d_model=d_model,
+                    num_heads=num_heads,
+                    d_ff=d_ff,
+                    dropout_p=dropout_p,
+                )
+                for _ in range(num_layers)
+            ]
+        )
 
         if self.joint_ctc_attention:
             self.fc = nn.Sequential(
@@ -108,9 +108,9 @@ class ConvolutionalTransformerEncoder(OpenspeechEncoder):
             )
 
     def forward(
-            self,
-            inputs: torch.Tensor,
-            input_lengths: torch.Tensor,
+        self,
+        inputs: torch.Tensor,
+        input_lengths: torch.Tensor,
     ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
         r"""
         Forward propagate a `inputs` for  encoders training.

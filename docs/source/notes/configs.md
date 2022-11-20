@@ -1,9 +1,9 @@
 # Openspeech's configurations
-  
+
 This page describes all configurations in `Openspeech`.
-  
+
 ## `audio`
-### `mfcc`  
+### `mfcc`
 - `name` : Name of dataset.
 - `sample_rate` : Sampling rate of audio
 - `frame_length` : Frame length for spectrogram
@@ -14,7 +14,7 @@ This page describes all configurations in `Openspeech`.
 - `apply_noise_augment` : Flag indication whether to apply noise augment or not
 - `apply_time_stretch_augment` : Flag indication whether to apply time stretch augment or not
 - `apply_joining_augment` : Flag indication whether to apply audio joining augment or not
-### `melspectrogram`  
+### `melspectrogram`
 - `name` : Name of dataset.
 - `sample_rate` : Sampling rate of audio
 - `frame_length` : Frame length for spectrogram
@@ -25,7 +25,7 @@ This page describes all configurations in `Openspeech`.
 - `apply_noise_augment` : Flag indication whether to apply noise augment or not
 - `apply_time_stretch_augment` : Flag indication whether to apply time stretch augment or not
 - `apply_joining_augment` : Flag indication whether to apply audio joining augment or not
-### `fbank`  
+### `fbank`
 - `name` : Name of dataset.
 - `sample_rate` : Sampling rate of audio
 - `frame_length` : Frame length for spectrogram
@@ -36,19 +36,19 @@ This page describes all configurations in `Openspeech`.
 - `apply_noise_augment` : Flag indication whether to apply noise augment or not
 - `apply_time_stretch_augment` : Flag indication whether to apply time stretch augment or not
 - `apply_joining_augment` : Flag indication whether to apply audio joining augment or not
-### `spectrogram`  
+### `spectrogram`
 - `name` : Name of dataset.
 - `sample_rate` : Sampling rate of audio
 - `frame_length` : Frame length for spectrogram
 - `frame_shift` : Length of hop between STFT
 - `del_silence` : Flag indication whether to apply delete silence or not
-- `num_mels` : Spectrogram is independent of mel, but uses the 'num_mels' variable to unify feature size variables 
+- `num_mels` : Spectrogram is independent of mel, but uses the 'num_mels' variable to unify feature size variables
 - `apply_spec_augment` : Flag indication whether to apply spec augment or not
 - `apply_noise_augment` : Flag indication whether to apply noise augment or not
 - `apply_time_stretch_augment` : Flag indication whether to apply time stretch augment or not
 - `apply_joining_augment` : Flag indication whether to apply audio joining augment or not
 ## `augment`
-### `default`  
+### `default`
 - `apply_spec_augment` : Flag indication whether to apply spec augment or not
 - `apply_noise_augment` : Flag indication whether to apply noise augment or not Noise augment requires `noise_dataset_path`. `noise_dataset_dir` should be contain audio files.
 - `apply_joining_augment` : Flag indication whether to apply joining augment or not If true, create a new audio file by connecting two audio randomly
@@ -61,42 +61,42 @@ This page describes all configurations in `Openspeech`.
 - `time_stretch_min_rate` : Minimum rate of audio time stretch
 - `time_stretch_max_rate` : Maximum rate of audio time stretch
 ## `dataset`
-### `kspon`  
+### `kspon`
 - `dataset` : Select dataset for training (librispeech, ksponspeech, aishell, lm)
 - `dataset_path` : Path of dataset
 - `test_dataset_path` : Path of evaluation dataset
 - `manifest_file_path` : Path of manifest file
 - `test_manifest_dir` : Path of directory contains test manifest files
 - `preprocess_mode` : KsponSpeech preprocess mode {phonetic, spelling}
-### `libri`  
+### `libri`
 - `dataset` : Select dataset for training (librispeech, ksponspeech, aishell, lm)
 - `dataset_path` : Path of dataset
 - `dataset_download` : Flag indication whether to download dataset or not.
 - `manifest_file_path` : Path of manifest file
-### `aishell`  
+### `aishell`
 - `dataset` : Select dataset for training (librispeech, ksponspeech, aishell, lm)
 - `dataset_path` : Path of dataset
 - `dataset_download` : Flag indication whether to download dataset or not.
 - `manifest_file_path` : Path of manifest file
-### `ksponspeech`  
+### `ksponspeech`
 - `dataset` : Select dataset for training (librispeech, ksponspeech, aishell, lm)
 - `dataset_path` : Path of dataset
 - `test_dataset_path` : Path of evaluation dataset
 - `manifest_file_path` : Path of manifest file
 - `test_manifest_dir` : Path of directory contains test manifest files
 - `preprocess_mode` : KsponSpeech preprocess mode {phonetic, spelling}
-### `librispeech`  
+### `librispeech`
 - `dataset` : Select dataset for training (librispeech, ksponspeech, aishell, lm)
 - `dataset_path` : Path of dataset
 - `dataset_download` : Flag indication whether to download dataset or not.
 - `manifest_file_path` : Path of manifest file
-### `lm`  
+### `lm`
 - `dataset` : Select dataset for training (librispeech, ksponspeech, aishell, lm)
 - `dataset_path` : Path of dataset
 - `valid_ratio` : Ratio of validation data
 - `test_ratio` : Ratio of test data
 ## `model`
-### `listen_attend_spell`  
+### `listen_attend_spell`
 - `model_name` : Model name
 - `num_encoder_layers` : The number of encoder layers.
 - `num_decoder_layers` : The number of decoder layers.
@@ -109,9 +109,9 @@ This page describes all configurations in `Openspeech`.
 - `num_attention_heads` : The number of attention heads.
 - `decoder_dropout_p` : The dropout probability of decoder.
 - `decoder_attn_mechanism` : The attention mechanism for decoder.
-- `teacher_forcing_ratio` : The ratio of teacher forcing. 
+- `teacher_forcing_ratio` : The ratio of teacher forcing.
 - `optimizer` : Optimizer for training.
-### `listen_attend_spell_with_location_aware`  
+### `listen_attend_spell_with_location_aware`
 - `model_name` : Model name
 - `num_encoder_layers` : The number of encoder layers.
 - `num_decoder_layers` : The number of decoder layers.
@@ -124,9 +124,9 @@ This page describes all configurations in `Openspeech`.
 - `num_attention_heads` : The number of attention heads.
 - `decoder_dropout_p` : The dropout probability of decoder.
 - `decoder_attn_mechanism` : The attention mechanism for decoder.
-- `teacher_forcing_ratio` : The ratio of teacher forcing. 
+- `teacher_forcing_ratio` : The ratio of teacher forcing.
 - `optimizer` : Optimizer for training.
-### `listen_attend_spell_with_multi_head`  
+### `listen_attend_spell_with_multi_head`
 - `model_name` : Model name
 - `num_encoder_layers` : The number of encoder layers.
 - `num_decoder_layers` : The number of decoder layers.
@@ -139,9 +139,9 @@ This page describes all configurations in `Openspeech`.
 - `num_attention_heads` : The number of attention heads.
 - `decoder_dropout_p` : The dropout probability of decoder.
 - `decoder_attn_mechanism` : The attention mechanism for decoder.
-- `teacher_forcing_ratio` : The ratio of teacher forcing. 
+- `teacher_forcing_ratio` : The ratio of teacher forcing.
 - `optimizer` : Optimizer for training.
-### `joint_ctc_listen_attend_spell`  
+### `joint_ctc_listen_attend_spell`
 - `model_name` : Model name
 - `num_encoder_layers` : The number of encoder layers.
 - `num_decoder_layers` : The number of decoder layers.
@@ -154,9 +154,9 @@ This page describes all configurations in `Openspeech`.
 - `num_attention_heads` : The number of attention heads.
 - `decoder_dropout_p` : The dropout probability of decoder.
 - `decoder_attn_mechanism` : The attention mechanism for decoder.
-- `teacher_forcing_ratio` : The ratio of teacher forcing. 
+- `teacher_forcing_ratio` : The ratio of teacher forcing.
 - `optimizer` : Optimizer for training.
-### `deep_cnn_with_joint_ctc_listen_attend_spell`  
+### `deep_cnn_with_joint_ctc_listen_attend_spell`
 - `model_name` : Model name
 - `num_encoder_layers` : The number of encoder layers.
 - `num_decoder_layers` : The number of decoder layers.
@@ -173,7 +173,7 @@ This page describes all configurations in `Openspeech`.
 - `decoder_attn_mechanism` : The attention mechanism for decoder.
 - `teacher_forcing_ratio` : The ratio of teacher forcing.
 - `optimizer` : Optimizer for training.
-### `deepspeech2`  
+### `deepspeech2`
 - `model_name` : Model name
 - `rnn_type` : Type of rnn cell (rnn, lstm, gru)
 - `num_rnn_layers` : The number of rnn layers
@@ -182,16 +182,16 @@ This page describes all configurations in `Openspeech`.
 - `bidirectional` : If True, becomes a bidirectional encoders
 - `activation` : Type of activation function
 - `optimizer` : Optimizer for training.
-### `lstm_lm`  
+### `lstm_lm`
 - `model_name` : Model name
 - `num_layers` : The number of encoder layers.
 - `hidden_state_dim` : The hidden state dimension of encoder.
 - `dropout_p` : The dropout probability of encoder.
 - `rnn_type` : Type of rnn cell (rnn, lstm, gru)
 - `max_length` : Max decoding length.
-- `teacher_forcing_ratio` : The ratio of teacher forcing. 
+- `teacher_forcing_ratio` : The ratio of teacher forcing.
 - `optimizer` : Optimizer for training.
-### `rnn_transducer`  
+### `rnn_transducer`
 - `model_name` : Model name
 - `encoder_hidden_state_dim` : Dimension of encoder.
 - `decoder_hidden_state_dim` : Dimension of decoder.
@@ -203,7 +203,7 @@ This page describes all configurations in `Openspeech`.
 - `rnn_type` : Type of rnn cell (rnn, lstm, gru)
 - `output_dim` : Dimension of outputs
 - `optimizer` : Optimizer for training.
-### `transformer_lm`  
+### `transformer_lm`
 - `model_name` : Model name
 - `num_layers` : The number of encoder layers.
 - `d_model` : The dimension of model.
@@ -212,7 +212,7 @@ This page describes all configurations in `Openspeech`.
 - `dropout_p` : The dropout probability of encoder.
 - `max_length` : Max decoding length.
 - `optimizer` : Optimizer for training.
-### `transformer`  
+### `transformer`
 - `model_name` : Model name
 - `d_model` : Dimension of model.
 - `d_ff` : Dimenstion of feed forward network.
@@ -226,7 +226,7 @@ This page describes all configurations in `Openspeech`.
 - `teacher_forcing_ratio` : The ratio of teacher forcing.
 - `joint_ctc_attention` : Flag indication joint ctc attention or not
 - `optimizer` : Optimizer for training.
-### `joint_ctc_transformer`  
+### `joint_ctc_transformer`
 - `model_name` : Model name
 - `extractor` : The CNN feature extractor.
 - `d_model` : Dimension of model.
@@ -238,10 +238,10 @@ This page describes all configurations in `Openspeech`.
 - `decoder_dropout_p` : The dropout probability of decoder.
 - `ffnet_style` : Style of feed forward network. (ff, conv)
 - `max_length` : Max decoding length.
-- `teacher_forcing_ratio` : The ratio of teacher forcing. 
+- `teacher_forcing_ratio` : The ratio of teacher forcing.
 - `joint_ctc_attention` : Flag indication joint ctc attention or not
 - `optimizer` : Optimizer for training.
-### `transformer_with_ctc`  
+### `transformer_with_ctc`
 - `model_name` : Model name
 - `d_model` : Dimension of model.
 - `d_ff` : Dimenstion of feed forward network.
@@ -250,7 +250,7 @@ This page describes all configurations in `Openspeech`.
 - `encoder_dropout_p` : The dropout probability of encoder.
 - `ffnet_style` : Style of feed forward network. (ff, conv)
 - `optimizer` : Optimizer for training.
-### `vgg_transformer`  
+### `vgg_transformer`
 - `model_name` : Model name
 - `extractor` : The CNN feature extractor.
 - `d_model` : Dimension of model.
@@ -262,10 +262,10 @@ This page describes all configurations in `Openspeech`.
 - `decoder_dropout_p` : The dropout probability of decoder.
 - `ffnet_style` : Style of feed forward network. (ff, conv)
 - `max_length` : Max decoding length.
-- `teacher_forcing_ratio` : The ratio of teacher forcing. 
+- `teacher_forcing_ratio` : The ratio of teacher forcing.
 - `joint_ctc_attention` : Flag indication joint ctc attention or not
 - `optimizer` : Optimizer for training.
-### `conformer`  
+### `conformer`
 - `model_name` : Model name
 - `encoder_dim` : Dimension of encoder.
 - `num_encoder_layers` : The number of encoder layers.
@@ -279,7 +279,7 @@ This page describes all configurations in `Openspeech`.
 - `conv_kernel_size` : The kernel size of convolution.
 - `half_step_residual` : Flag indication whether to use half step residual or not
 - `optimizer` : Optimizer for training.
-### `conformer_lstm`  
+### `conformer_lstm`
 - `model_name` : Model name
 - `encoder_dim` : Dimension of encoder.
 - `num_encoder_layers` : The number of encoder layers.
@@ -295,11 +295,11 @@ This page describes all configurations in `Openspeech`.
 - `num_decoder_layers` : The number of decoder layers.
 - `decoder_dropout_p` : The dropout probability of decoder.
 - `max_length` : Max decoding length.
-- `teacher_forcing_ratio` : The ratio of teacher forcing. 
+- `teacher_forcing_ratio` : The ratio of teacher forcing.
 - `rnn_type` : Type of rnn cell (rnn, lstm, gru)
 - `decoder_attn_mechanism` : The attention mechanism for decoder.
 - `optimizer` : Optimizer for training.
-### `conformer_transducer`  
+### `conformer_transducer`
 - `model_name` : Model name
 - `encoder_dim` : Dimension of encoder.
 - `num_encoder_layers` : The number of encoder layers.
@@ -315,12 +315,12 @@ This page describes all configurations in `Openspeech`.
 - `num_decoder_layers` : The number of decoder layers.
 - `decoder_dropout_p` : The dropout probability of decoder.
 - `max_length` : Max decoding length.
-- `teacher_forcing_ratio` :  The ratio of teacher forcing. 
+- `teacher_forcing_ratio` :  The ratio of teacher forcing.
 - `rnn_type` : Type of rnn cell (rnn, lstm, gru)
 - `decoder_hidden_state_dim` : Hidden state dimension of decoder.
 - `decoder_output_dim` : Output dimension of decoder.
 - `optimizer` : Optimizer for training.
-### `joint_ctc_conformer_lstm`  
+### `joint_ctc_conformer_lstm`
 - `model_name` : Model name
 - `encoder_dim` : Dimension of encoder.
 - `num_encoder_layers` : The number of encoder layers.
@@ -337,11 +337,11 @@ This page describes all configurations in `Openspeech`.
 - `decoder_dropout_p` : The dropout probability of decoder.
 - `num_decoder_attention_heads` : The number of decoder attention heads.
 - `max_length` : Max decoding length.
-- `teacher_forcing_ratio` :  The ratio of teacher forcing. 
+- `teacher_forcing_ratio` :  The ratio of teacher forcing.
 - `rnn_type` : Type of rnn cell (rnn, lstm, gru)
 - `decoder_attn_mechanism` : The attention mechanism for decoder.
 - `optimizer` : Optimizer for training.
-### `transformer_transducer`  
+### `transformer_transducer`
 - `model_name` : Model name
 - `encoder_dim` : Dimension of encoder name
 - `d_ff` : Dimension of feed forward network
@@ -355,7 +355,7 @@ This page describes all configurations in `Openspeech`.
 - `conv_kernel_size` : Kernel size of convolution layer.
 - `max_positional_length` : Max length of positional encoding.
 - `optimizer` : Optimizer for training.
-### `quartznet5x5`  
+### `quartznet5x5`
 - `model_name` : Model name
 - `num_blocks` : Number of quartznet blocks
 - `num_sub_blocks` : Number of quartznet sub blocks
@@ -365,7 +365,7 @@ This page describes all configurations in `Openspeech`.
 - `dilation` : Dilation of jasper block's convolution
 - `dropout_p` : Dropout probability
 - `optimizer` : Optimizer for training.
-### `quartznet10x5`  
+### `quartznet10x5`
 - `model_name` : Model name
 - `num_blocks` : Number of quartznet blocks
 - `num_sub_blocks` : Number of quartznet sub blocks
@@ -375,7 +375,7 @@ This page describes all configurations in `Openspeech`.
 - `dilation` : Dilation of jasper block's convolution
 - `dropout_p` : Dropout probability
 - `optimizer` : Optimizer for training.
-### `quartznet15x5`  
+### `quartznet15x5`
 - `model_name` : Model name
 - `num_blocks` : Number of quartznet5x5 blocks
 - `num_sub_blocks` : Number of quartznet5x5 sub blocks
@@ -385,7 +385,7 @@ This page describes all configurations in `Openspeech`.
 - `dilation` : Dilation of jasper block's convolution
 - `dropout_p` : Dropout probability
 - `optimizer` : Optimizer for training.
-### `contextnet`  
+### `contextnet`
 - `model_name` : Model name
 - `model_size` : Model size
 - `input_dim` : Dimension of input vector
@@ -394,7 +394,7 @@ This page describes all configurations in `Openspeech`.
 - `num_channels` : The number of channels in the convolution filter
 - `encoder_dim` : Dimension of encoder output vector
 - `optimizer` : Optimizer for training
-### `contextnet_lstm`  
+### `contextnet_lstm`
 - `model_name` : Model name
 - `model_size` : Model size
 - `input_dim` : Dimension of input vector
@@ -407,11 +407,11 @@ This page describes all configurations in `Openspeech`.
 - `attention_dropout_p` : The dropout probability of attention module.
 - `decoder_dropout_p` : The dropout probability of decoder.
 - `max_length` : Max decoding length.
-- `teacher_forcing_ratio` : The ratio of teacher forcing. 
+- `teacher_forcing_ratio` : The ratio of teacher forcing.
 - `rnn_type` : Type of rnn cell (rnn, lstm, gru)
 - `decoder_attn_mechanism` : The attention mechanism for decoder.
 - `optimizer` : Optimizer for training.
-### `contextnet_transducer`  
+### `contextnet_transducer`
 - `model_name` : Model name
 - `model_size` : Model size
 - `input_dim` : Dimension of input vector
@@ -425,7 +425,7 @@ This page describes all configurations in `Openspeech`.
 - `dropout` : Dropout probability of decoder
 - `rnn_type` : Type of rnn cell
 - `optimizer` : Optimizer for training
-### `jasper5x3`  
+### `jasper5x3`
 - `model_name` : Model name
 - `num_blocks` : Number of jasper blocks
 - `num_sub_blocks` : Number of jasper sub blocks
@@ -435,7 +435,7 @@ This page describes all configurations in `Openspeech`.
 - `dilation` : Dilation of jasper block's convolution
 - `dropout_p` : Dropout probability
 - `optimizer` : Optimizer for training.
-### `jasper10x5`  
+### `jasper10x5`
 - `model_name` : Model name
 - `num_blocks` : Number of jasper blocks
 - `num_sub_blocks` : Number of jasper sub blocks
@@ -446,45 +446,45 @@ This page describes all configurations in `Openspeech`.
 - `dropout_p` : Dropout probability
 - `optimizer` : Optimizer for training.
 ## `criterion`
-### `label_smoothed_cross_entropy`  
+### `label_smoothed_cross_entropy`
 - `criterion_name` : Criterion name for training.
 - `reduction` : Reduction method of criterion
 - `smoothing` : Ratio of smoothing loss (confidence = 1.0 - smoothing)
-### `joint_ctc_cross_entropy`  
+### `joint_ctc_cross_entropy`
 - `criterion_name` : Criterion name for training.
 - `reduction` : Reduction method of criterion
 - `ctc_weight` : Weight of ctc loss for training.
 - `cross_entropy_weight` : Weight of cross entropy loss for training.
 - `smoothing` : Ratio of smoothing loss (confidence = 1.0 - smoothing)
 - `zero_infinity` : Whether to zero infinite losses and the associated gradients.
-### `perplexity`  
+### `perplexity`
 - `criterion_name` : Criterion name for training
 - `reduction` : Reduction method of criterion
-### `transducer`  
+### `transducer`
 - `criterion_name` : Criterion name for training.
 - `reduction` : Reduction method of criterion
 - `gather` : Reduce memory consumption.
-### `ctc`  
+### `ctc`
 - `criterion_name` : Criterion name for training
 - `reduction` : Reduction method of criterion
 - `zero_infinity` : Whether to zero infinite losses and the associated gradients.
-### `cross_entropy`  
+### `cross_entropy`
 - `criterion_name` : Criterion name for training
 - `reduction` : Reduction method of criterion
 ## `lr_scheduler`
-### `reduce_lr_on_plateau`  
+### `reduce_lr_on_plateau`
 - `lr` : Learning rate
 - `scheduler_name` : Name of learning rate scheduler.
 - `lr_patience` : Number of epochs with no improvement after which learning rate will be reduced.
 - `lr_factor` : Factor by which the learning rate will be reduced. new_lr = lr * factor.
-### `warmup`  
+### `warmup`
 - `lr` : Learning rate
 - `scheduler_name` : Name of learning rate scheduler.
 - `peak_lr` : Maximum learning rate.
 - `init_lr` : Initial learning rate.
 - `warmup_steps` : Warmup the learning rate linearly for the first N updates
 - `total_steps` : Total training steps.
-### `warmup_reduce_lr_on_plateau`  
+### `warmup_reduce_lr_on_plateau`
 - `lr` : Learning rate
 - `scheduler_name` : Name of learning rate scheduler.
 - `lr_patience` : Number of epochs with no improvement after which learning rate will be reduced.
@@ -492,7 +492,7 @@ This page describes all configurations in `Openspeech`.
 - `peak_lr` : Maximum learning rate.
 - `init_lr` : Initial learning rate.
 - `warmup_steps` : Warmup the learning rate linearly for the first N updates
-### `tri_stage`  
+### `tri_stage`
 - `lr` : Learning rate
 - `scheduler_name` : Name of learning rate scheduler.
 - `init_lr` : Initial learning rate.
@@ -500,7 +500,7 @@ This page describes all configurations in `Openspeech`.
 - `final_lr_scale` : Final learning rate scale
 - `phase_ratio` : Automatically sets warmup/hold/decay steps to the ratio specified here from max_updates. the ratios must add up to 1.0
 - `total_steps` : Total training steps.
-### `transformer`  
+### `transformer`
 - `lr` : Learning rate
 - `scheduler_name` : Name of learning rate scheduler.
 - `peak_lr` : Maximum learning rate.
@@ -509,7 +509,7 @@ This page describes all configurations in `Openspeech`.
 - `warmup_steps` : Warmup the learning rate linearly for the first N updates
 - `decay_steps` : Steps in decay stages
 ## `trainer`
-### `cpu`  
+### `cpu`
 - `seed` : Seed for training.
 - `accelerator` : Previously known as distributed_backend (dp, ddp, ddp2, etc…).
 - `accumulate_grad_batches` : Accumulates grads every k batches or as set up in the dict.
@@ -523,7 +523,7 @@ This page describes all configurations in `Openspeech`.
 - `name` : Trainer name
 - `device` : Training device.
 - `use_cuda` : If set True, will train with GPU
-### `gpu`  
+### `gpu`
 - `seed` : Seed for training.
 - `accelerator` : Previously known as distributed_backend (dp, ddp, ddp2, etc…).
 - `accumulate_grad_batches` : Accumulates grads every k batches or as set up in the dict.
@@ -538,7 +538,7 @@ This page describes all configurations in `Openspeech`.
 - `device` : Training device.
 - `use_cuda` : If set True, will train with GPU
 - `auto_select_gpus` : If enabled and gpus is an integer, pick available gpus automatically.
-### `tpu`  
+### `tpu`
 - `seed` : Seed for training.
 - `accelerator` : Previously known as distributed_backend (dp, ddp, ddp2, etc…).
 - `accumulate_grad_batches` : Accumulates grads every k batches or as set up in the dict.
@@ -554,7 +554,7 @@ This page describes all configurations in `Openspeech`.
 - `use_cuda` : If set True, will train with GPU
 - `use_tpu` : If set True, will train with GPU
 - `tpu_cores` : Number of TPU cores
-### `gpu-fp16`  
+### `gpu-fp16`
 - `seed` : Seed for training.
 - `accelerator` : Previously known as distributed_backend (dp, ddp, ddp2, etc…).
 - `accumulate_grad_batches` : Accumulates grads every k batches or as set up in the dict.
@@ -571,7 +571,7 @@ This page describes all configurations in `Openspeech`.
 - `auto_select_gpus` : If enabled and gpus is an integer, pick available gpus automatically.
 - `precision` : Double precision (64), full precision (32) or half precision (16). Can be used on CPU, GPU or TPUs.
 - `amp_backend` : The mixed precision backend to use (“native” or “apex”)
-### `tpu-fp16`  
+### `tpu-fp16`
 - `seed` : Seed for training.
 - `accelerator` : Previously known as distributed_backend (dp, ddp, ddp2, etc…).
 - `accumulate_grad_batches` : Accumulates grads every k batches or as set up in the dict.
@@ -589,7 +589,7 @@ This page describes all configurations in `Openspeech`.
 - `tpu_cores` : Number of TPU cores
 - `precision` : Double precision (64), full precision (32) or half precision (16). Can be used on CPU, GPU or TPUs.
 - `amp_backend` : The mixed precision backend to use (“native” or “apex”)
-### `cpu-fp64`  
+### `cpu-fp64`
 - `seed` : Seed for training.
 - `accelerator` : Previously known as distributed_backend (dp, ddp, ddp2, etc…).
 - `accumulate_grad_batches` : Accumulates grads every k batches or as set up in the dict.
@@ -606,7 +606,7 @@ This page describes all configurations in `Openspeech`.
 - `precision` : Double precision (64), full precision (32) or half precision (16). Can be used on CPU, GPU or TPUs.
 - `amp_backend` : The mixed precision backend to use (“native” or “apex”)
 ## `tokenizer`
-### `libri_subword`  
+### `libri_subword`
 - `sos_token` : Start of sentence token
 - `eos_token` : End of sentence token
 - `pad_token` : Pad token
@@ -615,7 +615,7 @@ This page describes all configurations in `Openspeech`.
 - `unit` : Unit of vocabulary.
 - `vocab_size` : Size of vocabulary.
 - `vocab_path` : Path of vocabulary file.
-### `libri_character`  
+### `libri_character`
 - `sos_token` : Start of sentence token
 - `eos_token` : End of sentence token
 - `pad_token` : Pad token
@@ -623,7 +623,7 @@ This page describes all configurations in `Openspeech`.
 - `encoding` : Encoding of vocab
 - `unit` : Unit of vocabulary.
 - `vocab_path` : Path of vocabulary file.
-### `aishell_character`  
+### `aishell_character`
 - `sos_token` : Start of sentence token
 - `eos_token` : End of sentence token
 - `pad_token` : Pad token
@@ -631,7 +631,7 @@ This page describes all configurations in `Openspeech`.
 - `encoding` : Encoding of vocab
 - `unit` : Unit of vocabulary.
 - `vocab_path` : Path of vocabulary file.
-### `kspon_subword`  
+### `kspon_subword`
 - `sos_token` : Start of sentence token
 - `eos_token` : End of sentence token
 - `pad_token` : Pad token
@@ -640,7 +640,7 @@ This page describes all configurations in `Openspeech`.
 - `unit` : Unit of vocabulary.
 - `sp_model_path` : Path of sentencepiece model.
 - `vocab_size` : Size of vocabulary.
-### `kspon_grapheme`  
+### `kspon_grapheme`
 - `sos_token` : Start of sentence token
 - `eos_token` : End of sentence token
 - `pad_token` : Pad token
@@ -648,7 +648,7 @@ This page describes all configurations in `Openspeech`.
 - `encoding` : Encoding of vocab
 - `unit` : Unit of vocabulary.
 - `vocab_path` : Path of vocabulary file.
-### `kspon_character`  
+### `kspon_character`
 - `sos_token` : Start of sentence token
 - `eos_token` : End of sentence token
 - `pad_token` : Pad token

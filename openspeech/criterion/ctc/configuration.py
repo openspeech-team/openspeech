@@ -40,12 +40,9 @@ class CTCLossConfigs(OpenspeechDataclass):
         reduction (str): reduction method of criterion. (default: mean)
         zero_infibity (bool): whether to zero infinite losses and the associated gradients. (default: True)
     """
-    criterion_name: str = field(
-        default="ctc", metadata={"help": "Criterion name for training"}
-    )
-    reduction: str = field(
-        default="mean", metadata={"help": "Reduction method of criterion"}
-    )
+
+    criterion_name: str = field(default="ctc", metadata={"help": "Criterion name for training"})
+    reduction: str = field(default="mean", metadata={"help": "Reduction method of criterion"})
     zero_infinity: bool = field(
         default=True, metadata={"help": "Whether to zero infinite losses and the associated gradients."}
     )

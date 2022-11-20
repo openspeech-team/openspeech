@@ -24,9 +24,9 @@ import numpy as np
 from omegaconf import DictConfig
 from torch import Tensor
 
+from ....utils import TORCHAUDIO_IMPORT_ERROR
 from ... import register_audio_feature_transform
 from ...audio.filter_bank.configuration import FilterBankConfigs
-from ....utils import TORCHAUDIO_IMPORT_ERROR
 
 
 @register_audio_feature_transform("fbank", dataclass=FilterBankConfigs)
@@ -43,6 +43,7 @@ class FilterBankFeatureTransform(object):
     Returns:
         Tensor: A fbank identical to what Kaldi would output. The shape is ``(seq_length, num_mels)``
     """
+
     def __init__(self, configs: DictConfig) -> None:
         super(FilterBankFeatureTransform, self).__init__()
         try:
@@ -64,9 +65,13 @@ class FilterBankFeatureTransform(object):
         Returns:
             feature (np.ndarray): feature extract by sub-class
         """
-        return self.function(
-            Tensor(signal).unsqueeze(0),
-            num_mel_bins=self.num_mels,
-            frame_length=self.frame_length,
-            frame_shift=self.frame_shift,
-        ).transpose(0, 1).numpy()
+        return (
+            self.function(
+                Tensor(signal).unsqueeze(0),
+                num_mel_bins=self.num_mels,
+                frame_length=self.frame_length,
+                frame_shift=self.frame_shift,
+            )
+            .transpose(0, 1)
+            .numpy()
+        )

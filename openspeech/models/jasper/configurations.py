@@ -46,38 +46,30 @@ class Jasper5x3Config(OpenspeechDataclass):
         dropout_p (str): Dropout probability
         optimizer (str): Optimizer for training.
     """
-    model_name: str = field(
-        default="jasper5x3", metadata={"help": "Model name"}
-    )
-    num_blocks: int = field(
-        default=5, metadata={"help": "Number of jasper blocks"}
-    )
-    num_sub_blocks: int = field(
-        default=3, metadata={"help": "Number of jasper sub blocks"}
-    )
+    model_name: str = field(default="jasper5x3", metadata={"help": "Model name"})
+    num_blocks: int = field(default=5, metadata={"help": "Number of jasper blocks"})
+    num_sub_blocks: int = field(default=3, metadata={"help": "Number of jasper sub blocks"})
     in_channels: str = field(
         default="(None, 256, 256, 256, 384, 384, 512, 512, 640, 640, 768, 768, 896, 1024)",
-        metadata={"help": "Input channels of jasper blocks"}
+        metadata={"help": "Input channels of jasper blocks"},
     )
     out_channels: str = field(
         default="(256, 256, 256, 384, 384, 512, 512, 640, 640, 768, 768, 896, 1024, None)",
-        metadata={"help": "Output channels of jasper block's convolution"}
+        metadata={"help": "Output channels of jasper block's convolution"},
     )
     kernel_size: str = field(
         default="(11, 11, 11, 13, 13, 17, 17, 21, 21, 25, 25, 29, 1, 1)",
-        metadata={"help": "Kernel size of jasper block's convolution"}
+        metadata={"help": "Kernel size of jasper block's convolution"},
     )
     dilation: str = field(
         default="(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1)",
-        metadata={"help": "Dilation of jasper block's convolution"}
+        metadata={"help": "Dilation of jasper block's convolution"},
     )
     dropout_p: str = field(
         default="(0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.3, 0.3, 0.3, 0.3, 0.4, 0.4, 0.0)",
-        metadata={"help": "Dropout probability"}
+        metadata={"help": "Dropout probability"},
     )
-    optimizer: str = field(
-        default="novograd", metadata={"help": "Optimizer for training."}
-    )
+    optimizer: str = field(default="novograd", metadata={"help": "Optimizer for training."})
 
 
 @dataclass
@@ -101,35 +93,27 @@ class Jasper10x5Config(OpenspeechDataclass):
         dropout_p (str): Dropout probability
         optimizer (str): Optimizer for training.
     """
-    model_name: str = field(
-        default="jasper10x5", metadata={"help": "Model name"}
-    )
-    num_blocks: int = field(
-        default=10, metadata={"help": "Number of jasper blocks"}
-    )
-    num_sub_blocks: int = field(
-        default=5, metadata={"help": "Number of jasper sub blocks"}
-    )
+    model_name: str = field(default="jasper10x5", metadata={"help": "Model name"})
+    num_blocks: int = field(default=10, metadata={"help": "Number of jasper blocks"})
+    num_sub_blocks: int = field(default=5, metadata={"help": "Number of jasper sub blocks"})
     in_channels: str = field(
         default="(None, 256, 256, 256, 384, 384, 512, 512, 640, 640, 768, 768, 896, 1024)",
-        metadata={"help": "Input channels of jasper blocks"}
+        metadata={"help": "Input channels of jasper blocks"},
     )
     out_channels: str = field(
         default="(256, 256, 256, 384, 384, 512, 512, 640, 640, 768, 768, 768, 896, 1024, None)",
-        metadata={"help": "Output channels of jasper block's convolution"}
+        metadata={"help": "Output channels of jasper block's convolution"},
     )
     kernel_size: str = field(
         default="(11, 11, 11, 13, 13, 17, 17, 21, 21, 25, 25, 29, 1, 1)",
-        metadata={"help": "Kernel size of jasper block's convolution"}
+        metadata={"help": "Kernel size of jasper block's convolution"},
     )
     dilation: str = field(
         default="(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1)",
-        metadata={"help": "Dilation of jasper block's convolution"}
+        metadata={"help": "Dilation of jasper block's convolution"},
     )
     dropout_p: str = field(
         default="(0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.3, 0.3, 0.3, 0.3, 0.4, 0.4, 0.0)",
-        metadata={"help": "Dropout probability"}
+        metadata={"help": "Dropout probability"},
     )
-    optimizer: str = field(
-        default="novograd", metadata={"help": "Optimizer for training."}
-    )
+    optimizer: str = field(default="novograd", metadata={"help": "Optimizer for training."})

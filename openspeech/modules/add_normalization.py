@@ -29,6 +29,7 @@ class AddNorm(nn.Module):
     Transformer employ a residual connection around each of the two sub-layers,
     (Multi-Head Attention & Feed-Forward) followed by layer normalization.
     """
+
     def __init__(self, sublayer: nn.Module, d_model: int = 512) -> None:
         super(AddNorm, self).__init__()
         self.sublayer = sublayer

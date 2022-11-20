@@ -20,13 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import torch
-import torch.nn as nn
 from typing import Optional, Tuple
 
+import torch
+import torch.nn as nn
+
+from openspeech.modules.conv_group_shuffle import ConvGroupShuffle
 from openspeech.modules.depthwise_conv1d import DepthwiseConv1d
 from openspeech.modules.time_channel_separable_conv1d import TimeChannelSeparableConv1d
-from openspeech.modules.conv_group_shuffle import ConvGroupShuffle
 
 
 class QuartzNetSubBlock(nn.Module):
@@ -49,14 +50,15 @@ class QuartzNetSubBlock(nn.Module):
         * output (torch.FloatTensor): tensor contains output sequence vector
         * output_lengths (torch.LongTensor): tensor contains output sequence lengths
     """
+
     def __init__(
-            self,
-            in_channels: int,
-            out_channels: int,
-            kernel_size: int,
-            bias: bool = False,
-            padding: int = 0,
-            groups: int = 1,
+        self,
+        in_channels: int,
+        out_channels: int,
+        kernel_size: int,
+        bias: bool = False,
+        padding: int = 0,
+        groups: int = 1,
     ) -> None:
         super(QuartzNetSubBlock, self).__init__()
         self.depthwise_conf1d = DepthwiseConv1d(
@@ -78,10 +80,7 @@ class QuartzNetSubBlock(nn.Module):
         self.relu = nn.ReLU()
 
     def forward(
-            self,
-            inputs: torch.Tensor,
-            input_lengths: torch.Tensor,
-            residual: Optional[torch.Tensor] = None
+        self, inputs: torch.Tensor, input_lengths: torch.Tensor, residual: Optional[torch.Tensor] = None
     ) -> Tuple[torch.Tensor, torch.Tensor]:
         outputs, output_lengths = self.depthwise_conf1d(inputs, input_lengths)
         outputs, output_lengths = self.tcs_conv(outputs, output_lengths)

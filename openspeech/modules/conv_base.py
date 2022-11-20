@@ -24,30 +24,30 @@ import torch.nn as nn
 
 
 class BaseConv1d(nn.Module):
-    """ Base convolution module. """
+    """Base convolution module."""
+
     def __init__(self):
         super(BaseConv1d, self).__init__()
 
     def _get_sequence_lengths(self, seq_lengths):
         return (
-            (seq_lengths + 2 * self.conv.padding[0]
-             - self.conv.dilation[0] * (self.conv.kernel_size[0] - 1) - 1) // self.conv.stride[0] + 1
-        )
+            seq_lengths + 2 * self.conv.padding[0] - self.conv.dilation[0] * (self.conv.kernel_size[0] - 1) - 1
+        ) // self.conv.stride[0] + 1
 
     def forward(self, *args, **kwargs):
         raise NotImplementedError
 
 
 class BaseConv2d(nn.Module):
-    """ Base convolution module. """
+    """Base convolution module."""
+
     def __init__(self):
         super(BaseConv2d, self).__init__()
 
     def _get_sequence_lengths(self, seq_lengths):
         return (
-            (seq_lengths + 2 * self.conv.padding[0]
-             - self.conv.dilation[0] * (self.conv.kernel_size[0] - 1) - 1) // self.conv.stride[0] + 1
-        )
+            seq_lengths + 2 * self.conv.padding[0] - self.conv.dilation[0] * (self.conv.kernel_size[0] - 1) - 1
+        ) // self.conv.stride[0] + 1
 
     def forward(self, *args, **kwargs):
         raise NotImplementedError

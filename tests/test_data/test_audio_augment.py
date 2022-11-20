@@ -1,31 +1,31 @@
 import unittest
+
 import librosa
-import torch
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import torch
 from librosa.display import specshow
 
 from openspeech.data.audio.augment import JoiningAugment, SpecAugment, TimeStretchAugment
-from openspeech.utils import DUMMY_FEATURES, DUMMY_TRANSCRIPTS, DUMMY_SIGNALS
+from openspeech.utils import DUMMY_FEATURES, DUMMY_SIGNALS, DUMMY_TRANSCRIPTS
 
 
 class TestAudioAugment(unittest.TestCase):
-
     def test_spec_augment(self):
         spec_augment = SpecAugment(freq_mask_para=10)
-        specshow(librosa.power_to_db(DUMMY_FEATURES, ref=np.max), y_axis='mel', fmax=8000, x_axis='time')
+        specshow(librosa.power_to_db(DUMMY_FEATURES, ref=np.max), y_axis="mel", fmax=8000, x_axis="time")
         plt.title("Original Mel-Spectrogram")
         plt.tight_layout()
         plt.show()
         feature = spec_augment(DUMMY_FEATURES.transpose(0, 1))
-        specshow(librosa.power_to_db(DUMMY_FEATURES, ref=np.max), y_axis='mel', fmax=8000, x_axis='time')
+        specshow(librosa.power_to_db(DUMMY_FEATURES, ref=np.max), y_axis="mel", fmax=8000, x_axis="time")
         plt.title("SpecAugmented Mel-Spectrogram")
         plt.tight_layout()
         plt.show()
         assert isinstance(feature, torch.Tensor)
 
     def test_time_stretch_augment(self):
-        y, sr = librosa.load(librosa.ex('choice'))
+        y, sr = librosa.load(librosa.ex("choice"))
         plt.plot(y)
         plt.title("Original Signal")
         plt.tight_layout()
@@ -60,5 +60,5 @@ class TestAudioAugment(unittest.TestCase):
         plt.show()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

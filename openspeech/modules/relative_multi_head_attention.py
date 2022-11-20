@@ -21,11 +21,12 @@
 # SOFTWARE.
 
 import math
+from typing import Optional
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
-from typing import Optional
 
 from openspeech.modules.wrapper import Linear
 
@@ -50,11 +51,12 @@ class RelativeMultiHeadAttention(nn.Module):
     Returns:
         - **outputs**: Tensor produces by relative multi head attention module.
     """
+
     def __init__(
-            self,
-            dim: int = 512,
-            num_heads: int = 16,
-            dropout_p: float = 0.1,
+        self,
+        dim: int = 512,
+        num_heads: int = 16,
+        dropout_p: float = 0.1,
     ) -> None:
         super(RelativeMultiHeadAttention, self).__init__()
         assert dim % num_heads == 0, "d_model % num_heads should be zero."
@@ -78,12 +80,12 @@ class RelativeMultiHeadAttention(nn.Module):
         self.out_proj = Linear(dim, dim)
 
     def forward(
-            self,
-            query: Tensor,
-            key: Tensor,
-            value: Tensor,
-            pos_embedding: Tensor,
-            mask: Optional[Tensor] = None,
+        self,
+        query: Tensor,
+        key: Tensor,
+        value: Tensor,
+        pos_embedding: Tensor,
+        mask: Optional[Tensor] = None,
     ) -> Tensor:
         batch_size = value.size(0)
 

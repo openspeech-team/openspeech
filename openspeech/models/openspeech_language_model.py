@@ -20,10 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import torch
-from omegaconf import DictConfig
 from collections import OrderedDict
 from typing import Dict
+
+import torch
+from omegaconf import DictConfig
 
 from openspeech.models import OpenspeechModel
 from openspeech.tokenizers.tokenizer import Tokenizer
@@ -45,29 +46,34 @@ class OpenspeechLanguageModel(OpenspeechModel):
     Returns:
         outputs (dict): Result of model predictions that contains `loss`, `logits`, `targets`, `predictions`.
     """
+
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(OpenspeechLanguageModel, self).__init__(configs, tokenizer)
 
     def collect_outputs(
-            self,
-            stage: str,
-            logits: torch.Tensor,
-            targets: torch.Tensor,
+        self,
+        stage: str,
+        logits: torch.Tensor,
+        targets: torch.Tensor,
     ) -> OrderedDict:
         perplexity = self.criterion(logits, targets[:, 1:])
         predictions = logits.max(-1)[1]
 
-        self.info({
-            f"{stage}_perplexity": perplexity,
-            "learning_rate": self.get_lr(),
-        })
+        self.info(
+            {
+                f"{stage}_perplexity": perplexity,
+                "learning_rate": self.get_lr(),
+            }
+        )
 
-        return OrderedDict({
-            "loss": perplexity,
-            "logits": logits,
-            "targets": targets,
-            "predictions": predictions,
-        })
+        return OrderedDict(
+            {
+                "loss": perplexity,
+                "logits": logits,
+                "targets": targets,
+                "predictions": predictions,
+            }
+        )
 
     def forward(self, inputs: torch.Tensor, input_lengths: torch.Tensor) -> Dict[str, torch.Tensor]:
         r"""
@@ -80,9 +86,9 @@ class OpenspeechLanguageModel(OpenspeechModel):
         Returns:
             outputs (dict): Result of model predictions that contains `loss`, `logits`, `targets`, `predictions`.
         """
-        if get_class_name(self.lm) == 'LSTMLanguageModel':
+        if get_class_name(self.lm) == "LSTMLanguageModel":
             logits = self.lm(inputs, teacher_forcing_ratio=0.0)
-        elif get_class_name(self.lm) == 'TransformerLanguageModel':
+        elif get_class_name(self.lm) == "TransformerLanguageModel":
             logits = self.lm(inputs, input_lengths)
         else:
             raise ValueError(f"Unsupported language model class: {get_class_name(self.lm)}")
@@ -105,15 +111,15 @@ class OpenspeechLanguageModel(OpenspeechModel):
             loss (torch.Tensor): loss for training
         """
         inputs, input_lengths, targets = batch
-        if get_class_name(self.lm) == 'LSTMLanguageModel':
+        if get_class_name(self.lm) == "LSTMLanguageModel":
             logits = self.lm(inputs, teacher_forcing_ratio=self.teacher_forcing_ratio)
-        elif get_class_name(self.lm) == 'TransformerLanguageModel':
+        elif get_class_name(self.lm) == "TransformerLanguageModel":
             logits = self.lm(inputs, input_lengths)
         else:
             raise ValueError(f"Unsupported language model class: {get_class_name(self.lm)}")
 
         return self.collect_outputs(
-            stage='train',
+            stage="train",
             logits=logits,
             targets=targets,
         )
@@ -131,15 +137,15 @@ class OpenspeechLanguageModel(OpenspeechModel):
         """
         inputs, input_lengths, targets = batch
 
-        if get_class_name(self.lm) == 'LSTMLanguageModel':
+        if get_class_name(self.lm) == "LSTMLanguageModel":
             logits = self.lm(inputs, teacher_forcing_ratio=0.0)
-        elif get_class_name(self.lm) == 'TransformerLanguageModel':
+        elif get_class_name(self.lm) == "TransformerLanguageModel":
             logits = self.lm(inputs, input_lengths)
         else:
             raise ValueError(f"Unsupported language model class: {get_class_name(self.lm)}")
 
         return self.collect_outputs(
-            stage='val',
+            stage="val",
             logits=logits,
             targets=targets,
         )
@@ -157,15 +163,15 @@ class OpenspeechLanguageModel(OpenspeechModel):
         """
         inputs, input_lengths, targets = batch
 
-        if get_class_name(self.lm) == 'LSTMLanguageModel':
+        if get_class_name(self.lm) == "LSTMLanguageModel":
             logits = self.lm(inputs, teacher_forcing_ratio=0.0)
-        elif get_class_name(self.lm) == 'TransformerLanguageModel':
+        elif get_class_name(self.lm) == "TransformerLanguageModel":
             logits = self.lm(inputs, input_lengths)
         else:
             raise ValueError(f"Unsupported language model class: {get_class_name(self.lm)}")
 
         return self.collect_outputs(
-            stage='test',
+            stage="test",
             logits=logits,
             targets=targets,
         )

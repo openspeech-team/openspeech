@@ -20,9 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import torch
-import Levenshtein as Lev
 from typing import Tuple
+
+import Levenshtein as Lev
+import torch
 
 
 class ErrorRate(object):
@@ -89,6 +90,7 @@ class CharacterErrorRate(ErrorRate):
     Computes the Character Error Rate, defined as the edit distance between the
     two provided sentences after tokenizing to characters.
     """
+
     def __init__(self, tokenizer):
         super(CharacterErrorRate, self).__init__(tokenizer)
 
@@ -105,18 +107,18 @@ class CharacterErrorRate(ErrorRate):
             - **dist**: distance between target & y_hat
             - **length**: length of target sequence
         """
-        s1 = s1.replace(' ', '')
-        s2 = s2.replace(' ', '')
+        s1 = s1.replace(" ", "")
+        s2 = s2.replace(" ", "")
 
         # if '_' in sentence, means subword-unit, delete '_'
-        if '_' in s1:
-            s1 = s1.replace('_', '')
+        if "_" in s1:
+            s1 = s1.replace("_", "")
 
-        if '_' in s2:
-            s2 = s2.replace('_', '')
+        if "_" in s2:
+            s2 = s2.replace("_", "")
 
         dist = Lev.distance(s2, s1)
-        length = len(s1.replace(' ', ''))
+        length = len(s1.replace(" ", ""))
 
         return dist, length
 
@@ -126,6 +128,7 @@ class WordErrorRate(ErrorRate):
     Computes the Word Error Rate, defined as the edit distance between the
     two provided sentences after tokenizing to words.
     """
+
     def __init__(self, tokenizer):
         super(WordErrorRate, self).__init__(tokenizer)
 
@@ -150,7 +153,7 @@ class WordErrorRate(ErrorRate):
         w1 = [chr(word2char[w]) for w in s1.split()]
         w2 = [chr(word2char[w]) for w in s2.split()]
 
-        dist = Lev.distance(''.join(w1), ''.join(w2))
+        dist = Lev.distance("".join(w1), "".join(w2))
         length = len(s1.split())
 
         return dist, length

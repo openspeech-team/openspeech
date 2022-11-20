@@ -20,9 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import torch
-import numpy as np
 from typing import Tuple
+
+import numpy as np
+import torch
 from torch.utils.data import DataLoader, Sampler
 
 
@@ -40,6 +41,7 @@ def _collate_fn(batch, pad_id: int = 0):
         seq_lengths (torch.IntTensor): tensor contains input sequence lengths
         target_lengths (torch.IntTensor): tensor contains target sequence lengths
     """
+
     def seq_length_(p):
         return len(p[0])
 
@@ -90,12 +92,13 @@ class AudioDataLoader(DataLoader):
         num_workers (int): how many subprocesses to use for data loading.
         batch_sampler (torch.utils.data.sampler.Sampler): defines the strategy to draw samples from the dataset.
     """
+
     def __init__(
-            self,
-            dataset: torch.utils.data.Dataset,
-            num_workers: int,
-            batch_sampler: torch.utils.data.sampler.Sampler,
-            **kwargs,
+        self,
+        dataset: torch.utils.data.Dataset,
+        num_workers: int,
+        batch_sampler: torch.utils.data.sampler.Sampler,
+        **kwargs,
     ) -> None:
         super(AudioDataLoader, self).__init__(
             dataset=dataset,
@@ -121,8 +124,8 @@ def load_dataset(manifest_file_path: str) -> Tuple[list, list]:
 
     with open(manifest_file_path) as f:
         for idx, line in enumerate(f.readlines()):
-            audio_path, korean_transcript, transcript = line.split('\t')
-            transcript = transcript.replace('\n', '')
+            audio_path, korean_transcript, transcript = line.split("\t")
+            transcript = transcript.replace("\n", "")
 
             audio_paths.append(audio_path)
             transcripts.append(transcript)

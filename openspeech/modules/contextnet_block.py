@@ -21,10 +21,12 @@
 # SOFTWARE.
 
 from typing import Tuple
+
+import torch.nn as nn
 from torch import Tensor
+
 from openspeech.modules.contextnet_module import ContextNetConvModule, ContextNetSEModule
 from openspeech.modules.swish import Swish
-import torch.nn as nn
 
 
 class ContextNetBlock(nn.Module):
@@ -51,15 +53,16 @@ class ContextNetBlock(nn.Module):
                 ``(batch, dimension, seq_length)``
         - **output_lengths**: The length of output tensor. ``(batch)``
     """
+
     def __init__(
-            self,
-            in_channels: int,
-            out_channels: int,
-            num_layers: int = 5,
-            kernel_size: int = 5,
-            stride: int = 1,
-            padding: int = 0,
-            residual: bool = True,
+        self,
+        in_channels: int,
+        out_channels: int,
+        num_layers: int = 5,
+        kernel_size: int = 5,
+        stride: int = 1,
+        padding: int = 0,
+        residual: bool = True,
     ) -> None:
         super(ContextNetBlock, self).__init__()
         self.num_layers = num_layers
@@ -79,12 +82,12 @@ class ContextNetBlock(nn.Module):
 
         if self.num_layers == 1:
             self.conv_layers = ContextNetConvModule(
-                        in_channels=in_channels,
-                        out_channels=out_channels,
-                        kernel_size=kernel_size,
-                        stride=stride,
-                        padding=padding,
-                    )
+                in_channels=in_channels,
+                out_channels=out_channels,
+                kernel_size=kernel_size,
+                stride=stride,
+                padding=padding,
+            )
 
         else:
             stride_list = [1 for _ in range(num_layers - 1)] + [stride]
@@ -103,9 +106,9 @@ class ContextNetBlock(nn.Module):
                 )
 
     def forward(
-            self,
-            inputs: Tensor,
-            input_lengths: Tensor,
+        self,
+        inputs: Tensor,
+        input_lengths: Tensor,
     ) -> Tuple[Tensor, Tensor]:
         r"""
         Forward propagate a `inputs` for convolution block.
@@ -139,11 +142,11 @@ class ContextNetBlock(nn.Module):
 
     @staticmethod
     def make_conv_blocks(
-            input_dim: int = 80,
-            num_layers: int = 5,
-            kernel_size: int = 5,
-            num_channels: int = 256,
-            output_dim: int = 640,
+        input_dim: int = 80,
+        num_layers: int = 5,
+        kernel_size: int = 5,
+        num_channels: int = 256,
+        output_dim: int = 640,
     ) -> nn.ModuleList:
         r"""
         Create 23 convolution blocks.
@@ -184,14 +187,18 @@ class ContextNetBlock(nn.Module):
         # C11-13 : 5 conv layers, middle_dim output channels, stride 1
         conv_blocks.append(ContextNetBlock(num_channels, num_channels << 1, num_layers, kernel_size, 1, 0, True))
         for _ in range(12, 13 + 1):
-            conv_blocks.append(ContextNetBlock(num_channels << 1, num_channels << 1, num_layers, kernel_size, 1, 0, True))
+            conv_blocks.append(
+                ContextNetBlock(num_channels << 1, num_channels << 1, num_layers, kernel_size, 1, 0, True)
+            )
 
         # C14 : 5 conv layers, middle_dim output channels, stride 2
         conv_blocks.append(ContextNetBlock(num_channels << 1, num_channels << 1, num_layers, kernel_size, 2, 0, True))
 
         # C15-21 : 5 conv layers, middle_dim output channels, stride 1
         for i in range(15, 21 + 1):
-            conv_blocks.append(ContextNetBlock(num_channels << 1, num_channels << 1, num_layers, kernel_size, 1, 0, True))
+            conv_blocks.append(
+                ContextNetBlock(num_channels << 1, num_channels << 1, num_layers, kernel_size, 1, 0, True)
+            )
 
         # C22 : 1 conv layer, final_dim output channels, stride 1, no residual
         conv_blocks.append(ContextNetBlock(num_channels << 1, output_dim, 1, kernel_size, 1, 0, False))

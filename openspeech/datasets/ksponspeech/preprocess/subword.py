@@ -20,19 +20,20 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import sentencepiece as spm
 import shutil
+
+import sentencepiece as spm
 
 SENTENCEPIECE_MODEL_PREFIX = "sp"
 SENTENCEPIECE_MODEL_TYPE = "bpe"
 
 
-def train_sentencepiece(transcripts, vocab_size: int = 3200, blank_token: str = '<blank>') -> None:
-    print('generate_sentencepiece_input..')
+def train_sentencepiece(transcripts, vocab_size: int = 3200, blank_token: str = "<blank>") -> None:
+    print("generate_sentencepiece_input..")
 
-    with open('sentencepiece_input.txt', 'w', encoding="utf-8") as f:
+    with open("sentencepiece_input.txt", "w", encoding="utf-8") as f:
         for transcript in transcripts:
-            f.write(f'{transcript}\n')
+            f.write(f"{transcript}\n")
 
     spm.SentencePieceTrainer.Train(
         f"--input=sentencepiece_input.txt "
@@ -54,20 +55,17 @@ def convert_subword(transcript: str, sp: spm.SentencePieceProcessor):
 
 
 def sentence_to_subwords(
-        audio_paths: list,
-        transcripts: list,
-        manifest_file_path: str,
-        sp_model_path: str = "sp.model"
+    audio_paths: list, transcripts: list, manifest_file_path: str, sp_model_path: str = "sp.model"
 ) -> None:
-    print('sentence_to_subwords...')
+    print("sentence_to_subwords...")
     if sp_model_path != f"{SENTENCEPIECE_MODEL_PREFIX}.model":
         shutil.copy(f"{SENTENCEPIECE_MODEL_PREFIX}.model", sp_model_path)
 
     sp = spm.SentencePieceProcessor()
     sp.Load(sp_model_path)
 
-    with open(manifest_file_path, 'w', encoding="utf-8") as f:
+    with open(manifest_file_path, "w", encoding="utf-8") as f:
         for audio_path, transcript in zip(audio_paths, transcripts):
-            audio_path = audio_path.replace('txt', 'pcm')
+            audio_path = audio_path.replace("txt", "pcm")
             text, label = convert_subword(transcript, sp)
             f.write(f"{audio_path}\t{text}\t{label}\n")

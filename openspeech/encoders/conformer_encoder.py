@@ -20,12 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import torch
-import torch.nn as nn
 from typing import Tuple
 
+import torch
+import torch.nn as nn
+
 from openspeech.encoders.openspeech_encoder import OpenspeechEncoder
-from openspeech.modules import Conv2dSubsampling, Linear, ConformerBlock, Transpose
+from openspeech.modules import ConformerBlock, Conv2dSubsampling, Linear, Transpose
 
 
 class ConformerEncoder(OpenspeechEncoder):
@@ -62,22 +63,23 @@ class ConformerEncoder(OpenspeechEncoder):
         Anmol Gulati et al: Conformer: Convolution-augmented Transformer for Speech Recognition
         https://arxiv.org/abs/2005.08100
     """
+
     def __init__(
-            self,
-            num_classes: int,
-            input_dim: int = 80,
-            encoder_dim: int = 512,
-            num_layers: int = 17,
-            num_attention_heads: int = 8,
-            feed_forward_expansion_factor: int = 4,
-            conv_expansion_factor: int = 2,
-            input_dropout_p: float = 0.1,
-            feed_forward_dropout_p: float = 0.1,
-            attention_dropout_p: float = 0.1,
-            conv_dropout_p: float = 0.1,
-            conv_kernel_size: int = 31,
-            half_step_residual: bool = True,
-            joint_ctc_attention: bool = True,
+        self,
+        num_classes: int,
+        input_dim: int = 80,
+        encoder_dim: int = 512,
+        num_layers: int = 17,
+        num_attention_heads: int = 8,
+        feed_forward_expansion_factor: int = 4,
+        conv_expansion_factor: int = 2,
+        input_dropout_p: float = 0.1,
+        feed_forward_dropout_p: float = 0.1,
+        attention_dropout_p: float = 0.1,
+        conv_dropout_p: float = 0.1,
+        conv_kernel_size: int = 31,
+        half_step_residual: bool = True,
+        joint_ctc_attention: bool = True,
     ) -> None:
         super(ConformerEncoder, self).__init__()
         self.joint_ctc_attention = joint_ctc_attention
@@ -86,19 +88,22 @@ class ConformerEncoder(OpenspeechEncoder):
             Linear(self.conv_subsample.get_output_dim(), encoder_dim),
             nn.Dropout(p=input_dropout_p),
         )
-        self.layers = nn.ModuleList([
-            ConformerBlock(
-                encoder_dim=encoder_dim,
-                num_attention_heads=num_attention_heads,
-                feed_forward_expansion_factor=feed_forward_expansion_factor,
-                conv_expansion_factor=conv_expansion_factor,
-                feed_forward_dropout_p=feed_forward_dropout_p,
-                attention_dropout_p=attention_dropout_p,
-                conv_dropout_p=conv_dropout_p,
-                conv_kernel_size=conv_kernel_size,
-                half_step_residual=half_step_residual,
-            ) for _ in range(num_layers)
-        ])
+        self.layers = nn.ModuleList(
+            [
+                ConformerBlock(
+                    encoder_dim=encoder_dim,
+                    num_attention_heads=num_attention_heads,
+                    feed_forward_expansion_factor=feed_forward_expansion_factor,
+                    conv_expansion_factor=conv_expansion_factor,
+                    feed_forward_dropout_p=feed_forward_dropout_p,
+                    attention_dropout_p=attention_dropout_p,
+                    conv_dropout_p=conv_dropout_p,
+                    conv_kernel_size=conv_kernel_size,
+                    half_step_residual=half_step_residual,
+                )
+                for _ in range(num_layers)
+            ]
+        )
         if self.joint_ctc_attention:
             self.fc = nn.Sequential(
                 Transpose(shape=(1, 2)),
@@ -107,9 +112,9 @@ class ConformerEncoder(OpenspeechEncoder):
             )
 
     def forward(
-            self,
-            inputs: torch.Tensor,
-            input_lengths: torch.Tensor,
+        self,
+        inputs: torch.Tensor,
+        input_lengths: torch.Tensor,
     ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
         r"""
         Forward propagate a `inputs` for  encoders training.

@@ -21,6 +21,7 @@
 # SOFTWARE.
 
 import os
+
 import numpy as np
 from torch.utils.data import Sampler
 
@@ -36,12 +37,13 @@ class RandomSampler(Sampler):
         batch_size (int): size of batch
         drop_last (bool): flat indication whether to drop last batch or not
     """
+
     def __init__(self, data_source, batch_size: int = 32, drop_last: bool = False) -> None:
         super(RandomSampler, self).__init__(data_source)
         self.batch_size = batch_size
         self.data_source = data_source
         ids = list(range(0, len(data_source)))
-        self.bins = [ids[i:i + batch_size] for i in range(0, len(ids), batch_size)]
+        self.bins = [ids[i : i + batch_size] for i in range(0, len(ids), batch_size)]
         self.drop_last = drop_last
 
     def __iter__(self):
@@ -65,6 +67,7 @@ class SmartBatchingSampler(Sampler):
         batch_size (int): size of batch
         drop_last (bool): flat indication whether to drop last batch or not
     """
+
     def __init__(self, data_source, batch_size: int = 32, drop_last: bool = False) -> None:
         super(SmartBatchingSampler, self).__init__(data_source)
         self.batch_size = batch_size
@@ -77,7 +80,7 @@ class SmartBatchingSampler(Sampler):
         sort_by_length = sorted(pack_by_length)
         audio_lengths, audio_indices = zip(*sort_by_length)
 
-        self.bins = [audio_indices[i:i + batch_size] for i in range(0, len(audio_indices), batch_size)]
+        self.bins = [audio_indices[i : i + batch_size] for i in range(0, len(audio_indices), batch_size)]
         self.drop_last = drop_last
 
     def __iter__(self):

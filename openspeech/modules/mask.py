@@ -25,10 +25,10 @@ from torch import Tensor
 
 
 def get_attn_pad_mask(inputs, input_lengths, expand_length):
-    """ mask position is set to 1 """
+    """mask position is set to 1"""
 
     def get_transformer_non_pad_mask(inputs: Tensor, input_lengths: Tensor) -> Tensor:
-        """ Padding position is set to 0, either use input_lengths or pad_id """
+        """Padding position is set to 0, either use input_lengths or pad_id"""
         batch_size = inputs.size(0)
 
         if len(inputs.size()) == 2:
@@ -39,7 +39,7 @@ def get_attn_pad_mask(inputs, input_lengths, expand_length):
             raise ValueError(f"Unsupported input shape {inputs.size()}")
 
         for i in range(batch_size):
-            non_pad_mask[i, input_lengths[i]:] = 0
+            non_pad_mask[i, input_lengths[i] :] = 0
 
         return non_pad_mask
 

@@ -1,8 +1,8 @@
-import unittest
 import logging
+import unittest
 
 from openspeech.modules import Conv2dSubsampling
-from openspeech.utils import DUMMY_INPUTS, DUMMY_INPUT_LENGTHS
+from openspeech.utils import DUMMY_INPUT_LENGTHS, DUMMY_INPUTS
 
 logger = logging.getLogger(__name__)
 

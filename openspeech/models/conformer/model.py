@@ -20,26 +20,31 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from collections import OrderedDict
+from typing import Dict
+
 from omegaconf import DictConfig
 from torch import Tensor
-from typing import Dict
-from collections import OrderedDict
 
 from openspeech.decoders import LSTMAttentionDecoder, RNNTransducerDecoder
-from openspeech.models import register_model, OpenspeechEncoderDecoderModel, OpenspeechTransducerModel
-from openspeech.models import OpenspeechCTCModel
 from openspeech.encoders import ConformerEncoder
-from openspeech.modules.wrapper import Linear
-from openspeech.tokenizers.tokenizer import Tokenizer
+from openspeech.models import (
+    OpenspeechCTCModel,
+    OpenspeechEncoderDecoderModel,
+    OpenspeechTransducerModel,
+    register_model,
+)
 from openspeech.models.conformer.configurations import (
     ConformerConfigs,
     ConformerLSTMConfigs,
     ConformerTransducerConfigs,
     JointCTCConformerLSTMConfigs,
 )
+from openspeech.modules.wrapper import Linear
+from openspeech.tokenizers.tokenizer import Tokenizer
 
 
-@register_model('conformer', dataclass=ConformerConfigs)
+@register_model("conformer", dataclass=ConformerConfigs)
 class ConformerModel(OpenspeechCTCModel):
     r"""
     Conformer Encoder Only Model.
@@ -55,6 +60,7 @@ class ConformerModel(OpenspeechCTCModel):
     Returns:
         outputs (dict): Result of model predictions that contains `y_hats`, `logits`, `output_lengths`
     """
+
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(ConformerModel, self).__init__(configs, tokenizer)
         self.fc = Linear(self.configs.model.encoder_dim, self.num_classes, bias=False)
@@ -104,7 +110,7 @@ class ConformerModel(OpenspeechCTCModel):
         encoder_outputs, encoder_logits, output_lengths = self.encoder(inputs, input_lengths)
         logits = self.fc(encoder_outputs).log_softmax(dim=-1)
         return self.collect_outputs(
-            stage='train',
+            stage="train",
             logits=logits,
             output_lengths=output_lengths,
             targets=targets,
@@ -126,7 +132,7 @@ class ConformerModel(OpenspeechCTCModel):
         encoder_outputs, encoder_logits, output_lengths = self.encoder(inputs, input_lengths)
         logits = self.fc(encoder_outputs).log_softmax(dim=-1)
         return self.collect_outputs(
-            stage='valid',
+            stage="valid",
             logits=logits,
             output_lengths=output_lengths,
             targets=targets,
@@ -148,7 +154,7 @@ class ConformerModel(OpenspeechCTCModel):
         encoder_outputs, encoder_logits, output_lengths = self.encoder(inputs, input_lengths)
         logits = self.fc(encoder_outputs).log_softmax(dim=-1)
         return self.collect_outputs(
-            stage='test',
+            stage="test",
             logits=logits,
             output_lengths=output_lengths,
             targets=targets,
@@ -156,7 +162,7 @@ class ConformerModel(OpenspeechCTCModel):
         )
 
 
-@register_model('conformer_lstm', dataclass=ConformerLSTMConfigs)
+@register_model("conformer_lstm", dataclass=ConformerLSTMConfigs)
 class ConformerLSTMModel(OpenspeechEncoderDecoderModel):
     r"""
     Conformer encoder + LSTM decoder.
@@ -208,15 +214,16 @@ class ConformerLSTMModel(OpenspeechEncoderDecoderModel):
         )
 
     def set_beam_decoder(self, beam_size: int = 3):
-        """ Setting beam search decoder """
+        """Setting beam search decoder"""
         from openspeech.search import BeamSearchLSTM
+
         self.decoder = BeamSearchLSTM(
             decoder=self.decoder,
             beam_size=beam_size,
         )
 
 
-@register_model('conformer_transducer', dataclass=ConformerTransducerConfigs)
+@register_model("conformer_transducer", dataclass=ConformerTransducerConfigs)
 class ConformerTransducerModel(OpenspeechTransducerModel):
     r"""
     Conformer: Convolution-augmented Transformer for Speech Recognition
@@ -266,7 +273,7 @@ class ConformerTransducerModel(OpenspeechTransducerModel):
         )
 
 
-@register_model('joint_ctc_conformer_lstm', dataclass=JointCTCConformerLSTMConfigs)
+@register_model("joint_ctc_conformer_lstm", dataclass=JointCTCConformerLSTMConfigs)
 class JointCTCConformerLSTMModel(OpenspeechEncoderDecoderModel):
     r"""
     Conformer encoder + LSTM decoder.
@@ -317,8 +324,9 @@ class JointCTCConformerLSTMModel(OpenspeechEncoderDecoderModel):
         )
 
     def set_beam_decoder(self, beam_size: int = 3):
-        """ Setting beam search decoder """
+        """Setting beam search decoder"""
         from openspeech.search import BeamSearchLSTM
+
         self.decoder = BeamSearchLSTM(
             decoder=self.decoder,
             beam_size=beam_size,

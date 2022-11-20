@@ -1,12 +1,13 @@
-import unittest
 import logging
+import unittest
+
 import torch
 
 from openspeech.criterion import Perplexity, PerplexityLossConfigs
 from openspeech.models.lstm_lm.configurations import LSTMLanguageModelConfigs
 from openspeech.models.lstm_lm.model import LSTMLanguageModel
-from openspeech.utils import DUMMY_LM_INPUTS, DUMMY_LM_TARGETS, build_dummy_configs
 from openspeech.tokenizers.ksponspeech.character import KsponSpeechCharacterTokenizer
+from openspeech.utils import DUMMY_LM_INPUTS, DUMMY_LM_TARGETS, build_dummy_configs
 
 logger = logging.getLogger(__name__)
 
@@ -25,21 +26,21 @@ class TestLSTMLanguageModel(unittest.TestCase):
 
         for i in range(3):
             outputs = model(DUMMY_LM_INPUTS)
-            loss = criterion(outputs['logits'], DUMMY_LM_TARGETS)
+            loss = criterion(outputs["logits"], DUMMY_LM_TARGETS)
             loss.backward()
             optimizer.step()
             assert type(loss.item()) == float
 
         for i in range(3):
             outputs = model(DUMMY_LM_INPUTS)
-            loss = criterion(outputs['logits'], DUMMY_LM_TARGETS)
+            loss = criterion(outputs["logits"], DUMMY_LM_TARGETS)
             loss.backward()
             optimizer.step()
             assert type(loss.item()) == float
 
         for i in range(3):
             outputs = model(DUMMY_LM_INPUTS)
-            loss = criterion(outputs['logits'], DUMMY_LM_TARGETS)
+            loss = criterion(outputs["logits"], DUMMY_LM_TARGETS)
             loss.backward()
             optimizer.step()
             assert type(loss.item()) == float
@@ -69,5 +70,5 @@ class TestLSTMLanguageModel(unittest.TestCase):
             assert type(outputs["perplexity"].item()) == float
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

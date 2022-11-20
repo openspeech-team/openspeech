@@ -20,14 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import torch
+from typing import Tuple
+
 import torch.nn as nn
 from torch import Tensor
-from typing import Tuple
 
 from openspeech.encoders.openspeech_encoder import OpenspeechEncoder
 from openspeech.modules.contextnet_block import ContextNetBlock
-from openspeech.modules import Conv2dSubsampling, Linear, ConformerBlock, Transpose
 
 
 class ContextNetEncoder(OpenspeechEncoder):
@@ -56,24 +55,24 @@ class ContextNetEncoder(OpenspeechEncoder):
         - **output_lengths**: Tensor representing the length of the encoder output ``(batch)``
     """
     supported_models = {
-        'small': 0.5,
-        'medium': 1,
-        'large': 2,
+        "small": 0.5,
+        "medium": 1,
+        "large": 2,
     }
 
     def __init__(
-            self,
-            num_classes: int,
-            model_size: str = 'medium',
-            input_dim: int = 80,
-            num_layers: int = 5,
-            kernel_size: int = 5,
-            num_channels: int = 256,
-            output_dim: int = 640,
-            joint_ctc_attention: bool = False,
+        self,
+        num_classes: int,
+        model_size: str = "medium",
+        input_dim: int = 80,
+        num_layers: int = 5,
+        kernel_size: int = 5,
+        num_channels: int = 256,
+        output_dim: int = 640,
+        joint_ctc_attention: bool = False,
     ) -> None:
         super(ContextNetEncoder, self).__init__()
-        assert model_size in ('small', 'medium', 'large'), f'{model_size} is not supported.'
+        assert model_size in ("small", "medium", "large"), f"{model_size} is not supported."
 
         alpha = self.supported_models[model_size]
 
@@ -86,9 +85,9 @@ class ContextNetEncoder(OpenspeechEncoder):
             self.fc = nn.Linear(output_dim, num_classes, bias=False)
 
     def forward(
-            self,
-            inputs: Tensor,
-            input_lengths: Tensor,
+        self,
+        inputs: Tensor,
+        input_lengths: Tensor,
     ) -> Tuple[Tensor, Tensor, Tensor]:
         r"""
         Forward propagate a `inputs` for audio encoder.

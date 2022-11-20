@@ -40,12 +40,7 @@ class TransducerLossConfigs(OpenspeechDataclass):
         reduction (str): reduction method of criterion. (default: mean)
         gather (bool): reduce memory consumption. (default: True)
     """
-    criterion_name: str = field(
-        default="transducer", metadata={"help": "Criterion name for training."}
-    )
-    reduction: str = field(
-        default="mean", metadata={"help": "Reduction method of criterion"}
-    )
-    gather: bool = field(
-        default=True, metadata={"help": "Reduce memory consumption."}
-    )
+
+    criterion_name: str = field(default="transducer", metadata={"help": "Criterion name for training."})
+    reduction: str = field(default="mean", metadata={"help": "Reduction method of criterion"})
+    gather: bool = field(default=True, metadata={"help": "Reduce memory consumption."})

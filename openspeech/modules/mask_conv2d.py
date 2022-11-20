@@ -20,10 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Tuple
+
 import torch
 import torch.nn as nn
 from torch import Tensor
-from typing import Tuple
 
 from openspeech.modules.depthwise_conv2d import DepthwiseConv2d
 
@@ -51,6 +52,7 @@ class MaskConv2d(nn.Module):
         - **output**: Masked output from the sequential
         - **seq_lengths**: Sequence length of output from the sequential
     """
+
     def __init__(self, sequential: nn.Sequential) -> None:
         super(MaskConv2d, self).__init__()
         self.sequential = sequential
@@ -94,7 +96,12 @@ class MaskConv2d(nn.Module):
             seq_lengths = numerator.float() / float(module.stride[1])
             seq_lengths = seq_lengths.int() + 1
         elif isinstance(module, DepthwiseConv2d):
-            numerator = seq_lengths + 2 * module.conv.padding[1] - module.conv.dilation[1] * (module.conv.kernel_size[1] - 1) - 1
+            numerator = (
+                seq_lengths
+                + 2 * module.conv.padding[1]
+                - module.conv.dilation[1] * (module.conv.kernel_size[1] - 1)
+                - 1
+            )
             seq_lengths = numerator.float() / float(module.conv.stride[1])
             seq_lengths = seq_lengths.int() + 1
         elif isinstance(module, nn.MaxPool2d):

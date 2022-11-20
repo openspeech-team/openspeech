@@ -23,18 +23,16 @@
 import torch
 from omegaconf import DictConfig
 from torch import Tensor
-from typing import Dict
-from collections import OrderedDict
 
-from openspeech.models import register_model, OpenspeechTransducerModel
 from openspeech.decoders import TransformerTransducerDecoder
 from openspeech.encoders import TransformerTransducerEncoder
-from openspeech.search import BeamSearchTransformerTransducer
+from openspeech.models import OpenspeechTransducerModel, register_model
 from openspeech.models.transformer_transducer.configurations import TransformerTransducerConfigs
+from openspeech.search import BeamSearchTransformerTransducer
 from openspeech.tokenizers.tokenizer import Tokenizer
 
 
-@register_model('transformer_transducer', dataclass=TransformerTransducerConfigs)
+@register_model("transformer_transducer", dataclass=TransformerTransducerConfigs)
 class TransformerTransducerModel(OpenspeechTransducerModel):
     r"""
     Transformer-Transducer is that every layer is identical for both audio and label encoders.
@@ -80,7 +78,7 @@ class TransformerTransducerModel(OpenspeechTransducerModel):
         )
 
     def set_beam_decode(self, beam_size: int = 3, expand_beam: float = 2.3, state_beam: float = 4.6):
-        """ Setting beam search decode """
+        """Setting beam search decode"""
         self.decode = BeamSearchTransformerTransducer(
             joint=self.joint,
             decoder=self.decoder,

@@ -20,11 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Tuple
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
-from typing import Tuple
 
 from openspeech.modules.wrapper import Linear
 
@@ -54,6 +55,7 @@ class LocationAwareAttention(nn.Module):
         Jan Chorowski et al.: Attention-Based Models for Speech Recognition.
         https://arxiv.org/abs/1506.07503
     """
+
     def __init__(self, dim: int = 1024, attn_dim: int = 1024, smoothing: bool = False) -> None:
         super(LocationAwareAttention, self).__init__()
         self.location_conv = nn.Conv1d(in_channels=1, out_channels=attn_dim, kernel_size=3, padding=1)
@@ -72,12 +74,9 @@ class LocationAwareAttention(nn.Module):
         last_alignment_energy = self.location_conv(last_alignment_energy.unsqueeze(dim=1))
         last_alignment_energy = last_alignment_energy.transpose(1, 2)
 
-        alignmment_energy = self.fc(torch.tanh(
-                self.query_proj(query)
-                + self.value_proj(value)
-                + last_alignment_energy
-                + self.bias
-        )).squeeze(dim=-1)
+        alignmment_energy = self.fc(
+            torch.tanh(self.query_proj(query) + self.value_proj(value) + last_alignment_energy + self.bias)
+        ).squeeze(dim=-1)
 
         if self.smoothing:
             alignmment_energy = torch.sigmoid(alignmment_energy)
@@ -89,4 +88,3 @@ class LocationAwareAttention(nn.Module):
         context = torch.bmm(alignmment_energy.unsqueeze(dim=1), value)
 
         return context, alignmment_energy
-

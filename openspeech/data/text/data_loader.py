@@ -35,6 +35,7 @@ def _collate_fn(batch, pad_id: int = 0):
     Returns:
         inputs (torch.FloatTensor): tensor contains input sequences.
     """
+
     def seq_length_(p):
         return len(p[0])
 
@@ -71,12 +72,13 @@ class TextDataLoader(DataLoader):
         num_workers (int): how many subprocesses to use for data loading.
         batch_sampler (torch.utils.data.sampler.Sampler): defines the strategy to draw samples from the dataset.
     """
+
     def __init__(
-            self,
-            dataset: torch.utils.data.Dataset,
-            num_workers: int,
-            batch_sampler: torch.utils.data.sampler.Sampler,
-            **kwargs,
+        self,
+        dataset: torch.utils.data.Dataset,
+        num_workers: int,
+        batch_sampler: torch.utils.data.sampler.Sampler,
+        **kwargs,
     ) -> None:
         super(TextDataLoader, self).__init__(
             dataset=dataset,

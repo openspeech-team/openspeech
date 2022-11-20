@@ -20,14 +20,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from torch import Tensor
 from collections import OrderedDict
 from typing import Dict
+
 from omegaconf import DictConfig
+from torch import Tensor
 
 from openspeech.models import OpenspeechModel
-from openspeech.utils import get_class_name
 from openspeech.tokenizers.tokenizer import Tokenizer
+from openspeech.utils import get_class_name
 
 
 class OpenspeechEncoderDecoderModel(OpenspeechModel):
@@ -47,7 +48,11 @@ class OpenspeechEncoderDecoderModel(OpenspeechModel):
                 `encoder_logits`, `encoder_output_lengths`.
     """
 
-    def __init__(self, configs: DictConfig, tokenizer: Tokenizer, ) -> None:
+    def __init__(
+        self,
+        configs: DictConfig,
+        tokenizer: Tokenizer,
+    ) -> None:
         super(OpenspeechEncoderDecoderModel, self).__init__(configs, tokenizer)
         self.teacher_forcing_ratio = configs.model.teacher_forcing_ratio
         self.encoder = None
@@ -57,13 +62,13 @@ class OpenspeechEncoderDecoderModel(OpenspeechModel):
         raise NotImplementedError
 
     def collect_outputs(
-            self,
-            stage: str,
-            logits: Tensor,
-            encoder_logits: Tensor,
-            encoder_output_lengths: Tensor,
-            targets: Tensor,
-            target_lengths: Tensor,
+        self,
+        stage: str,
+        logits: Tensor,
+        encoder_logits: Tensor,
+        encoder_output_lengths: Tensor,
+        targets: Tensor,
+        target_lengths: Tensor,
     ) -> OrderedDict:
         cross_entropy_loss, ctc_loss = None, None
 
@@ -75,13 +80,17 @@ class OpenspeechEncoderDecoderModel(OpenspeechModel):
                 targets=targets[:, 1:],
                 target_lengths=target_lengths,
             )
-            self.info({
-                f"{stage}_loss": loss,
-                f"{stage}_cross_entropy_loss": cross_entropy_loss,
-                f"{stage}_ctc_loss": ctc_loss,
-            })
-        elif get_class_name(self.criterion) == "LabelSmoothedCrossEntropyLoss" \
-                or get_class_name(self.criterion) == "CrossEntropyLoss":
+            self.info(
+                {
+                    f"{stage}_loss": loss,
+                    f"{stage}_cross_entropy_loss": cross_entropy_loss,
+                    f"{stage}_ctc_loss": ctc_loss,
+                }
+            )
+        elif (
+            get_class_name(self.criterion) == "LabelSmoothedCrossEntropyLoss"
+            or get_class_name(self.criterion) == "CrossEntropyLoss"
+        ):
             loss = self.criterion(logits, targets[:, 1:])
             self.info({f"{stage}_loss": loss})
         else:
@@ -92,20 +101,24 @@ class OpenspeechEncoderDecoderModel(OpenspeechModel):
         wer = self.wer_metric(targets[:, 1:], predictions)
         cer = self.cer_metric(targets[:, 1:], predictions)
 
-        self.info({
-            f"{stage}_wer": wer,
-            f"{stage}_cer": cer,
-        })
+        self.info(
+            {
+                f"{stage}_wer": wer,
+                f"{stage}_cer": cer,
+            }
+        )
 
-        return OrderedDict({
-            "loss": loss,
-            "cross_entropy_loss": cross_entropy_loss,
-            "ctc_loss": ctc_loss,
-            "predictions": predictions,
-            "targets": targets,
-            "logits": logits,
-            "learning_rate": self.get_lr(),
-        })
+        return OrderedDict(
+            {
+                "loss": loss,
+                "cross_entropy_loss": cross_entropy_loss,
+                "ctc_loss": ctc_loss,
+                "predictions": predictions,
+                "targets": targets,
+                "logits": logits,
+                "learning_rate": self.get_lr(),
+            }
+        )
 
     def forward(self, inputs: Tensor, input_lengths: Tensor) -> Dict[str, Tensor]:
         r"""
@@ -170,7 +183,7 @@ class OpenspeechEncoderDecoderModel(OpenspeechModel):
             )
 
         return self.collect_outputs(
-            stage='train',
+            stage="train",
             logits=logits,
             encoder_logits=encoder_logits,
             encoder_output_lengths=encoder_output_lengths,
@@ -198,7 +211,7 @@ class OpenspeechEncoderDecoderModel(OpenspeechModel):
             teacher_forcing_ratio=0.0,
         )
         return self.collect_outputs(
-            stage='val',
+            stage="val",
             logits=logits,
             encoder_logits=encoder_logits,
             encoder_output_lengths=encoder_output_lengths,
@@ -226,7 +239,7 @@ class OpenspeechEncoderDecoderModel(OpenspeechModel):
             teacher_forcing_ratio=0.0,
         )
         return self.collect_outputs(
-            stage='test',
+            stage="test",
             logits=logits,
             encoder_logits=encoder_logits,
             encoder_output_lengths=encoder_output_lengths,

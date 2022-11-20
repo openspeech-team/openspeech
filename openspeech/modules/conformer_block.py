@@ -53,17 +53,18 @@ class ConformerBlock(nn.Module):
     Returns: outputs
         - **outputs** (batch, time, dim): Tensor produces by conformer block.
     """
+
     def __init__(
-            self,
-            encoder_dim: int = 512,
-            num_attention_heads: int = 8,
-            feed_forward_expansion_factor: int = 4,
-            conv_expansion_factor: int = 2,
-            feed_forward_dropout_p: float = 0.1,
-            attention_dropout_p: float = 0.1,
-            conv_dropout_p: float = 0.1,
-            conv_kernel_size: int = 31,
-            half_step_residual: bool = True,
+        self,
+        encoder_dim: int = 512,
+        num_attention_heads: int = 8,
+        feed_forward_expansion_factor: int = 4,
+        conv_expansion_factor: int = 2,
+        feed_forward_dropout_p: float = 0.1,
+        attention_dropout_p: float = 0.1,
+        conv_dropout_p: float = 0.1,
+        conv_kernel_size: int = 31,
+        half_step_residual: bool = True,
     ) -> None:
         super(ConformerBlock, self).__init__()
         if half_step_residual:

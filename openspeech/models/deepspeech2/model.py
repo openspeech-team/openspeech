@@ -20,18 +20,19 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from typing import Dict
-from torch import Tensor
 from collections import OrderedDict
-from omegaconf import DictConfig
+from typing import Dict
 
-from openspeech.models import OpenspeechCTCModel, register_model
+from omegaconf import DictConfig
+from torch import Tensor
+
 from openspeech.encoders.deepspeech2 import DeepSpeech2
+from openspeech.models import OpenspeechCTCModel, register_model
 from openspeech.models.deepspeech2.configurations import DeepSpeech2Configs
 from openspeech.tokenizers.tokenizer import Tokenizer
 
 
-@register_model('deepspeech2', dataclass=DeepSpeech2Configs)
+@register_model("deepspeech2", dataclass=DeepSpeech2Configs)
 class DeepSpeech2Model(OpenspeechCTCModel):
     r"""
     Deep Speech2 model with configurable encoders and decoders.

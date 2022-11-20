@@ -21,6 +21,7 @@
 # SOFTWARE.
 
 import torch.nn as nn
+
 from openspeech.utils import CTCDECODE_IMPORT_ERROR
 
 
@@ -47,17 +48,18 @@ class BeamSearchCTC(nn.Module):
     Returns:
         - outputs: sequences of the model's best prediction
     """
+
     def __init__(
-            self,
-            labels: list,
-            lm_path: str = None,
-            alpha: int = 0,
-            beta: int = 0,
-            cutoff_top_n: int = 40,
-            cutoff_prob: float = 1.0,
-            beam_size: int = 3,
-            num_processes: int = 4,
-            blank_id: int = 0,
+        self,
+        labels: list,
+        lm_path: str = None,
+        alpha: int = 0,
+        beta: int = 0,
+        cutoff_top_n: int = 40,
+        cutoff_prob: float = 1.0,
+        beam_size: int = 3,
+        num_processes: int = 4,
+        blank_id: int = 0,
     ) -> None:
         super(BeamSearchCTC, self).__init__()
         try:
@@ -65,8 +67,9 @@ class BeamSearchCTC(nn.Module):
         except ImportError:
             raise ImportError(CTCDECODE_IMPORT_ERROR)
         assert isinstance(labels, list), "labels must instance of list"
-        self.decoder = CTCBeamDecoder(labels, lm_path, alpha, beta, cutoff_top_n,
-                                      cutoff_prob, beam_size, num_processes, blank_id)
+        self.decoder = CTCBeamDecoder(
+            labels, lm_path, alpha, beta, cutoff_top_n, cutoff_prob, beam_size, num_processes, blank_id
+        )
 
     def forward(self, logits, sizes=None):
         r"""

@@ -28,6 +28,7 @@ class Tokenizer(object):
     Note:
         Do not use this class directly, use one of the sub classes.
     """
+
     def __init__(self, *args, **kwargs):
         self.sos_id = None
         self.eos_id = None

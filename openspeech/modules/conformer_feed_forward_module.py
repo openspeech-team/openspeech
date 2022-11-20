@@ -44,11 +44,12 @@ class FeedForwardModule(nn.Module):
     Outputs: outputs
         - **outputs** (batch, time, dim): Tensor produces by feed forward module.
     """
+
     def __init__(
-            self,
-            encoder_dim: int = 512,
-            expansion_factor: int = 4,
-            dropout_p: float = 0.1,
+        self,
+        encoder_dim: int = 512,
+        expansion_factor: int = 4,
+        dropout_p: float = 0.1,
     ) -> None:
         super(FeedForwardModule, self).__init__()
         self.sequential = nn.Sequential(

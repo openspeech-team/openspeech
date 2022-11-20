@@ -21,6 +21,7 @@
 # SOFTWARE.
 
 import math
+
 import torch.nn as nn
 from torch import Tensor
 
@@ -42,6 +43,7 @@ class TransformerEmbedding(nn.Module):
     Returns:
         outputs (torch.FloatTensor): output of embedding layer
     """
+
     def __init__(self, num_embeddings: int, pad_id: int, d_model: int = 512) -> None:
         super(TransformerEmbedding, self).__init__()
         self.sqrt_dim = math.sqrt(d_model)

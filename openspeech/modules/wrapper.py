@@ -30,6 +30,7 @@ class Linear(nn.Module):
     Wrapper class of torch.nn.Linear
     Weight initialize by xavier initialization and bias initialize to zeros.
     """
+
     def __init__(self, in_features: int, out_features: int, bias: bool = True) -> None:
         super(Linear, self).__init__()
         self.linear = nn.Linear(in_features, out_features, bias=bias)
@@ -42,7 +43,8 @@ class Linear(nn.Module):
 
 
 class View(nn.Module):
-    r""" Wrapper class of torch.view() for Sequential module. """
+    r"""Wrapper class of torch.view() for Sequential module."""
+
     def __init__(self, shape: tuple, contiguous: bool = False):
         super(View, self).__init__()
         self.shape = shape
@@ -55,7 +57,8 @@ class View(nn.Module):
 
 
 class Transpose(nn.Module):
-    r""" Wrapper class of torch.transpose() for Sequential module. """
+    r"""Wrapper class of torch.transpose() for Sequential module."""
+
     def __init__(self, shape: tuple):
         super(Transpose, self).__init__()
         self.shape = shape

@@ -22,8 +22,8 @@
 
 import torch
 
-from openspeech.search.beam_search_base import OpenspeechBeamSearchBase
 from openspeech.decoders import LSTMAttentionDecoder
+from openspeech.search.beam_search_base import OpenspeechBeamSearchBase
 
 
 class BeamSearchLSTM(OpenspeechBeamSearchBase):
@@ -43,6 +43,7 @@ class BeamSearchLSTM(OpenspeechBeamSearchBase):
     Returns:
         * logits (torch.FloatTensor): Log probability of model predictions.
     """
+
     def __init__(self, decoder: LSTMAttentionDecoder, beam_size: int):
         super(BeamSearchLSTM, self).__init__(decoder, beam_size)
         self.hidden_state_dim = decoder.hidden_state_dim
@@ -50,9 +51,9 @@ class BeamSearchLSTM(OpenspeechBeamSearchBase):
         self.validate_args = decoder.validate_args
 
     def forward(
-            self,
-            encoder_outputs: torch.Tensor,
-            encoder_output_lengths: torch.Tensor,
+        self,
+        encoder_outputs: torch.Tensor,
+        encoder_output_lengths: torch.Tensor,
     ) -> torch.Tensor:
         r"""
         Beam search decoding.
@@ -97,7 +98,9 @@ class BeamSearchLSTM(OpenspeechBeamSearchBase):
                 break
 
             if isinstance(hidden_states, tuple):
-                tuple(h.view(self.num_layers, batch_size * self.beam_size, self.hidden_state_dim) for h in hidden_states)
+                tuple(
+                    h.view(self.num_layers, batch_size * self.beam_size, self.hidden_state_dim) for h in hidden_states
+                )
             else:
                 hidden_states = hidden_states.view(self.num_layers, batch_size * self.beam_size, self.hidden_state_dim)
             step_outputs, hidden_states, attn = self.forward_step(input_var, hidden_states, encoder_outputs, attn)
@@ -109,14 +112,14 @@ class BeamSearchLSTM(OpenspeechBeamSearchBase):
             self.ongoing_beams = self.ongoing_beams.view(batch_size, self.beam_size, -1)
 
             current_ps = (current_ps.permute(0, 2, 1) + self.cumulative_ps.unsqueeze(1)).permute(0, 2, 1)
-            current_ps = current_ps.view(batch_size, self.beam_size ** 2)
-            current_vs = current_vs.view(batch_size, self.beam_size ** 2)
+            current_ps = current_ps.view(batch_size, self.beam_size**2)
+            current_vs = current_vs.view(batch_size, self.beam_size**2)
 
             self.cumulative_ps = self.cumulative_ps.view(batch_size, self.beam_size)
             self.ongoing_beams = self.ongoing_beams.view(batch_size, self.beam_size, -1)
 
             topk_current_ps, topk_status_ids = current_ps.topk(self.beam_size)
-            prev_status_ids = (topk_status_ids // self.beam_size)
+            prev_status_ids = topk_status_ids // self.beam_size
 
             topk_current_vs = torch.zeros((batch_size, self.beam_size), dtype=torch.long)
             prev_status = torch.zeros(self.ongoing_beams.size(), dtype=torch.long)

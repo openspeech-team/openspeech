@@ -29,6 +29,7 @@ class GLU(nn.Module):
     The gating mechanism is called Gated Linear Units (GLU), which was first introduced for natural language processing
     in the paper “Language Modeling with Gated Convolutional Networks”
     """
+
     def __init__(self, dim: int) -> None:
         super(GLU, self).__init__()
         self.dim = dim

@@ -22,20 +22,20 @@
 
 from omegaconf import DictConfig
 
-from openspeech.models import register_model, OpenspeechEncoderDecoderModel
 from openspeech.decoders import LSTMAttentionDecoder
-from openspeech.encoders import LSTMEncoder, ConvolutionalLSTMEncoder
-from openspeech.tokenizers.tokenizer import Tokenizer
+from openspeech.encoders import ConvolutionalLSTMEncoder, LSTMEncoder
+from openspeech.models import OpenspeechEncoderDecoderModel, register_model
 from openspeech.models.listen_attend_spell.configurations import (
-    ListenAttendSpellConfigs,
+    DeepCNNWithJointCTCListenAttendSpellConfigs,
     JointCTCListenAttendSpellConfigs,
+    ListenAttendSpellConfigs,
     ListenAttendSpellWithLocationAwareConfigs,
     ListenAttendSpellWithMultiHeadConfigs,
-    DeepCNNWithJointCTCListenAttendSpellConfigs,
 )
+from openspeech.tokenizers.tokenizer import Tokenizer
 
 
-@register_model('listen_attend_spell', dataclass=ListenAttendSpellConfigs)
+@register_model("listen_attend_spell", dataclass=ListenAttendSpellConfigs)
 class ListenAttendSpellModel(OpenspeechEncoderDecoderModel):
     r"""
     Listen, Attend and Spell model with configurable encoder and decoder.
@@ -66,9 +66,11 @@ class ListenAttendSpellModel(OpenspeechEncoderDecoderModel):
             rnn_type=self.configs.model.rnn_type,
             joint_ctc_attention=self.configs.model.joint_ctc_attention,
         )
-        decoder_hidden_state_dim = self.configs.model.hidden_state_dim << 1 \
-            if self.configs.model.encoder_bidirectional \
+        decoder_hidden_state_dim = (
+            self.configs.model.hidden_state_dim << 1
+            if self.configs.model.encoder_bidirectional
             else self.configs.model.hidden_state_dim
+        )
         self.decoder = LSTMAttentionDecoder(
             num_classes=self.num_classes,
             max_length=self.configs.model.max_length,
@@ -84,15 +86,16 @@ class ListenAttendSpellModel(OpenspeechEncoderDecoderModel):
         )
 
     def set_beam_decoder(self, beam_size: int = 3):
-        """ Setting beam search decoder """
+        """Setting beam search decoder"""
         from openspeech.search import BeamSearchLSTM
+
         self.decoder = BeamSearchLSTM(
             decoder=self.decoder,
             beam_size=beam_size,
         )
 
 
-@register_model('listen_attend_spell_with_location_aware', dataclass=ListenAttendSpellWithLocationAwareConfigs)
+@register_model("listen_attend_spell_with_location_aware", dataclass=ListenAttendSpellWithLocationAwareConfigs)
 class ListenAttendSpellWithLocationAwareModel(OpenspeechEncoderDecoderModel):
     r"""
     Listen, Attend and Spell model with configurable encoder and decoder.
@@ -123,9 +126,11 @@ class ListenAttendSpellWithLocationAwareModel(OpenspeechEncoderDecoderModel):
             rnn_type=self.configs.model.rnn_type,
             joint_ctc_attention=self.configs.model.joint_ctc_attention,
         )
-        decoder_hidden_state_dim = self.configs.model.hidden_state_dim << 1 \
-            if self.configs.model.encoder_bidirectional \
+        decoder_hidden_state_dim = (
+            self.configs.model.hidden_state_dim << 1
+            if self.configs.model.encoder_bidirectional
             else self.configs.model.hidden_state_dim
+        )
         self.decoder = LSTMAttentionDecoder(
             num_classes=self.num_classes,
             max_length=self.configs.model.max_length,
@@ -141,15 +146,16 @@ class ListenAttendSpellWithLocationAwareModel(OpenspeechEncoderDecoderModel):
         )
 
     def set_beam_decoder(self, beam_size: int = 3):
-        """ Setting beam search decoder """
+        """Setting beam search decoder"""
         from openspeech.search import BeamSearchLSTM
+
         self.decoder = BeamSearchLSTM(
             decoder=self.decoder,
             beam_size=beam_size,
         )
 
 
-@register_model('listen_attend_spell_with_multi_head', dataclass=ListenAttendSpellWithMultiHeadConfigs)
+@register_model("listen_attend_spell_with_multi_head", dataclass=ListenAttendSpellWithMultiHeadConfigs)
 class ListenAttendSpellWithMultiHeadModel(OpenspeechEncoderDecoderModel):
     r"""
     Listen, Attend and Spell model with configurable encoder and decoder.
@@ -180,9 +186,11 @@ class ListenAttendSpellWithMultiHeadModel(OpenspeechEncoderDecoderModel):
             rnn_type=self.configs.model.rnn_type,
             joint_ctc_attention=self.configs.model.joint_ctc_attention,
         )
-        decoder_hidden_state_dim = self.configs.model.hidden_state_dim << 1 \
-            if self.configs.model.encoder_bidirectional \
+        decoder_hidden_state_dim = (
+            self.configs.model.hidden_state_dim << 1
+            if self.configs.model.encoder_bidirectional
             else self.configs.model.hidden_state_dim
+        )
         self.decoder = LSTMAttentionDecoder(
             num_classes=self.num_classes,
             max_length=self.configs.model.max_length,
@@ -198,15 +206,16 @@ class ListenAttendSpellWithMultiHeadModel(OpenspeechEncoderDecoderModel):
         )
 
     def set_beam_decoder(self, beam_size: int = 3):
-        """ Setting beam search decoder """
+        """Setting beam search decoder"""
         from openspeech.search import BeamSearchLSTM
+
         self.decoder = BeamSearchLSTM(
             decoder=self.decoder,
             beam_size=beam_size,
         )
 
 
-@register_model('joint_ctc_listen_attend_spell', dataclass=JointCTCListenAttendSpellConfigs)
+@register_model("joint_ctc_listen_attend_spell", dataclass=JointCTCListenAttendSpellConfigs)
 class JointCTCListenAttendSpellModel(OpenspeechEncoderDecoderModel):
     r"""
     Joint CTC-Attention Listen, Attend and Spell model with configurable encoder and decoder.
@@ -237,9 +246,11 @@ class JointCTCListenAttendSpellModel(OpenspeechEncoderDecoderModel):
             rnn_type=self.configs.model.rnn_type,
             joint_ctc_attention=self.configs.model.joint_ctc_attention,
         )
-        decoder_hidden_state_dim = self.configs.model.hidden_state_dim << 1 \
-            if self.configs.model.encoder_bidirectional \
+        decoder_hidden_state_dim = (
+            self.configs.model.hidden_state_dim << 1
+            if self.configs.model.encoder_bidirectional
             else self.configs.model.hidden_state_dim
+        )
         self.decoder = LSTMAttentionDecoder(
             num_classes=self.num_classes,
             max_length=self.configs.model.max_length,
@@ -255,15 +266,16 @@ class JointCTCListenAttendSpellModel(OpenspeechEncoderDecoderModel):
         )
 
     def set_beam_decoder(self, beam_size: int = 3):
-        """ Setting beam search decoder """
+        """Setting beam search decoder"""
         from openspeech.search.beam_search_lstm import BeamSearchLSTM
+
         self.decoder = BeamSearchLSTM(
             decoder=self.decoder,
             beam_size=beam_size,
         )
 
 
-@register_model('deep_cnn_with_joint_ctc_listen_attend_spell', dataclass=DeepCNNWithJointCTCListenAttendSpellConfigs)
+@register_model("deep_cnn_with_joint_ctc_listen_attend_spell", dataclass=DeepCNNWithJointCTCListenAttendSpellConfigs)
 class DeepCNNWithJointCTCListenAttendSpellModel(OpenspeechEncoderDecoderModel):
     r"""
     Listen, Attend and Spell model with configurable encoder and decoder.
@@ -294,9 +306,11 @@ class DeepCNNWithJointCTCListenAttendSpellModel(OpenspeechEncoderDecoderModel):
             rnn_type=self.configs.model.rnn_type,
             joint_ctc_attention=self.configs.model.joint_ctc_attention,
         )
-        decoder_hidden_state_dim = self.configs.model.hidden_state_dim << 1 \
-            if self.configs.model.encoder_bidirectional \
+        decoder_hidden_state_dim = (
+            self.configs.model.hidden_state_dim << 1
+            if self.configs.model.encoder_bidirectional
             else self.configs.model.hidden_state_dim
+        )
         self.decoder = LSTMAttentionDecoder(
             num_classes=self.num_classes,
             max_length=self.configs.model.max_length,
@@ -312,8 +326,9 @@ class DeepCNNWithJointCTCListenAttendSpellModel(OpenspeechEncoderDecoderModel):
         )
 
     def set_beam_decoder(self, beam_size: int = 3):
-        """ Setting beam search decoder """
+        """Setting beam search decoder"""
         from openspeech.search import BeamSearchLSTM
+
         self.decoder = BeamSearchLSTM(
             decoder=self.decoder,
             beam_size=beam_size,

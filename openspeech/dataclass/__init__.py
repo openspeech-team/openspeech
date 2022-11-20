@@ -21,22 +21,22 @@
 # SOFTWARE.
 
 from .configurations import (
-    AugmentConfigs,
-    LibriSpeechConfigs,
-    KsponSpeechConfigs,
     AIShellConfigs,
-    LMConfigs,
+    AugmentConfigs,
+    CPUResumeTrainerConfigs,
     CPUTrainerConfigs,
-    GPUTrainerConfigs,
-    TPUTrainerConfigs,
+    EnsembleEvaluationConfigs,
+    EvaluationConfigs,
     Fp16GPUTrainerConfigs,
     Fp16TPUTrainerConfigs,
     Fp64CPUTrainerConfigs,
-    EvaluationConfigs,
-    EnsembleEvaluationConfigs,
-    CPUResumeTrainerConfigs,
     GPUResumeTrainerConfigs,
+    GPUTrainerConfigs,
+    KsponSpeechConfigs,
+    LibriSpeechConfigs,
+    LMConfigs,
     TPUResumeTrainerConfigs,
+    TPUTrainerConfigs,
 )
 
 OPENSPEECH_TRAIN_CONFIGS = [

@@ -20,9 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Tuple
+
 import torch
 import torch.nn as nn
-from typing import Tuple
 
 from openspeech.decoders import OpenspeechDecoder
 from openspeech.modules import Linear
@@ -60,26 +61,26 @@ class RNNTransducerDecoder(OpenspeechDecoder):
         https://arxiv.org/abs/1211.3711.pdf
     """
     supported_rnns = {
-        'lstm': nn.LSTM,
-        'gru': nn.GRU,
-        'rnn': nn.RNN,
+        "lstm": nn.LSTM,
+        "gru": nn.GRU,
+        "rnn": nn.RNN,
     }
 
     def __init__(
-            self,
-            num_classes: int,
-            hidden_state_dim: int,
-            output_dim: int,
-            num_layers: int,
-            rnn_type: str = 'lstm',
-            pad_id: int = 0,
-            sos_id: int = 1,
-            eos_id: int = 2,
-            dropout_p: float = 0.2,
+        self,
+        num_classes: int,
+        hidden_state_dim: int,
+        output_dim: int,
+        num_layers: int,
+        rnn_type: str = "lstm",
+        pad_id: int = 0,
+        sos_id: int = 1,
+        eos_id: int = 2,
+        dropout_p: float = 0.2,
     ):
         super(RNNTransducerDecoder, self).__init__()
         self.hidden_state_dim = hidden_state_dim
-        self.pad_id = pad_id,
+        self.pad_id = (pad_id,)
         self.sos_id = sos_id
         self.eos_id = eos_id
         self.embedding = nn.Embedding(num_classes, hidden_state_dim)
@@ -96,10 +97,10 @@ class RNNTransducerDecoder(OpenspeechDecoder):
         self.out_proj = Linear(hidden_state_dim, output_dim)
 
     def forward(
-            self,
-            inputs: torch.Tensor,
-            input_lengths: torch.Tensor = None,
-            hidden_states: torch.Tensor = None,
+        self,
+        inputs: torch.Tensor,
+        input_lengths: torch.Tensor = None,
+        hidden_states: torch.Tensor = None,
     ) -> Tuple[torch.Tensor, torch.Tensor]:
         """
         Forward propage a `inputs` (targets) for training.

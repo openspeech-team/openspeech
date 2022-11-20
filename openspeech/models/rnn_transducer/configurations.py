@@ -48,36 +48,14 @@ class RNNTransducerConfigs(OpenspeechDataclass):
         output_dim (int): dimension of model output. (default: 512)
         optimizer (str): Optimizer for training. (default: adam)
     """
-    model_name: str = field(
-        default="rnn_transducer", metadata={"help": "Model name"}
-    )
-    encoder_hidden_state_dim: int = field(
-        default=320, metadata={"help": "Dimension of encoder."}
-    )
-    decoder_hidden_state_dim: int = field(
-        default=512, metadata={"help": "Dimension of decoder."}
-    )
-    num_encoder_layers: int = field(
-        default=4, metadata={"help": "The number of encoder layers."}
-    )
-    num_decoder_layers: int = field(
-        default=1, metadata={"help": "The number of decoder layers."}
-    )
-    encoder_dropout_p: float = field(
-        default=0.2, metadata={"help": "The dropout probability of encoder."}
-    )
-    decoder_dropout_p: float = field(
-        default=0.2, metadata={"help": "The dropout probability of decoder."}
-    )
-    bidirectional: bool = field(
-        default=True, metadata={"help": "If True, becomes a bidirectional encoders"}
-    )
-    rnn_type: str = field(
-        default="lstm", metadata={"help": "Type of rnn cell (rnn, lstm, gru)"}
-    )
-    output_dim: int = field(
-        default=512, metadata={"help": "Dimension of outputs"}
-    )
-    optimizer: str = field(
-        default="adam", metadata={"help": "Optimizer for training."}
-    )
+    model_name: str = field(default="rnn_transducer", metadata={"help": "Model name"})
+    encoder_hidden_state_dim: int = field(default=320, metadata={"help": "Dimension of encoder."})
+    decoder_hidden_state_dim: int = field(default=512, metadata={"help": "Dimension of decoder."})
+    num_encoder_layers: int = field(default=4, metadata={"help": "The number of encoder layers."})
+    num_decoder_layers: int = field(default=1, metadata={"help": "The number of decoder layers."})
+    encoder_dropout_p: float = field(default=0.2, metadata={"help": "The dropout probability of encoder."})
+    decoder_dropout_p: float = field(default=0.2, metadata={"help": "The dropout probability of decoder."})
+    bidirectional: bool = field(default=True, metadata={"help": "If True, becomes a bidirectional encoders"})
+    rnn_type: str = field(default="lstm", metadata={"help": "Type of rnn cell (rnn, lstm, gru)"})
+    output_dim: int = field(default=512, metadata={"help": "Dimension of outputs"})
+    optimizer: str = field(default="adam", metadata={"help": "Optimizer for training."})

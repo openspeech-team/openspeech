@@ -23,7 +23,7 @@
 import torch.nn as nn
 from torch import Tensor
 
-from openspeech.modules import DeepSpeech2Extractor, VGGExtractor, Swish, Conv2dSubsampling
+from openspeech.modules import Conv2dSubsampling, DeepSpeech2Extractor, Swish, VGGExtractor
 
 
 class OpenspeechEncoder(nn.Module):
@@ -35,28 +35,28 @@ class OpenspeechEncoder(nn.Module):
         input_lengths (torch.LongTensor): The length of input tensor. ``(batch)``
     """
     supported_activations = {
-        'hardtanh': nn.Hardtanh(0, 20, inplace=True),
-        'relu': nn.ReLU(inplace=True),
-        'elu': nn.ELU(inplace=True),
-        'leaky_relu': nn.LeakyReLU(inplace=True),
-        'gelu': nn.GELU(),
-        'swish': Swish(),
+        "hardtanh": nn.Hardtanh(0, 20, inplace=True),
+        "relu": nn.ReLU(inplace=True),
+        "elu": nn.ELU(inplace=True),
+        "leaky_relu": nn.LeakyReLU(inplace=True),
+        "gelu": nn.GELU(),
+        "swish": Swish(),
     }
     supported_extractors = {
-        'ds2': DeepSpeech2Extractor,
-        'vgg': VGGExtractor,
-        'conv2d_subsample': Conv2dSubsampling,
+        "ds2": DeepSpeech2Extractor,
+        "vgg": VGGExtractor,
+        "conv2d_subsample": Conv2dSubsampling,
     }
 
     def __init__(self):
         super(OpenspeechEncoder, self).__init__()
 
     def count_parameters(self) -> int:
-        r""" Count parameters of encoders """
+        r"""Count parameters of encoders"""
         return sum([p.numel for p in self.parameters()])
 
     def update_dropout(self, dropout_p: float) -> None:
-        r""" Update dropout probability of encoders """
+        r"""Update dropout probability of encoders"""
         for name, child in self.named_children():
             if isinstance(child, nn.Dropout):
                 child.p = dropout_p

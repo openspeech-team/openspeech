@@ -20,9 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import torch
 import logging
 
+import torch
 from torch.utils.data import Dataset
 
 logger = logging.getLogger(__name__)
@@ -36,6 +36,7 @@ class TextDataset(Dataset):
         transcripts (list): list of transcript
         tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
     """
+
     def __init__(self, transcripts: list, tokenizer):
         super(TextDataset, self).__init__()
         self.transcripts = transcripts
@@ -44,7 +45,7 @@ class TextDataset(Dataset):
         self.eos_id = tokenizer.eos_id
 
     def _get_inputs(self, transcript):
-        tokens = transcript.split(' ')
+        tokens = transcript.split(" ")
         transcript = [int(self.sos_id)]
 
         for token in tokens:
@@ -53,7 +54,7 @@ class TextDataset(Dataset):
         return transcript
 
     def _get_targets(self, transcript):
-        tokens = transcript.split(' ')
+        tokens = transcript.split(" ")
         transcript = list()
 
         for token in tokens:
@@ -74,4 +75,3 @@ class TextDataset(Dataset):
 
     def count(self):
         return len(self.transcripts)
-

@@ -39,10 +39,5 @@ class CrossEntropyLossConfigs(OpenspeechDataclass):
         criterion_name (str): name of criterion (default: cross_entropy)
         reduction (str): reduction method of criterion (default: mean)
     """
-    criterion_name: str = field(
-        default="cross_entropy", metadata={"help": "Criterion name for training"}
-    )
-    reduction: str = field(
-        default="mean", metadata={"help": "Reduction method of criterion"}
-    )
-
+    criterion_name: str = field(default="cross_entropy", metadata={"help": "Criterion name for training"})
+    reduction: str = field(default="mean", metadata={"help": "Reduction method of criterion"})

@@ -20,10 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from torch import Tensor
 from typing import Tuple
-from openspeech.modules.swish import Swish
+
 import torch.nn as nn
+from torch import Tensor
+
+from openspeech.modules.swish import Swish
 
 
 class ContextNetSEModule(nn.Module):
@@ -42,9 +44,10 @@ class ContextNetSEModule(nn.Module):
         - **output**: Output of SELayer `FloatTensor` of size
             ``(batch, dimension, seq_length)``
     """
+
     def __init__(self, dim: int) -> None:
         super(ContextNetSEModule, self).__init__()
-        assert dim % 8 == 0, 'Dimension should be divisible by 8.'
+        assert dim % 8 == 0, "Dimension should be divisible by 8."
 
         self.dim = dim
         self.sequential = nn.Sequential(
@@ -54,9 +57,9 @@ class ContextNetSEModule(nn.Module):
         )
 
     def forward(
-            self,
-            inputs: Tensor,
-            input_lengths: Tensor,
+        self,
+        inputs: Tensor,
+        input_lengths: Tensor,
     ) -> Tuple[Tensor, Tensor]:
         r"""
         Forward propagate a `inputs` for SE Layer.
@@ -106,16 +109,17 @@ class ContextNetConvModule(nn.Module):
                 ``(batch, dimension, seq_length)``
         - **output_lengths**: The length of output tensor. ``(batch)``
     """
+
     def __init__(
-            self,
-            in_channels: int,
-            out_channels: int,
-            kernel_size: int = 5,
-            stride: int = 1,
-            padding: int = 0,
-            activation: bool = True,
-            groups: int = 1,
-            bias: bool = True,
+        self,
+        in_channels: int,
+        out_channels: int,
+        kernel_size: int = 5,
+        stride: int = 1,
+        padding: int = 0,
+        activation: bool = True,
+        groups: int = 1,
+        bias: bool = True,
     ):
         super(ContextNetConvModule, self).__init__()
         assert kernel_size == 5, "The convolution layer in the ContextNet model has 5 kernels."
@@ -150,9 +154,9 @@ class ContextNetConvModule(nn.Module):
             self.swish = Swish()
 
     def forward(
-            self,
-            inputs: Tensor,
-            input_lengths: Tensor,
+        self,
+        inputs: Tensor,
+        input_lengths: Tensor,
     ) -> Tuple[Tensor, Tensor]:
         r"""
         Forward propagate a `inputs` for convolution layer.
@@ -177,6 +181,5 @@ class ContextNetConvModule(nn.Module):
 
     def _get_sequence_lengths(self, seq_lengths):
         return (
-                (seq_lengths + 2 * self.conv.padding[0]
-                 - self.conv.dilation[0] * (self.conv.kernel_size[0] - 1) - 1) // self.conv.stride[0] + 1
-        )
+            seq_lengths + 2 * self.conv.padding[0] - self.conv.dilation[0] * (self.conv.kernel_size[0] - 1) - 1
+        ) // self.conv.stride[0] + 1

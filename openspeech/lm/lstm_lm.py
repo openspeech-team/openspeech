@@ -20,13 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import random
+from typing import Optional, Tuple
+
 import torch
 import torch.nn as nn
-import random
 
 from openspeech.lm.openspeech_lm import OpenspeechLanguageModelBase
 from openspeech.modules import Linear, View
-from typing import Optional, Tuple
 
 
 class LSTMForLanguageModel(OpenspeechLanguageModelBase):
@@ -53,23 +54,24 @@ class LSTMForLanguageModel(OpenspeechLanguageModelBase):
     Returns:
         * logits (torch.FloatTensor): Log probability of model predictions.
     """
+
     supported_rnns = {
-        'lstm': nn.LSTM,
-        'gru': nn.GRU,
-        'rnn': nn.RNN,
+        "lstm": nn.LSTM,
+        "gru": nn.GRU,
+        "rnn": nn.RNN,
     }
 
     def __init__(
-            self,
-            num_classes: int,
-            max_length: int = 128,
-            hidden_state_dim: int = 768,
-            pad_id: int = 0,
-            sos_id: int = 1,
-            eos_id: int = 2,
-            num_layers: int = 2,
-            rnn_type: str = 'lstm',
-            dropout_p: float = 0.3,
+        self,
+        num_classes: int,
+        max_length: int = 128,
+        hidden_state_dim: int = 768,
+        pad_id: int = 0,
+        sos_id: int = 1,
+        eos_id: int = 2,
+        num_layers: int = 2,
+        rnn_type: str = "lstm",
+        dropout_p: float = 0.3,
     ) -> None:
         super(LSTMForLanguageModel, self).__init__()
         self.hidden_state_dim = hidden_state_dim
@@ -100,9 +102,9 @@ class LSTMForLanguageModel(OpenspeechLanguageModelBase):
         )
 
     def forward_step(
-            self,
-            input_var: torch.Tensor,
-            hidden_states: Optional[torch.Tensor],
+        self,
+        input_var: torch.Tensor,
+        hidden_states: Optional[torch.Tensor],
     ) -> Tuple[torch.Tensor, torch.Tensor]:
         batch_size, output_lengths = input_var.size(0), input_var.size(1)
 
@@ -120,9 +122,9 @@ class LSTMForLanguageModel(OpenspeechLanguageModelBase):
         return step_outputs, hidden_states
 
     def forward(
-            self,
-            inputs: torch.Tensor,
-            teacher_forcing_ratio: float = 1.0,
+        self,
+        inputs: torch.Tensor,
+        teacher_forcing_ratio: float = 1.0,
     ) -> torch.Tensor:
         """
         Forward propagate a `encoder_outputs` for training.

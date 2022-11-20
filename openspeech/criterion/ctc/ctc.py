@@ -21,12 +21,12 @@
 # SOFTWARE.
 
 import torch.nn as nn
-from torch import Tensor
 from omegaconf import DictConfig
+from torch import Tensor
 
+from ...tokenizers.tokenizer import Tokenizer
 from .. import register_criterion
 from ..ctc.configuration import CTCLossConfigs
-from ...tokenizers.tokenizer import Tokenizer
 
 
 @register_criterion("ctc", dataclass=CTCLossConfigs)
@@ -122,10 +122,11 @@ class CTCLoss(nn.Module):
         Labelling Unsegmented Sequence Data with Recurrent Neural Networks:
         https://www.cs.toronto.edu/~graves/icml_2006.pdf
     """
+
     def __init__(
-            self,
-            configs: DictConfig,
-            tokenizer: Tokenizer,
+        self,
+        configs: DictConfig,
+        tokenizer: Tokenizer,
     ) -> None:
         super(CTCLoss, self).__init__()
         self.ctc_loss = nn.CTCLoss(
@@ -135,11 +136,11 @@ class CTCLoss(nn.Module):
         )
 
     def forward(
-            self,
-            log_probs: Tensor,
-            input_lengths: Tensor,
-            targets: Tensor,
-            target_lengths: Tensor,
+        self,
+        log_probs: Tensor,
+        input_lengths: Tensor,
+        targets: Tensor,
+        target_lengths: Tensor,
     ):
         return self.ctc_loss(
             log_probs,

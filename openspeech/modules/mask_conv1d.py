@@ -20,10 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Tuple
+
 import torch
 import torch.nn as nn
 from torch import Tensor
-from typing import Tuple
 
 
 class MaskConv1d(nn.Conv1d):
@@ -48,25 +49,33 @@ class MaskConv1d(nn.Conv1d):
         - **output**: Masked output from the conv1d
         - **seq_lengths**: Sequence length of output from the conv1d
     """
+
     def __init__(
-            self,
-            in_channels: int,
-            out_channels: int,
-            kernel_size: int,
-            stride: int = 1,
-            padding: int = 0,
-            dilation: int = 1,
-            groups: int = 1,
-            bias: bool = False,
+        self,
+        in_channels: int,
+        out_channels: int,
+        kernel_size: int,
+        stride: int = 1,
+        padding: int = 0,
+        dilation: int = 1,
+        groups: int = 1,
+        bias: bool = False,
     ) -> None:
-        super(MaskConv1d, self).__init__(in_channels=in_channels, out_channels=out_channels,
-                                         kernel_size=kernel_size, stride=stride, padding=padding,
-                                         dilation=dilation, groups=groups, bias=bias)
+        super(MaskConv1d, self).__init__(
+            in_channels=in_channels,
+            out_channels=out_channels,
+            kernel_size=kernel_size,
+            stride=stride,
+            padding=padding,
+            dilation=dilation,
+            groups=groups,
+            bias=bias,
+        )
 
     def _get_sequence_lengths(self, seq_lengths):
-        return (
-            (seq_lengths + 2 * self.padding[0] - self.dilation[0] * (self.kernel_size[0] - 1) - 1) // self.stride[0] + 1
-        )
+        return (seq_lengths + 2 * self.padding[0] - self.dilation[0] * (self.kernel_size[0] - 1) - 1) // self.stride[
+            0
+        ] + 1
 
     def forward(self, inputs: Tensor, input_lengths: Tensor) -> Tuple[Tensor, Tensor]:
         r"""

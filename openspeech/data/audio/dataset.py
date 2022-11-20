@@ -20,11 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import logging
 import os
 import random
-import torch
+
 import numpy as np
-import logging
+import torch
 from omegaconf import DictConfig
 from torch import Tensor
 from torch.utils.data import Dataset
@@ -62,18 +63,18 @@ class SpeechToTextDataset(Dataset):
     AUDIO_JOINING = 4
 
     def __init__(
-            self,
-            configs: DictConfig,
-            dataset_path: str,
-            audio_paths: list,
-            transcripts: list,
-            sos_id: int = 1,
-            eos_id: int = 2,
-            del_silence: bool = False,
-            apply_spec_augment: bool = False,
-            apply_noise_augment: bool = False,
-            apply_time_stretch_augment: bool = False,
-            apply_joining_augment: bool = False,
+        self,
+        configs: DictConfig,
+        dataset_path: str,
+        audio_paths: list,
+        transcripts: list,
+        sos_id: int = 1,
+        eos_id: int = 2,
+        del_silence: bool = False,
+        apply_spec_augment: bool = False,
+        apply_noise_augment: bool = False,
+        apply_time_stretch_augment: bool = False,
+        apply_joining_augment: bool = False,
     ) -> None:
         super(SpeechToTextDataset, self).__init__()
         self.dataset_path = dataset_path
@@ -139,12 +140,11 @@ class SpeechToTextDataset(Dataset):
 
         tmp = list(zip(self.audio_paths, self.transcripts, self.augments))
         random.shuffle(tmp)
-        
+
         for i, x in enumerate(tmp):
             self.audio_paths[i] = x[0]
             self.transcripts[i] = x[1]
             self.augments[i] = x[2]
-
 
     def _parse_audio(self, audio_path: str, augment: int = None, joining_idx: int = 0) -> Tensor:
         """
@@ -193,7 +193,7 @@ class SpeechToTextDataset(Dataset):
         Returns
             transcript (list): transcript that added <sos> and <eos> tokens
         """
-        tokens = transcript.split(' ')
+        tokens = transcript.split(" ")
         transcript = list()
 
         transcript.append(int(self.sos_id))
@@ -204,7 +204,7 @@ class SpeechToTextDataset(Dataset):
         return transcript
 
     def __getitem__(self, idx):
-        """ Provides paif of audio & transcript """
+        """Provides paif of audio & transcript"""
         audio_path = os.path.join(self.dataset_path, self.audio_paths[idx])
 
         if self.augments[idx] == self.AUDIO_JOINING:

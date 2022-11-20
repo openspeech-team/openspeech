@@ -22,32 +22,23 @@
 
 import os
 from dataclasses import dataclass, field
+
 from omegaconf import DictConfig
 
 from openspeech.dataclass.configurations import TokenizerConfigs
 from openspeech.datasets.librispeech.preprocess.subword import SENTENCEPIECE_MODEL_NAME
-from openspeech.utils import SENTENCEPIECE_IMPORT_ERROR
 from openspeech.tokenizers import register_tokenizer
 from openspeech.tokenizers.tokenizer import Tokenizer
+from openspeech.utils import SENTENCEPIECE_IMPORT_ERROR
 
 
 @dataclass
 class LibriSpeechSubwordTokenizerConfigs(TokenizerConfigs):
-    unit: str = field(
-        default="libri_subword", metadata={"help": "Unit of vocabulary."}
-    )
-    sos_token: str = field(
-        default="<s>", metadata={"help": "Start of sentence token"}
-    )
-    eos_token: str = field(
-        default="</s>", metadata={"help": "End of sentence token"}
-    )
-    vocab_size: int = field(
-        default=5000, metadata={"help": "Size of vocabulary."}
-    )
-    vocab_path: str = field(
-        default="../../../LibriSpeech/", metadata={"help": "Path of vocabulary file."}
-    )
+    unit: str = field(default="libri_subword", metadata={"help": "Unit of vocabulary."})
+    sos_token: str = field(default="<s>", metadata={"help": "Start of sentence token"})
+    eos_token: str = field(default="</s>", metadata={"help": "End of sentence token"})
+    vocab_size: int = field(default=5000, metadata={"help": "Size of vocabulary."})
+    vocab_path: str = field(default="../../../LibriSpeech/", metadata={"help": "Path of vocabulary file."})
 
 
 @register_tokenizer("libri_subword", dataclass=LibriSpeechSubwordTokenizerConfigs)
@@ -58,6 +49,7 @@ class LibriSpeechSubwordTokenizer(Tokenizer):
     Args:
         configs (DictConfig): configuration set.
     """
+
     def __init__(self, configs: DictConfig):
         super(LibriSpeechSubwordTokenizer, self).__init__()
         try:

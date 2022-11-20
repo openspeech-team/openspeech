@@ -22,14 +22,13 @@
 
 from omegaconf import DictConfig
 
-from openspeech.models import register_model
-from openspeech.models import OpenspeechCTCModel
 from openspeech.encoders import Jasper
+from openspeech.models import OpenspeechCTCModel, register_model
 from openspeech.models.jasper.configurations import Jasper5x3Config, Jasper10x5Config
 from openspeech.tokenizers.tokenizer import Tokenizer
 
 
-@register_model('jasper5x3', dataclass=Jasper5x3Config)
+@register_model("jasper5x3", dataclass=Jasper5x3Config)
 class Jasper5x3Model(OpenspeechCTCModel):
     r"""
     Jasper: An End-to-End Convolutional Neural Acoustic Model
@@ -57,7 +56,7 @@ class Jasper5x3Model(OpenspeechCTCModel):
         )
 
 
-@register_model('jasper10x5', dataclass=Jasper10x5Config)
+@register_model("jasper10x5", dataclass=Jasper10x5Config)
 class Jasper10x5Model(Jasper5x3Model):
     r"""
     Jasper: An End-to-End Convolutional Neural Acoustic Model

@@ -21,9 +21,10 @@
 # SOFTWARE.
 
 import math
-import torch
-from typing import Optional
 from dataclasses import dataclass, field
+from typing import Optional
+
+import torch
 from omegaconf import DictConfig
 from torch.optim import Optimizer
 
@@ -34,24 +35,14 @@ from openspeech.optim.scheduler.lr_scheduler import LearningRateScheduler
 
 @dataclass
 class TransformerLRSchedulerConfigs(LearningRateSchedulerConfigs):
-    scheduler_name: str = field(
-        default="transformer", metadata={"help": "Name of learning rate scheduler."}
-    )
-    peak_lr: float = field(
-        default=1e-04, metadata={"help": "Maximum learning rate."}
-    )
-    final_lr: float = field(
-        default=1e-07, metadata={"help": "Final learning rate."}
-    )
-    final_lr_scale: float = field(
-        default=0.05, metadata={"help": "Final learning rate scale"}
-    )
+    scheduler_name: str = field(default="transformer", metadata={"help": "Name of learning rate scheduler."})
+    peak_lr: float = field(default=1e-04, metadata={"help": "Maximum learning rate."})
+    final_lr: float = field(default=1e-07, metadata={"help": "Final learning rate."})
+    final_lr_scale: float = field(default=0.05, metadata={"help": "Final learning rate scale"})
     warmup_steps: int = field(
         default=10000, metadata={"help": "Warmup the learning rate linearly for the first N updates"}
     )
-    decay_steps: int = field(
-        default=150000, metadata={"help": "Steps in decay stages"}
-    )
+    decay_steps: int = field(default=150000, metadata={"help": "Steps in decay stages"})
 
 
 @register_scheduler("transformer", dataclass=TransformerLRSchedulerConfigs)
@@ -63,10 +54,11 @@ class TransformerLRScheduler(LearningRateScheduler):
         optimizer (Optimizer): wrapped optimizer.
         configs (DictConfig): configuration set.
     """
+
     def __init__(
-            self,
-            optimizer: Optimizer,
-            configs: DictConfig,
+        self,
+        optimizer: Optimizer,
+        configs: DictConfig,
     ) -> None:
         assert isinstance(configs.lr_scheduler.warmup_steps, int), "warmup_steps should be inteager type"
         assert isinstance(configs.lr_scheduler.decay_steps, int), "total_steps should be inteager type"

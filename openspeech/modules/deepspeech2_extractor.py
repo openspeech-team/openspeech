@@ -20,9 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Tuple
+
 import torch
 import torch.nn as nn
-from typing import Tuple
 
 from openspeech.modules import Conv2dExtractor
 
@@ -47,17 +48,19 @@ class DeepSpeech2Extractor(Conv2dExtractor):
         - **outputs**: Tensor produced by the convolution
         - **output_lengths**: Tensor containing sequence lengths produced by the convolution
     """
+
     def __init__(
-            self,
-            input_dim: int,
-            in_channels: int = 1,
-            out_channels: int = 32,
-            activation: str = 'hardtanh',
+        self,
+        input_dim: int,
+        in_channels: int = 1,
+        out_channels: int = 32,
+        activation: str = "hardtanh",
     ) -> None:
         super(DeepSpeech2Extractor, self).__init__(input_dim=input_dim, activation=activation)
         self.in_channels = in_channels
         self.out_channels = out_channels
         from openspeech.modules import MaskConv2d
+
         self.conv = MaskConv2d(
             nn.Sequential(
                 nn.Conv2d(in_channels, out_channels, kernel_size=(41, 11), stride=(2, 2), padding=(20, 5), bias=False),

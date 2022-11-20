@@ -20,13 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Tuple
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from typing import Tuple
 from omegaconf import DictConfig
 
-from openspeech.modules import JasperSubBlock, JasperBlock, MaskConv1d
+from openspeech.modules import JasperBlock, JasperSubBlock, MaskConv1d
 
 
 class Jasper(nn.Module):
@@ -73,50 +74,56 @@ class Jasper(nn.Module):
                 stride=stride[0],
                 dilation=dilation[0],
                 dropout_p=dropout_p[0],
-                activation='relu',
+                activation="relu",
                 bias=False,
             )
         )
-        self.layers.extend([
-            JasperBlock(
-                num_sub_blocks=self.configs.num_sub_blocks,
-                in_channels=in_channels[i],
-                out_channels=out_channels[i],
-                kernel_size=kernel_size[i],
-                dilation=dilation[i],
-                dropout_p=dropout_p[i],
-                activation='relu',
-                bias=False,
-            ) for i in range(1, self.configs.num_blocks + 1)
-        ])
-        self.postprocess_layers = nn.ModuleList([
-            JasperSubBlock(
-                in_channels=in_channels[i],
-                out_channels=num_classes if out_channels[i] is None else out_channels[i],
-                kernel_size=kernel_size[i],
-                dilation=dilation[i],
-                dropout_p=dropout_p[i],
-                activation='relu',
-                bias=True if i == 2 else False,
-            ) for i in range(self.configs.num_blocks + 1, self.configs.num_blocks + 4)
-        ])
+        self.layers.extend(
+            [
+                JasperBlock(
+                    num_sub_blocks=self.configs.num_sub_blocks,
+                    in_channels=in_channels[i],
+                    out_channels=out_channels[i],
+                    kernel_size=kernel_size[i],
+                    dilation=dilation[i],
+                    dropout_p=dropout_p[i],
+                    activation="relu",
+                    bias=False,
+                )
+                for i in range(1, self.configs.num_blocks + 1)
+            ]
+        )
+        self.postprocess_layers = nn.ModuleList(
+            [
+                JasperSubBlock(
+                    in_channels=in_channels[i],
+                    out_channels=num_classes if out_channels[i] is None else out_channels[i],
+                    kernel_size=kernel_size[i],
+                    dilation=dilation[i],
+                    dropout_p=dropout_p[i],
+                    activation="relu",
+                    bias=True if i == 2 else False,
+                )
+                for i in range(self.configs.num_blocks + 1, self.configs.num_blocks + 4)
+            ]
+        )
 
         self.residual_connections = self._create_jasper_dense_residual_connections()
 
     def count_parameters(self) -> int:
-        r""" Count parameters of model """
+        r"""Count parameters of model"""
         return sum([p.numel for p in self.parameters()])
 
     def update_dropout(self, dropout_p: float) -> None:
-        r""" Update dropout probability of model """
+        r"""Update dropout probability of model"""
         for name, child in self.named_children():
             if isinstance(child, nn.Dropout):
                 child.p = dropout_p
 
     def forward(
-            self,
-            inputs: torch.Tensor,
-            input_lengths: torch.Tensor,
+        self,
+        inputs: torch.Tensor,
+        input_lengths: torch.Tensor,
     ) -> Tuple[torch.Tensor, torch.Tensor]:
         r"""
         Forward propagate a `inputs` for  encoder_only training.
@@ -172,12 +179,14 @@ class Jasper(nn.Module):
         for i in range(self.configs.num_blocks):
             residual_modules = nn.ModuleList()
             for j in range(1, i + 2):
-                residual_modules.append(nn.ModuleList([
-                    MaskConv1d(
-                        self.configs.in_channels[j], self.configs.out_channels[j], kernel_size=1
-                    ),
-                    nn.BatchNorm1d(self.configs.out_channels[i], eps=1e-03, momentum=0.1),
-                ]))
+                residual_modules.append(
+                    nn.ModuleList(
+                        [
+                            MaskConv1d(self.configs.in_channels[j], self.configs.out_channels[j], kernel_size=1),
+                            nn.BatchNorm1d(self.configs.out_channels[i], eps=1e-03, momentum=0.1),
+                        ]
+                    )
+                )
             residual_connections.append(residual_modules)
 
         return residual_connections

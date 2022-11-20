@@ -20,17 +20,18 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Tuple
+
 import torch
 import torch.nn as nn
 from torch import Tensor
-from typing import Tuple
 
-from openspeech.modules.glu import GLU
-from openspeech.modules.swish import Swish
-from openspeech.modules.pointwise_conv1d import PointwiseConv1d
 from openspeech.modules.depthwise_conv1d import DepthwiseConv1d
 from openspeech.modules.depthwise_conv2d import DepthwiseConv2d
-from openspeech.modules.wrapper import Transpose, Linear
+from openspeech.modules.glu import GLU
+from openspeech.modules.pointwise_conv1d import PointwiseConv1d
+from openspeech.modules.swish import Swish
+from openspeech.modules.wrapper import Linear, Transpose
 
 
 class SqueezeformerConvModule(nn.Module):
@@ -48,12 +49,13 @@ class SqueezeformerConvModule(nn.Module):
     Outputs: outputs
         outputs (batch, time, dim): Tensor produces by squeezeformer convolution module.
     """
+
     def __init__(
-            self,
-            in_channels: int,
-            kernel_size: int = 31,
-            expansion_factor: int = 2,
-            dropout_p: float = 0.1,
+        self,
+        in_channels: int,
+        kernel_size: int = 31,
+        expansion_factor: int = 2,
+        dropout_p: float = 0.1,
     ) -> None:
         super(SqueezeformerConvModule, self).__init__()
         assert (kernel_size - 1) % 2 == 0, "kernel_size should be a odd number for 'SAME' padding"
@@ -76,11 +78,11 @@ class SqueezeformerConvModule(nn.Module):
 
 class TimeReductionLayer(nn.Module):
     def __init__(
-            self,
-            in_channels: int = 1,
-            out_channels: int = 1,
-            kernel_size: int = 3,
-            stride: int = 2,
+        self,
+        in_channels: int = 1,
+        out_channels: int = 1,
+        kernel_size: int = 3,
+        stride: int = 2,
     ) -> None:
         super(TimeReductionLayer, self).__init__()
         self.sequential = nn.Sequential(
@@ -122,11 +124,12 @@ class FeedForwardModule(nn.Module):
     Outputs: outputs
         - **outputs** (batch, time, dim): Tensor produces by feed forward module.
     """
+
     def __init__(
-            self,
-            encoder_dim: int = 512,
-            expansion_factor: int = 4,
-            dropout_p: float = 0.1,
+        self,
+        encoder_dim: int = 512,
+        expansion_factor: int = 4,
+        dropout_p: float = 0.1,
     ) -> None:
         super(FeedForwardModule, self).__init__()
         self.sequential = nn.Sequential(
@@ -156,4 +159,3 @@ def recover_resolution(inputs: Tensor) -> Tensor:
     for idx in range(inputs.size(1) * 2):
         outputs.append(inputs[:, idx // 2, :])
     return torch.stack(outputs, dim=1)
-

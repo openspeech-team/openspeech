@@ -21,14 +21,20 @@
 # SOFTWARE.
 
 from .configurations import (
-    TransformerWithCTCConfigs,
+    JointCTCTransformerConfigs,
     TransformerConfigs,
+    TransformerWithCTCConfigs,
     VGGTransformerConfigs,
-    JointCTCTransformerConfigs
 )
-from .model import (
-    TransformerWithCTCModel,
-    TransformerModel,
-    VGGTransformerModel,
-    JointCTCTransformerModel,
-)
+from .model import JointCTCTransformerModel, TransformerModel, TransformerWithCTCModel, VGGTransformerModel
+
+__all__ = [
+    "JointCTCTransformerConfigs",
+    "TransformerConfigs",
+    "TransformerWithCTCConfigs",
+    "VGGTransformerConfigs",
+    "JointCTCTransformerModel",
+    "TransformerModel",
+    "TransformerWithCTCModel",
+    "VGGTransformerModel",
+]

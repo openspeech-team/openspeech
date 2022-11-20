@@ -20,17 +20,18 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Dict
+
+import pytorch_lightning as pl
 import torch
 import torch.nn as nn
-import pytorch_lightning as pl
-from typing import Dict
 from omegaconf import DictConfig
 from torch import Tensor
-from torch.optim import Adam, Adagrad, Adadelta, Adamax, AdamW, SGD, ASGD
+from torch.optim import ASGD, SGD, Adadelta, Adagrad, Adam, Adamax, AdamW
 
-from openspeech.optim import AdamP, RAdam, Novograd
 from openspeech.criterion import CRITERION_REGISTRY
-from openspeech.metrics import WordErrorRate, CharacterErrorRate
+from openspeech.metrics import CharacterErrorRate, WordErrorRate
+from openspeech.optim import AdamP, Novograd, RAdam
 from openspeech.optim.scheduler import SCHEDULER_REGISTRY
 from openspeech.tokenizers.tokenizer import Tokenizer
 
@@ -53,6 +54,7 @@ class OpenspeechModel(pl.LightningModule):
     Returns:
         outputs (dict): Result of model predictions.
     """
+
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(OpenspeechModel, self).__init__()
         self.configs = configs
@@ -152,9 +154,10 @@ class OpenspeechModel(pl.LightningModule):
             "novograd": Novograd,
         }
 
-        assert self.configs.model.optimizer in SUPPORTED_OPTIMIZERS.keys(), \
-            f"Unsupported Optimizer: {self.configs.model.optimizer}\n" \
+        assert self.configs.model.optimizer in SUPPORTED_OPTIMIZERS.keys(), (
+            f"Unsupported Optimizer: {self.configs.model.optimizer}\n"
             f"Supported Optimizers: {SUPPORTED_OPTIMIZERS.keys()}"
+        )
 
         self.optimizer = SUPPORTED_OPTIMIZERS[self.configs.model.optimizer](
             self.parameters(),
@@ -164,20 +167,20 @@ class OpenspeechModel(pl.LightningModule):
 
         if self.configs.lr_scheduler.scheduler_name == "reduce_lr_on_plateau":
             lr_scheduler = {
-                'scheduler': scheduler,
-                'monitor': 'val_loss',
-                'interval': 'epoch',
+                "scheduler": scheduler,
+                "monitor": "val_loss",
+                "interval": "epoch",
             }
         elif self.configs.lr_scheduler.scheduler_name == "warmup_reduce_lr_on_plateau":
             lr_scheduler = {
-                'scheduler': scheduler,
-                'monitor': 'val_loss',
-                'interval': 'step',
+                "scheduler": scheduler,
+                "monitor": "val_loss",
+                "interval": "step",
             }
         else:
             lr_scheduler = {
-                'scheduler': scheduler,
-                'interval': 'step',
+                "scheduler": scheduler,
+                "interval": "step",
             }
 
         return [self.optimizer], [lr_scheduler]
@@ -192,7 +195,7 @@ class OpenspeechModel(pl.LightningModule):
         Returns:
             criterion (nn.Module): criterion for training
         """
-        if criterion_name in ('joint_ctc_cross_entropy', 'label_smoothed_cross_entropy'):
+        if criterion_name in ("joint_ctc_cross_entropy", "label_smoothed_cross_entropy"):
             return CRITERION_REGISTRY[criterion_name](
                 configs=self.configs,
                 num_classes=self.num_classes,
@@ -206,8 +209,8 @@ class OpenspeechModel(pl.LightningModule):
 
     def get_lr(self):
         for g in self.optimizer.param_groups:
-            return g['lr']
+            return g["lr"]
 
     def set_lr(self, lr):
         for g in self.optimizer.param_groups:
-            g['lr'] = lr
+            g["lr"] = lr

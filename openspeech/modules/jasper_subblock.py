@@ -20,8 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Optional, Tuple
+
 import torch.nn as nn
-from typing import Tuple, Optional
 from torch import Tensor
 
 from openspeech.modules.mask_conv1d import MaskConv1d
@@ -52,24 +53,24 @@ class JasperSubBlock(nn.Module):
         * output_lengths (torch.LongTensor): tensor contains output sequence lengths
     """
     supported_activations = {
-        'hardtanh': nn.Hardtanh(0, 20, inplace=True),
-        'relu': nn.ReLU(inplace=True),
-        'elu': nn.ELU(inplace=True),
-        'leaky_relu': nn.LeakyReLU(inplace=True),
-        'gelu': nn.GELU(),
+        "hardtanh": nn.Hardtanh(0, 20, inplace=True),
+        "relu": nn.ReLU(inplace=True),
+        "elu": nn.ELU(inplace=True),
+        "leaky_relu": nn.LeakyReLU(inplace=True),
+        "gelu": nn.GELU(),
     }
 
     def __init__(
-            self,
-            in_channels: int,
-            out_channels: int,
-            kernel_size: int,
-            stride: int = 1,
-            dilation: int = 1,
-            padding: int = 0,
-            bias: bool = False,
-            dropout_p: float = 0.2,
-            activation: str = 'relu',
+        self,
+        in_channels: int,
+        out_channels: int,
+        kernel_size: int,
+        stride: int = 1,
+        dilation: int = 1,
+        padding: int = 0,
+        bias: bool = False,
+        dropout_p: float = 0.2,
+        activation: str = "relu",
     ) -> None:
         super(JasperSubBlock, self).__init__()
 
@@ -87,10 +88,10 @@ class JasperSubBlock(nn.Module):
         self.dropout = nn.Dropout(p=dropout_p)
 
     def forward(
-            self,
-            inputs: Tensor,
-            input_lengths: Tensor,
-            residual: Optional[Tensor] = None,
+        self,
+        inputs: Tensor,
+        input_lengths: Tensor,
+        residual: Optional[Tensor] = None,
     ) -> Tuple[Tensor, Tensor]:
         r"""
         Forward propagate of conformer's subblock.

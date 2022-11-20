@@ -21,20 +21,21 @@
 # SOFTWARE.
 
 import random
+from typing import Optional, Tuple
+
 import torch
 import torch.nn as nn
 from torch import Tensor
-from typing import Optional, Tuple
 
 from openspeech.decoders import OpenspeechDecoder
 from openspeech.modules import (
-    TransformerEmbedding,
-    PositionalEncoding,
     Linear,
+    MultiHeadAttention,
+    PositionalEncoding,
+    PositionwiseFeedForward,
+    TransformerEmbedding,
     get_attn_pad_mask,
     get_attn_subsequent_mask,
-    MultiHeadAttention,
-    PositionwiseFeedForward,
 )
 
 
@@ -66,12 +67,13 @@ class TransformerDecoderLayer(nn.Module):
         Ashish Vaswani et al.: Attention Is All You Need
         https://arxiv.org/abs/1706.03762
     """
+
     def __init__(
-            self,
-            d_model: int = 512,
-            num_heads: int = 8,
-            d_ff: int = 2048,
-            dropout_p: float = 0.3,
+        self,
+        d_model: int = 512,
+        num_heads: int = 8,
+        d_ff: int = 2048,
+        dropout_p: float = 0.3,
     ) -> None:
         super(TransformerDecoderLayer, self).__init__()
         self.self_attention_prenorm = nn.LayerNorm(d_model)
@@ -82,11 +84,11 @@ class TransformerDecoderLayer(nn.Module):
         self.feed_forward = PositionwiseFeedForward(d_model, d_ff, dropout_p)
 
     def forward(
-            self,
-            inputs: Tensor,
-            encoder_outputs: Tensor,
-            self_attn_mask: Optional[Tensor] = None,
-            encoder_attn_mask: Optional[Tensor] = None,
+        self,
+        inputs: Tensor,
+        encoder_outputs: Tensor,
+        self_attn_mask: Optional[Tensor] = None,
+        encoder_attn_mask: Optional[Tensor] = None,
     ) -> Tuple[Tensor, Tensor, Tensor]:
         r"""
         Forward propagate transformer decoder layer.
@@ -140,17 +142,17 @@ class TransformerDecoder(OpenspeechDecoder):
     """
 
     def __init__(
-            self,
-            num_classes: int,
-            d_model: int = 512,
-            d_ff: int = 512,
-            num_layers: int = 6,
-            num_heads: int = 8,
-            dropout_p: float = 0.3,
-            pad_id: int = 0,
-            sos_id: int = 1,
-            eos_id: int = 2,
-            max_length: int = 128,
+        self,
+        num_classes: int,
+        d_model: int = 512,
+        d_ff: int = 512,
+        num_layers: int = 6,
+        num_heads: int = 8,
+        dropout_p: float = 0.3,
+        pad_id: int = 0,
+        sos_id: int = 1,
+        eos_id: int = 2,
+        max_length: int = 128,
     ) -> None:
         super(TransformerDecoder, self).__init__()
         self.d_model = d_model
@@ -164,14 +166,17 @@ class TransformerDecoder(OpenspeechDecoder):
         self.embedding = TransformerEmbedding(num_classes, pad_id, d_model)
         self.positional_encoding = PositionalEncoding(d_model)
         self.input_dropout = nn.Dropout(p=dropout_p)
-        self.layers = nn.ModuleList([
-            TransformerDecoderLayer(
-                d_model=d_model,
-                num_heads=num_heads,
-                d_ff=d_ff,
-                dropout_p=dropout_p,
-            ) for _ in range(num_layers)
-        ])
+        self.layers = nn.ModuleList(
+            [
+                TransformerDecoderLayer(
+                    d_model=d_model,
+                    num_heads=num_heads,
+                    d_ff=d_ff,
+                    dropout_p=dropout_p,
+                )
+                for _ in range(num_layers)
+            ]
+        )
         self.fc = nn.Sequential(
             nn.LayerNorm(d_model),
             Linear(d_model, d_model, bias=False),
@@ -180,16 +185,14 @@ class TransformerDecoder(OpenspeechDecoder):
         )
 
     def forward_step(
-            self,
-            decoder_inputs: torch.Tensor,
-            decoder_input_lengths: torch.Tensor,
-            encoder_outputs: torch.Tensor,
-            encoder_output_lengths: torch.Tensor,
-            positional_encoding_length: int,
+        self,
+        decoder_inputs: torch.Tensor,
+        decoder_input_lengths: torch.Tensor,
+        encoder_outputs: torch.Tensor,
+        encoder_output_lengths: torch.Tensor,
+        positional_encoding_length: int,
     ) -> torch.Tensor:
-        dec_self_attn_pad_mask = get_attn_pad_mask(
-            decoder_inputs, decoder_input_lengths, decoder_inputs.size(1)
-        )
+        dec_self_attn_pad_mask = get_attn_pad_mask(decoder_inputs, decoder_input_lengths, decoder_inputs.size(1))
         dec_self_attn_subsequent_mask = get_attn_subsequent_mask(decoder_inputs)
         self_attn_mask = torch.gt((dec_self_attn_pad_mask + dec_self_attn_subsequent_mask), 0)
 
@@ -209,12 +212,12 @@ class TransformerDecoder(OpenspeechDecoder):
         return outputs
 
     def forward(
-            self,
-            encoder_outputs: torch.Tensor,
-            targets: Optional[torch.LongTensor] = None,
-            encoder_output_lengths: torch.Tensor = None,
-            target_lengths: torch.Tensor = None,
-            teacher_forcing_ratio: float = 1.0,
+        self,
+        encoder_outputs: torch.Tensor,
+        targets: Optional[torch.LongTensor] = None,
+        encoder_output_lengths: torch.Tensor = None,
+        target_lengths: torch.Tensor = None,
+        teacher_forcing_ratio: float = 1.0,
     ) -> torch.Tensor:
         r"""
         Forward propagate a `encoder_outputs` for training.

@@ -21,9 +21,10 @@
 # SOFTWARE.
 
 from dataclasses import dataclass, field
+from typing import Optional
+
 from omegaconf import DictConfig
 from torch.optim import Optimizer
-from typing import Optional
 
 from openspeech.dataclass.configurations import LearningRateSchedulerConfigs
 from openspeech.optim.scheduler import register_scheduler
@@ -32,9 +33,7 @@ from openspeech.optim.scheduler.lr_scheduler import LearningRateScheduler
 
 @dataclass
 class ReduceLROnPlateauConfigs(LearningRateSchedulerConfigs):
-    scheduler_name: str = field(
-        default="reduce_lr_on_plateau", metadata={"help": "Name of learning rate scheduler."}
-    )
+    scheduler_name: str = field(default="reduce_lr_on_plateau", metadata={"help": "Name of learning rate scheduler."})
     lr_patience: int = field(
         default=1, metadata={"help": "Number of epochs with no improvement after which learning rate will be reduced."}
     )
@@ -54,10 +53,11 @@ class ReduceLROnPlateauScheduler(LearningRateScheduler):
         optimizer (Optimizer): wrapped optimizer.
         configs (DictConfig): configuration set.
     """
+
     def __init__(
-            self,
-            optimizer: Optimizer,
-            configs: DictConfig,
+        self,
+        optimizer: Optimizer,
+        configs: DictConfig,
     ) -> None:
         super(ReduceLROnPlateauScheduler, self).__init__(optimizer, configs.lr_scheduler.lr)
         self.lr = configs.lr_scheduler.lr

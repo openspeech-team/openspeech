@@ -21,8 +21,9 @@
 # SOFTWARE.
 
 import csv
-from omegaconf import DictConfig
 from dataclasses import dataclass, field
+
+from omegaconf import DictConfig
 
 from openspeech.dataclass.configurations import TokenizerConfigs
 from openspeech.tokenizers import register_tokenizer
@@ -31,12 +32,8 @@ from openspeech.tokenizers.tokenizer import Tokenizer
 
 @dataclass
 class KsponSpeechCharacterTokenizerConfigs(TokenizerConfigs):
-    unit: str = field(
-        default="kspon_character", metadata={"help": "Unit of vocabulary."}
-    )
-    vocab_path: str = field(
-        default="../../../aihub_labels.csv", metadata={"help": "Path of vocabulary file."}
-    )
+    unit: str = field(default="kspon_character", metadata={"help": "Unit of vocabulary."})
+    vocab_path: str = field(default="../../../aihub_labels.csv", metadata={"help": "Path of vocabulary file."})
 
 
 @register_tokenizer("kspon_character", dataclass=KsponSpeechCharacterTokenizerConfigs)
@@ -47,6 +44,7 @@ class KsponSpeechCharacterTokenizer(Tokenizer):
     Args:
         configs (DictConfig): configuration set.
     """
+
     def __init__(self, configs: DictConfig):
         super(KsponSpeechCharacterTokenizer, self).__init__()
         self.vocab_dict, self.id_dict = self.load_vocab(
@@ -79,7 +77,7 @@ class KsponSpeechCharacterTokenizer(Tokenizer):
                 if label.item() == self.eos_id:
                     break
                 elif label.item() == self.blank_id:
-                  continue
+                    continue
                 sentence += self.id_dict[label.item()]
             return sentence
 
@@ -90,7 +88,7 @@ class KsponSpeechCharacterTokenizer(Tokenizer):
                 if label.item() == self.eos_id:
                     break
                 elif label.item() == self.blank_id:
-                  continue
+                    continue
                 sentence += self.id_dict[label.item()]
             sentences.append(sentence)
         return sentences
@@ -100,13 +98,13 @@ class KsponSpeechCharacterTokenizer(Tokenizer):
 
         for ch in sentence:
             try:
-                label += (str(self.vocab_dict[ch]) + ' ')
+                label += str(self.vocab_dict[ch]) + " "
             except KeyError:
                 continue
 
         return label[:-1]
 
-    def load_vocab(self, vocab_path, encoding='utf-8'):
+    def load_vocab(self, vocab_path, encoding="utf-8"):
         r"""
         Provides char2id, id2char
 
@@ -122,8 +120,8 @@ class KsponSpeechCharacterTokenizer(Tokenizer):
         id2unit = dict()
 
         try:
-            with open(vocab_path, 'r', encoding=encoding) as f:
-                labels = csv.reader(f, delimiter=',')
+            with open(vocab_path, "r", encoding=encoding) as f:
+                labels = csv.reader(f, delimiter=",")
                 next(labels)
 
                 for row in labels:

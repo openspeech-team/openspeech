@@ -1,10 +1,14 @@
 import unittest
+
 import torch
 
-from openspeech.criterion.joint_ctc_cross_entropy.joint_ctc_cross_entropy import JointCTCCrossEntropyLossConfigs, JointCTCCrossEntropyLoss
-from openspeech.models import JointCTCTransformerModel, JointCTCTransformerConfigs
-from openspeech.utils import build_dummy_configs, DUMMY_INPUTS, DUMMY_TARGETS, DUMMY_INPUT_LENGTHS, DUMMY_TARGET_LENGTHS
+from openspeech.criterion.joint_ctc_cross_entropy.joint_ctc_cross_entropy import (
+    JointCTCCrossEntropyLoss,
+    JointCTCCrossEntropyLossConfigs,
+)
+from openspeech.models import JointCTCTransformerConfigs, JointCTCTransformerModel
 from openspeech.tokenizers.ksponspeech.character import KsponSpeechCharacterTokenizer
+from openspeech.utils import DUMMY_INPUT_LENGTHS, DUMMY_INPUTS, DUMMY_TARGET_LENGTHS, DUMMY_TARGETS, build_dummy_configs
 
 
 class TestJointCTCTransformer(unittest.TestCase):
@@ -96,5 +100,5 @@ class TestJointCTCTransformer(unittest.TestCase):
             assert type(outputs["loss"].item()) == float
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

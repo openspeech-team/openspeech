@@ -20,23 +20,24 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from omegaconf import DictConfig
 from collections import OrderedDict
 
-from openspeech.models import register_model, OpenspeechEncoderDecoderModel, OpenspeechCTCModel
+from omegaconf import DictConfig
+
 from openspeech.decoders import TransformerDecoder
-from openspeech.encoders import TransformerEncoder, ConvolutionalTransformerEncoder
-from openspeech.modules import Linear
-from openspeech.tokenizers.tokenizer import Tokenizer
+from openspeech.encoders import ConvolutionalTransformerEncoder, TransformerEncoder
+from openspeech.models import OpenspeechCTCModel, OpenspeechEncoderDecoderModel, register_model
 from openspeech.models.transformer.configurations import (
-    TransformerConfigs,
     JointCTCTransformerConfigs,
+    TransformerConfigs,
     TransformerWithCTCConfigs,
     VGGTransformerConfigs,
 )
+from openspeech.modules import Linear
+from openspeech.tokenizers.tokenizer import Tokenizer
 
 
-@register_model('transformer', dataclass=TransformerConfigs)
+@register_model("transformer", dataclass=TransformerConfigs)
 class TransformerModel(OpenspeechEncoderDecoderModel):
     r"""
     A Speech Transformer model. User is able to modify the attributes as needed.
@@ -81,15 +82,16 @@ class TransformerModel(OpenspeechEncoderDecoderModel):
         )
 
     def set_beam_decoder(self, beam_size: int = 3):
-        """ Setting beam search decoder """
+        """Setting beam search decoder"""
         from openspeech.search import BeamSearchTransformer
+
         self.decoder = BeamSearchTransformer(
             decoder=self.decoder,
             beam_size=beam_size,
         )
 
 
-@register_model('joint_ctc_transformer', dataclass=JointCTCTransformerConfigs)
+@register_model("joint_ctc_transformer", dataclass=JointCTCTransformerConfigs)
 class JointCTCTransformerModel(OpenspeechEncoderDecoderModel):
     r"""
     A Speech Transformer model. User is able to modify the attributes as needed.
@@ -135,15 +137,16 @@ class JointCTCTransformerModel(OpenspeechEncoderDecoderModel):
         )
 
     def set_beam_decoder(self, beam_size: int = 3, n_best: int = 1):
-        """ Setting beam search decoder """
+        """Setting beam search decoder"""
         from openspeech.search import BeamSearchTransformer
+
         self.decoder = BeamSearchTransformer(
             decoder=self.decoder,
             beam_size=beam_size,
         )
 
 
-@register_model('transformer_with_ctc', dataclass=TransformerWithCTCConfigs)
+@register_model("transformer_with_ctc", dataclass=TransformerWithCTCConfigs)
 class TransformerWithCTCModel(OpenspeechCTCModel):
     r"""
     Transformer Encoder Only Model.
@@ -190,7 +193,7 @@ class TransformerWithCTCModel(OpenspeechCTCModel):
         logits, encoder_logits, output_lengths = self.encoder(inputs, input_lengths)
         logits = self.fc(logits).log_softmax(dim=-1)
         return self.collect_outputs(
-            stage='train',
+            stage="train",
             logits=logits,
             output_lengths=output_lengths,
             targets=targets,
@@ -212,7 +215,7 @@ class TransformerWithCTCModel(OpenspeechCTCModel):
         logits, encoder_logits, output_lengths = self.encoder(inputs, input_lengths)
         logits = self.fc(logits).log_softmax(dim=-1)
         return self.collect_outputs(
-            stage='valid',
+            stage="valid",
             logits=logits,
             output_lengths=output_lengths,
             targets=targets,
@@ -234,7 +237,7 @@ class TransformerWithCTCModel(OpenspeechCTCModel):
         logits, encoder_logits, output_lengths = self.encoder(inputs, input_lengths)
         logits = self.fc(logits).log_softmax(dim=-1)
         return self.collect_outputs(
-            stage='test',
+            stage="test",
             logits=logits,
             output_lengths=output_lengths,
             targets=targets,
@@ -242,7 +245,7 @@ class TransformerWithCTCModel(OpenspeechCTCModel):
         )
 
 
-@register_model('vgg_transformer', dataclass=VGGTransformerConfigs)
+@register_model("vgg_transformer", dataclass=VGGTransformerConfigs)
 class VGGTransformerModel(OpenspeechEncoderDecoderModel):
     r"""
     A Speech Transformer model. User is able to modify the attributes as needed.
@@ -287,9 +290,10 @@ class VGGTransformerModel(OpenspeechEncoderDecoderModel):
             max_length=self.configs.model.max_length,
         )
 
-    def set_beam_decoder(self,beam_size: int = 3):
-        """ Setting beam search decoder """
+    def set_beam_decoder(self, beam_size: int = 3):
+        """Setting beam search decoder"""
         from openspeech.search import BeamSearchTransformer
+
         self.decoder = BeamSearchTransformer(
             decoder=self.decoder,
             beam_size=beam_size,

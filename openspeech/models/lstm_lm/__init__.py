@@ -20,9 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from .configurations import (
-    LSTMLanguageModelConfigs
-)
-from .model import (
-    LSTMLanguageModel
-)
+from .configurations import LSTMLanguageModelConfigs
+from .model import LSTMLanguageModel
+
+__all__ = [
+    "LSTMLanguageModelConfigs",
+    "LSTMLanguageModel",
+]

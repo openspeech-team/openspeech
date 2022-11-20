@@ -23,10 +23,10 @@
 import torch.nn as nn
 from torch import Tensor
 
-from openspeech.modules.glu import GLU
-from openspeech.modules.swish import Swish
-from openspeech.modules.pointwise_conv1d import PointwiseConv1d
 from openspeech.modules.depthwise_conv1d import DepthwiseConv1d
+from openspeech.modules.glu import GLU
+from openspeech.modules.pointwise_conv1d import PointwiseConv1d
+from openspeech.modules.swish import Swish
 from openspeech.modules.wrapper import Transpose
 
 
@@ -47,12 +47,13 @@ class ConformerConvModule(nn.Module):
     Outputs: outputs
         outputs (batch, time, dim): Tensor produces by conformer convolution module.
     """
+
     def __init__(
-            self,
-            in_channels: int,
-            kernel_size: int = 31,
-            expansion_factor: int = 2,
-            dropout_p: float = 0.1,
+        self,
+        in_channels: int,
+        kernel_size: int = 31,
+        expansion_factor: int = 2,
+        dropout_p: float = 0.1,
     ) -> None:
         super(ConformerConvModule, self).__init__()
         assert (kernel_size - 1) % 2 == 0, "kernel_size should be a odd number for 'SAME' padding"

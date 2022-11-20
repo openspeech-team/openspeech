@@ -43,21 +43,12 @@ class JointCTCCrossEntropyLossConfigs(OpenspeechDataclass):
         smoothing (float): ratio of smoothing loss (confidence = 1.0 - smoothing) (default: 0.0)
         zero_infibity (bool): whether to zero infinite losses and the associated gradients. (default: True)
     """
-    criterion_name: str = field(
-        default="joint_ctc_cross_entropy", metadata={"help": "Criterion name for training."}
-    )
-    reduction: str = field(
-        default="mean", metadata={"help": "Reduction method of criterion"}
-    )
-    ctc_weight: float = field(
-        default=0.3, metadata={"help": "Weight of ctc loss for training."}
-    )
-    cross_entropy_weight: float = field(
-        default=0.7, metadata={"help": "Weight of cross entropy loss for training."}
-    )
-    smoothing: float = field(
-        default=0.0, metadata={"help": "Ratio of smoothing loss (confidence = 1.0 - smoothing)"}
-    )
+
+    criterion_name: str = field(default="joint_ctc_cross_entropy", metadata={"help": "Criterion name for training."})
+    reduction: str = field(default="mean", metadata={"help": "Reduction method of criterion"})
+    ctc_weight: float = field(default=0.3, metadata={"help": "Weight of ctc loss for training."})
+    cross_entropy_weight: float = field(default=0.7, metadata={"help": "Weight of cross entropy loss for training."})
+    smoothing: float = field(default=0.0, metadata={"help": "Ratio of smoothing loss (confidence = 1.0 - smoothing)"})
     zero_infinity: bool = field(
         default=True, metadata={"help": "Whether to zero infinite losses and the associated gradients."}
     )

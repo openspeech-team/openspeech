@@ -26,9 +26,9 @@ import torch.nn.functional as F
 from omegaconf import DictConfig
 from torch import Tensor
 
+from ...tokenizers.tokenizer import Tokenizer
 from .. import register_criterion
 from ..label_smoothed_cross_entropy.configuration import LabelSmoothedCrossEntropyLossConfigs
-from ...tokenizers.tokenizer import Tokenizer
 
 
 @register_criterion("label_smoothed_cross_entropy", dataclass=LabelSmoothedCrossEntropyLossConfigs)
@@ -50,11 +50,12 @@ class LabelSmoothedCrossEntropyLoss(nn.Module):
     Returns: loss
         * loss (float): loss for training
     """
+
     def __init__(
-            self,
-            configs: DictConfig,
-            num_classes: int,
-            tokenizer: Tokenizer,
+        self,
+        configs: DictConfig,
+        num_classes: int,
+        tokenizer: Tokenizer,
     ) -> None:
         super(LabelSmoothedCrossEntropyLoss, self).__init__()
         self.confidence = 1.0 - configs.criterion.smoothing
@@ -64,9 +65,9 @@ class LabelSmoothedCrossEntropyLoss(nn.Module):
         self.ignore_index = tokenizer.pad_id
         self.reduction = configs.criterion.reduction.lower()
 
-        if self.reduction == 'sum':
+        if self.reduction == "sum":
             self.reduction_method = torch.sum
-        elif self.reduction == 'mean':
+        elif self.reduction == "mean":
             self.reduction_method = torch.mean
         else:
             raise ValueError(f"Unsupported reduction method {configs.criterion.reduction}")

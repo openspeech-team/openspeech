@@ -24,16 +24,17 @@ import torch.nn as nn
 
 
 class OpenspeechDecoder(nn.Module):
-    r""" Interface of OpenSpeech decoder. """
+    r"""Interface of OpenSpeech decoder."""
+
     def __init__(self):
         super(OpenspeechDecoder, self).__init__()
 
     def count_parameters(self) -> int:
-        r""" Count parameters of decoders """
+        r"""Count parameters of decoders"""
         return sum([p.numel for p in self.parameters()])
 
     def update_dropout(self, dropout_p: float) -> None:
-        r""" Update dropout probability of decoders """
+        r"""Update dropout probability of decoders"""
         for name, child in self.named_children():
             if isinstance(child, nn.Dropout):
                 child.p = dropout_p

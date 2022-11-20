@@ -20,23 +20,23 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import os
-import hydra
-import warnings
 import logging
-import torch
-from tqdm import tqdm
-from omegaconf import DictConfig, OmegaConf
-from openspeech.metrics import WordErrorRate, CharacterErrorRate
-from pytorch_lightning.utilities import rank_zero_info
+import os
+import warnings
 
+import hydra
+import torch
+from omegaconf import DictConfig, OmegaConf
+from pytorch_lightning.utilities import rank_zero_info
+from tqdm import tqdm
+
+from openspeech.data.audio.data_loader import AudioDataLoader, load_dataset
 from openspeech.data.audio.dataset import SpeechToTextDataset
 from openspeech.data.sampler import RandomSampler
-from openspeech.data.audio.data_loader import load_dataset, AudioDataLoader
 from openspeech.dataclass.initialize import hydra_eval_init
+from openspeech.metrics import CharacterErrorRate, WordErrorRate
 from openspeech.models import MODEL_REGISTRY
 from openspeech.tokenizers import TOKENIZER_REGISTRY
-
 
 logger = logging.getLogger(__name__)
 
@@ -48,7 +48,7 @@ def hydra_main(configs: DictConfig) -> None:
     results = list()
 
     use_cuda = configs.eval.use_cuda and torch.cuda.is_available()
-    device = torch.device('cuda' if use_cuda else 'cpu')
+    device = torch.device("cuda" if use_cuda else "cpu")
 
     audio_paths, transcripts = load_dataset(configs.eval.manifest_file_path)
     tokenizer = TOKENIZER_REGISTRY[configs.tokenizer.unit](configs)
@@ -88,7 +88,7 @@ def hydra_main(configs: DictConfig) -> None:
         wer = wer_metric(targets[:, 1:], outputs["predictions"])
         cer = cer_metric(targets[:, 1:], outputs["predictions"])
 
-        for target, predicion in zip(tokenizer.decode(targets[:, 1:]), tokenizer.decode(outputs['predictions'])):
+        for target, predicion in zip(tokenizer.decode(targets[:, 1:]), tokenizer.decode(outputs["predictions"])):
             results.append(f"{target}\n{predicion}\n\n")
 
     logger.info(f"Word Error Rate: {wer}, Character Error Rate: {cer}")
@@ -98,7 +98,7 @@ def hydra_main(configs: DictConfig) -> None:
             f.write(result)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     warnings.filterwarnings("ignore")
     hydra_eval_init()
     hydra_main()

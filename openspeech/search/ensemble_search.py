@@ -20,9 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Union
+
 import torch
 import torch.nn as nn
-from typing import Union
 
 
 class EnsembleSearch(nn.Module):
@@ -40,11 +41,12 @@ class EnsembleSearch(nn.Module):
     Returns:
         * predictions (torch.LongTensor): prediction of ensemble models
     """
+
     def __init__(self, models: Union[list, tuple]):
         super(EnsembleSearch, self).__init__()
         assert len(models) > 1, "Ensemble search should be multiple models."
         self.models = models
-        
+
     def forward(self, inputs: torch.FloatTensor, input_lengths: torch.LongTensor):
         logits = list()
 
@@ -74,6 +76,7 @@ class WeightedEnsembleSearch(nn.Module):
     Returns:
         * predictions (torch.LongTensor): prediction of ensemble models
     """
+
     def __init__(self, models: Union[list, tuple], weights: Union[list, tuple]):
         super(WeightedEnsembleSearch, self).__init__()
         assert len(models) > 1, "Ensemble search should be multiple models."

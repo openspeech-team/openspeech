@@ -39,10 +39,5 @@ class PerplexityLossConfigs(OpenspeechDataclass):
         criterion_name (str): name of criterion (default: perplexity)
         reduction (str): reduction method of criterion (default: mean)
     """
-    criterion_name: str = field(
-        default="perplexity", metadata={"help": "Criterion name for training"}
-    )
-    reduction: str = field(
-        default="mean", metadata={"help": "Reduction method of criterion"}
-    )
-
+    criterion_name: str = field(default="perplexity", metadata={"help": "Criterion name for training"})
+    reduction: str = field(default="mean", metadata={"help": "Reduction method of criterion"})

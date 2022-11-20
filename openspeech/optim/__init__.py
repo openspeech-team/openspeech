@@ -20,17 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import os
 import importlib
-
-from openspeech.optim.adamp import AdamP
-from openspeech.optim.radam import RAdam
-from openspeech.optim.novograd import Novograd
+import os
 
 # automatically import any Python files in the models/ directory
 scheduler_dir = os.path.dirname(__file__)
 for file in os.listdir(scheduler_dir):
-    if os.path.isdir(os.path.join(scheduler_dir, file)) and file != '__pycache__':
+    if os.path.isdir(os.path.join(scheduler_dir, file)) and file != "__pycache__":
         for subfile in os.listdir(os.path.join(scheduler_dir, file)):
             path = os.path.join(scheduler_dir, file, subfile)
             if subfile.endswith(".py"):

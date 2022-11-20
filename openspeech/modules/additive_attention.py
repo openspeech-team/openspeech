@@ -20,11 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Tuple
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
-from typing import Tuple
 
 from openspeech.modules.wrapper import Linear
 
@@ -46,6 +47,7 @@ class AdditiveAttention(nn.Module):
         - **context**: tensor containing the context vector from attention mechanism.
         - **attn**: tensor containing the alignment from the encoders outputs.
     """
+
     def __init__(self, dim: int) -> None:
         super(AdditiveAttention, self).__init__()
         self.query_proj = Linear(dim, dim, bias=False)

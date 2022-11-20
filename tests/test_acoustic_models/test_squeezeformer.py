@@ -1,18 +1,13 @@
+import logging
 import unittest
+
 import torch
 import torch.nn as nn
-import logging
 
-from openspeech.tokenizers.ksponspeech.character import KsponSpeechCharacterTokenizer
 from openspeech.criterion.ctc.ctc import CTCLossConfigs
 from openspeech.models import SqueezeformerConfigs, SqueezeformerModel
-from openspeech.utils import (
-    DUMMY_INPUTS,
-    DUMMY_INPUT_LENGTHS,
-    DUMMY_TARGETS,
-    DUMMY_TARGET_LENGTHS,
-    build_dummy_configs,
-)
+from openspeech.tokenizers.ksponspeech.character import KsponSpeechCharacterTokenizer
+from openspeech.utils import DUMMY_INPUT_LENGTHS, DUMMY_INPUTS, DUMMY_TARGET_LENGTHS, DUMMY_TARGETS, build_dummy_configs
 
 logger = logging.getLogger(__name__)
 
@@ -24,7 +19,7 @@ class TestSqueezeformer(unittest.TestCase):
         vocab = KsponSpeechCharacterTokenizer(configs)
         model = SqueezeformerModel(configs, vocab)
 
-        criterion = nn.CTCLoss(blank=3, reduction='mean', zero_infinity=True)
+        criterion = nn.CTCLoss(blank=3, reduction="mean", zero_infinity=True)
         optimizer = torch.optim.Adam(model.parameters(), lr=1e-04)
 
         for i in range(10):
@@ -77,5 +72,5 @@ class TestSqueezeformer(unittest.TestCase):
             assert type(outputs["loss"].item()) == float
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

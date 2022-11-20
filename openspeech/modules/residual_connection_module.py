@@ -20,9 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Optional
+
 import torch.nn as nn
 from torch import Tensor
-from typing import Optional
 
 
 class ResidualConnectionModule(nn.Module):
@@ -30,11 +31,12 @@ class ResidualConnectionModule(nn.Module):
     Residual Connection Module.
     outputs = (module(inputs) x module_factor + inputs x input_factor)
     """
+
     def __init__(
-            self,
-            module: nn.Module,
-            module_factor: float = 1.0,
-            input_factor: float = 1.0,
+        self,
+        module: nn.Module,
+        module_factor: float = 1.0,
+        input_factor: float = 1.0,
     ) -> None:
         super(ResidualConnectionModule, self).__init__()
         self.module = module

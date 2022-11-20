@@ -23,9 +23,9 @@
 import numpy as np
 from omegaconf import DictConfig
 
+from ....utils import LIBROSA_IMPORT_ERROR
 from ... import register_audio_feature_transform
 from ...audio.melspectrogram.configuration import MelSpectrogramConfigs
-from ....utils import LIBROSA_IMPORT_ERROR
 
 
 @register_audio_feature_transform("melspectrogram", dataclass=MelSpectrogramConfigs)
@@ -39,6 +39,7 @@ class MelSpectrogramFeatureTransform(object):
     Returns:
         Tensor: A mel-spectrogram feature. The shape is ``(seq_length, num_mels)``
     """
+
     def __init__(self, configs: DictConfig) -> None:
         super(MelSpectrogramFeatureTransform, self).__init__()
         try:

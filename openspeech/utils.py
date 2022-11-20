@@ -20,17 +20,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import logging
-import torch
-import platform
 import importlib
+import logging
+import platform
 from collections import OrderedDict
-from typing import Tuple, Union, Iterable
+from typing import Iterable, Tuple, Union
+
+import torch
 from omegaconf import DictConfig, OmegaConf
 from pytorch_lightning.callbacks import LearningRateMonitor
 
 from .callbacks import CheckpointEveryNSteps
-
 
 PYTORCH_IMPORT_ERROR = """
 Openspeech requires the PyTorch library but it was not found in your environment. Checkout the instructions on the
@@ -80,33 +80,39 @@ except ImportError:
 
 try:
     import pytorch_lightning as pl
-    from pytorch_lightning.loggers import TensorBoardLogger, LightningLoggerBase, WandbLogger
+    from pytorch_lightning.loggers import LightningLoggerBase, TensorBoardLogger, WandbLogger
 except ImportError:
     raise ValueError(PYTORCH_LIGHTNING_IMPORT_ERROR)
 
-DUMMY_SIGNALS, _ = librosa.load(librosa.ex('choice'))
+DUMMY_SIGNALS, _ = librosa.load(librosa.ex("choice"))
 DUMMY_FEATURES = librosa.feature.melspectrogram(DUMMY_SIGNALS, n_mels=80)
 DUMMY_INPUTS = torch.FloatTensor(DUMMY_FEATURES).transpose(0, 1).unsqueeze(0).expand(3, -1, -1)
 DUMMY_INPUT_LENGTHS = torch.IntTensor([1070, 900, 800])
-DUMMY_TARGETS = torch.LongTensor([
-    [2, 3, 3, 3, 3, 3, 2, 2, 1, 0],
-    [2, 3, 3, 3, 3, 3, 2, 1, 2, 0],
-    [2, 3, 3, 3, 3, 3, 2, 2, 0, 1],
-])
+DUMMY_TARGETS = torch.LongTensor(
+    [
+        [2, 3, 3, 3, 3, 3, 2, 2, 1, 0],
+        [2, 3, 3, 3, 3, 3, 2, 1, 2, 0],
+        [2, 3, 3, 3, 3, 3, 2, 2, 0, 1],
+    ]
+)
 DUMMY_TARGET_LENGTHS = torch.IntTensor([9, 8, 7])
 DUMMY_TRANSCRIPTS = "OPENSPEECH IS AWESOME"
 
-DUMMY_LM_INPUTS = torch.LongTensor([
-    [2, 3, 3, 3, 3, 3, 2, 2, 0],
-    [2, 3, 3, 3, 3, 3, 2, 3, 2],
-    [2, 3, 3, 3, 3, 3, 2, 2, 0],
-])
+DUMMY_LM_INPUTS = torch.LongTensor(
+    [
+        [2, 3, 3, 3, 3, 3, 2, 2, 0],
+        [2, 3, 3, 3, 3, 3, 2, 3, 2],
+        [2, 3, 3, 3, 3, 3, 2, 2, 0],
+    ]
+)
 DYMMY_LM_INPUT_LENGTHS = torch.IntTensor([9, 8, 7])
-DUMMY_LM_TARGETS = torch.LongTensor([
-    [3, 3, 3, 3, 3, 2, 2, 1, 0],
-    [3, 3, 3, 3, 3, 2, 1, 2, 0],
-    [3, 3, 3, 3, 3, 2, 2, 0, 1],
-])
+DUMMY_LM_TARGETS = torch.LongTensor(
+    [
+        [3, 3, 3, 3, 3, 2, 2, 1, 0],
+        [3, 3, 3, 3, 3, 2, 1, 2, 0],
+        [3, 3, 3, 3, 3, 2, 2, 0, 1],
+    ]
+)
 
 
 def is_pytorch_available():
@@ -168,14 +174,14 @@ def _check_environment(use_cuda: bool, logger) -> int:
     check_backends()
 
     cuda = use_cuda and torch.cuda.is_available()
-    device = torch.device('cuda' if cuda else 'cpu')
+    device = torch.device("cuda" if cuda else "cpu")
 
     logger.info(f"Operating System : {platform.system()} {platform.release()}")
     logger.info(f"Processor : {platform.processor()}")
 
     num_devices = torch.cuda.device_count()
 
-    if str(device) == 'cuda':
+    if str(device) == "cuda":
         for idx in range(torch.cuda.device_count()):
             logger.info(f"device : {torch.cuda.get_device_name(idx)}")
         logger.info(f"CUDA is available : {torch.cuda.is_available()}")
@@ -207,7 +213,7 @@ def parse_configs(configs: DictConfig) -> Tuple[Union[TensorBoardLogger, bool], 
     if configs.trainer.logger == "tensorboard":
         logger = TensorBoardLogger("logs/")
     elif configs.trainer.logger == "wandb":
-        logger = WandbLogger(project=f"{configs.model.model_name}-{configs.dataset.dataset}", job_type='train')
+        logger = WandbLogger(project=f"{configs.model.model_name}-{configs.dataset.dataset}", job_type="train")
     else:
         logger = True
 
@@ -215,9 +221,7 @@ def parse_configs(configs: DictConfig) -> Tuple[Union[TensorBoardLogger, bool], 
 
 
 def get_pl_trainer(
-        configs: DictConfig,
-        num_devices: int,
-        logger: Union[LightningLoggerBase, Iterable[LightningLoggerBase], bool]
+    configs: DictConfig, num_devices: int, logger: Union[LightningLoggerBase, Iterable[LightningLoggerBase], bool]
 ) -> pl.Trainer:
     amp_backend = None
 
@@ -225,133 +229,151 @@ def get_pl_trainer(
         amp_backend = "apex" if configs.trainer.amp_backend == "apex" and is_apex_available() else "native"
 
     if configs.trainer.name == "cpu":
-        trainer = pl.Trainer(accelerator=configs.trainer.accelerator,
-                             accumulate_grad_batches=configs.trainer.accumulate_grad_batches,
-                             check_val_every_n_epoch=configs.trainer.check_val_every_n_epoch,
-                             gradient_clip_val=configs.trainer.gradient_clip_val,
-                             logger=logger,
-                             auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
-                             max_epochs=configs.trainer.max_epochs,
-                             callbacks=[
-                                 LearningRateMonitor(logging_interval='step'),
-                                 CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps)
-                             ])
+        trainer = pl.Trainer(
+            accelerator=configs.trainer.accelerator,
+            accumulate_grad_batches=configs.trainer.accumulate_grad_batches,
+            check_val_every_n_epoch=configs.trainer.check_val_every_n_epoch,
+            gradient_clip_val=configs.trainer.gradient_clip_val,
+            logger=logger,
+            auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
+            max_epochs=configs.trainer.max_epochs,
+            callbacks=[
+                LearningRateMonitor(logging_interval="step"),
+                CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps),
+            ],
+        )
     elif configs.trainer.name == "gpu":
-        trainer = pl.Trainer(accelerator=configs.trainer.accelerator,
-                             gpus=num_devices,
-                             accumulate_grad_batches=configs.trainer.accumulate_grad_batches,
-                             auto_select_gpus=configs.trainer.auto_select_gpus,
-                             check_val_every_n_epoch=configs.trainer.check_val_every_n_epoch,
-                             gradient_clip_val=configs.trainer.gradient_clip_val,
-                             logger=logger,
-                             auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
-                             max_epochs=configs.trainer.max_epochs,
-                             callbacks=[
-                                 LearningRateMonitor(logging_interval='step'),
-                                 CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps)
-                             ])
+        trainer = pl.Trainer(
+            accelerator=configs.trainer.accelerator,
+            gpus=num_devices,
+            accumulate_grad_batches=configs.trainer.accumulate_grad_batches,
+            auto_select_gpus=configs.trainer.auto_select_gpus,
+            check_val_every_n_epoch=configs.trainer.check_val_every_n_epoch,
+            gradient_clip_val=configs.trainer.gradient_clip_val,
+            logger=logger,
+            auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
+            max_epochs=configs.trainer.max_epochs,
+            callbacks=[
+                LearningRateMonitor(logging_interval="step"),
+                CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps),
+            ],
+        )
     elif configs.trainer.name == "tpu":
-        trainer = pl.Trainer(accelerator=configs.trainer.accelerator,
-                             tpu_cores=configs.trainer.tpu_cores,
-                             accumulate_grad_batches=configs.trainer.accumulate_grad_batches,
-                             auto_select_gpus=configs.trainer.auto_select_gpus,
-                             check_val_every_n_epoch=configs.trainer.check_val_every_n_epoch,
-                             gradient_clip_val=configs.trainer.gradient_clip_val,
-                             logger=logger,
-                             auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
-                             max_epochs=configs.trainer.max_epochs,
-                             callbacks=[
-                                 LearningRateMonitor(logging_interval='step'),
-                                 CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps)
-                             ])
+        trainer = pl.Trainer(
+            accelerator=configs.trainer.accelerator,
+            tpu_cores=configs.trainer.tpu_cores,
+            accumulate_grad_batches=configs.trainer.accumulate_grad_batches,
+            auto_select_gpus=configs.trainer.auto_select_gpus,
+            check_val_every_n_epoch=configs.trainer.check_val_every_n_epoch,
+            gradient_clip_val=configs.trainer.gradient_clip_val,
+            logger=logger,
+            auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
+            max_epochs=configs.trainer.max_epochs,
+            callbacks=[
+                LearningRateMonitor(logging_interval="step"),
+                CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps),
+            ],
+        )
     elif configs.trainer.name == "gpu-fp16":
-        trainer = pl.Trainer(precision=configs.trainer.precision,
-                             accelerator=configs.trainer.accelerator,
-                             gpus=num_devices,
-                             accumulate_grad_batches=configs.trainer.accumulate_grad_batches,
-                             amp_backend=amp_backend,
-                             auto_select_gpus=configs.trainer.auto_select_gpus,
-                             check_val_every_n_epoch=configs.trainer.check_val_every_n_epoch,
-                             gradient_clip_val=configs.trainer.gradient_clip_val,
-                             logger=logger,
-                             auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
-                             max_epochs=configs.trainer.max_epochs,
-                             callbacks=[
-                                 LearningRateMonitor(logging_interval='step'),
-                                 CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps)
-                             ])
+        trainer = pl.Trainer(
+            precision=configs.trainer.precision,
+            accelerator=configs.trainer.accelerator,
+            gpus=num_devices,
+            accumulate_grad_batches=configs.trainer.accumulate_grad_batches,
+            amp_backend=amp_backend,
+            auto_select_gpus=configs.trainer.auto_select_gpus,
+            check_val_every_n_epoch=configs.trainer.check_val_every_n_epoch,
+            gradient_clip_val=configs.trainer.gradient_clip_val,
+            logger=logger,
+            auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
+            max_epochs=configs.trainer.max_epochs,
+            callbacks=[
+                LearningRateMonitor(logging_interval="step"),
+                CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps),
+            ],
+        )
     elif configs.trainer.name == "tpu-fp16":
-        trainer = pl.Trainer(precision=configs.trainer.precision,
-                             accelerator=configs.trainer.accelerator,
-                             tpu_cores=configs.trainer.tpu_configs,
-                             accumulate_grad_batches=configs.trainer.accumulate_grad_batches,
-                             amp_backend=amp_backend,
-                             check_val_every_n_epoch=configs.trainer.check_val_every_n_epoch,
-                             gradient_clip_val=configs.trainer.gradient_clip_val,
-                             logger=logger,
-                             auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
-                             max_epochs=configs.trainer.max_epochs,
-                             callbacks=[
-                                 LearningRateMonitor(logging_interval='step'),
-                                 CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps)
-                             ])
+        trainer = pl.Trainer(
+            precision=configs.trainer.precision,
+            accelerator=configs.trainer.accelerator,
+            tpu_cores=configs.trainer.tpu_configs,
+            accumulate_grad_batches=configs.trainer.accumulate_grad_batches,
+            amp_backend=amp_backend,
+            check_val_every_n_epoch=configs.trainer.check_val_every_n_epoch,
+            gradient_clip_val=configs.trainer.gradient_clip_val,
+            logger=logger,
+            auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
+            max_epochs=configs.trainer.max_epochs,
+            callbacks=[
+                LearningRateMonitor(logging_interval="step"),
+                CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps),
+            ],
+        )
     elif configs.trainer.name == "cpu-fp64":
-        trainer = pl.Trainer(precision=configs.trainer.precision,
-                             accelerator=configs.trainer.accelerator,
-                             accumulate_grad_batches=configs.trainer.accumulate_grad_batches,
-                             amp_backend=amp_backend,
-                             check_val_every_n_epoch=configs.trainer.check_val_every_n_epoch,
-                             gradient_clip_val=configs.trainer.gradient_clip_val,
-                             logger=logger,
-                             auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
-                             max_epochs=configs.trainer.max_epochs,
-                             callbacks=[
-                                 LearningRateMonitor(logging_interval='step'),
-                                 CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps)
-                             ])
+        trainer = pl.Trainer(
+            precision=configs.trainer.precision,
+            accelerator=configs.trainer.accelerator,
+            accumulate_grad_batches=configs.trainer.accumulate_grad_batches,
+            amp_backend=amp_backend,
+            check_val_every_n_epoch=configs.trainer.check_val_every_n_epoch,
+            gradient_clip_val=configs.trainer.gradient_clip_val,
+            logger=logger,
+            auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
+            max_epochs=configs.trainer.max_epochs,
+            callbacks=[
+                LearningRateMonitor(logging_interval="step"),
+                CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps),
+            ],
+        )
     elif configs.trainer.name == "cpu-resume":
-        trainer = pl.Trainer(accelerator=configs.trainer.accelerator,
-                             accumulate_grad_batches=configs.trainer.accumulate_grad_batches,
-                             check_val_every_n_epoch=configs.trainer.check_val_every_n_epoch,
-                             gradient_clip_val=configs.trainer.gradient_clip_val,
-                             logger=logger,
-                             auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
-                             max_epochs=configs.trainer.max_epochs,
-                             resume_from_checkpoint=configs.trainer.checkpoint_path,
-                             callbacks=[
-                                 LearningRateMonitor(logging_interval='step'),
-                                 CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps)
-                             ])
+        trainer = pl.Trainer(
+            accelerator=configs.trainer.accelerator,
+            accumulate_grad_batches=configs.trainer.accumulate_grad_batches,
+            check_val_every_n_epoch=configs.trainer.check_val_every_n_epoch,
+            gradient_clip_val=configs.trainer.gradient_clip_val,
+            logger=logger,
+            auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
+            max_epochs=configs.trainer.max_epochs,
+            resume_from_checkpoint=configs.trainer.checkpoint_path,
+            callbacks=[
+                LearningRateMonitor(logging_interval="step"),
+                CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps),
+            ],
+        )
     elif configs.trainer.name == "gpu-resume":
-        trainer = pl.Trainer(accelerator=configs.trainer.accelerator,
-                             gpus=num_devices,
-                             accumulate_grad_batches=configs.trainer.accumulate_grad_batches,
-                             auto_select_gpus=configs.trainer.auto_select_gpus,
-                             check_val_every_n_epoch=configs.trainer.check_val_every_n_epoch,
-                             gradient_clip_val=configs.trainer.gradient_clip_val,
-                             logger=logger,
-                             auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
-                             max_epochs=configs.trainer.max_epochs,
-                             resume_from_checkpoint=configs.trainer.checkpoint_path,
-                             callbacks=[
-                                 LearningRateMonitor(logging_interval='step'),
-                                 CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps)
-                             ])
+        trainer = pl.Trainer(
+            accelerator=configs.trainer.accelerator,
+            gpus=num_devices,
+            accumulate_grad_batches=configs.trainer.accumulate_grad_batches,
+            auto_select_gpus=configs.trainer.auto_select_gpus,
+            check_val_every_n_epoch=configs.trainer.check_val_every_n_epoch,
+            gradient_clip_val=configs.trainer.gradient_clip_val,
+            logger=logger,
+            auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
+            max_epochs=configs.trainer.max_epochs,
+            resume_from_checkpoint=configs.trainer.checkpoint_path,
+            callbacks=[
+                LearningRateMonitor(logging_interval="step"),
+                CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps),
+            ],
+        )
     elif configs.trainer.name == "tpu-resume":
-        trainer = pl.Trainer(accelerator=configs.trainer.accelerator,
-                             tpu_cores=configs.trainer.tpu_cores,
-                             accumulate_grad_batches=configs.trainer.accumulate_grad_batches,
-                             auto_select_gpus=configs.trainer.auto_select_gpus,
-                             check_val_every_n_epoch=configs.trainer.check_val_every_n_epoch,
-                             gradient_clip_val=configs.trainer.gradient_clip_val,
-                             logger=logger,
-                             auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
-                             max_epochs=configs.trainer.max_epochs,
-                             resume_from_checkpoint=configs.trainer.checkpoint_path,
-                             callbacks=[
-                                 LearningRateMonitor(logging_interval='step'),
-                                 CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps)
-                             ])
+        trainer = pl.Trainer(
+            accelerator=configs.trainer.accelerator,
+            tpu_cores=configs.trainer.tpu_cores,
+            accumulate_grad_batches=configs.trainer.accumulate_grad_batches,
+            auto_select_gpus=configs.trainer.auto_select_gpus,
+            check_val_every_n_epoch=configs.trainer.check_val_every_n_epoch,
+            gradient_clip_val=configs.trainer.gradient_clip_val,
+            logger=logger,
+            auto_scale_batch_size=configs.trainer.auto_scale_batch_size,
+            max_epochs=configs.trainer.max_epochs,
+            resume_from_checkpoint=configs.trainer.checkpoint_path,
+            callbacks=[
+                LearningRateMonitor(logging_interval="step"),
+                CheckpointEveryNSteps(configs.trainer.save_checkpoint_n_steps),
+            ],
+        )
     else:
         raise ValueError(f"Unsupported trainer: {configs.trainer.name}")
 
@@ -360,25 +382,26 @@ def get_pl_trainer(
 
 class DotDict(dict):
     """dot.notation access to dictionary attributes"""
+
     __getattr__ = dict.get
     __setattr__ = dict.__setitem__
     __delattr__ = dict.__delitem__
 
 
 def build_dummy_configs(
-        model_configs=None,
-        vocab_configs=None,
-        criterion_configs=None,
-        scheduler_configs=None,
-        trainer_configs=None,
-        audio_configs=None,
+    model_configs=None,
+    vocab_configs=None,
+    criterion_configs=None,
+    scheduler_configs=None,
+    trainer_configs=None,
+    audio_configs=None,
 ):
-    from openspeech.models import ConformerConfigs
     from openspeech.criterion import CrossEntropyLossConfigs
-    from openspeech.tokenizers.ksponspeech.character import KsponSpeechCharacterTokenizerConfigs
     from openspeech.data.audio.melspectrogram.melspectrogram import MelSpectrogramConfigs
     from openspeech.dataclass import CPUTrainerConfigs
+    from openspeech.models import ConformerConfigs
     from openspeech.optim.scheduler.warmup_reduce_lr_on_plateau_scheduler import WarmupReduceLROnPlateauConfigs
+    from openspeech.tokenizers.ksponspeech.character import KsponSpeechCharacterTokenizerConfigs
 
     if model_configs is None:
         model_configs = ConformerConfigs()
@@ -399,12 +422,13 @@ def build_dummy_configs(
     if audio_configs is None:
         audio_configs = MelSpectrogramConfigs()
 
-    return DotDict({
-        'model': model_configs,
-        'vocab': vocab_configs,
-        'criterion': criterion_configs,
-        'trainer': trainer_configs,
-        'audio': audio_configs,
-        'lr_scheduler': scheduler_configs,
-    })
-
+    return DotDict(
+        {
+            "model": model_configs,
+            "vocab": vocab_configs,
+            "criterion": criterion_configs,
+            "trainer": trainer_configs,
+            "audio": audio_configs,
+            "lr_scheduler": scheduler_configs,
+        }
+    )

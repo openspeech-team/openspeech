@@ -20,12 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Optional, Tuple
+
 import torch.nn as nn
 from torch import Tensor
-from typing import Tuple, Optional
 
-from openspeech.modules.wrapper import Linear
 from openspeech.modules.dot_product_attention import DotProductAttention
+from openspeech.modules.wrapper import Linear
 
 
 class MultiHeadAttention(nn.Module):
@@ -54,6 +55,7 @@ class MultiHeadAttention(nn.Module):
         - **output** (batch, output_len, dimensions): tensor containing the attended output features.
         - **attn** (batch * num_heads, v_len): tensor containing the attention (alignment) from the encoders outputs.
     """
+
     def __init__(self, dim: int = 512, num_heads: int = 8) -> None:
         super(MultiHeadAttention, self).__init__()
 
@@ -67,11 +69,11 @@ class MultiHeadAttention(nn.Module):
         self.scaled_dot_attn = DotProductAttention(dim, scale=True)
 
     def forward(
-            self,
-            query: Tensor,
-            key: Tensor,
-            value: Tensor,
-            mask: Optional[Tensor] = None,
+        self,
+        query: Tensor,
+        key: Tensor,
+        value: Tensor,
+        mask: Optional[Tensor] = None,
     ) -> Tuple[Tensor, Tensor]:
         batch_size = value.size(0)
 

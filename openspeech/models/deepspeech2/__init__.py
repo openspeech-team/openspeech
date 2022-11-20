@@ -20,9 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from .configurations import (
-    DeepSpeech2Configs
-)
-from .model import (
-    DeepSpeech2Model
-)
+from .configurations import DeepSpeech2Configs
+from .model import DeepSpeech2Model
+
+__all__ = [
+    "DeepSpeech2Configs",
+    "DeepSpeech2Model",
+]

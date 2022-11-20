@@ -20,12 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Optional, Tuple
+
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import numpy as np
 from torch import Tensor
-from typing import Tuple, Optional
 
 
 class DotProductAttention(nn.Module):
@@ -48,6 +49,7 @@ class DotProductAttention(nn.Module):
         - **context**: tensor containing the context vector from attention mechanism.
         - **attn**: tensor containing the attention (alignment) from the encoders outputs.
     """
+
     def __init__(self, dim: int, scale: bool = True) -> None:
         super(DotProductAttention, self).__init__()
         if scale:
@@ -56,11 +58,11 @@ class DotProductAttention(nn.Module):
             self.sqrt_dim = 1
 
     def forward(
-            self,
-            query: Tensor,
-            key: Tensor,
-            value: Tensor,
-            mask: Optional[Tensor] = None,
+        self,
+        query: Tensor,
+        key: Tensor,
+        value: Tensor,
+        mask: Optional[Tensor] = None,
     ) -> Tuple[Tensor, Tensor]:
         if len(query.size()) == 3:
             score = torch.bmm(query, key.transpose(1, 2)) / self.sqrt_dim

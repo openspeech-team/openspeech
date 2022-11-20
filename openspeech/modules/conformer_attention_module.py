@@ -20,12 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import torch.nn as nn
-from torch import Tensor
 from typing import Optional
 
-from openspeech.modules.relative_multi_head_attention import RelativeMultiHeadAttention
+import torch.nn as nn
+from torch import Tensor
+
 from openspeech.modules.positional_encoding import PositionalEncoding
+from openspeech.modules.relative_multi_head_attention import RelativeMultiHeadAttention
 
 
 class MultiHeadedSelfAttentionModule(nn.Module):
@@ -48,11 +49,12 @@ class MultiHeadedSelfAttentionModule(nn.Module):
     Returns:
         - **outputs** (batch, time, dim): Tensor produces by relative multi headed self attention module.
     """
+
     def __init__(
-            self,
-            d_model: int,
-            num_heads: int,
-            dropout_p: float = 0.1,
+        self,
+        d_model: int,
+        num_heads: int,
+        dropout_p: float = 0.1,
     ) -> None:
         super(MultiHeadedSelfAttentionModule, self).__init__()
         self.positional_encoding = PositionalEncoding(d_model)

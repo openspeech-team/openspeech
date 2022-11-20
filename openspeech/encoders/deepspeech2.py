@@ -20,11 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import torch.nn as nn
-from torch import Tensor
 from typing import Tuple
 
-from openspeech.modules import DeepSpeech2Extractor, BNReluRNN, Linear
+import torch.nn as nn
+from torch import Tensor
+
+from openspeech.modules import BNReluRNN, DeepSpeech2Extractor, Linear
 
 
 class DeepSpeech2(nn.Module):
@@ -55,16 +56,17 @@ class DeepSpeech2(nn.Module):
         Dario Amodei et al.: Deep Speech 2: End-to-End Speech Recognition in English and Mandarin
         https://arxiv.org/abs/1512.02595
     """
+
     def __init__(
-            self,
-            input_dim: int,
-            num_classes: int,
-            rnn_type='gru',
-            num_rnn_layers: int = 5,
-            rnn_hidden_dim: int = 512,
-            dropout_p: float = 0.1,
-            bidirectional: bool = True,
-            activation: str = 'hardtanh',
+        self,
+        input_dim: int,
+        num_classes: int,
+        rnn_type="gru",
+        num_rnn_layers: int = 5,
+        rnn_hidden_dim: int = 512,
+        dropout_p: float = 0.1,
+        bidirectional: bool = True,
+        activation: str = "hardtanh",
     ) -> None:
         super(DeepSpeech2, self).__init__()
         self.conv = DeepSpeech2Extractor(input_dim, activation=activation)
@@ -88,11 +90,11 @@ class DeepSpeech2(nn.Module):
         )
 
     def count_parameters(self) -> int:
-        r""" Count parameters of encoders """
+        r"""Count parameters of encoders"""
         return sum([p.numel for p in self.parameters()])
 
     def update_dropout(self, dropout_p: float) -> None:
-        r""" Update dropout probability of encoders """
+        r"""Update dropout probability of encoders"""
         for name, child in self.named_children():
             if isinstance(child, nn.Dropout):
                 child.p = dropout_p

@@ -22,8 +22,8 @@
 
 import torch
 
-from openspeech.search.beam_search_base import OpenspeechBeamSearchBase
 from openspeech.decoders import RNNTransducerDecoder
+from openspeech.search.beam_search_base import OpenspeechBeamSearchBase
 
 
 class BeamSearchRNNTransducer(OpenspeechBeamSearchBase):
@@ -48,14 +48,15 @@ class BeamSearchRNNTransducer(OpenspeechBeamSearchBase):
     Returns:
         * predictions (torch.LongTensor): model predictions.
     """
+
     def __init__(
-            self,
-            joint,
-            decoder: RNNTransducerDecoder,
-            beam_size: int = 3,
-            expand_beam: float = 2.3,
-            state_beam: float = 4.6,
-            blank_id: int = 3,
+        self,
+        joint,
+        decoder: RNNTransducerDecoder,
+        beam_size: int = 3,
+        expand_beam: float = 2.3,
+        state_beam: float = 4.6,
+        blank_id: int = 3,
     ) -> None:
         super(BeamSearchRNNTransducer, self).__init__(decoder, beam_size)
         self.joint = joint
@@ -79,12 +80,8 @@ class BeamSearchRNNTransducer(OpenspeechBeamSearchBase):
         hypothesis_score = list()
 
         for batch_idx in range(encoder_outputs.size(0)):
-            blank = (
-                    torch.ones((1, 1), device=encoder_outputs.device, dtype=torch.long) * self.blank_id
-            )
-            step_input = (
-                    torch.ones((1, 1), device=encoder_outputs.device, dtype=torch.long) * self.sos_id
-            )
+            blank = torch.ones((1, 1), device=encoder_outputs.device, dtype=torch.long) * self.blank_id
+            step_input = torch.ones((1, 1), device=encoder_outputs.device, dtype=torch.long) * self.sos_id
             hyp = {
                 "prediction": [self.sos_id],
                 "logp_score": 0.0,

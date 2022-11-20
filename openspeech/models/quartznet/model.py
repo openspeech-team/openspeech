@@ -22,18 +22,13 @@
 
 from omegaconf import DictConfig
 
-from openspeech.models import register_model
-from openspeech.models import OpenspeechCTCModel
 from openspeech.encoders.quartznet import QuartzNet
+from openspeech.models import OpenspeechCTCModel, register_model
+from openspeech.models.quartznet.configurations import QuartzNet5x5Configs, QuartzNet10x5Configs, QuartzNet15x5Configs
 from openspeech.tokenizers.tokenizer import Tokenizer
-from openspeech.models.quartznet.configurations import (
-    QuartzNet5x5Configs,
-    QuartzNet10x5Configs,
-    QuartzNet15x5Configs,
-)
 
 
-@register_model('quartznet5x5', dataclass=QuartzNet5x5Configs)
+@register_model("quartznet5x5", dataclass=QuartzNet5x5Configs)
 class QuartzNet5x5Model(OpenspeechCTCModel):
     r"""
     QUARTZNET: DEEP AUTOMATIC SPEECH RECOGNITION WITH 1D TIME-CHANNEL SEPARABLE CONVOLUTIONS
@@ -61,7 +56,7 @@ class QuartzNet5x5Model(OpenspeechCTCModel):
         )
 
 
-@register_model('quartznet10x5', dataclass=QuartzNet10x5Configs)
+@register_model("quartznet10x5", dataclass=QuartzNet10x5Configs)
 class QuartzNet10x5Model(QuartzNet5x5Model):
     r"""
     QUARTZNET: DEEP AUTOMATIC SPEECH RECOGNITION WITH 1D TIME-CHANNEL SEPARABLE CONVOLUTIONS
@@ -78,11 +73,12 @@ class QuartzNet10x5Model(QuartzNet5x5Model):
     Returns:
         outputs (dict): Result of model predictions that contains `y_hats`, `logits`, `output_lengths`
     """
+
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(QuartzNet10x5Model, self).__init__(configs, tokenizer)
 
 
-@register_model('quartznet15x5', dataclass=QuartzNet15x5Configs)
+@register_model("quartznet15x5", dataclass=QuartzNet15x5Configs)
 class QuartzNet15x5Model(QuartzNet5x5Model):
     r"""
     QUARTZNET: DEEP AUTOMATIC SPEECH RECOGNITION WITH 1D TIME-CHANNEL SEPARABLE CONVOLUTIONS
@@ -99,5 +95,6 @@ class QuartzNet15x5Model(QuartzNet5x5Model):
     Returns:
         outputs (dict): Result of model predictions that contains `y_hats`, `logits`, `output_lengths`
     """
+
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(QuartzNet15x5Model, self).__init__(configs, tokenizer)

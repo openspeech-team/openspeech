@@ -20,9 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Tuple
+
 import torch
 import torch.nn as nn
-from typing import Tuple
 
 from openspeech.modules.pointwise_conv1d import PointwiseConv1d
 from openspeech.modules.quartznet_subblock import QuartzNetSubBlock
@@ -46,32 +47,35 @@ class QuartzNetBlock(nn.Module):
         * output_lengths (torch.LongTensor): tensor contains output sequence lengths
     """
     supported_activations = {
-        'hardtanh': nn.Hardtanh(0, 20, inplace=True),
-        'relu': nn.ReLU(inplace=True),
-        'elu': nn.ELU(inplace=True),
-        'leaky_relu': nn.LeakyReLU(inplace=True),
-        'gelu': nn.GELU(),
+        "hardtanh": nn.Hardtanh(0, 20, inplace=True),
+        "relu": nn.ReLU(inplace=True),
+        "elu": nn.ELU(inplace=True),
+        "leaky_relu": nn.LeakyReLU(inplace=True),
+        "gelu": nn.GELU(),
     }
 
     def __init__(
-            self,
-            num_sub_blocks: int,
-            in_channels: int,
-            out_channels: int,
-            kernel_size: int,
-            bias: bool = True,
+        self,
+        num_sub_blocks: int,
+        in_channels: int,
+        out_channels: int,
+        kernel_size: int,
+        bias: bool = True,
     ) -> None:
         super(QuartzNetBlock, self).__init__()
         padding = self._get_same_padding(kernel_size, stride=1, dilation=1)
-        self.layers = nn.ModuleList([
-            QuartzNetSubBlock(
-                in_channels=in_channels if i == 0 else out_channels,
-                out_channels=out_channels,
-                kernel_size=kernel_size,
-                padding=padding,
-                bias=bias,
-            ) for i in range(num_sub_blocks)
-        ])
+        self.layers = nn.ModuleList(
+            [
+                QuartzNetSubBlock(
+                    in_channels=in_channels if i == 0 else out_channels,
+                    out_channels=out_channels,
+                    kernel_size=kernel_size,
+                    padding=padding,
+                    bias=bias,
+                )
+                for i in range(num_sub_blocks)
+            ]
+        )
         self.conv1x1 = PointwiseConv1d(in_channels, out_channels)
         self.batch_norm = nn.BatchNorm1d(out_channels, eps=1e-3, momentum=0.1)
 

@@ -1,5 +1,5 @@
-## OpenSpeech Structure. 
-  
+## OpenSpeech Structure.
+
 ```
 .
 ├── README.md

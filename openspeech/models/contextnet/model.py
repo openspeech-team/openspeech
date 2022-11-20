@@ -20,25 +20,30 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from collections import OrderedDict
+from typing import Dict
+
 from omegaconf import DictConfig
 from torch import Tensor
-from typing import Dict
-from collections import OrderedDict
 
-from openspeech.decoders import RNNTransducerDecoder, LSTMAttentionDecoder
-from openspeech.models import register_model, OpenspeechTransducerModel, OpenspeechEncoderDecoderModel
-from openspeech.models import OpenspeechCTCModel
+from openspeech.decoders import LSTMAttentionDecoder, RNNTransducerDecoder
 from openspeech.encoders import ContextNetEncoder
-from openspeech.modules.wrapper import Linear
-from openspeech.tokenizers.tokenizer import Tokenizer
+from openspeech.models import (
+    OpenspeechCTCModel,
+    OpenspeechEncoderDecoderModel,
+    OpenspeechTransducerModel,
+    register_model,
+)
 from openspeech.models.contextnet.configurations import (
     ContextNetConfigs,
-    ContextNetTransducerConfigs,
     ContextNetLSTMConfigs,
+    ContextNetTransducerConfigs,
 )
+from openspeech.modules.wrapper import Linear
+from openspeech.tokenizers.tokenizer import Tokenizer
 
 
-@register_model('contextnet', dataclass=ContextNetConfigs)
+@register_model("contextnet", dataclass=ContextNetConfigs)
 class ContextNetModel(OpenspeechCTCModel):
     r"""
     Conformer Encoder Only Model.
@@ -54,12 +59,13 @@ class ContextNetModel(OpenspeechCTCModel):
     Returns:
         outputs (dict): Result of model predictions that contains `y_hats`, `logits`, `output_lengths`
     """
+
     def __init__(self, configs: DictConfig, tokenizer: Tokenizer) -> None:
         super(ContextNetModel, self).__init__(configs, tokenizer)
         supported_models = {
-            'small': 0.5,
-            'medium': 1,
-            'large': 2,
+            "small": 0.5,
+            "medium": 1,
+            "large": 2,
         }
         alpha = supported_models[self.configs.model.model_size]
         self.fc = Linear(int(self.configs.model.encoder_dim * alpha), self.num_classes, bias=False)
@@ -103,7 +109,7 @@ class ContextNetModel(OpenspeechCTCModel):
         encoder_outputs, encoder_logits, output_lengths = self.encoder(inputs, input_lengths)
         logits = self.fc(encoder_outputs).log_softmax(dim=-1)
         return self.collect_outputs(
-            stage='train',
+            stage="train",
             logits=logits,
             output_lengths=output_lengths,
             targets=targets,
@@ -125,7 +131,7 @@ class ContextNetModel(OpenspeechCTCModel):
         encoder_outputs, encoder_logits, output_lengths = self.encoder(inputs, input_lengths)
         logits = self.fc(encoder_outputs).log_softmax(dim=-1)
         return self.collect_outputs(
-            stage='valid',
+            stage="valid",
             logits=logits,
             output_lengths=output_lengths,
             targets=targets,
@@ -147,7 +153,7 @@ class ContextNetModel(OpenspeechCTCModel):
         encoder_outputs, encoder_logits, output_lengths = self.encoder(inputs, input_lengths)
         logits = self.fc(encoder_outputs).log_softmax(dim=-1)
         return self.collect_outputs(
-            stage='test',
+            stage="test",
             logits=logits,
             output_lengths=output_lengths,
             targets=targets,
@@ -155,7 +161,7 @@ class ContextNetModel(OpenspeechCTCModel):
         )
 
 
-@register_model('contextnet_lstm', dataclass=ContextNetLSTMConfigs)
+@register_model("contextnet_lstm", dataclass=ContextNetLSTMConfigs)
 class ContextNetLSTMModel(OpenspeechEncoderDecoderModel):
     r"""
     ContextNet encoder + LSTM decoder.
@@ -173,7 +179,11 @@ class ContextNetLSTMModel(OpenspeechEncoderDecoderModel):
             `encoder_outputs`, `encoder_logits`, `encoder_output_lengths`.
     """
 
-    def __init__(self, configs: DictConfig, tokenizer: Tokenizer, ) -> None:
+    def __init__(
+        self,
+        configs: DictConfig,
+        tokenizer: Tokenizer,
+    ) -> None:
         super(ContextNetLSTMModel, self).__init__(configs, tokenizer)
 
         self.encoder = ContextNetEncoder(
@@ -201,15 +211,16 @@ class ContextNetLSTMModel(OpenspeechEncoderDecoderModel):
         )
 
     def set_beam_decoder(self, beam_size: int = 3):
-        """ Setting beam search decoder """
+        """Setting beam search decoder"""
         from openspeech.search import BeamSearchLSTM
+
         self.decoder = BeamSearchLSTM(
             decoder=self.decoder,
             beam_size=beam_size,
         )
 
 
-@register_model('contextnet_transducer', dataclass=ContextNetTransducerConfigs)
+@register_model("contextnet_transducer", dataclass=ContextNetTransducerConfigs)
 class ContextNetTransducerModel(OpenspeechTransducerModel):
     r"""
     ContextNet: Improving Convolutional Neural Networks for Automatic Speech Recognition with Global Context
@@ -227,7 +238,11 @@ class ContextNetTransducerModel(OpenspeechTransducerModel):
         outputs (dict): Result of model predictions.
     """
 
-    def __init__(self, configs: DictConfig, tokenizer: Tokenizer, ) -> None:
+    def __init__(
+        self,
+        configs: DictConfig,
+        tokenizer: Tokenizer,
+    ) -> None:
         super(ContextNetTransducerModel, self).__init__(configs, tokenizer)
 
         self.encoder = ContextNetEncoder(

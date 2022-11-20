@@ -47,24 +47,14 @@ class MelSpectrogramConfigs(OpenspeechDataclass):
         apply_time_stretch_augment (bool): flag indication whether to apply time stretch augment or not (default: False)
         apply_joining_augment (bool): flag indication whether to apply audio joining augment or not (default: False)
     """
-    name: str = field(
-        default="melspectrogram", metadata={"help": "Name of dataset."}
-    )
-    sample_rate: int = field(
-        default=16000, metadata={"help": "Sampling rate of audio"}
-    )
-    frame_length: float = field(
-        default=20.0, metadata={"help": "Frame length for spectrogram"}
-    )
-    frame_shift: float = field(
-        default=10.0, metadata={"help": "Length of hop between STFT"}
-    )
+    name: str = field(default="melspectrogram", metadata={"help": "Name of dataset."})
+    sample_rate: int = field(default=16000, metadata={"help": "Sampling rate of audio"})
+    frame_length: float = field(default=20.0, metadata={"help": "Frame length for spectrogram"})
+    frame_shift: float = field(default=10.0, metadata={"help": "Length of hop between STFT"})
     del_silence: bool = field(
         default=False, metadata={"help": "Flag indication whether to apply delete silence or not"}
     )
-    num_mels: int = field(
-        default=80, metadata={"help": "The number of mfc coefficients to retain."}
-    )
+    num_mels: int = field(default=80, metadata={"help": "The number of mfc coefficients to retain."})
     apply_spec_augment: bool = field(
         default=True, metadata={"help": "Flag indication whether to apply spec augment or not"}
     )

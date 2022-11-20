@@ -20,10 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import os
 import glob
-import pandas as pd
+import os
 import tarfile
+
+import pandas as pd
 
 
 def load_label(filepath):
@@ -64,7 +65,7 @@ def sentence_to_target(sentence, char2id):
 
     for ch in sentence:
         try:
-            target += (str(char2id[ch]) + ' ')
+            target += str(char2id[ch]) + " "
         except KeyError:
             continue
 
@@ -72,7 +73,7 @@ def sentence_to_target(sentence, char2id):
 
 
 def get_key(audio_file):
-    """ Given an audio file path, return its ID. """
+    """Given an audio file path, return its ID."""
     return os.path.basename(audio_file)[:-4]
 
 
@@ -81,7 +82,7 @@ def generate_character_labels(dataset_path, vocab_path):
 
     with open(os.path.join(dataset_path, "transcript/aishell_transcript_v0.8.txt")) as f:
         for line in f.readlines():
-            tokens = line.split(' ')
+            tokens = line.split(" ")
             transcript = " ".join(tokens[1:])
             transcripts.append(transcript)
 
@@ -95,16 +96,16 @@ def generate_character_labels(dataset_path, vocab_path):
 
     # sort together Using zip
     label_freq, label_list = zip(*sorted(zip(label_freq, label_list), reverse=True))
-    label = {'id': [0, 1, 2, 3], 'char': ['<pad>', '<sos>', '<eos>', '<blank>'], 'freq': [0, 0, 0, 0]}
+    label = {"id": [0, 1, 2, 3], "char": ["<pad>", "<sos>", "<eos>", "<blank>"], "freq": [0, 0, 0, 0]}
 
     for idx, (ch, freq) in enumerate(zip(label_list, label_freq)):
-        label['id'].append(idx + 4)
-        label['char'].append(ch)
-        label['freq'].append(freq)
+        label["id"].append(idx + 4)
+        label["char"].append(ch)
+        label["freq"].append(freq)
 
-    label['id'] = label['id']
-    label['char'] = label['char']
-    label['freq'] = label['freq']
+    label["id"] = label["id"]
+    label["char"] = label["char"]
+    label["freq"] = label["freq"]
 
     label_df = pd.DataFrame(label)
     label_df.to_csv(vocab_path, encoding="utf-8", index=False)
@@ -122,8 +123,8 @@ def generate_character_script(dataset_path: str, manifest_file_path: str, vocab_
         tar.close()
         os.remove(f)
 
-    with open(manifest_file_path, 'w') as f:
-        for split in ('train', 'dev', 'test'):
+    with open(manifest_file_path, "w") as f:
+        for split in ("train", "dev", "test"):
             audio_paths = glob.glob(os.path.join(dataset_path, f"wav/{split}/*/*.wav"))
             keys = [audio_path for audio_path in audio_paths if get_key(audio_path) in transcripts_dict]
 
@@ -131,8 +132,8 @@ def generate_character_script(dataset_path: str, manifest_file_path: str, vocab_
             labels = [sentence_to_target(transcript, char2id) for transcript in transcripts]
 
             for idx, audio_path in enumerate(audio_paths):
-                audio_paths[idx] = audio_path.replace(f"{dataset_path}/", '')
+                audio_paths[idx] = audio_path.replace(f"{dataset_path}/", "")
 
-            #for (audio_path, transcript, label) in zip(audio_paths, transcripts, labels):
+            # for (audio_path, transcript, label) in zip(audio_paths, transcripts, labels):
             for (audio_path, transcript, label) in zip(keys, transcripts, labels):
                 f.write(f"{audio_path}\t{transcript}\t{label}\n")

@@ -20,9 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from typing import Optional, Tuple, Union
+
 import torch.nn as nn
 from torch import Tensor
-from typing import Optional, Tuple, Union
 
 from openspeech.modules.conv_base import BaseConv2d
 
@@ -46,13 +47,14 @@ class DepthwiseConv2d(BaseConv2d):
     Returns: outputs
         - **outputs** (batch, out_channels, time, dim): Tensor produces by depthwise 2-D convolution.
     """
+
     def __init__(
-            self,
-            in_channels: int,
-            out_channels: int,
-            kernel_size: Union[int, Tuple],
-            stride: int = 2,
-            padding: int = 0,
+        self,
+        in_channels: int,
+        out_channels: int,
+        kernel_size: Union[int, Tuple],
+        stride: int = 2,
+        padding: int = 0,
     ) -> None:
         super(DepthwiseConv2d, self).__init__()
         assert out_channels % in_channels == 0, "out_channels should be constant multiple of in_channels"

@@ -26,7 +26,8 @@ from torch import Tensor
 
 
 class ConvGroupShuffle(nn.Module):
-    """ Convolution group shuffle module. """
+    """Convolution group shuffle module."""
+
     def __init__(self, groups, channels):
         super(ConvGroupShuffle, self).__init__()
         self.groups = groups

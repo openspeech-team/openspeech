@@ -20,11 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import os
-import numpy as np
-import random
 import logging
+import os
+import random
+
 import librosa
+import numpy as np
 from torch import Tensor
 
 from ..audio.load import load_audio
@@ -48,28 +49,29 @@ class SpecAugment(object):
     Returns: feature_vector:
         - **feature_vector**: masked feature vector.
     """
+
     def __init__(self, freq_mask_para: int = 18, time_mask_num: int = 10, freq_mask_num: int = 2) -> None:
         self.freq_mask_para = freq_mask_para
         self.time_mask_num = time_mask_num
         self.freq_mask_num = freq_mask_num
 
     def __call__(self, feature: Tensor) -> Tensor:
-        """ Provides SpecAugmentation for audio """
+        """Provides SpecAugmentation for audio"""
         time_axis_length = feature.size(0)
         freq_axis_length = feature.size(1)
-        time_mask_para = time_axis_length / 20      # Refer to "Specaugment on large scale dataset" paper
+        time_mask_para = time_axis_length / 20  # Refer to "Specaugment on large scale dataset" paper
 
         # time mask
         for _ in range(self.time_mask_num):
             t = int(np.random.uniform(low=0.0, high=time_mask_para))
             t0 = random.randint(0, time_axis_length - t)
-            feature[t0: t0 + t, :] = 0
+            feature[t0 : t0 + t, :] = 0
 
         # freq mask
         for _ in range(self.freq_mask_num):
             f = int(np.random.uniform(low=0.0, high=self.freq_mask_para))
             f0 = random.randint(0, freq_axis_length - f)
-            feature[:, f0: f0 + f] = 0
+            feature[:, f0 : f0 + f] = 0
 
         return feature
 
@@ -94,11 +96,12 @@ class NoiseInjector(object):
     Returns: signal
         - **signal**: noise added signal
     """
+
     def __init__(
-            self,
-            noise_dataset_dir: str,
-            sample_rate: int = 16000,
-            noise_level: float = 0.7,
+        self,
+        noise_dataset_dir: str,
+        sample_rate: int = 16000,
+        noise_level: float = 0.7,
     ) -> None:
         if not os.path.exists(noise_dataset_dir):
             logger.info("Directory doesn`t exist: {0}".format(noise_dataset_dir))
@@ -124,7 +127,7 @@ class NoiseInjector(object):
         if signal_length >= noise_length:
             noise_start = int(np.random.rand() * (signal_length - noise_length))
             noise_end = int(noise_start + noise_length)
-            signal[noise_start: noise_end] += noise * noise_level
+            signal[noise_start:noise_end] += noise * noise_level
 
         else:
             signal += noise[:signal_length] * noise_level
@@ -137,9 +140,11 @@ class NoiseInjector(object):
         num_noise_audio_data = len(noise_audio_paths)
 
         for idx in range(num_noise_audio_data):
-            if noise_audio_paths[idx].endswith('.pcm') \
-                    or noise_audio_paths[idx].endswith('.wav') \
-                    or noise_audio_paths[idx].endswith('.flac'):
+            if (
+                noise_audio_paths[idx].endswith(".pcm")
+                or noise_audio_paths[idx].endswith(".wav")
+                or noise_audio_paths[idx].endswith(".flac")
+            ):
                 audio_paths.append(noise_audio_paths[idx])
 
         return audio_paths
@@ -167,6 +172,7 @@ class TimeStretchAugment(object):
     Returns:
         y_stretch: np.ndarray [shape=(round(n/rate),)] audio time series stretched by the specified rate
     """
+
     def __init__(self, min_rate: float = 0.7, max_rate: float = 1.4):
         super(TimeStretchAugment, self).__init__()
         self.min_rate = min_rate
@@ -186,6 +192,7 @@ class JoiningAugment(object):
     Returns: signal
         - **signal**: concatenated signal
     """
+
     def __init__(self):
         super(JoiningAugment, self).__init__()
 

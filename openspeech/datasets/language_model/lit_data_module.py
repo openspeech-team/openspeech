@@ -20,22 +20,22 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import pytorch_lightning as pl
 import logging
 import os
 import random
-from omegaconf import DictConfig
 from typing import Optional
+
+import pytorch_lightning as pl
+from omegaconf import DictConfig
 
 from openspeech.data.sampler import RandomSampler
 from openspeech.data.text.data_loader import TextDataLoader
 from openspeech.data.text.dataset import TextDataset
 from openspeech.datasets import register_data_module
-from openspeech.tokenizers import TOKENIZER_REGISTRY
 from openspeech.tokenizers.tokenizer import Tokenizer
 
 
-@register_data_module('lm')
+@register_data_module("lm")
 class LightningLanguageModelDataModule(pl.LightningDataModule):
     def __init__(self, configs: DictConfig) -> None:
         super(LightningLanguageModelDataModule, self).__init__()
@@ -58,7 +58,7 @@ class LightningLanguageModelDataModule(pl.LightningDataModule):
 
         random.shuffle(transcripts)
 
-        train_ratio = (1 - self.configs.dataset.valid_ratio - self.configs.dataset.test_ratio)
+        train_ratio = 1 - self.configs.dataset.valid_ratio - self.configs.dataset.test_ratio
 
         num_train_transcripts = int(num_total_transcripts * train_ratio)
         num_valid_transcripts = int(num_total_transcripts * self.configs.dataset.valid_ratio)
@@ -68,7 +68,7 @@ class LightningLanguageModelDataModule(pl.LightningDataModule):
         transcripts = {
             "train": transcripts[:num_train_transcripts],
             "valid": transcripts[num_train_transcripts:valid_end_idx],
-            "test": transcripts[valid_end_idx:]
+            "test": transcripts[valid_end_idx:],
         }
 
         for stage in transcripts.keys():
@@ -78,27 +78,27 @@ class LightningLanguageModelDataModule(pl.LightningDataModule):
             )
 
     def train_dataloader(self) -> TextDataLoader:
-        train_sampler = RandomSampler(self.dataset['train'], batch_size=self.configs.trainer.batch_size)
+        train_sampler = RandomSampler(self.dataset["train"], batch_size=self.configs.trainer.batch_size)
         return TextDataLoader(
-            dataset=self.dataset['train'],
+            dataset=self.dataset["train"],
             num_workers=self.configs.trainer.num_workers,
             batch_sampler=train_sampler,
         )
 
     def val_dataloader(self) -> TextDataLoader:
-        r""" Return data loader for validation. """
-        valid_sampler = RandomSampler(self.dataset['valid'], batch_size=self.configs.trainer.batch_size)
+        r"""Return data loader for validation."""
+        valid_sampler = RandomSampler(self.dataset["valid"], batch_size=self.configs.trainer.batch_size)
         return TextDataLoader(
-            dataset=self.dataset['valid'],
+            dataset=self.dataset["valid"],
             num_workers=self.configs.trainer.num_workers,
             batch_sampler=valid_sampler,
         )
 
     def test_dataloader(self) -> TextDataLoader:
-        r""" Return data loader for training. """
-        train_sampler = RandomSampler(self.dataset['test'], batch_size=self.configs.trainer.batch_size)
+        r"""Return data loader for training."""
+        train_sampler = RandomSampler(self.dataset["test"], batch_size=self.configs.trainer.batch_size)
         return TextDataLoader(
-            dataset=self.dataset['test'],
+            dataset=self.dataset["test"],
             num_workers=self.configs.trainer.num_workers,
             batch_sampler=train_sampler,
         )

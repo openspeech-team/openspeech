@@ -1,31 +1,31 @@
 # Openspeech's Hydra configuration
-  
-This page describes how openspeech uses [Hydra](https://github.com/facebookresearch/hydra) to manage configuration.
-  
-## What is Hydra?
-  
-[Hydra](https://github.com/facebookresearch/hydra) is an open-source Python framework that simplifies the development of research and other complex applications. The key feature is the ability to dynamically create a hierarchical configuration by composition and override it through config files and the command line. The name Hydra comes from its ability to run multiple similar jobs - much like a Hydra with multiple heads.  
-  
-## Motivation
-  
-Openspeech aims to provide as many options as possible. However, too many options cause a lot of confusion to users.
-. To address this problem, we needed a hierarchical configuration management toolkit. 
-Hydra was the best choice for us in that respect. We have referred to the structure of [Fairseq](https://github.com/pytorch/fairseq) that successfully applied Hydra. 
-Thank you for fairseq team.   
-  
-We thought a lot about which method is better, using the `YAML` file or using `@dataclass`. 
-After much consideration, we decided to use `@dataclass`, which is easy to understand each module's configuration. 
-`@dataclass` has default values for that module and has been configured to be stored in the same Python file as each module.  
-  
-Additionally, Hydra has a rich and growing library of plugins that provide functionality such as hyperparameter sweeping (including using bayesian optimization through the Ax library), job launching across various platforms, and more.
-  
-## Creating or migrating components
-  
-In general, each new (or updated) component should provide a companion [dataclass](https://www.python.org/dev/peps/pep-0557/). 
-These dataclass are typically located in the same file as the component and are passed as arguments to the `register_*()` functions. 
-These classes are decorated with a `@dataclass` decorator, and typically inherit from `OpenspeechDataclass`. 
 
-  
+This page describes how openspeech uses [Hydra](https://github.com/facebookresearch/hydra) to manage configuration.
+
+## What is Hydra?
+
+[Hydra](https://github.com/facebookresearch/hydra) is an open-source Python framework that simplifies the development of research and other complex applications. The key feature is the ability to dynamically create a hierarchical configuration by composition and override it through config files and the command line. The name Hydra comes from its ability to run multiple similar jobs - much like a Hydra with multiple heads.
+
+## Motivation
+
+Openspeech aims to provide as many options as possible. However, too many options cause a lot of confusion to users.
+. To address this problem, we needed a hierarchical configuration management toolkit.
+Hydra was the best choice for us in that respect. We have referred to the structure of [Fairseq](https://github.com/pytorch/fairseq) that successfully applied Hydra.
+Thank you for fairseq team.
+
+We thought a lot about which method is better, using the `YAML` file or using `@dataclass`.
+After much consideration, we decided to use `@dataclass`, which is easy to understand each module's configuration.
+`@dataclass` has default values for that module and has been configured to be stored in the same Python file as each module.
+
+Additionally, Hydra has a rich and growing library of plugins that provide functionality such as hyperparameter sweeping (including using bayesian optimization through the Ax library), job launching across various platforms, and more.
+
+## Creating or migrating components
+
+In general, each new (or updated) component should provide a companion [dataclass](https://www.python.org/dev/peps/pep-0557/).
+These dataclass are typically located in the same file as the component and are passed as arguments to the `register_*()` functions.
+These classes are decorated with a `@dataclass` decorator, and typically inherit from `OpenspeechDataclass`.
+
+
 #### Example:
 
 ```python
@@ -42,15 +42,15 @@ class ConformerLSTMConfigs(OpenspeechDataclass):
         default=256, metadata={"help": "Dimension of encoder."}
     )
 ```
-  
+
 ### `@register_*()` function
-  
-We actively utilized the `@register_*()` function inspired by [Fairseq](https://github.com/pytorch/fairseq). 
-The function `@register_*()` automatically registers classes and associated data classes. 
+
+We actively utilized the `@register_*()` function inspired by [Fairseq](https://github.com/pytorch/fairseq).
+The function `@register_*()` automatically registers classes and associated data classes.
 This method is very effective when adding new modules.
-Below is an example of how `register_*()` functions and data classes are utilized in `Openspeech`.  
-  
-#### Model example:  
+Below is an example of how `register_*()` functions and data classes are utilized in `Openspeech`.
+
+#### Model example:
 ```python
 @dataclass
 class TransformerConfigs(ModelConfigs):
@@ -69,8 +69,8 @@ class SpeechTransformerModel(OpenspeechEncoderDecoderModel):
     def build_model(self):
         ...
 ```
-  
-#### Dataset example:  
+
+#### Dataset example:
 ```python
 @dataclass
 class MelSpectrogramConfigs(AudioConfigs):
@@ -89,35 +89,35 @@ class MelSpectrogramDataset(AudioDataset):
     def __init__(self):
         ...
 ```
-  
+
 ## Openspeech's configuration structure
-  
-Below are the configuration dataclasses that you can select from `Openspeech`.  
-  
+
+Below are the configuration dataclasses that you can select from `Openspeech`.
+
 ```
 defaults:
-  - audio: 
+  - audio:
     - fbank
     - melspectrogram
     - mfcc
     - spectrogram
-  - common: 
+  - common:
     - kspon
     - libri
     - aishell
-  - criterion: 
+  - criterion:
     - cross_entropy
     - ctc
     - joint_ctc_cross_entropy
     - label_smoothed_cross_entropy
     - transducer
-  - lr_scheduler: 
+  - lr_scheduler:
     - reduce_lr_on_plateau
     - transformer
     - tri_stage
     - warmup_reduce_lr_on_plateau
     - warmup
-  - model: 
+  - model:
     - conformer_encoder_only
     - conformer_lstm
     - conformer_transducer
@@ -127,14 +127,14 @@ defaults:
     - rnn_transducer
     - transformer
     - transformer_transducer
-  - trainer: 
+  - trainer:
     - cpu
     - gpu
     - tpu
     - cpu-fp64
     - gpu-fp16
     - tpu-fp16
-  - vocab: 
+  - vocab:
     - aishell_character
     - kspon_character
     - kspon_subword
@@ -142,21 +142,21 @@ defaults:
     - libri_character
     - libri_subword
 ```
-  
-## Training with `hydra_train.py`  
-  
-On startup, Hydra will create a configuration object that contains a hierarchy of all the necessary dataclasses populated with their default values in the code.   
-  
-Some of the most common use cases are shown below:  
-  
+
+## Training with `hydra_train.py`
+
+On startup, Hydra will create a configuration object that contains a hierarchy of all the necessary dataclasses populated with their default values in the code.
+
+Some of the most common use cases are shown below:
+
 ### 1. Override default values through command line:
-  
+
 ```diff
 $ python ./openspeech_cli/hydra_train.py \
     common=libri \
 +   common.dataset_path=$DATASET_PATH \
 +   common.dataset_download=True \
-+   common.manifest_file_path=$MANIFEST_FILE_PATH \  
++   common.manifest_file_path=$MANIFEST_FILE_PATH \
     vocab=libri_subword \
 +   vocab.vocab_size=10000 \
     model=conformer_lstm \
@@ -166,12 +166,12 @@ $ python ./openspeech_cli/hydra_train.py \
     trainer=gpu-fp16 \
     criterion=ctc
 ```
-  
-Note that along with explicitly providing values for parameters such as `common.dataset_path`, this also tells Hydra to overlay configuration found in dataclass. 
-If you want to train a model without specifying a particular architecture you can simply specify `model=conformer_lstm`. 
-  
+
+Note that along with explicitly providing values for parameters such as `common.dataset_path`, this also tells Hydra to overlay configuration found in dataclass.
+If you want to train a model without specifying a particular architecture you can simply specify `model=conformer_lstm`.
+
 ### 2. Add new configuration through command line:
-  
+
 ```diff
 $ python ./openspeech_cli/hydra_train.py \
     common=libri \
@@ -184,5 +184,5 @@ $ python ./openspeech_cli/hydra_train.py \
 +   +trainer.is_tpu=False \
     criterion=ctc \
 ```
-  
+
 More detailed methods of using hydra can be found [Hydra website](https://hydra.cc/). If you have any questions, feel free to send me an email or create an issue.

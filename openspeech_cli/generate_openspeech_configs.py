@@ -21,7 +21,6 @@
 # SOFTWARE.
 
 import openspeech
-
 from openspeech.dataclass.configurations import generate_openspeech_configs_with_help
 
 generate_openspeech_configs_with_help()

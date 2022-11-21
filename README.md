@@ -131,7 +131,7 @@ English and Mandarin](https://arxiv.org/abs/1512.02595.pdf), by Dario Amodei, Ri
 We use [Hydra](https://github.com/facebookresearch/hydra) to control all the training configurations.
 If you are not familiar with Hydra we recommend visiting the [Hydra website](https://hydra.cc/).
 Generally, Hydra is an open-source framework that simplifies the development of research applications by providing the ability to create a hierarchical configuration dynamically.
-If you want to know how we used Hydra, we recommend you to read [here](https://openspeech-team.github.io/OpenSpeech/notes/hydra_configs.html).
+If you want to know how we used Hydra, we recommend you to read [here](https://openspeech-team.github.io/openspeech/notes/hydra_configs.html).
 
 ### Supported Datasets
 

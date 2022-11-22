@@ -44,7 +44,7 @@ from .mask_conv1d import MaskConv1d
 from .mask_conv2d import MaskConv2d
 from .multi_head_attention import MultiHeadAttention
 from .pointwise_conv1d import PointwiseConv1d
-from .positional_encoding import PositionalEncoding
+from .positional_encoding import PositionalEncoding, RelPositionalEncoding
 from .positionwise_feed_forward import PositionwiseFeedForward
 from .quartznet_block import QuartzNetBlock
 from .quartznet_subblock import QuartzNetSubBlock
@@ -90,6 +90,7 @@ __all__ = [
     "PositionwiseFeedForward",
     "QuartzNetSubBlock",
     "QuartzNetBlock",
+    "RelPositionalEncoding",
     "RelativeMultiHeadAttention",
     "ResidualConnectionModule",
     "DotProductAttention",

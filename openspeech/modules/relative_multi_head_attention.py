@@ -64,7 +64,7 @@ class RelativeMultiHeadAttention(nn.Module):
         self.dim = dim
         self.d_head = int(dim / num_heads)
         self.num_heads = num_heads
-        self.sqrt_dim = math.sqrt(dim)
+        self.sqrt_dim = math.sqrt(self.d_head)
 
         self.query_proj = Linear(dim, dim)
         self.key_proj = Linear(dim, dim)
@@ -118,6 +118,6 @@ class RelativeMultiHeadAttention(nn.Module):
         padded_pos_score = torch.cat([zeros, pos_score], dim=-1)
 
         padded_pos_score = padded_pos_score.view(batch_size, num_heads, seq_length2 + 1, seq_length1)
-        pos_score = padded_pos_score[:, :, 1:].view_as(pos_score)
+        pos_score = padded_pos_score[:, :, 1:].view_as(pos_score)[:, :, :, : seq_length2 // 2 + 1]
 
         return pos_score

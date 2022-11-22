@@ -25,7 +25,7 @@ from typing import Optional
 import torch.nn as nn
 from torch import Tensor
 
-from openspeech.modules import PositionalEncoding, RelativeMultiHeadAttention
+from openspeech.modules import RelativeMultiHeadAttention, RelPositionalEncoding
 
 
 class MultiHeadedSelfAttentionModule(nn.Module):
@@ -43,13 +43,13 @@ class MultiHeadedSelfAttentionModule(nn.Module):
 
     def __init__(self, d_model: int, num_heads: int, dropout_p: float = 0.1):
         super(MultiHeadedSelfAttentionModule, self).__init__()
-        self.positional_encoding = PositionalEncoding(d_model)
+        self.positional_encoding = RelPositionalEncoding(d_model)
         self.attention = RelativeMultiHeadAttention(d_model, num_heads, dropout_p)
         self.dropout = nn.Dropout(p=dropout_p)
 
     def forward(self, inputs: Tensor, mask: Optional[Tensor] = None):
-        batch_size, seq_length, _ = inputs.size()
-        pos_embedding = self.positional_encoding(seq_length)
+        batch_size = inputs.size(0)
+        pos_embedding = self.positional_encoding(inputs)
         pos_embedding = pos_embedding.repeat(batch_size, 1, 1)
 
         outputs = self.attention(inputs, inputs, inputs, pos_embedding=pos_embedding, mask=mask)

@@ -25,9 +25,10 @@ import openspeech.data
 import openspeech.dataclass
 import openspeech.datasets
 import openspeech.decoders
+import openspeech.optim
 import openspeech.encoders
 import openspeech.metrics
-import openspeech.models
 import openspeech.optim
+import openspeech.models
 import openspeech.search
 import openspeech.tokenizers

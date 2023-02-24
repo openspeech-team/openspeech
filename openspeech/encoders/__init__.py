@@ -20,13 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from .openspeech_encoder import OpenspeechEncoder
 from .conformer_encoder import ConformerEncoder
 from .contextnet_encoder import ContextNetEncoder
 from .convolutional_lstm_encoder import ConvolutionalLSTMEncoder
 from .convolutional_transformer_encoder import ConvolutionalTransformerEncoder
 from .jasper import Jasper
 from .lstm_encoder import LSTMEncoder
-from .openspeech_encoder import OpenspeechEncoder
 from .rnn_transducer_encoder import RNNTransducerEncoder
 from .squeezeformer_encoder import SqueezeformerEncoder
 from .transformer_encoder import TransformerEncoder

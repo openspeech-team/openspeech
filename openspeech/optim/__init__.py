@@ -23,6 +23,10 @@
 import importlib
 import os
 
+from openspeech.optim.adamp import AdamP
+from openspeech.optim.radam import RAdam
+from openspeech.optim.novograd import Novograd
+
 # automatically import any Python files in the models/ directory
 scheduler_dir = os.path.dirname(__file__)
 for file in os.listdir(scheduler_dir):
@@ -32,9 +36,3 @@ for file in os.listdir(scheduler_dir):
             if subfile.endswith(".py"):
                 scheduler_name = subfile[: subfile.find(".py")] if subfile.endswith(".py") else subfile
                 module = importlib.import_module(f"openspeech.optim.scheduler.{scheduler_name}")
-        continue
-
-    path = os.path.join(scheduler_dir, file)
-    if file.endswith(".py"):
-        scheduler_name = file[: file.find(".py")] if file.endswith(".py") else file
-        module = importlib.import_module(f"openspeech.optim.{scheduler_name}")

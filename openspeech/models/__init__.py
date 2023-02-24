@@ -23,9 +23,9 @@
 import importlib
 import os
 
+from .openspeech_model import OpenspeechModel
 from .openspeech_ctc_model import OpenspeechCTCModel
 from .openspeech_encoder_decoder_model import OpenspeechEncoderDecoderModel
-from .openspeech_model import OpenspeechModel
 from .openspeech_transducer_model import OpenspeechTransducerModel
 
 MODEL_REGISTRY = dict()

@@ -84,7 +84,7 @@ def generate_grapheme_labels(grapheme_transcripts, vocab_path: str):
     vocab_dict = {"id": [0, 1, 2, 3], "grpm": ["<pad>", "<sos>", "<eos>", "<blank>"], "freq": [0, 0, 0, 0]}
 
     for idx, (grpm, freq) in enumerate(zip(vocab_list, vocab_freq)):
-        vocab_dict["id"].append(idx + 3)
+        vocab_dict["id"].append(idx + 4)
         vocab_dict["grpm"].append(grpm)
         vocab_dict["freq"].append(freq)
 

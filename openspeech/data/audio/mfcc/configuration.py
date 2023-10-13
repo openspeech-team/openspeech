@@ -48,7 +48,7 @@ class MFCCConfigs(OpenspeechDataclass):
         apply_joining_augment (bool): flag indication whether to apply audio joining augment or not (default: False)
     """
     name: str = field(default="mfcc", metadata={"help": "Name of dataset."})
-    sample_rate: int = field(default=16000, metadata={"help": "Sampling rate of audio"})
+    sample_rate: int = field(default=8000, metadata={"help": "Sampling rate of audio"})
     frame_length: float = field(default=20.0, metadata={"help": "Frame length for spectrogram"})
     frame_shift: float = field(default=10.0, metadata={"help": "Length of hop between STFT"})
     del_silence: bool = field(
@@ -56,7 +56,7 @@ class MFCCConfigs(OpenspeechDataclass):
     )
     num_mels: int = field(default=40, metadata={"help": "The number of mfc coefficients to retain."})
     apply_spec_augment: bool = field(
-        default=True, metadata={"help": "Flag indication whether to apply spec augment or not"}
+        default=False, metadata={"help": "Flag indication whether to apply spec augment or not"}
     )
     apply_noise_augment: bool = field(
         default=False, metadata={"help": "Flag indication whether to apply noise augment or not"}

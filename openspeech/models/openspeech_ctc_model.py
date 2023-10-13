@@ -115,7 +115,7 @@ class OpenspeechCTCModel(OpenspeechModel):
         else:
             logits, _, output_lengths = outputs
 
-        logits = self.fc(logits).log_softmax(dim=-1)
+        # logits = self.fc(logits).log_softmax(dim=-1)
 
         if self.decoder is not None:
             y_hats = self.decoder(logits)

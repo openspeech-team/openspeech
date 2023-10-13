@@ -53,7 +53,7 @@ class VGGExtractor(Conv2dExtractor):
         self,
         input_dim: int,
         in_channels: int = 1,
-        out_channels: int or tuple = (64, 128),
+        out_channels: int or tuple = (64, 256),
         activation: str = "hardtanh",
     ):
         super(VGGExtractor, self).__init__(input_dim=input_dim, activation=activation)
@@ -77,8 +77,17 @@ class VGGExtractor(Conv2dExtractor):
                 nn.BatchNorm2d(num_features=out_channels[1]),
                 self.activation,
                 nn.MaxPool2d(2, stride=2),
+                nn.Conv2d(out_channels[1], out_channels[1], kernel_size=3, stride=1, padding=1, bias=False),
+                nn.BatchNorm2d(num_features=out_channels[1]),
+                self.activation,
+                nn.Conv2d(out_channels[1], out_channels[1], kernel_size=3, stride=1, padding=1, bias=False),
+                nn.BatchNorm2d(num_features=out_channels[1]),
+                self.activation,
             )
         )
 
     def forward(self, inputs: torch.Tensor, input_lengths: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
         return super().forward(inputs, input_lengths)
+
+    def inference(self, inputs: torch.Tensor) -> torch.Tensor:
+        return super().inference(inputs)

@@ -52,7 +52,7 @@ class ConformerConfigs(OpenspeechDataclass):
     """
     model_name: str = field(default="conformer", metadata={"help": "Model name"})
     encoder_dim: int = field(default=512, metadata={"help": "Dimension of encoder."})
-    num_encoder_layers: int = field(default=17, metadata={"help": "The number of encoder layers."})
+    num_encoder_layers: int = field(default=12, metadata={"help": "The number of encoder layers."})
     num_attention_heads: int = field(default=8, metadata={"help": "The number of attention heads."})
     feed_forward_expansion_factor: int = field(
         default=4, metadata={"help": "The expansion factor of feed forward module."}

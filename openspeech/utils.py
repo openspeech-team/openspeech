@@ -80,39 +80,37 @@ except ImportError:
 
 try:
     import pytorch_lightning as pl
-    from pytorch_lightning.loggers import LightningLoggerBase, TensorBoardLogger, WandbLogger
+    from pytorch_lightning.loggers import (
+        LightningLoggerBase,
+        TensorBoardLogger,
+        WandbLogger,
+    )
 except ImportError:
     raise ValueError(PYTORCH_LIGHTNING_IMPORT_ERROR)
 
-DUMMY_SIGNALS, _ = librosa.load(librosa.ex("choice"))
-DUMMY_FEATURES = librosa.feature.melspectrogram(DUMMY_SIGNALS, n_mels=80)
-DUMMY_INPUTS = torch.FloatTensor(DUMMY_FEATURES).transpose(0, 1).unsqueeze(0).expand(3, -1, -1)
-DUMMY_INPUT_LENGTHS = torch.IntTensor([1070, 900, 800])
-DUMMY_TARGETS = torch.LongTensor(
-    [
-        [2, 3, 3, 3, 3, 3, 2, 2, 1, 0],
-        [2, 3, 3, 3, 3, 3, 2, 1, 2, 0],
-        [2, 3, 3, 3, 3, 3, 2, 2, 0, 1],
-    ]
-)
-DUMMY_TARGET_LENGTHS = torch.IntTensor([9, 8, 7])
-DUMMY_TRANSCRIPTS = "OPENSPEECH IS AWESOME"
+# DUMMY_SIGNALS, _ = librosa.load(librosa.ex('choice'))
+# DUMMY_FEATURES = librosa.feature.melspectrogram(DUMMY_SIGNALS, n_mels=80)
+# DUMMY_INPUTS = torch.FloatTensor(DUMMY_FEATURES).transpose(0, 1).unsqueeze(0).expand(3, -1, -1)
+# DUMMY_INPUT_LENGTHS = torch.IntTensor([1070, 900, 800])
+# DUMMY_TARGETS = torch.LongTensor([
+#     [2, 3, 3, 3, 3, 3, 2, 2, 1, 0],
+#     [2, 3, 3, 3, 3, 3, 2, 1, 2, 0],
+#     [2, 3, 3, 3, 3, 3, 2, 2, 0, 1],
+# ])
+# DUMMY_TARGET_LENGTHS = torch.IntTensor([9, 8, 7])
+# DUMMY_TRANSCRIPTS = "OPENSPEECH IS AWESOME"
 
-DUMMY_LM_INPUTS = torch.LongTensor(
-    [
-        [2, 3, 3, 3, 3, 3, 2, 2, 0],
-        [2, 3, 3, 3, 3, 3, 2, 3, 2],
-        [2, 3, 3, 3, 3, 3, 2, 2, 0],
-    ]
-)
-DYMMY_LM_INPUT_LENGTHS = torch.IntTensor([9, 8, 7])
-DUMMY_LM_TARGETS = torch.LongTensor(
-    [
-        [3, 3, 3, 3, 3, 2, 2, 1, 0],
-        [3, 3, 3, 3, 3, 2, 1, 2, 0],
-        [3, 3, 3, 3, 3, 2, 2, 0, 1],
-    ]
-)
+# DUMMY_LM_INPUTS = torch.LongTensor([
+#     [2, 3, 3, 3, 3, 3, 2, 2, 0],
+#     [2, 3, 3, 3, 3, 3, 2, 3, 2],
+#     [2, 3, 3, 3, 3, 3, 2, 2, 0],
+# ])
+# DYMMY_LM_INPUT_LENGTHS = torch.IntTensor([9, 8, 7])
+# DUMMY_LM_TARGETS = torch.LongTensor([
+#     [3, 3, 3, 3, 3, 2, 2, 1, 0],
+#     [3, 3, 3, 3, 3, 2, 1, 2, 0],
+#     [3, 3, 3, 3, 3, 2, 2, 0, 1],
+# ])
 
 
 def is_pytorch_available():
@@ -401,11 +399,17 @@ def build_dummy_configs(
     audio_configs=None,
 ):
     from openspeech.criterion import CrossEntropyLossConfigs
-    from openspeech.data.audio.melspectrogram.melspectrogram import MelSpectrogramConfigs
+    from openspeech.data.audio.melspectrogram.melspectrogram import (
+        MelSpectrogramConfigs,
+    )
     from openspeech.dataclass import CPUTrainerConfigs
     from openspeech.models import ConformerConfigs
-    from openspeech.optim.scheduler.warmup_reduce_lr_on_plateau_scheduler import WarmupReduceLROnPlateauConfigs
-    from openspeech.tokenizers.ksponspeech.character import KsponSpeechCharacterTokenizerConfigs
+    from openspeech.optim.scheduler.warmup_reduce_lr_on_plateau_scheduler import (
+        WarmupReduceLROnPlateauConfigs,
+    )
+    from openspeech.tokenizers.ksponspeech.character import (
+        KsponSpeechCharacterTokenizerConfigs,
+    )
 
     if model_configs is None:
         model_configs = ConformerConfigs()

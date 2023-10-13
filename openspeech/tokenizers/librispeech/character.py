@@ -34,7 +34,7 @@ from openspeech.tokenizers.tokenizer import Tokenizer
 class LibriSpeechCharacterTokenizerConfigs(TokenizerConfigs):
     unit: str = field(default="libri_character", metadata={"help": "Unit of vocabulary."})
     vocab_path: str = field(
-        default="../../../LibriSpeech/libri_labels.csv", metadata={"help": "Path of vocabulary file."}
+        default="/nfs/home/patrick/LibriSpeech/libri_labels.csv", metadata={"help": "Path of vocabulary file."}
     )
 
 

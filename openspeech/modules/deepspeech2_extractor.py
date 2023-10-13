@@ -74,3 +74,6 @@ class DeepSpeech2Extractor(Conv2dExtractor):
 
     def forward(self, inputs: torch.Tensor, input_lengths: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
         return super().forward(inputs, input_lengths)
+
+    def inference(self, inputs: torch.Tensor) -> torch.Tensor:
+        return super().inference(inputs)

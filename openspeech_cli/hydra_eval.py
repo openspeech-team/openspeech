@@ -26,6 +26,8 @@ import warnings
 
 import hydra
 import torch
+import re
+import sentencepiece
 from omegaconf import DictConfig, OmegaConf
 from pytorch_lightning.utilities import rank_zero_info
 from tqdm import tqdm
@@ -39,6 +41,7 @@ from openspeech.models import MODEL_REGISTRY
 from openspeech.tokenizers import TOKENIZER_REGISTRY
 
 logger = logging.getLogger(__name__)
+multi_space = re.compile("\s+")
 
 
 @hydra.main(config_path=os.path.join("..", "openspeech", "configs"), config_name="eval")
@@ -57,6 +60,9 @@ def hydra_main(configs: DictConfig) -> None:
     model = model.load_from_checkpoint(configs.eval.checkpoint_path, configs=configs, tokenizer=tokenizer)
     model.to(device)
 
+    # import pdb
+
+    # pdb.set_trace()
     if configs.eval.beam_size > 1:
         model.set_beam_decoder(beam_size=configs.eval.beam_size)
 
@@ -84,11 +90,13 @@ def hydra_main(configs: DictConfig) -> None:
             inputs, targets, input_lengths, target_lengths = batch
 
             outputs = model(inputs.to(device), input_lengths.to(device))
+            y_hats = outputs["predictions"].unique_consecutive(dim=-1).detach().cpu().numpy()
 
-        wer = wer_metric(targets[:, 1:], outputs["predictions"])
-        cer = cer_metric(targets[:, 1:], outputs["predictions"])
+        wer = wer_metric(targets[:, 1:], y_hats)
+        cer = cer_metric(targets[:, 1:], y_hats)
 
-        for target, predicion in zip(tokenizer.decode(targets[:, 1:]), tokenizer.decode(outputs["predictions"])):
+        for target, predicion in zip(tokenizer.decode(targets[:, 1:]), tokenizer.decode(y_hats)):
+            predicion = multi_space.sub(" ", predicion)
             results.append(f"{target}\n{predicion}\n\n")
 
     logger.info(f"Word Error Rate: {wer}, Character Error Rate: {cer}")

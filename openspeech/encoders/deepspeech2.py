@@ -25,7 +25,7 @@ from typing import Tuple
 import torch.nn as nn
 from torch import Tensor
 
-from openspeech.modules import BNReluRNN, DeepSpeech2Extractor, Linear
+from openspeech.modules import BNReluRNN, DeepSpeech2Extractor, Linear, VGGExtractor
 
 
 class DeepSpeech2(nn.Module):
@@ -69,7 +69,7 @@ class DeepSpeech2(nn.Module):
         activation: str = "hardtanh",
     ) -> None:
         super(DeepSpeech2, self).__init__()
-        self.conv = DeepSpeech2Extractor(input_dim, activation=activation)
+        self.conv = VGGExtractor(input_dim, activation=activation)
         self.rnn_layers = nn.ModuleList()
         rnn_output_size = rnn_hidden_dim << 1 if bidirectional else rnn_hidden_dim
 
@@ -85,8 +85,12 @@ class DeepSpeech2(nn.Module):
             )
 
         self.fc = nn.Sequential(
-            nn.LayerNorm(rnn_output_size),
-            Linear(rnn_output_size, num_classes, bias=False),
+            nn.LayerNorm(self.conv.get_output_dim()),
+            Linear(self.conv.get_output_dim(), 2560, bias=False),
+            nn.ReLU(),
+            Linear(2560, 512, bias=False),
+            nn.ReLU(),
+            Linear(512, num_classes, bias=False),
         )
 
     def count_parameters(self) -> int:
@@ -123,3 +127,11 @@ class DeepSpeech2(nn.Module):
         outputs = self.fc(outputs.transpose(0, 1)).log_softmax(dim=-1)
 
         return outputs, output_lengths
+
+    def inference(self, inputs: Tensor) -> Tensor:
+        outputs = self.conv.inference(inputs)
+        outputs = outputs.permute(1, 0, 2).contiguous()
+
+        outputs = self.fc(outputs.transpose(0, 1))
+
+        return outputs

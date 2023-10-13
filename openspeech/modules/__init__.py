@@ -87,6 +87,7 @@ __all__ = [
     "MaskConv2d",
     "PointwiseConv1d",
     "PositionalEncoding",
+    "RelPositionalEncoding",
     "PositionwiseFeedForward",
     "QuartzNetSubBlock",
     "QuartzNetBlock",

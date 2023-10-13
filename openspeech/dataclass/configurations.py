@@ -67,12 +67,12 @@ class LibriSpeechConfigs(OpenspeechDataclass):
     dataset: str = field(
         default="librispeech", metadata={"help": "Select dataset for training (librispeech, ksponspeech, aishell, lm)"}
     )
-    dataset_path: str = field(default=MISSING, metadata={"help": "Path of dataset"})
+    dataset_path: str = field(default="/nfs/home/patrick/LibriSpeech", metadata={"help": "Path of dataset"})
     dataset_download: bool = field(
-        default=True, metadata={"help": "Flag indication whether to download dataset or not."}
+        default=False, metadata={"help": "Flag indication whether to download dataset or not."}
     )
     manifest_file_path: str = field(
-        default="../../../LibriSpeech/libri_subword_manifest.txt", metadata={"help": "Path of manifest file"}
+        default="/nfs/home/patrick/LibriSpeech/libri_character_manifest.txt", metadata={"help": "Path of manifest file"}
     )
 
 
@@ -83,13 +83,17 @@ class KsponSpeechConfigs(OpenspeechDataclass):
     dataset: str = field(
         default="ksponspeech", metadata={"help": "Select dataset for training (librispeech, ksponspeech, aishell, lm)"}
     )
-    dataset_path: str = field(default=MISSING, metadata={"help": "Path of dataset"})
-    test_dataset_path: str = field(default=MISSING, metadata={"help": "Path of evaluation dataset"})
+    dataset_path: str = field(default="/home/patrick/dataset/Ksponspeech/train", metadata={"help": "Path of dataset"})
+    test_dataset_path: str = field(
+        default="/home/patrick/dataset/Ksponspeech/test", metadata={"help": "Path of evaluation dataset"}
+    )
     manifest_file_path: str = field(
-        default="../../../ksponspeech_manifest.txt", metadata={"help": "Path of manifest file"}
+        default="/home/patrick/dataset/Ksponspeech/phonetic_dataset/kspon_char_manifest_phonetic_under50_total_8k.txt",
+        metadata={"help": "Path of manifest file"},
     )
     test_manifest_dir: str = field(
-        default="../../../KsponSpeech_scripts", metadata={"help": "Path of directory contains test manifest files"}
+        default="/home/patrick/dataset/Ksponspeech/script",
+        metadata={"help": "Path of directory contains test manifest files"},
     )
     preprocess_mode: str = field(
         default="phonetic",
@@ -168,13 +172,13 @@ class BaseTrainerConfigs(OpenspeechDataclass):
     accumulate_grad_batches: int = field(
         default=1, metadata={"help": "Accumulates grads every k batches or as set up in the dict."}
     )
-    num_workers: int = field(default=4, metadata={"help": "The number of cpu cores"})
-    batch_size: int = field(default=32, metadata={"help": "Size of batch"})
+    num_workers: int = field(default=16, metadata={"help": "The number of cpu cores"})
+    batch_size: int = field(default=48, metadata={"help": "Size of batch"})
     check_val_every_n_epoch: int = field(default=1, metadata={"help": "Check val every n train epochs."})
     gradient_clip_val: float = field(default=5.0, metadata={"help": "0 means don’t clip."})
-    logger: str = field(default="wandb", metadata={"help": "Training logger. {wandb, tensorboard}"})
-    max_epochs: int = field(default=20, metadata={"help": "Stop training once this number of epochs is reached."})
-    save_checkpoint_n_steps: int = field(default=10000, metadata={"help": "Save a checkpoint every N steps."})
+    logger: str = field(default="tensorboard", metadata={"help": "Training logger. {wandb, tensorboard}"})
+    max_epochs: int = field(default=10, metadata={"help": "Stop training once this number of epochs is reached."})
+    save_checkpoint_n_steps: int = field(default=5000, metadata={"help": "Save a checkpoint every N steps."})
     auto_scale_batch_size: str = field(
         default="binsearch",
         metadata={
@@ -183,7 +187,7 @@ class BaseTrainerConfigs(OpenspeechDataclass):
         },
     )
     sampler: str = field(
-        default="else", metadata={"help": "smart: batching with similar sequence length." "else: random batch"}
+        default="smart", metadata={"help": "smart: batching with similar sequence length." "else: random batch"}
     )
 
 
@@ -310,12 +314,21 @@ class TokenizerConfigs(OpenspeechDataclass):
 @dataclass
 class EvaluationConfigs(OpenspeechDataclass):
     use_cuda: bool = field(default=True, metadata={"help": "If set True, will evaluate with GPU"})
-    dataset_path: str = field(default=MISSING, metadata={"help": "Path of dataset."})
-    checkpoint_path: str = field(default=MISSING, metadata={"help": "Path of model checkpoint."})
-    manifest_file_path: str = field(default=MISSING, metadata={"help": "Path of evaluation manifest file."})
-    result_path: str = field(default=MISSING, metadata={"help": "Path of evaluation result file."})
-    num_workers: int = field(default=4, metadata={"help": "Number of worker."})
-    batch_size: int = field(default=32, metadata={"help": "Batch size."})
+    dataset_path: str = field(default="/home/patrick/dataset/Ksponspeech", metadata={"help": "Path of dataset."})
+    checkpoint_path: str = field(
+        default="/home/patrick/prj/openspeech/openspeech_cli/outputs/2023-10-15/01-45-31/logs/default/version_0/checkpoints/9_100000.ckpt",
+        metadata={"help": "Path of model checkpoint."},
+    )
+    manifest_file_path: str = field(
+        default="/home/patrick/dataset/Ksponspeech/phonetic_dataset/kspon_test_phonetic_8k.txt",
+        metadata={"help": "Path of evaluation manifest file."},
+    )
+    result_path: str = field(
+        default="/home/patrick/dataset/Ksponspeech/phonetic_dataset/result_kspon_test_phonetic_8k.txt",
+        metadata={"help": "Path of evaluation result file."},
+    )
+    num_workers: int = field(default=12, metadata={"help": "Number of worker."})
+    batch_size: int = field(default=24, metadata={"help": "Batch size."})
     beam_size: int = field(default=1, metadata={"help": "Beam size of beam search."})
 
 

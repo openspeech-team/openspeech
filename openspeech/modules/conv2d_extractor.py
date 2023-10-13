@@ -78,7 +78,7 @@ class Conv2dExtractor(nn.Module):
 
     def get_output_dim(self):
         if get_class_name(self) == "VGGExtractor":
-            output_dim = (self.input_dim - 1) << 5 if self.input_dim % 2 else self.input_dim << 5
+            output_dim = (self.input_dim - 1) << 5 if self.input_dim % 2 else int(self.input_dim * 64)
 
         elif get_class_name(self) == "DeepSpeech2Extractor":
             output_dim = int(math.floor(self.input_dim + 2 * 20 - 41) / 2 + 1)
@@ -106,3 +106,12 @@ class Conv2dExtractor(nn.Module):
         outputs = outputs.view(batch_size, seq_lengths, channels * dimension)
 
         return outputs, output_lengths
+
+    def inference(self, inputs: Tensor) -> Tensor:
+        outputs = self.conv.inference(inputs.unsqueeze(1).transpose(2, 3))
+
+        batch_size, channels, dimension, seq_lengths = outputs.size()
+        outputs = outputs.permute(0, 3, 1, 2)
+        outputs = outputs.view(batch_size, seq_lengths, channels * dimension)
+
+        return outputs

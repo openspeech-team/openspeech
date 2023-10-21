@@ -82,7 +82,11 @@ try:
     import pytorch_lightning as pl
     from pytorch_lightning.loggers import LightningLoggerBase, TensorBoardLogger, WandbLogger
 except ImportError:
-    raise ValueError(PYTORCH_LIGHTNING_IMPORT_ERROR)
+    try:
+        from pytorch_lightning.loggers import Logger, TensorBoardLogger, WandbLogger
+        LightningLoggerBase = Logger
+    except ImportError:
+        raise ValueError(PYTORCH_LIGHTNING_IMPORT_ERROR)
 
 DUMMY_SIGNALS, _ = librosa.load(librosa.ex("choice"))
 DUMMY_FEATURES = librosa.feature.melspectrogram(DUMMY_SIGNALS, n_mels=80)

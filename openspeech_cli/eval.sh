@@ -1,3 +1,5 @@
+#!/bin/bash
+
 python3 hydra_eval.py \
     tokenizer=kspon_character \
     model=deepspeech2 \

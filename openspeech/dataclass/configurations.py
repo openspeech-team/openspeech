@@ -83,16 +83,16 @@ class KsponSpeechConfigs(OpenspeechDataclass):
     dataset: str = field(
         default="ksponspeech", metadata={"help": "Select dataset for training (librispeech, ksponspeech, aishell, lm)"}
     )
-    dataset_path: str = field(default="/home/patrick/dataset/Ksponspeech/train", metadata={"help": "Path of dataset"})
+    dataset_path: str = field(default="/raid/data/db/Ksponspeech/train", metadata={"help": "Path of dataset"})
     test_dataset_path: str = field(
-        default="/home/patrick/dataset/Ksponspeech/test", metadata={"help": "Path of evaluation dataset"}
+        default="/raid/data/db/Ksponspeech/test", metadata={"help": "Path of evaluation dataset"}
     )
     manifest_file_path: str = field(
-        default="/home/patrick/dataset/Ksponspeech/phonetic_dataset/kspon_char_manifest_phonetic_under50_total_8k.txt",
+        default="/raid/data/db/Ksponspeech/phonetic_dataset/kspon_char_manifest_phonetic_under50_total_8k.txt",
         metadata={"help": "Path of manifest file"},
     )
     test_manifest_dir: str = field(
-        default="/home/patrick/dataset/Ksponspeech/script",
+        default="/raid/data/db/Ksponspeech/script",
         metadata={"help": "Path of directory contains test manifest files"},
     )
     preprocess_mode: str = field(
@@ -172,7 +172,7 @@ class BaseTrainerConfigs(OpenspeechDataclass):
     accumulate_grad_batches: int = field(
         default=1, metadata={"help": "Accumulates grads every k batches or as set up in the dict."}
     )
-    num_workers: int = field(default=16, metadata={"help": "The number of cpu cores"})
+    num_workers: int = field(default=12, metadata={"help": "The number of cpu cores"})
     batch_size: int = field(default=48, metadata={"help": "Size of batch"})
     check_val_every_n_epoch: int = field(default=1, metadata={"help": "Check val every n train epochs."})
     gradient_clip_val: float = field(default=5.0, metadata={"help": "0 means don’t clip."})

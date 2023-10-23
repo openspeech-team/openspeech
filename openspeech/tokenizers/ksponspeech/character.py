@@ -34,7 +34,7 @@ from openspeech.tokenizers.tokenizer import Tokenizer
 class KsponSpeechCharacterTokenizerConfigs(TokenizerConfigs):
     unit: str = field(default="kspon_character", metadata={"help": "Unit of vocabulary."})
     vocab_path: str = field(
-        default="/home/patrick/dataset/Ksponspeech/phonetic_dataset/aihub_labels.csv",
+        default="/raid/data/db/Ksponspeech/phonetic_dataset/aihub_labels.csv",
         metadata={"help": "Path of vocabulary file."},
     )
 

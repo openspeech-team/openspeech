@@ -71,6 +71,7 @@ class OpenspeechEncoderDecoderModel(OpenspeechModel):
         target_lengths: Tensor,
     ) -> OrderedDict:
         cross_entropy_loss, ctc_loss = None, None
+        logs = {}
 
         if get_class_name(self.criterion) == "JointCTCCrossEntropyLoss":
             loss, ctc_loss, cross_entropy_loss = self.criterion(
@@ -80,7 +81,7 @@ class OpenspeechEncoderDecoderModel(OpenspeechModel):
                 targets=targets[:, 1:],
                 target_lengths=target_lengths,
             )
-            self.info(
+            logs.update(
                 {
                     f"{stage}_loss": loss,
                     f"{stage}_cross_entropy_loss": cross_entropy_loss,
@@ -92,7 +93,7 @@ class OpenspeechEncoderDecoderModel(OpenspeechModel):
             or get_class_name(self.criterion) == "CrossEntropyLoss"
         ):
             loss = self.criterion(logits, targets[:, 1:])
-            self.info({f"{stage}_loss": loss})
+            logs[f"{stage}_loss"] = loss
         else:
             raise ValueError(f"Unsupported criterion: {self.criterion}")
 
@@ -101,7 +102,7 @@ class OpenspeechEncoderDecoderModel(OpenspeechModel):
         wer = self.wer_metric(targets[:, 1:], predictions)
         cer = self.cer_metric(targets[:, 1:], predictions)
 
-        self.info(
+        logs.update(
             {
                 f"{stage}_wer": wer,
                 f"{stage}_cer": cer,
@@ -117,6 +118,7 @@ class OpenspeechEncoderDecoderModel(OpenspeechModel):
                 "targets": targets,
                 "logits": logits,
                 "learning_rate": self.get_lr(),
+                "logs": logs,
             }
         )
 

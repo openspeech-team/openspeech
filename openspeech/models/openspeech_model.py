@@ -133,6 +133,25 @@ class OpenspeechModel(pl.LightningModule):
         """
         raise NotImplementedError
 
+    def on_train_batch_end(self, outputs, batch, batch_idx) -> None:
+        self._log_step_outputs(outputs)
+
+    def on_validation_batch_end(self, outputs, batch, batch_idx, dataloader_idx: int = 0) -> None:
+        self._log_step_outputs(outputs)
+
+    def on_test_batch_end(self, outputs, batch, batch_idx, dataloader_idx: int = 0) -> None:
+        self._log_step_outputs(outputs)
+
+    def _log_step_outputs(self, outputs) -> None:
+        r"""
+        Log the metrics that a step's ``collect_outputs`` placed under the ``logs`` key.
+
+        Logging lives in these Lightning batch-end hooks rather than inside ``collect_outputs`` so the
+        per-paradigm ``collect_outputs`` methods stay free of ``self.log`` side effects (Phase 2 decoupling).
+        """
+        if isinstance(outputs, dict) and "logs" in outputs:
+            self.info(outputs["logs"])
+
     def configure_optimizers(self):
         r"""
         Choose what optimizers and learning-rate schedulers to use in your optimization.

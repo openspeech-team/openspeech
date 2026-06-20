@@ -59,12 +59,10 @@ class OpenspeechLanguageModel(OpenspeechModel):
         perplexity = self.criterion(logits, targets[:, 1:])
         predictions = logits.max(-1)[1]
 
-        self.info(
-            {
-                f"{stage}_perplexity": perplexity,
-                "learning_rate": self.get_lr(),
-            }
-        )
+        logs = {
+            f"{stage}_perplexity": perplexity,
+            "learning_rate": self.get_lr(),
+        }
 
         return OrderedDict(
             {
@@ -72,6 +70,7 @@ class OpenspeechLanguageModel(OpenspeechModel):
                 "logits": logits,
                 "targets": targets,
                 "predictions": predictions,
+                "logs": logs,
             }
         )
 

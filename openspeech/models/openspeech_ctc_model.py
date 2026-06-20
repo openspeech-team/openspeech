@@ -80,20 +80,19 @@ class OpenspeechCTCModel(OpenspeechModel):
         wer = self.wer_metric(targets[:, 1:], predictions)
         cer = self.cer_metric(targets[:, 1:], predictions)
 
-        self.info(
-            {
-                f"{stage}_wer": wer,
-                f"{stage}_cer": cer,
-                f"{stage}_loss": loss,
-                "learning_rate": self.get_lr(),
-            }
-        )
+        logs = {
+            f"{stage}_wer": wer,
+            f"{stage}_cer": cer,
+            f"{stage}_loss": loss,
+            "learning_rate": self.get_lr(),
+        }
 
         return OrderedDict(
             {
                 "loss": loss,
                 "wer": wer,
                 "cer": cer,
+                "logs": logs,
             }
         )
 

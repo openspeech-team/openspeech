@@ -99,12 +99,10 @@ class OpenspeechTransducerModel(OpenspeechModel):
             target_lengths=target_lengths.int(),
         )
 
-        self.info(
-            {
-                f"{stage}_loss": loss,
-                "learning_rate": self.get_lr(),
-            }
-        )
+        logs = {
+            f"{stage}_loss": loss,
+            "learning_rate": self.get_lr(),
+        }
 
         return OrderedDict(
             {
@@ -112,6 +110,7 @@ class OpenspeechTransducerModel(OpenspeechModel):
                 "predictions": predictions,
                 "targets": targets,
                 "logits": logits,
+                "logs": logs,
             }
         )
 

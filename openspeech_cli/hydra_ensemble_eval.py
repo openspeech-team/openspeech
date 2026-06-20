@@ -26,7 +26,7 @@ import warnings
 
 import hydra
 from omegaconf import DictConfig, OmegaConf
-from pytorch_lightning.utilities import rank_zero_info
+from pytorch_lightning.utilities.rank_zero import rank_zero_info
 
 from openspeech.data.audio.data_loader import AudioDataLoader, load_dataset
 from openspeech.data.audio.dataset import SpeechToTextDataset
@@ -39,7 +39,7 @@ from openspeech.search.ensemble_search import EnsembleSearch, WeightedEnsembleSe
 logger = logging.getLogger(__name__)
 
 
-@hydra.main(config_path=os.path.join("..", "openspeech", "configs"), config_name="eval")
+@hydra.main(version_base=None, config_path=os.path.join("..", "openspeech", "configs"), config_name="eval")
 def hydra_main(configs: DictConfig) -> None:
     rank_zero_info(OmegaConf.to_yaml(configs))
     wer, cer = 1.0, 1.0

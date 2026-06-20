@@ -21,11 +21,11 @@
 # SOFTWARE.
 
 import os
+
 import hydra
-import sentencepiece
 import pytorch_lightning as pl
 from omegaconf import DictConfig, OmegaConf
-from pytorch_lightning.utilities import rank_zero_info
+from pytorch_lightning.utilities.rank_zero import rank_zero_info
 
 from openspeech.dataclass.initialize import hydra_train_init
 from openspeech.datasets import DATA_MODULE_REGISTRY
@@ -34,7 +34,7 @@ from openspeech.tokenizers import TOKENIZER_REGISTRY
 from openspeech.utils import get_pl_trainer, parse_configs
 
 
-@hydra.main(config_path=os.path.join("..", "openspeech", "configs"), config_name="train")
+@hydra.main(version_base=None, config_path=os.path.join("..", "openspeech", "configs"), config_name="train")
 def hydra_main(configs: DictConfig) -> None:
     rank_zero_info(OmegaConf.to_yaml(configs))
     pl.seed_everything(configs.trainer.seed)
@@ -50,7 +50,12 @@ def hydra_main(configs: DictConfig) -> None:
     model = MODEL_REGISTRY[configs.model.model_name](configs=configs, tokenizer=tokenizer)
 
     trainer = get_pl_trainer(configs, num_devices, logger)
-    trainer.fit(model, data_module)
+    ckpt_path = OmegaConf.select(configs, "trainer.checkpoint_path", default=None)
+    if configs.trainer.name.endswith("resume") and ckpt_path is None:
+        raise ValueError(
+            f"Trainer '{configs.trainer.name}' requires `trainer.checkpoint_path` to be set for resuming."
+        )
+    trainer.fit(model, data_module, ckpt_path=ckpt_path)
     trainer.test(model, data_module)
 
 

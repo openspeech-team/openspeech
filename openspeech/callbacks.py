@@ -41,7 +41,7 @@ class CheckpointEveryNSteps(pl.Callback):
         self.save_step_frequency = save_step_frequency
         self.use_modelcheckpoint_filename = use_modelcheckpoint_filename
 
-    def on_batch_end(self, trainer: pl.Trainer, _):
+    def on_train_batch_end(self, trainer: pl.Trainer, pl_module, outputs, batch, batch_idx):
         """Check if we should save a checkpoint after every train batch"""
         epoch = trainer.current_epoch
         global_step = trainer.global_step

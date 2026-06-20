@@ -162,8 +162,9 @@ class BaseTrainerConfigs(OpenspeechDataclass):
     """Base trainer dataclass"""
 
     seed: int = field(default=1, metadata={"help": "Seed for training."})
-    accelerator: str = field(
-        default="dp", metadata={"help": "Previously known as distributed_backend (dp, ddp, ddp2, etc…)."}
+    strategy: str = field(
+        default="auto",
+        metadata={"help": "Lightning distributed strategy (auto, ddp, ddp_spawn, fsdp, etc…)."},
     )
     accumulate_grad_batches: int = field(
         default=1, metadata={"help": "Accumulates grads every k batches or as set up in the dict."}
@@ -172,16 +173,9 @@ class BaseTrainerConfigs(OpenspeechDataclass):
     batch_size: int = field(default=32, metadata={"help": "Size of batch"})
     check_val_every_n_epoch: int = field(default=1, metadata={"help": "Check val every n train epochs."})
     gradient_clip_val: float = field(default=5.0, metadata={"help": "0 means don’t clip."})
-    logger: str = field(default="wandb", metadata={"help": "Training logger. {wandb, tensorboard}"})
+    logger: str = field(default="tensorboard", metadata={"help": "Training logger. {wandb, tensorboard}"})
     max_epochs: int = field(default=20, metadata={"help": "Stop training once this number of epochs is reached."})
     save_checkpoint_n_steps: int = field(default=10000, metadata={"help": "Save a checkpoint every N steps."})
-    auto_scale_batch_size: str = field(
-        default="binsearch",
-        metadata={
-            "help": "If set to True, will initially run a batch size finder trying to find "
-            "the largest batch size that fits into memory."
-        },
-    )
     sampler: str = field(
         default="else", metadata={"help": "smart: batching with similar sequence length." "else: random batch"}
     )
@@ -201,9 +195,6 @@ class GPUResumeTrainerConfigs(BaseTrainerConfigs):
     checkpoint_path: str = field(default=MISSING, metadata={"help": "Path of model checkpoint."})
     device: str = field(default="gpu", metadata={"help": "Training device."})
     use_cuda: bool = field(default=True, metadata={"help": "If set True, will train with GPU"})
-    auto_select_gpus: bool = field(
-        default=True, metadata={"help": "If enabled and gpus is an integer, pick available gpus automatically."}
-    )
 
 
 @dataclass
@@ -230,9 +221,6 @@ class GPUTrainerConfigs(BaseTrainerConfigs):
     name: str = field(default="gpu", metadata={"help": "Trainer name"})
     device: str = field(default="gpu", metadata={"help": "Training device."})
     use_cuda: bool = field(default=True, metadata={"help": "If set True, will train with GPU"})
-    auto_select_gpus: bool = field(
-        default=True, metadata={"help": "If enabled and gpus is an integer, pick available gpus automatically."}
-    )
 
 
 @dataclass
@@ -254,9 +242,6 @@ class Fp16GPUTrainerConfigs(GPUTrainerConfigs):
             "Can be used on CPU, GPU or TPUs."
         },
     )
-    amp_backend: str = field(
-        default="apex", metadata={"help": "The mixed precision backend to use (“native” or “apex”)"}
-    )
 
 
 @dataclass
@@ -269,9 +254,6 @@ class Fp16TPUTrainerConfigs(TPUTrainerConfigs):
             "Can be used on CPU, GPU or TPUs."
         },
     )
-    amp_backend: str = field(
-        default="apex", metadata={"help": "The mixed precision backend to use (“native” or “apex”)"}
-    )
 
 
 @dataclass
@@ -283,9 +265,6 @@ class Fp64CPUTrainerConfigs(CPUTrainerConfigs):
             "help": "Double precision (64), full precision (32) or half precision (16). "
             "Can be used on CPU, GPU or TPUs."
         },
-    )
-    amp_backend: str = field(
-        default="apex", metadata={"help": "The mixed precision backend to use (“native” or “apex”)"}
     )
 
 

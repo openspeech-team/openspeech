@@ -80,9 +80,7 @@ class KsponSpeechSubwordTokenizer(Tokenizer):
 
         sentences = list()
         for batch in labels:
-            sentence = str()
-            for label in batch:
-                sentence = self.sp.DecodeIds([int(_) for _ in label])
+            sentence = self.sp.DecodeIds([int(_) for _ in batch])
             sentences.append(sentence)
         return sentences
 

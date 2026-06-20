@@ -112,7 +112,7 @@ class Jasper(nn.Module):
 
     def count_parameters(self) -> int:
         r"""Count parameters of model"""
-        return sum([p.numel for p in self.parameters()])
+        return sum([p.numel() for p in self.parameters()])
 
     def update_dropout(self, dropout_p: float) -> None:
         r"""Update dropout probability of model"""

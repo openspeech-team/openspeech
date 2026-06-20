@@ -36,6 +36,7 @@ from openspeech.data.sampler import RandomSampler
 from openspeech.dataclass.initialize import hydra_eval_init
 from openspeech.metrics import CharacterErrorRate, WordErrorRate
 from openspeech.models import MODEL_REGISTRY
+from openspeech.task import OpenspeechTask
 from openspeech.tokenizers import TOKENIZER_REGISTRY
 
 logger = logging.getLogger(__name__)
@@ -53,8 +54,11 @@ def hydra_main(configs: DictConfig) -> None:
     audio_paths, transcripts = load_dataset(configs.eval.manifest_file_path)
     tokenizer = TOKENIZER_REGISTRY[configs.tokenizer.unit](configs)
 
-    model = MODEL_REGISTRY[configs.model.model_name]
-    model = model.load_from_checkpoint(configs.eval.checkpoint_path, configs=configs, tokenizer=tokenizer)
+    model = MODEL_REGISTRY[configs.model.model_name](configs=configs, tokenizer=tokenizer)
+    task = OpenspeechTask.load_from_checkpoint(
+        configs.eval.checkpoint_path, model=model, map_location=device, strict=False
+    )
+    model = task.model
     model.to(device)
 
     if configs.eval.beam_size > 1:

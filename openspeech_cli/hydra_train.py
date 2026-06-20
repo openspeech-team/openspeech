@@ -30,6 +30,7 @@ from pytorch_lightning.utilities.rank_zero import rank_zero_info
 from openspeech.dataclass.initialize import hydra_train_init
 from openspeech.datasets import DATA_MODULE_REGISTRY
 from openspeech.models import MODEL_REGISTRY
+from openspeech.task import OpenspeechTask
 from openspeech.tokenizers import TOKENIZER_REGISTRY
 from openspeech.utils import get_pl_trainer, parse_configs
 
@@ -48,15 +49,14 @@ def hydra_main(configs: DictConfig) -> None:
     data_module.setup()
 
     model = MODEL_REGISTRY[configs.model.model_name](configs=configs, tokenizer=tokenizer)
+    task = OpenspeechTask(model)
 
     trainer = get_pl_trainer(configs, num_devices, logger)
     ckpt_path = OmegaConf.select(configs, "trainer.checkpoint_path", default=None)
     if configs.trainer.name.endswith("resume") and ckpt_path is None:
-        raise ValueError(
-            f"Trainer '{configs.trainer.name}' requires `trainer.checkpoint_path` to be set for resuming."
-        )
-    trainer.fit(model, data_module, ckpt_path=ckpt_path)
-    trainer.test(model, data_module)
+        raise ValueError(f"Trainer '{configs.trainer.name}' requires `trainer.checkpoint_path` to be set for resuming.")
+    trainer.fit(task, data_module, ckpt_path=ckpt_path)
+    trainer.test(task, data_module)
 
 
 if __name__ == "__main__":

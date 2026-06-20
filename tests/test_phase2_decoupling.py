@@ -2,17 +2,19 @@
 #
 # Copyright (c) 2021 Soohwan Kim and Sangchun Ha and Soyoung Cho
 
-"""Phase 2 (Lightning decoupling) tests.
+"""Phase 2 (Lightning decoupling) tests — model side.
 
-collect_outputs is now pure compute (no self.log side effect); logging is centralized in the
-LightningModule batch-end hooks reading the "logs" key. These tests pin that contract and the
-stage="valid" -> "val" fix without requiring a real Trainer/dataset.
+collect_outputs is pure compute (no self.log); OpenspeechModel is now a framework-agnostic
+nn.Module. The Lightning surface (step-hook dispatch + logging) lives on OpenspeechTask
+(covered by test_task.py).
 """
 
 import importlib
 import inspect
 
 import pytest
+import pytorch_lightning as pl
+import torch.nn as nn
 
 from openspeech.models.openspeech_ctc_model import OpenspeechCTCModel
 from openspeech.models.openspeech_encoder_decoder_model import OpenspeechEncoderDecoderModel
@@ -36,25 +38,18 @@ def test_collect_outputs_is_log_free(cls):
     assert '"logs"' in source
 
 
-def test_model_defines_batch_end_hooks():
-    for hook in ("on_train_batch_end", "on_validation_batch_end", "on_test_batch_end", "_log_step_outputs"):
-        assert hook in OpenspeechModel.__dict__
+def test_openspeech_model_is_plain_nn_module():
+    assert issubclass(OpenspeechModel, nn.Module)
+    assert not issubclass(OpenspeechModel, pl.LightningModule)
+    # logging helpers moved to OpenspeechTask
+    assert not hasattr(OpenspeechModel, "info")
+    assert not hasattr(OpenspeechModel, "on_train_batch_end")
 
 
-def test_log_step_outputs_logs_only_logs_key():
+def test_get_lr_returns_none_without_optimizer():
     model = OpenspeechModel.__new__(OpenspeechModel)
-    captured = {}
-    model.info = lambda d: captured.update(d)
-    model.on_train_batch_end({"loss": 1.0, "logs": {"train_loss": 0.5, "learning_rate": 1e-4}}, batch=None, batch_idx=0)
-    assert captured == {"train_loss": 0.5, "learning_rate": 1e-4}
-
-
-def test_log_step_outputs_without_logs_key_is_noop():
-    model = OpenspeechModel.__new__(OpenspeechModel)
-    calls = []
-    model.info = lambda d: calls.append(d)
-    model.on_test_batch_end({"loss": 1.0}, batch=None, batch_idx=0)
-    assert calls == []
+    model.optimizer = None
+    assert model.get_lr() is None
 
 
 @pytest.mark.parametrize("model_pkg", ["conformer", "squeezeformer", "contextnet", "transformer"])

@@ -2,10 +2,13 @@
 #
 # Copyright (c) 2021 Soohwan Kim and Sangchun Ha and Soyoung Cho
 
-"""Tests for the PL 2.x real-GPU-run improvements (sync_dist, devices override, dead-field removal)."""
+"""Tests for the PL 2.x real-GPU-run improvements (devices override, dead-field removal, ensemble eval).
 
-import pytorch_lightning as pl
+The sync_dist logging behaviour now lives on OpenspeechTask and is covered by test_task.py.
+"""
+
 import pytest
+import pytorch_lightning as pl
 from omegaconf import OmegaConf
 
 from openspeech.dataclass.configurations import (
@@ -15,16 +18,7 @@ from openspeech.dataclass.configurations import (
     Fp64CPUTrainerConfigs,
     GPUTrainerConfigs,
 )
-from openspeech.models.openspeech_model import OpenspeechModel
 from openspeech.utils import get_pl_trainer
-
-
-def test_info_logs_with_sync_dist():
-    model = OpenspeechModel.__new__(OpenspeechModel)
-    calls = []
-    model.log = lambda key, value, **kwargs: calls.append((key, value, kwargs))
-    model.info({"train_loss": 1.0})
-    assert calls == [("train_loss", 1.0, {"prog_bar": True, "sync_dist": True})]
 
 
 def test_devices_field_default_auto():
@@ -45,9 +39,9 @@ def test_devices_override_builds_trainer():
     assert isinstance(trainer, pl.Trainer)
 
 
-def test_ensemble_eval_passes_checkpoint_kwargs():
+def test_ensemble_eval_loads_via_task():
     import openspeech_cli.hydra_ensemble_eval as module
 
     with open(module.__file__) as f:
         source = f.read()
-    assert "configs=configs, tokenizer=tokenizer" in source
+    assert "OpenspeechTask.load_from_checkpoint(checkpoint_path, model=model" in source

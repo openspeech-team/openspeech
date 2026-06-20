@@ -22,7 +22,6 @@
 
 from typing import Dict
 
-import pytorch_lightning as pl
 import torch
 import torch.nn as nn
 from omegaconf import DictConfig
@@ -36,9 +35,14 @@ from openspeech.optim.scheduler import SCHEDULER_REGISTRY
 from openspeech.tokenizers.tokenizer import Tokenizer
 
 
-class OpenspeechModel(pl.LightningModule):
+class OpenspeechModel(nn.Module):
     r"""
     Super class of openspeech models.
+
+    This is a framework-agnostic ``nn.Module``: it owns the computation (forward, the per-paradigm
+    step methods, ``collect_outputs``, ``configure_optimizers``, metrics). The PyTorch-Lightning
+    surface (step-hook dispatch + metric logging) lives in :class:`openspeech.task.OpenspeechTask`,
+    which wraps an instance of this class for training/evaluation.
 
     Note:
         Do not use this class directly, use one of the sub classes.
@@ -61,6 +65,7 @@ class OpenspeechModel(pl.LightningModule):
         self.num_classes = len(tokenizer)
         self.tokenizer = tokenizer
         self.current_val_loss = 100.0
+        self.optimizer = None
         self.wer_metric = WordErrorRate(tokenizer)
         self.cer_metric = CharacterErrorRate(tokenizer)
         if hasattr(configs, "trainer"):
@@ -70,16 +75,6 @@ class OpenspeechModel(pl.LightningModule):
 
     def set_beam_decoder(self, beam_size: int = 3):
         raise NotImplementedError
-
-    def info(self, dictionary: dict) -> None:
-        r"""
-        Logging information from dictionary.
-
-        Args:
-            dictionary (dict): dictionary contains information.
-        """
-        for key, value in dictionary.items():
-            self.log(key, value, prog_bar=True, sync_dist=True)
 
     def forward(self, inputs: torch.FloatTensor, input_lengths: torch.LongTensor) -> Dict[str, Tensor]:
         r"""
@@ -132,25 +127,6 @@ class OpenspeechModel(pl.LightningModule):
             loss (torch.Tensor): loss for training
         """
         raise NotImplementedError
-
-    def on_train_batch_end(self, outputs, batch, batch_idx) -> None:
-        self._log_step_outputs(outputs)
-
-    def on_validation_batch_end(self, outputs, batch, batch_idx, dataloader_idx: int = 0) -> None:
-        self._log_step_outputs(outputs)
-
-    def on_test_batch_end(self, outputs, batch, batch_idx, dataloader_idx: int = 0) -> None:
-        self._log_step_outputs(outputs)
-
-    def _log_step_outputs(self, outputs) -> None:
-        r"""
-        Log the metrics that a step's ``collect_outputs`` placed under the ``logs`` key.
-
-        Logging lives in these Lightning batch-end hooks rather than inside ``collect_outputs`` so the
-        per-paradigm ``collect_outputs`` methods stay free of ``self.log`` side effects (Phase 2 decoupling).
-        """
-        if isinstance(outputs, dict) and "logs" in outputs:
-            self.info(outputs["logs"])
 
     def configure_optimizers(self):
         r"""
@@ -227,6 +203,8 @@ class OpenspeechModel(pl.LightningModule):
             )
 
     def get_lr(self):
+        if self.optimizer is None:
+            return None
         for g in self.optimizer.param_groups:
             return g["lr"]
 

@@ -9,8 +9,10 @@ from openspeech.utils import WARPRNNT_IMPORT_ERROR
 try:
     import warp_rnnt._C as core
 except ImportError:
+    import pytest
+
     warnings.warn(WARPRNNT_IMPORT_ERROR)
-    exit()
+    pytest.skip(WARPRNNT_IMPORT_ERROR, allow_module_level=True)
 
 xs = torch.tensor([], dtype=torch.float32)
 ys = torch.tensor([], dtype=torch.int)

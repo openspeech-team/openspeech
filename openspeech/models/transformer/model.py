@@ -215,7 +215,7 @@ class TransformerWithCTCModel(OpenspeechCTCModel):
         logits, encoder_logits, output_lengths = self.encoder(inputs, input_lengths)
         logits = self.fc(logits).log_softmax(dim=-1)
         return self.collect_outputs(
-            stage="valid",
+            stage="val",
             logits=logits,
             output_lengths=output_lengths,
             targets=targets,

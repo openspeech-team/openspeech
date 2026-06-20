@@ -35,6 +35,7 @@ from openspeech.dataclass.initialize import hydra_eval_init
 from openspeech.metrics import CharacterErrorRate, WordErrorRate
 from openspeech.models import MODEL_REGISTRY
 from openspeech.search.ensemble_search import EnsembleSearch, WeightedEnsembleSearch
+from openspeech.tokenizers import TOKENIZER_REGISTRY
 
 logger = logging.getLogger(__name__)
 
@@ -51,13 +52,15 @@ def hydra_main(configs: DictConfig) -> None:
     checkpoint_paths = eval(configs.eval.checkpoint_paths)
     ensemble_weights = eval(configs.eval.ensemble_weights)
 
+    tokenizer = TOKENIZER_REGISTRY[configs.tokenizer.unit](configs)
+
     for model_name, checkpoint_path in zip(model_names, checkpoint_paths):
-        models.append(MODEL_REGISTRY[model_name].load_from_checkpoint(checkpoint_path))
+        models.append(
+            MODEL_REGISTRY[model_name].load_from_checkpoint(checkpoint_path, configs=configs, tokenizer=tokenizer)
+        )
 
     if configs.eval.beam_size > 1:
         warnings.warn("Currently, Ensemble + beam search is not supports.")
-
-    tokenizer = models[0].tokenizer
 
     if configs.eval.ensemble_method == "vanilla":
         model = EnsembleSearch(models)

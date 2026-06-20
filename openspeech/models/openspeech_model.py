@@ -79,7 +79,7 @@ class OpenspeechModel(pl.LightningModule):
             dictionary (dict): dictionary contains information.
         """
         for key, value in dictionary.items():
-            self.log(key, value, prog_bar=True)
+            self.log(key, value, prog_bar=True, sync_dist=True)
 
     def forward(self, inputs: torch.FloatTensor, input_lengths: torch.LongTensor) -> Dict[str, Tensor]:
         r"""

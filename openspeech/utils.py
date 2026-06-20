@@ -285,9 +285,14 @@ def get_pl_trainer(configs: DictConfig, num_devices: int, logger: Union[Logger, 
     settings = resolve_accelerator_settings(configs.trainer.name, num_devices, getattr(configs.trainer, "tpu_cores", 8))
     strategy = getattr(configs.trainer, "strategy", "auto") or "auto"
 
+    devices = settings["devices"]
+    devices_override = getattr(configs.trainer, "devices", "auto")
+    if devices_override not in (None, "auto"):
+        devices = int(devices_override) if str(devices_override).isdigit() else devices_override
+
     return pl.Trainer(
         accelerator=settings["accelerator"],
-        devices=settings["devices"],
+        devices=devices,
         strategy=strategy,
         precision=settings["precision"],
         accumulate_grad_batches=configs.trainer.accumulate_grad_batches,

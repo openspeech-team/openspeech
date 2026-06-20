@@ -166,6 +166,10 @@ class BaseTrainerConfigs(OpenspeechDataclass):
         default="auto",
         metadata={"help": "Lightning distributed strategy (auto, ddp, ddp_spawn, fsdp, etc…)."},
     )
+    devices: str = field(
+        default="auto",
+        metadata={"help": "Devices to train on. 'auto', or an int (e.g. 1) to cap GPUs instead of using all."},
+    )
     accumulate_grad_batches: int = field(
         default=1, metadata={"help": "Accumulates grads every k batches or as set up in the dict."}
     )
@@ -235,37 +239,16 @@ class TPUTrainerConfigs(BaseTrainerConfigs):
 @dataclass
 class Fp16GPUTrainerConfigs(GPUTrainerConfigs):
     name: str = field(default="gpu-fp16", metadata={"help": "Trainer name"})
-    precision: int = field(
-        default=16,
-        metadata={
-            "help": "Double precision (64), full precision (32) or half precision (16). "
-            "Can be used on CPU, GPU or TPUs."
-        },
-    )
 
 
 @dataclass
 class Fp16TPUTrainerConfigs(TPUTrainerConfigs):
     name: str = field(default="tpu-fp16", metadata={"help": "Trainer name"})
-    precision: int = field(
-        default=16,
-        metadata={
-            "help": "Double precision (64), full precision (32) or half precision (16). "
-            "Can be used on CPU, GPU or TPUs."
-        },
-    )
 
 
 @dataclass
 class Fp64CPUTrainerConfigs(CPUTrainerConfigs):
     name: str = field(default="cpu-fp64", metadata={"help": "Trainer name"})
-    precision: int = field(
-        default=64,
-        metadata={
-            "help": "Double precision (64), full precision (32) or half precision (16). "
-            "Can be used on CPU, GPU or TPUs."
-        },
-    )
 
 
 @dataclass

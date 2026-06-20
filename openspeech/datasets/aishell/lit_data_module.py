@@ -55,7 +55,7 @@ class LightningAIShellDataModule(pl.LightningDataModule):
         super(LightningAIShellDataModule, self).__init__()
         self.configs = configs
         self.dataset = dict()
-        self.logger = logging.getLogger(__name__)
+        self._logger = logging.getLogger(__name__)
 
     def _download_dataset(self) -> None:
         r"""Download aishell dataset."""
@@ -66,7 +66,7 @@ class LightningAIShellDataModule(pl.LightningDataModule):
 
         wget.download(url, f"{self.configs.dataset.dataset_path}/data_aishell.tgz")
 
-        self.logger.info(f"Un-tarring archive {self.configs.dataset.dataset_path}/data_aishell.tgz")
+        self._logger.info(f"Un-tarring archive {self.configs.dataset.dataset_path}/data_aishell.tgz")
         tar = tarfile.open(f"{self.configs.dataset.dataset_path}/data_aishell.tgz", mode="r:gz")
         tar.extractall(self.configs.dataset.dataset_path)
         tar.close()
@@ -110,7 +110,7 @@ class LightningAIShellDataModule(pl.LightningDataModule):
             self._download_dataset()
 
         if not os.path.exists(self.configs.dataset.manifest_file_path):
-            self.logger.info("Manifest file is not exists !!\n" "Generate manifest files..")
+            self._logger.info("Manifest file is not exists !!\n" "Generate manifest files..")
             if not os.path.exists(self.configs.dataset.dataset_path):
                 raise ValueError("Dataset path is not valid.")
             self._generate_manifest_files(self.configs.dataset.manifest_file_path)

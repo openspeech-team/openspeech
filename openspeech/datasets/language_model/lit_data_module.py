@@ -41,7 +41,7 @@ class LightningLanguageModelDataModule(pl.LightningDataModule):
         super(LightningLanguageModelDataModule, self).__init__()
         self.configs = configs
         self.dataset = dict()
-        self.logger = logging.getLogger(__name__)
+        self._logger = logging.getLogger(__name__)
 
     def prepare_data(self):
         if not os.path.exists(self.configs.dataset.dataset_path):

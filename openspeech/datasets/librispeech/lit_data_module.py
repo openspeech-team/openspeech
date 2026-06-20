@@ -65,7 +65,7 @@ class LightningLibriSpeechDataModule(pl.LightningDataModule):
         super(LightningLibriSpeechDataModule, self).__init__()
         self.configs = configs
         self.dataset = dict()
-        self.logger = logging.getLogger(__name__)
+        self._logger = logging.getLogger(__name__)
 
     def _parse_manifest_file(self, manifest_file_path: str) -> Tuple[list, list]:
         """Parsing manifest file"""
@@ -98,18 +98,18 @@ class LightningLibriSpeechDataModule(pl.LightningDataModule):
             os.mkdir(self.configs.dataset.dataset_path)
 
         for part in self.LIBRISPEECH_PARTS:
-            self.logger.info(f"Librispeech-{part} download..")
+            self._logger.info(f"Librispeech-{part} download..")
             url = f"{base_url}/{part}.tar.gz"
             wget.download(url)
             shutil.move(f"{part}.tar.gz", os.path.join(self.configs.dataset.dataset_path, f"{part}.tar.gz"))
 
-            self.logger.info(f"Un-tarring archive {self.configs.dataset.dataset_path}/{part}.tar.gz")
+            self._logger.info(f"Un-tarring archive {self.configs.dataset.dataset_path}/{part}.tar.gz")
             tar = tarfile.open(f"{self.configs.dataset.dataset_path}/{part}.tar.gz", mode="r:gz")
             tar.extractall(self.configs.dataset.dataset_path)
             tar.close()
             os.remove(f"{self.configs.dataset.dataset_path}/{part}.tar.gz")
 
-        self.logger.info("Merge all train packs into one")
+        self._logger.info("Merge all train packs into one")
 
         if not os.path.exists(self.configs.dataset.dataset_path):
             os.mkdir(self.configs.dataset.dataset_path)
@@ -143,7 +143,7 @@ class LightningLibriSpeechDataModule(pl.LightningDataModule):
             self._download_dataset()
 
         if not os.path.exists(self.configs.dataset.manifest_file_path):
-            self.logger.info("Manifest file is not exists !!\n" "Generate manifest files..")
+            self._logger.info("Manifest file is not exists !!\n" "Generate manifest files..")
 
             if hasattr(self.configs.tokenizer, "vocab_size"):
                 generate_manifest_files(

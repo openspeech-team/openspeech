@@ -63,7 +63,7 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
         super(LightningKsponSpeechDataModule, self).__init__()
         self.configs = configs
         self.dataset = dict()
-        self.logger = logging.getLogger(__name__)
+        self._logger = logging.getLogger(__name__)
         self.encoding = "cp949" if self.configs.tokenizer.unit == "kspon_grapheme" else "utf-8"
 
     def _generate_manifest_files(self, manifest_file_path: str) -> None:
@@ -126,7 +126,7 @@ class LightningKsponSpeechDataModule(pl.LightningDataModule):
             tokenizer (Tokenizer): tokenizer is in charge of preparing the inputs for a model.
         """
         if not os.path.exists(self.configs.dataset.manifest_file_path):
-            self.logger.info("Manifest file is not exists !!\n" "Generate manifest files..")
+            self._logger.info("Manifest file is not exists !!\n" "Generate manifest files..")
             if not os.path.exists(self.configs.dataset.dataset_path):
                 raise FileNotFoundError
             self._generate_manifest_files(self.configs.dataset.manifest_file_path)

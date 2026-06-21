@@ -20,19 +20,24 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-pip install -e .
+# Recommended: install with uv (https://github.com/astral-sh/uv)
+# Creates a .venv and installs everything pinned by uv.lock.
+uv sync                 # runtime dependencies only
+# uv sync --extra dev   # + dev tools (pytest, black, ruff, pre-commit)
+# uv sync --extra wandb  # + Weights & Biases logger
 
-conda install -c pytorch torchaudio
-conda install -c conda-forge librosa
+# Alternative (pip):
+# pip install -e .          # runtime
+# pip install -e ".[dev]"   # + dev tools
 
-# Install warp-rnnt
-# Refer to : https://github.com/1ytic/warp-rnnt
-git clone https://github.com/1ytic/warp-rnnt
-cd warp-rnnt/pytorch_binding
-python setup.py install
-cd ../..
-
-# Install ctcdecode
-# Refer to : https://github.com/parlance/ctcdecode
-git clone --recursive https://github.com/parlance/ctcdecode.git
-cd ctcdecode && pip install .
+# ---------------------------------------------------------------------------
+# OPTIONAL native libraries (NOT required for the default install).
+# Only needed for warp-rnnt loss / ctcdecode beam search on supported platforms.
+#
+# warp-rnnt — https://github.com/1ytic/warp-rnnt
+# git clone https://github.com/1ytic/warp-rnnt
+# cd warp-rnnt/pytorch_binding && python setup.py install && cd ../..
+#
+# ctcdecode — https://github.com/parlance/ctcdecode
+# git clone --recursive https://github.com/parlance/ctcdecode.git
+# cd ctcdecode && pip install .

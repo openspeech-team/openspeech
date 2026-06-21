@@ -13,7 +13,7 @@ import importlib
 import inspect
 
 import pytest
-import pytorch_lightning as pl
+import lightning.pytorch as pl
 import torch.nn as nn
 
 from openspeech.models.openspeech_ctc_model import OpenspeechCTCModel

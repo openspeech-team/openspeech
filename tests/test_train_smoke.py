@@ -11,7 +11,7 @@ and safe on low-RAM machines. Model *computation* correctness is covered by the 
 test only proves the training loop wires up and runs without raising.
 """
 
-import pytorch_lightning as pl
+import lightning.pytorch as pl
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset

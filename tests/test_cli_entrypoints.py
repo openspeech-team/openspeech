@@ -22,7 +22,7 @@ def test_cli_module_imports(module_name):
 
 
 def test_modern_rank_zero_import_path():
-    from pytorch_lightning.utilities.rank_zero import rank_zero_info  # noqa: F401
+    from lightning.pytorch.utilities.rank_zero import rank_zero_info  # noqa: F401
 
 
 def test_hydra_main_uses_version_base():

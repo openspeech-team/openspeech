@@ -8,7 +8,7 @@ Covers step delegation, metric logging (sync_dist), the `model.` state_dict pref
 legacy-checkpoint key remap that keeps pre-Phase-2 `.ckpt` files loadable.
 """
 
-import pytorch_lightning as pl
+import lightning.pytorch as pl
 import torch
 import torch.nn as nn
 

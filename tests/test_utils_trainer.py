@@ -4,7 +4,7 @@
 
 """Tests for the PyTorch-Lightning 2.x trainer-building logic in openspeech/utils.py."""
 
-import pytorch_lightning as pl
+import lightning.pytorch as pl
 import pytest
 from omegaconf import OmegaConf
 

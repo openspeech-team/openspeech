@@ -25,7 +25,7 @@ import os
 import tarfile
 from typing import Optional, Tuple
 
-import pytorch_lightning as pl
+import lightning.pytorch as pl
 import wget
 from omegaconf import DictConfig
 

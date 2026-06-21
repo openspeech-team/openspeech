@@ -25,7 +25,7 @@ import os
 import random
 from typing import Optional
 
-import pytorch_lightning as pl
+import lightning.pytorch as pl
 from omegaconf import DictConfig
 
 from openspeech.data.sampler import RandomSampler

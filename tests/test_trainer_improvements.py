@@ -8,7 +8,7 @@ The sync_dist logging behaviour now lives on OpenspeechTask and is covered by te
 """
 
 import pytest
-import pytorch_lightning as pl
+import lightning.pytorch as pl
 from omegaconf import OmegaConf
 
 from openspeech.dataclass.configurations import (

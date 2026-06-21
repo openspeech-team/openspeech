@@ -11,7 +11,7 @@ import openspeech.datasets.aishell.lit_data_module  # noqa: F401
 import openspeech.datasets.ksponspeech.lit_data_module  # noqa: F401
 import openspeech.datasets.language_model.lit_data_module  # noqa: F401
 import openspeech.datasets.librispeech.lit_data_module  # noqa: F401
-import pytorch_lightning as pl
+import lightning.pytorch as pl
 from openspeech.datasets import DATA_MODULE_REGISTRY
 from openspeech.datasets.aishell.lit_data_module import LightningAIShellDataModule
 from openspeech.datasets.ksponspeech.lit_data_module import LightningKsponSpeechDataModule

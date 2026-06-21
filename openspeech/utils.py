@@ -28,7 +28,7 @@ from typing import Iterable, Tuple, Union
 
 import torch
 from omegaconf import DictConfig, OmegaConf
-from pytorch_lightning.callbacks import LearningRateMonitor
+from lightning.pytorch.callbacks import LearningRateMonitor
 
 from .callbacks import CheckpointEveryNSteps
 
@@ -43,8 +43,8 @@ Openspeech requires the torchaudio library but it was not found in your environm
 """
 
 PYTORCH_LIGHTNING_IMPORT_ERROR = """
-Openspeech requires the pytorch-lightning library but it was not found in your environment. You can install it with pip:
-`pip install pytorch-lightning`
+Openspeech requires the lightning library but it was not found in your environment. You can install it with pip:
+`pip install lightning`
 """
 
 HYDRA_IMPORT_ERROR = """
@@ -79,8 +79,8 @@ except ImportError:
     raise ValueError(LIBROSA_IMPORT_ERROR)
 
 try:
-    import pytorch_lightning as pl
-    from pytorch_lightning.loggers import Logger, TensorBoardLogger, WandbLogger
+    import lightning.pytorch as pl
+    from lightning.pytorch.loggers import Logger, TensorBoardLogger, WandbLogger
 except ImportError:
     raise ValueError(PYTORCH_LIGHTNING_IMPORT_ERROR)
 
@@ -127,7 +127,7 @@ def is_pytorch_available():
 
 
 def is_pytorch_lightning_available():
-    return importlib.util.find_spec("pytorch_lightning") is not None
+    return importlib.util.find_spec("lightning") is not None
 
 
 def is_hydra_available():

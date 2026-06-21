@@ -9,7 +9,7 @@
 """Lightweight, network-free smoke tests that prove the package imports and the
 PyTorch-Lightning 2.x trainer builder constructs on CPU. Used as the CI gate."""
 
-import pytorch_lightning as pl
+import lightning.pytorch as pl
 from omegaconf import OmegaConf
 
 

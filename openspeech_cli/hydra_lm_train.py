@@ -23,9 +23,9 @@
 import os
 
 import hydra
-import pytorch_lightning as pl
+import lightning.pytorch as pl
 from omegaconf import DictConfig, OmegaConf
-from pytorch_lightning.utilities.rank_zero import rank_zero_info
+from lightning.pytorch.utilities.rank_zero import rank_zero_info
 
 from openspeech.dataclass.initialize import hydra_lm_train_init
 from openspeech.datasets import DATA_MODULE_REGISTRY

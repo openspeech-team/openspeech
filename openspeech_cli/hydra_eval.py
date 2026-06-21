@@ -27,7 +27,7 @@ import warnings
 import hydra
 import torch
 from omegaconf import DictConfig, OmegaConf
-from pytorch_lightning.utilities.rank_zero import rank_zero_info
+from lightning.pytorch.utilities.rank_zero import rank_zero_info
 from tqdm import tqdm
 
 from openspeech.data.audio.data_loader import AudioDataLoader, load_dataset
